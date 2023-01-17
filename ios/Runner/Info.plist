@@ -47,9 +47,42 @@
 		<true />
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true />
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>Allow access to photo library to upload your profile picture</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Allow access to photo library to upload your profile picture</string>
 		<key>NSCameraUsageDescription</key>
-		<string>your usage description here</string>
+		<string>Allow access to camera to capture photos and upload it as profile picture</string>
 		<key>NSMicrophoneUsageDescription</key>
-		<string>your usage description here</string>
+		<string>Allow access to microphone to capture videos</string>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLName</key>
+				<string>vroomapp.web.app</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>com.vroom.vroomapp</string>
+				</array>
+			</dict>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLName</key>
+				<string>FirebaseAuth</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>app-1-610630071415-ios-2d1db93a1581673ade4272</string>
+				</array>
+			</dict>
+		</array>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>App needs access to location and direction when open to check nearest courts</string>
+		<key>NSCalendarsUsageDescription</key>
+		<string>Padel Finder wants to access your calendar to add your booking to it.</string>
+		<key>CADisableMinimumFrameDurationOnPhone</key>
+		<true/>
 	</dict>
 </plist>
