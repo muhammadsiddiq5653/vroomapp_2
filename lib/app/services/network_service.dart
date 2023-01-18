@@ -82,7 +82,7 @@ class NetworkService extends getx.GetxService {
     String fileName = image.split('/').last;
     var file = await MultipartFile.fromFile(image, filename: fileName);
     FormData formData = FormData.fromMap({
-      "files[]": file,
+      "upload": file,
     });
     var request = await dio.post(url,
         queryParameters: query,

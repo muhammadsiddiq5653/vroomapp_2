@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:camera/camera.dart';
@@ -6,6 +7,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_launcher_icons/utils.dart';
 import 'package:get/get.dart';
 import 'package:image/image.dart' as imagelib;
+import 'package:vroom_app/app/data/api/app_cars_api.dart';
+import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
 enum CameraStates {
   cameraStarting,
@@ -15,9 +18,10 @@ enum CameraStates {
   cameraDone
 }
 
-class ScanCarController extends GetxController {
+class ScanCarController extends AppAbstractController {
   var cameras = <CameraDescription>[];
   CameraController? cameraController;
+  AppCarsApi appCarsApi = Get.put(AppCarsApi());
   bool cameraReady = false;
   CameraStates cameraStates = CameraStates.cameraStarting;
   Image? licenceImageCropped;
@@ -58,15 +62,25 @@ class ScanCarController extends GetxController {
   }
 
   void findCar() async {
-    var licenceImage = await cameraController!.takePicture();
-    var croppedImage = await cropImage(licenceImage);
-    var encoded = imagelib.encodePng(croppedImage!);
-    licenceImageCropped = Image.memory(
-      Uint8List.fromList(encoded),
-      width: 300,
-    );
-    cameraStates = CameraStates.cameraScanning;
-    update();
+    try {
+      var licenceImage = await cameraController!.takePicture();
+      var croppedImage = await cropImage(licenceImage);
+      var encoded = imagelib.encodePng(croppedImage!);
+      var path = await File('scan.png').writeAsBytes(encoded);
+      licenceImageCropped = Image.memory(
+        Uint8List.fromList(encoded),
+        width: 300,
+      );
+      cameraStates = CameraStates.cameraScanning;
+
+      update();
+      await appCarsApi.vroomCar(path.path);
+      cameraStates = CameraStates.cameraDone;
+    } catch (ex) {
+      cameraStates = CameraStates.cameraError;
+    } finally {
+      update();
+    }
   }
 
   Future<imagelib.Image?> cropImage(licenceImage) async {

@@ -23,4 +23,10 @@ class AppCarsApi extends GetxService {
     var result = await networkService.get(AppApiUrl.cars + "/$cardId");
     return CarModel.fromJson(result.data);
   }
+
+  Future<CarModel> vroomCar(imagePath) async {
+    var result =
+        await networkService.uploadFile(AppApiUrl.cars, image: imagePath);
+    return CarModel.fromJson(result.data);
+  }
 }
