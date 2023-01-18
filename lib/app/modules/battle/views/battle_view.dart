@@ -10,7 +10,7 @@ import '../controllers/battle_controller.dart';
 class BattleView extends GetView<BattleController> {
   final battleController = Get.put(BattleController());
   final battleOptions = [
-    {'title': '1 V 1'},
+    {'title': '1 V 1', 'image': 'assets/images/battle.png'},
     {'title': 'MULTIPLAYER'},
     {'title': 'FULL STACK'},
   ];
@@ -43,6 +43,13 @@ class BattleView extends GetView<BattleController> {
             Container(
               // height: 300,
               width: double.infinity,
+              child: e['image'] != null
+                  ? Image.asset(
+                      e['image'] as String,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    )
+                  : null,
               // color: Colors.red,
             ),
             Positioned(

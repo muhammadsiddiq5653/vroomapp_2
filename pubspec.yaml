@@ -73,7 +73,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/logo.png"
+  image_path: "assets/images/icon.png"
 
 flutter: 
   uses-material-design: true 
@@ -92,5 +92,7 @@ flutter:
     - assets/images/wheel.png
     - assets/images/cursor.png
     - assets/images/match.png
+    - assets/images/battle.png
+    - assets/images/battlepass.png
     - assets/sounds/
 

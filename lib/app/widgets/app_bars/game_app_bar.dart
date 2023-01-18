@@ -24,45 +24,50 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(26),
-                    child: Container(
-                      color: AppColors.primary,
-                      child: Image.asset(
-                        'assets/images/user.png',
-                        width: 52,
+              child: GestureDetector(
+                onTap: () {
+                  Get.toNamed(Routes.PROFILE);
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(26),
+                      child: Container(
+                        color: AppColors.primary,
+                        child: Image.asset(
+                          'assets/images/user.png',
+                          width: 52,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 120,
-                            child: SmallBoldText(
-                              text: userModel.name ?? '',
-                              color: Colors.white,
-                              textOverflow: TextOverflow.ellipsis,
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: 120,
+                              child: SmallBoldText(
+                                text: userModel.name ?? '',
+                                color: Colors.white,
+                                textOverflow: TextOverflow.ellipsis,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      SmallText(
-                        text: '@jjo',
-                        color: Colors.white.withOpacity(0.7),
-                      )
-                    ],
-                  )
-                ],
+                          ],
+                        ),
+                        SmallText(
+                          text: '@jjo',
+                          color: Colors.white.withOpacity(0.7),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
             GestureDetector(
@@ -83,15 +88,15 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _getIconPair('assets/images/diamonds.png', "42"),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            _getIconPair('assets/images/coins.png', "\$190,222")
+                            _getIconPair('assets/images/battlepass.png', "4"),
+                            // SizedBox(
+                            //   height: 5,
+                            // ),
+                            // _getIconPair('assets/images/coins.png', "\$190,222")
                           ],
                         ),
                         SizedBox(
-                          width: 5,
+                          width: 30,
                         ),
                         Icon(
                           Remix.add_fill,
