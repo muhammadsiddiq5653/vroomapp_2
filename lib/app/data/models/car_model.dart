@@ -14,7 +14,7 @@ class CarModel extends Serializable {
   int? price;
   String? logo;
   UserModel? user;
-
+  String? image;
   CarModel({
     required this.make,
     required this.id,
@@ -32,6 +32,7 @@ class CarModel extends Serializable {
     price = json['price'];
     logo = json['logo'];
     user = UserModel.fromJson(json['user']);
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {

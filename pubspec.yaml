@@ -70,10 +70,16 @@ dev_dependencies:
   flutter_test: 
     sdk: flutter
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
+
 flutter: 
   uses-material-design: true 
   assets:
     - assets/images/logo.png
+    - assets/images/aventador.png
     - assets/images/car.png
     - assets/images/acura.png
     - assets/images/user.png

@@ -31,8 +31,7 @@ class CarCard extends StatelessWidget {
                 child: Container(
                     width: 400,
                     child: AppNetworkImage(
-                      url:
-                          "https://cdn.imagin.studio/getImage?customer=img&make=${car.make}&modelFamily=${car.model}&zoomType=fullscreen&width=300&angle=01",
+                      url: car.image!,
                     )),
               )),
           Container(

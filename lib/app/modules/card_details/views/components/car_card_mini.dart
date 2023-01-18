@@ -62,8 +62,7 @@ class CarCardMini extends StatelessWidget {
                 tag: 'car-card-${topCategoryCarModel.car.id}',
                 child: Container(
                     child: AppNetworkImage(
-                  url:
-                      "https://cdn.imagin.studio/getImage?customer=img&make=${topCategoryCarModel.car.make}&modelFamily=${topCategoryCarModel.car.model}&zoomType=fullscreen&width=200&angle=01",
+                  url: topCategoryCarModel.car.image!,
                   width: 200,
                 )),
               ))

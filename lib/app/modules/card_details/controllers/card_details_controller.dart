@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:vroom_app/app/app_constants.dart';
 import 'package:vroom_app/app/data/models/car_model.dart';
+import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/services/sound_service.dart';
 
 class CardDetailsController extends GetxController {
@@ -21,5 +22,10 @@ class CardDetailsController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  void battleNow() {
+    Get.offAndToNamed(Routes.BATTLE_STEP_MATCHING_OPPONENT,
+        arguments: {'car': car});
   }
 }

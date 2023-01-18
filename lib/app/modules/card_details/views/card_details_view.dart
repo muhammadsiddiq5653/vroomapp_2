@@ -12,6 +12,7 @@ import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
 import 'package:vroom_app/app/widgets/app_text/big_header_text.dart';
 
+import '../../../widgets/app_network_image.dart';
 import '../../../widgets/app_text/text_400.dart';
 import '../../../widgets/app_text/text_600.dart';
 import '../controllers/card_details_controller.dart';
@@ -29,9 +30,9 @@ class CardDetailsView extends GetView<CardDetailsController> {
       body: Column(
         children: [
           Expanded(
-            child: Stack(children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(15, 10, 170, 10),
+            child: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -88,7 +89,18 @@ class CardDetailsView extends GetView<CardDetailsController> {
                       ],
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 20,
+                    ),
+                    Hero(
+                      tag: 'car-card-${controller.car.hashCode}',
+                      child: Container(
+                          width: double.infinity,
+                          child: AppNetworkImage(
+                            url: controller.car.image!,
+                          )),
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     CarSpecProgress(
                       value: AppUtilities.getWeightPercentage(
@@ -192,19 +204,7 @@ class CardDetailsView extends GetView<CardDetailsController> {
                   ],
                 ),
               ),
-              Positioned(
-                  right: -230,
-                  top: 0,
-                  bottom: 0,
-                  child: Hero(
-                    tag: 'car-card-1',
-                    child: Container(
-                        alignment: Alignment.centerRight,
-                        child: Image.asset(
-                          "assets/images/car.png",
-                        )),
-                  ))
-            ]),
+            ),
           ),
           Container(
             height: 100,
@@ -212,7 +212,9 @@ class CardDetailsView extends GetView<CardDetailsController> {
             padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
             child: AppButtonField(
               text: 'Battle now'.toUpperCase(),
-              onPressed: () {},
+              onPressed: () {
+                controller.battleNow();
+              },
             ),
           )
         ],

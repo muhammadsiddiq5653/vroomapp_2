@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
+import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
-class LoginController extends GetxController {
-  //TODO: Implement LoginController
-
-  final count = 0.obs;
+class LoginController extends AppAbstractController {
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +16,4 @@ class LoginController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }
