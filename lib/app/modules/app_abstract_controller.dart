@@ -47,6 +47,7 @@ class AppAbstractController extends GetxController {
 
   void logout() {
     settingsService.logout();
+    Get.offAllNamed(Routes.PREVIEW);
     update();
   }
 

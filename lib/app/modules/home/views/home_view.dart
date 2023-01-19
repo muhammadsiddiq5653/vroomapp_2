@@ -30,7 +30,7 @@ class HomeView extends GetView<HomeController> {
                 elevation: 5,
                 backgroundColor: AppColors.primary,
                 onPressed: () {
-                  Get.toNamed(Routes.SCAN_CAR);
+                  controller.scanCar();
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -62,6 +62,7 @@ class HomeView extends GetView<HomeController> {
             onRetry: () {
               controller.loadCards();
             },
+            hasRefreshIndicator: true,
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
               child: ListView.separated(

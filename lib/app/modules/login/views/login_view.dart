@@ -66,23 +66,28 @@ class LoginView extends GetView<LoginController> {
                       primary: AppColors.primary,
                     )),
                 Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text400(
-                      text: 'New here?',
-                      fontSize: 14,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text400(
-                      text: 'signup',
-                      fontSize: 14,
-                      color: AppColors.primary,
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.SIGNUP);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text400(
+                        text: 'New here?',
+                        fontSize: 14,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text400(
+                        text: 'signup',
+                        fontSize: 14,
+                        color: AppColors.primary,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

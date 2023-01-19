@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
+import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
-class ProfileController extends GetxController {
+class ProfileController extends AppAbstractController {
   //TODO: Implement ProfileController
 
   final count = 0.obs;

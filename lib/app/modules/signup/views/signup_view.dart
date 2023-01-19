@@ -67,23 +67,28 @@ class SignupView extends GetView<SignupController> {
                       primary: AppColors.primary,
                     )),
                 Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text400(
-                      text: 'Already a vroomer?',
-                      fontSize: 14,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text400(
-                      text: 'login',
-                      fontSize: 14,
-                      color: AppColors.primary,
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    Get.offAndToNamed(Routes.LOGIN);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text400(
+                        text: 'Already a vroomer?',
+                        fontSize: 14,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text400(
+                        text: 'login',
+                        fontSize: 14,
+                        color: AppColors.primary,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

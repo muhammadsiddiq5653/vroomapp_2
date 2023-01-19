@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 class AppApiUrl {
   static final root = kReleaseMode
       ? 'https://vroom-api-6lt4pibyja-uc.a.run.app/'
-      : (Platform.isAndroid ? 'http://10.0.2.2/' : 'http://localhost/');
+      : (Platform.isAndroid ? 'http://10.0.2.2/' : 'http://192.168.1.9/');
   static final rootUrl = '${root}api/';
 
   static const login = 'login';

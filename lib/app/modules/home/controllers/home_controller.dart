@@ -54,4 +54,9 @@ class HomeController extends AppAbstractController {
       update();
     }
   }
+
+  void scanCar() async {
+    await Get.toNamed(Routes.SCAN_CAR);
+    loadCards();
+  }
 }

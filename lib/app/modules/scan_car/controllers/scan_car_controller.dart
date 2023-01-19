@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_launcher_icons/utils.dart';
 import 'package:get/get.dart';
 import 'package:image/image.dart' as imagelib;
+import 'package:path_provider/path_provider.dart';
 import 'package:vroom_app/app/data/api/app_cars_api.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
@@ -25,6 +26,7 @@ class ScanCarController extends AppAbstractController {
   bool cameraReady = false;
   CameraStates cameraStates = CameraStates.cameraStarting;
   Image? licenceImageCropped;
+  String? errorMessage;
   @override
   void onInit() {
     super.onInit();
@@ -63,21 +65,41 @@ class ScanCarController extends AppAbstractController {
 
   void findCar() async {
     try {
+      var path = await _takePicture();
+      if (path == null)
+        throw Exception(
+            'we had issues with scanning this car, please try again');
+      var car = await appCarsApi.vroomCar(path.path);
+      settingsService.cars.add(car);
+      cameraStates = CameraStates.cameraDone;
+      Get.back();
+    } catch (e, ex) {
+      errorMessage = e.toString();
+      cameraStates = CameraStates.cameraError;
+      print(ex);
+    } finally {
+      update();
+    }
+  }
+
+  Future<File?> _takePicture() async {
+    try {
+      errorMessage = null;
       var licenceImage = await cameraController!.takePicture();
       var croppedImage = await cropImage(licenceImage);
       var encoded = imagelib.encodePng(croppedImage!);
-      var path = await File('scan.png').writeAsBytes(encoded);
+      Directory tempDir = await getTemporaryDirectory();
+      String tempPath = tempDir.path;
+      var path = await File('$tempPath/scan.png').writeAsBytes(encoded);
       licenceImageCropped = Image.memory(
         Uint8List.fromList(encoded),
         width: 300,
       );
       cameraStates = CameraStates.cameraScanning;
-
-      update();
-      await appCarsApi.vroomCar(path.path);
-      cameraStates = CameraStates.cameraDone;
+      return path;
     } catch (ex) {
       cameraStates = CameraStates.cameraError;
+      return null;
     } finally {
       update();
     }
@@ -88,5 +110,10 @@ class ScanCarController extends AppAbstractController {
     if (image == null) return null;
     return imagelib.copyCrop(
         image, image.width ~/ 2 - 450, image.height ~/ 2 - 500, 900, 400);
+  }
+
+  void retry() {
+    cameraStates = CameraStates.cameraStarted;
+    update();
   }
 }

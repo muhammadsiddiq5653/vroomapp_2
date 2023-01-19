@@ -3,10 +3,12 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
 import 'package:vroom_app/app/widgets/app_text/small_text.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
+import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 
 import '../../../widgets/app_text/text_600.dart';
 import '../controllers/scan_car_controller.dart';
@@ -94,6 +96,44 @@ class ScanCarView extends GetView<ScanCarController> {
   }
 
   Widget _getChildrenDependOnCameraState() {
+    if (controller.cameraStates == CameraStates.cameraError) {
+      return Container(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.warning_amber,
+              color: AppColors.primary,
+              size: 50,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text700(text: 'Ooops! somthing doesnt look right'),
+            if (controller.errorMessage != null)
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                child: Text700(text: controller.errorMessage!),
+              ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 50,
+              width: 300,
+              child: AppButtonField(
+                onPressed: () {
+                  controller.retry();
+                },
+                text: 'Retry',
+              ),
+            )
+          ],
+        ),
+      );
+    }
     if (controller.cameraStates == CameraStates.cameraStarting) {
       return Text('Loading');
     }

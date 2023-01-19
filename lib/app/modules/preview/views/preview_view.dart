@@ -11,6 +11,7 @@ import 'components/single_slider_page.dart';
 import 'components/slider_dots.dart';
 
 class PreviewView extends GetView<PreviewController> {
+  final controller = Get.put(PreviewController());
   final pages = [
     {
       "icon": Remix.search_2_line,
