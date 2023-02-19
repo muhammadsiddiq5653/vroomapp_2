@@ -27,6 +27,7 @@ class ScanCarController extends AppAbstractController {
   CameraStates cameraStates = CameraStates.cameraStarting;
   Image? licenceImageCropped;
   String? errorMessage;
+  XFile? licenceImage;
   @override
   void onInit() {
     super.onInit();
@@ -66,6 +67,7 @@ class ScanCarController extends AppAbstractController {
   void findCar() async {
     try {
       var path = await _takePicture();
+      return;
       if (path == null)
         throw Exception(
             'we had issues with scanning this car, please try again');
@@ -85,17 +87,16 @@ class ScanCarController extends AppAbstractController {
   Future<File?> _takePicture() async {
     try {
       errorMessage = null;
-      var licenceImage = await cameraController!.takePicture();
+      licenceImage = await cameraController!.takePicture();
+      cameraStates = CameraStates.cameraScanning;
+      cameraController?.dispose();
+      print('sss');
+      update();
       var croppedImage = await cropImage(licenceImage);
       var encoded = imagelib.encodePng(croppedImage!);
       Directory tempDir = await getTemporaryDirectory();
       String tempPath = tempDir.path;
       var path = await File('$tempPath/scan.png').writeAsBytes(encoded);
-      licenceImageCropped = Image.memory(
-        Uint8List.fromList(encoded),
-        width: 300,
-      );
-      cameraStates = CameraStates.cameraScanning;
       return path;
     } catch (ex) {
       cameraStates = CameraStates.cameraError;
@@ -108,8 +109,7 @@ class ScanCarController extends AppAbstractController {
   Future<imagelib.Image?> cropImage(licenceImage) async {
     var image = decodeImageFile(licenceImage!.path);
     if (image == null) return null;
-    return imagelib.copyCrop(
-        image, image.width ~/ 2 - 450, image.height ~/ 2 - 500, 900, 400);
+    return imagelib.copyCrop(image, 0, 0, image.width, image.height);
   }
 
   void retry() {

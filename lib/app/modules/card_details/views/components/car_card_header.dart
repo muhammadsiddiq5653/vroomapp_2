@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vroom_app/app/data/models/car_model.dart';
+import 'package:vroom_app/app/helpers/hexcolor.dart';
 import 'package:vroom_app/app/widgets/app_network_image.dart';
 import 'package:vroom_app/app/widgets/app_text/small_text.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
@@ -15,9 +16,15 @@ class CarCardHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        AppNetworkImage(
-          url: car.logo.toString(),
-          width: 32,
+        Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: HexColor("#131316")),
+          padding: EdgeInsets.all(3),
+          child: AppNetworkImage(
+            url: car.logo.toString(),
+            width: 32,
+          ),
         ),
         SizedBox(
           width: 10,

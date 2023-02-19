@@ -3,6 +3,7 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:rive/rive.dart';
 import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
@@ -32,8 +33,10 @@ class ScanCarView extends GetView<ScanCarController> {
         Container(
             width: Get.width,
             height: Get.width / controller.cameraController!.value.aspectRatio,
-            child: CameraPreview(controller.cameraController!)),
-        _getCameraOverlay(),
+            child: AspectRatio(
+                aspectRatio: controller.cameraController!.value.aspectRatio,
+                child: CameraPreview(controller.cameraController!))),
+        // _getCameraOverlay(),
         Positioned(
           bottom: 30,
           left: 0,
@@ -145,23 +148,27 @@ class ScanCarView extends GetView<ScanCarController> {
         width: double.infinity,
         // color: Colors.red,
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
+          child: Stack(
+            alignment: Alignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            // mainAxisSize: MainAxisSize.max,
             children: [
-              controller.licenceImageCropped!,
-              SizedBox(
-                height: 20,
+              Image.file(
+                File(controller.licenceImage!.path),
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
               ),
-              Text600(
-                text: 'Vrooming...',
-                fontSize: 20,
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              CircularProgressIndicator()
+              Container(
+                  // padding: EdgeInsets.all(200),
+                  height: 200,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      color: Colors.black38,
+                      borderRadius: BorderRadius.circular(20)),
+                  child:
+                      RiveAnimation.asset('assets/images/vroom_animation.riv')),
             ],
           ),
         ),
