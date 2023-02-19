@@ -8,7 +8,7 @@ import '../app_api_url.dart';
 import 'settings_service.dart';
 
 class NetworkService extends getx.GetxService {
-  final int TIMEOUT = kReleaseMode ? 30000 : 60000;
+  final int TIMEOUT = kReleaseMode ? 60000 : 60000;
   final SettingsService settingsService = getx.Get.put(SettingsService());
   late Dio dio;
   @override

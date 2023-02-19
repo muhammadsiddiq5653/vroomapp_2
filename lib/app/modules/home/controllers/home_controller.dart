@@ -44,6 +44,7 @@ class HomeController extends AppAbstractController {
       cars = await appCarsApi.getCars();
       settingsService.cars = cars!.collection;
       if (settingsService.cars.length == 0) {
+        settingsService.cars = [];
         loadingState = GeneralLoadingState.empty;
       } else {
         loadingState = GeneralLoadingState.done;

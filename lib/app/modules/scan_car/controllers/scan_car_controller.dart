@@ -75,6 +75,7 @@ class ScanCarController extends AppAbstractController {
       cameraStates = CameraStates.cameraDone;
       Get.back();
     } catch (e, ex) {
+      print(e);
       errorMessage = e.toString();
       cameraStates = CameraStates.cameraError;
       print(ex);
@@ -88,16 +89,18 @@ class ScanCarController extends AppAbstractController {
       errorMessage = null;
       licenceImage = await cameraController!.takePicture();
       cameraStates = CameraStates.cameraScanning;
-      cameraController?.dispose();
       print('sss');
       update();
-      var croppedImage = await cropImage(licenceImage);
-      var encoded = imagelib.encodePng(croppedImage!);
+
       Directory tempDir = await getTemporaryDirectory();
+      print('galo');
       String tempPath = tempDir.path;
-      var path = await File('$tempPath/scan.png').writeAsBytes(encoded);
-      return path;
+      var result = await compute<List, File>(
+          _resizeImage, [File(licenceImage!.path), tempPath]);
+      print(result);
+      return result;
     } catch (ex) {
+      print(ex);
       cameraStates = CameraStates.cameraError;
       return null;
     } finally {
@@ -114,5 +117,19 @@ class ScanCarController extends AppAbstractController {
   void retry() {
     cameraStates = CameraStates.cameraStarted;
     update();
+  }
+
+  static Future<File> _resizeImage(List list) async {
+    var file = list[0] as File;
+    var tempPath = list[1] as String;
+    print('hellooooo');
+    final bytes = await file.readAsBytes();
+    final imagelib.Image? image = imagelib.decodeImage(bytes);
+    final imagelib.Image? resized = imagelib.copyResize(image!, width: 800);
+    final List<int> resizedBytes = imagelib.encodeJpg(resized!, quality: 90);
+    print('balooo');
+    var path = await File('$tempPath/scan.png').writeAsBytes(resizedBytes);
+    print(path);
+    return path;
   }
 }
