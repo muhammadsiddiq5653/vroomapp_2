@@ -67,7 +67,6 @@ class ScanCarController extends AppAbstractController {
   void findCar() async {
     try {
       var path = await _takePicture();
-      return;
       if (path == null)
         throw Exception(
             'we had issues with scanning this car, please try again');
