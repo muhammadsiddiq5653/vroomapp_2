@@ -103,6 +103,15 @@ class CardDetailsView extends GetView<CardDetailsController> {
                       height: 20,
                     ),
                     CarSpecProgress(
+                      value:
+                          AppUtilities.getPricePercentage(controller.car.price),
+                      title: 'Price',
+                      valueTitle: '${controller.car.price} USD',
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    CarSpecProgress(
                       value: AppUtilities.getWeightPercentage(
                           controller.car.enginePower),
                       title: 'Power',
@@ -127,10 +136,6 @@ class CardDetailsView extends GetView<CardDetailsController> {
                       valueTitle: '${controller.car.cityMilage} KM/L',
                     ),
                     SizedBox(
-                      height: 20,
-                    ),
-                    CarPrice(),
-                    SizedBox(
                       height: 40,
                     ),
                     Row(
@@ -138,11 +143,11 @@ class CardDetailsView extends GetView<CardDetailsController> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         BigHeaderText(text: 'Other details'),
-                        Icon(
-                          Remix.information_line,
-                          size: 23,
-                          color: Colors.white,
-                        )
+                        // Icon(
+                        //   Remix.information_line,
+                        //   size: 23,
+                        //   color: Colors.white,
+                        // )
                       ],
                     ),
                     SizedBox(

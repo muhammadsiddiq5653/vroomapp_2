@@ -8,8 +8,9 @@ import '../models/envelope_model.dart';
 class AppCarsApi extends GetxService {
   var networkService = Get.put(NetworkService());
 
-  Future<EnvelopeModel<CarModel>> getCars() async {
-    var result = await networkService.get(AppApiUrl.cars);
+  Future<EnvelopeModel<CarModel>> getCars({required int page}) async {
+    var query = {'page': page};
+    var result = await networkService.get(AppApiUrl.cars, query: query);
     return EnvelopeModel<CarModel>.fromJson(result.data, (data) {
       var cars = <CarModel>[];
       data.forEach((value) {

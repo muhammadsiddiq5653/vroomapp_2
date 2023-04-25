@@ -49,7 +49,7 @@ class MainTabsView extends GetView<MainTabsController> {
                           Remix.dashboard_fill,
                           size: 25,
                         ),
-                        label: 'Home'.toUpperCase()),
+                        label: 'Garage'.toUpperCase()),
                     BottomNavigationBarItem(
                         icon: Icon(
                           Remix.gamepad_fill,

@@ -38,11 +38,15 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
         textStyle: TextStyle(color: Colors.white),
         spaceBetweenSelectorAndTextField: 0,
         keyboardType: TextInputType.number,
+        cursorColor: AppColors.primary,
         inputDecoration: InputDecoration(
-          hintText: 'Enter your phone number',
-          filled: false,
-          fillColor: Colors.white,
-        ),
+            hintText: 'Enter your phone number',
+            filled: false,
+            fillColor: Colors.white,
+            enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: AppColors.primary)),
+            hintStyle: TextStyle(color: Colors.white),
+            hoverColor: AppColors.primary),
         onSaved: (PhoneNumber number) {
           print('On Saved: $number');
         },

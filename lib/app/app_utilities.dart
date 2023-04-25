@@ -149,4 +149,10 @@ class AppUtilities {
     var percentage = cityMilage / AppConstants.topCityMilage;
     return percentage > 1 ? 1 : percentage;
   }
+
+  static double getPricePercentage(double? price) {
+    price ??= 0;
+    var percentage = price / AppConstants.topPrice;
+    return percentage > 1 ? 1 : percentage;
+  }
 }

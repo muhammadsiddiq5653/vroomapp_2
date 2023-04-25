@@ -83,7 +83,7 @@ class PreviewView extends GetView<PreviewController> {
                           text: 'Create an account'.toUpperCase(),
                           elevation: 3,
                           onPressed: () {
-                            Get.toNamed(Routes.SIGNUP);
+                            Get.toNamed(Routes.SIGNUP_STEP_PHONE);
                           }),
                     ),
                     SizedBox(
@@ -98,7 +98,7 @@ class PreviewView extends GetView<PreviewController> {
                           text: 'Login'.toUpperCase(),
                           elevation: 0,
                           onPressed: () {
-                            Get.toNamed(Routes.LOGIN);
+                            Get.toNamed(Routes.LOGIN_DETAILS_STEP);
                           }),
                     ),
                     SizedBox(

@@ -9,14 +9,26 @@ import '../controllers/battle_controller.dart';
 
 class BattleView extends GetView<BattleController> {
   final battleController = Get.put(BattleController());
-  final battleOptions = [
-    {'title': '1 V 1', 'image': 'assets/images/battle.png'},
-    {'title': 'MULTIPLAYER'},
-    {'title': 'FULL STACK'},
-  ];
   BattleView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final battleOptions = [
+      {
+        'title': '1 V 1',
+        'image': 'assets/images/battle.png',
+        'clickable': true
+      },
+      {
+        'title': 'Coming Soon'.toUpperCase(),
+        'image': 'assets/images/multiplayercomingsoon.png',
+        'clickable': false
+      },
+      {
+        'title': 'Coming Soon'.toUpperCase(),
+        'image': 'assets/images/fullstackcomingsoon.png',
+        'clickable': false
+      },
+    ];
     return Scaffold(
       appBar: GameAppBar(
         userModel: controller.settingsService.authModel!.userModel,
@@ -31,10 +43,10 @@ class BattleView extends GetView<BattleController> {
     );
   }
 
-  Widget _getBattleOption(Map<String, String> e) {
+  Widget _getBattleOption(Map<String, Object> e) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routes.BATTLE_STEP_CHOOSE_CAR);
+        if (e['clickable'] as bool) Get.toNamed(Routes.BATTLE_STEP_CHOOSE_CAR);
       },
       child: Container(
         margin: EdgeInsets.all(10),

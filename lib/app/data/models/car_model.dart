@@ -11,7 +11,7 @@ class CarModel extends Serializable {
   int? weight;
   double? cityMilage;
   int? enginePower;
-  int? price;
+  double? price;
   String? logo;
   UserModel? user;
   String? image;
@@ -29,7 +29,7 @@ class CarModel extends Serializable {
     weight = AppUtilities.ensureInt(json['weight']);
     cityMilage = AppUtilities.ensureDouble(json['city_milage']);
     enginePower = AppUtilities.ensureInt(json['engine_power']);
-    price = json['price'];
+    price = AppUtilities.ensureDouble(json['price']);
     logo = json['logo'];
     user = UserModel.fromJson(json['user']);
     image = json['image'];

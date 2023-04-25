@@ -9,11 +9,6 @@ import 'package:vroom_app/app/routes/app_pages.dart';
 
 class HomeController extends AppAbstractController {
   AppCarsApi appCarsApi = Get.put(AppCarsApi());
-  var pages = [
-    {'title': 'Collect Cars'},
-    {'title': 'Collect BMW'},
-    {'title': 'Collect BMW'},
-  ];
   EnvelopeModel<CarModel>? cars;
 
   @override
@@ -37,20 +32,30 @@ class HomeController extends AppAbstractController {
         arguments: {AppConstants.carArgument: car});
   }
 
-  void loadCards() async {
+  Future<bool> loadCards({int page = 1}) async {
     try {
-      loadingState = GeneralLoadingState.waiting;
-      update();
-      cars = await appCarsApi.getCars();
-      settingsService.cars = cars!.collection;
-      if (settingsService.cars.length == 0) {
-        settingsService.cars = [];
-        loadingState = GeneralLoadingState.empty;
-      } else {
-        loadingState = GeneralLoadingState.done;
+      if (page == 1) {
+        loadingState = GeneralLoadingState.waiting;
+        update();
       }
+      var result = await appCarsApi.getCars(page: page);
+      if (page == 1) {
+        cars = result;
+        if ((cars?.collection.length ?? 0) == 0) {
+          loadingState = GeneralLoadingState.empty;
+        } else {
+          loadingState = GeneralLoadingState.done;
+        }
+      } else {
+        cars!.haveNext = result.haveNext;
+        cars!.currentPage = result.currentPage;
+        cars!.collection.addAll(result.collection);
+      }
+      settingsService.cars = cars!.collection;
+      return true;
     } catch (ex) {
       loadingState = GeneralLoadingState.error;
+      return false;
     } finally {
       update();
     }

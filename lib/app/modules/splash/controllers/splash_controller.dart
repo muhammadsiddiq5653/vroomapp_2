@@ -48,6 +48,7 @@ class SplashController extends GetxController {
       loadingState = GeneralLoadingState.waiting;
       update();
       settingsService.settingsModel = await appSettingsApi.getAppSettings();
+      await Future.delayed(Duration(seconds: 3));
       if (settingsService.settingsModel?.forceUpdate == true) {
         forceUpdateView = true;
         update();

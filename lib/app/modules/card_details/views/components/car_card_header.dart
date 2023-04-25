@@ -33,7 +33,7 @@ class CarCardHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              car.make,
+              car.model,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -41,7 +41,8 @@ class CarCardHeader extends StatelessWidget {
                   fontWeight: FontWeight.w800),
             ),
             Text400(
-              text: car.year.toString(),
+              text: car.make + " | " + car.year.toString(),
+              fontSize: 14,
             ),
           ],
         ),

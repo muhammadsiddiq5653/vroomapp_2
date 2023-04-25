@@ -23,14 +23,14 @@ class CarSpecProgress extends StatelessWidget {
               title,
               style: TextStyle(
                   color: Colors.white.withOpacity(0.9),
-                  fontSize: 10,
+                  fontSize: 13,
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.italic),
             ),
             Text(valueTitle,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 10,
+                    fontSize: 13,
                     fontWeight: FontWeight.w600,
                     fontStyle: FontStyle.italic)),
           ],

@@ -29,6 +29,10 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Image.asset(
+                    'assets/images/logo.png',
+                    width: 100,
+                  ),
                   SizedBox(
                     height: 30,
                   ),

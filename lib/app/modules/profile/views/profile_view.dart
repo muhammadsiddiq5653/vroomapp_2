@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:fluttermoji/fluttermoji.dart';
+import 'package:fluttermoji/fluttermojiCircleAvatar.dart';
 
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_text/text_600.dart';
 import 'package:vroom_app/app/widgets/app_tile.dart';
 
 import '../../../app_colors.dart';
+import '../../../helpers/hexcolor.dart';
 import '../../../widgets/app_form_fields/app_icon_button.dart';
 import '../../../widgets/app_text/text_700.dart';
 import '../controllers/profile_controller.dart';
@@ -37,7 +41,7 @@ class ProfileView extends GetView<ProfileController> {
                     children: [
                       AppIconButton(
                         onPressed: () {
-                          controller.logout();
+                          // controller.logout();
                         },
                         icon: Remix.settings_2_fill,
                       ),
@@ -59,13 +63,18 @@ class ProfileView extends GetView<ProfileController> {
               )),
               Positioned(
                 top: -30,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Container(
-                    color: AppColors.primary,
-                    child: Image.asset(
-                      'assets/images/user.png',
-                      width: 100,
+                child: GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.CUSTOMIZE_AVATAR);
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Container(
+                      color: AppColors.primary,
+                      child: Image.asset(
+                        'assets/images/user.png',
+                        width: 100,
+                      ),
                     ),
                   ),
                 ),

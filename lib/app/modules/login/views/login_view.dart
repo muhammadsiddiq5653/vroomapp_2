@@ -24,18 +24,19 @@ class LoginView extends GetView<LoginController> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                FlutterLogo(
-                  size: 50,
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 100,
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Text700(
                   text: 'Welcome back,\nPlease login to continue',
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 GoogleLogin(),
                 SizedBox(

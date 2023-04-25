@@ -74,7 +74,7 @@ class SplashView extends GetView<SplashController> {
         children: [
           Image.asset(
             'assets/images/logo.png',
-            width: 200,
+            width: 300,
           ),
           SizedBox(
             height: 40,

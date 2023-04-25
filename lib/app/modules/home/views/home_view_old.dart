@@ -74,27 +74,27 @@ class HomeViewOld extends GetView<HomeController> {
                 Container(
                   height: 140,
                   // width: double.infinity,
-                  child: PageView(
-                    children: controller.pages
-                        .map((e) => Container(
-                              margin: EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                  color: HexColor("#17171A"),
-                                  borderRadius: BorderRadius.circular(15)),
-                              height: 140,
-                              child:
-                                  Center(child: Text700(text: 'Challange WIP')),
-                            ))
-                        .toList(),
-                    controller: PageController(
-                      viewportFraction: 0.8,
-                      initialPage: 0,
-                    ),
-                  ),
+                  // child: PageView(
+                  //   children: controller.pages
+                  //       .map((e) => Container(
+                  //             margin: EdgeInsets.symmetric(horizontal: 10),
+                  //             decoration: BoxDecoration(
+                  //                 color: HexColor("#17171A"),
+                  //                 borderRadius: BorderRadius.circular(15)),
+                  //             height: 140,
+                  //             child:
+                  //                 Center(child: Text700(text: 'Challange WIP')),
+                  //           ))
+                  //       .toList(),
+                  //   controller: PageController(
+                  //     viewportFraction: 0.8,
+                  //     initialPage: 0,
+                  //   ),
+                  // ),
                 ),
-                Container(
-                    height: 50,
-                    child: SliderDots(pages: controller.pages, pageIndex: 0))
+                // Container(
+                //     height: 50,
+                //     child: SliderDots(pages: controller.pages, pageIndex: 0))
               ],
             ),
           ),

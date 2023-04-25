@@ -46,7 +46,7 @@ class ScanCarView extends GetView<ScanCarController> {
             padding: EdgeInsets.symmetric(horizontal: 20),
             width: 200,
             child: AppButtonField(
-              text: 'Find car',
+              text: 'Wroom car'.toUpperCase(),
               onPressed: () {
                 controller.findCar();
               },

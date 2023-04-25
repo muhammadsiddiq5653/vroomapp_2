@@ -53,6 +53,15 @@ class BattleStepChooseCarController extends AppAbstractController {
         value: car.cityMilage!.toDouble(),
         percentage: AppUtilities.getCityMilagePercentage(car.cityMilage)));
 
+    car = settingsService.cars
+        .reduce((curr, next) => curr.price! > next.price! ? curr : next);
+    topCategoryCars.add(TopCategoryCarModel(
+        car: car,
+        categoryHeadLine: 'Best in Price',
+        unit: 'USD',
+        value: car.price!.toDouble(),
+        percentage: AppUtilities.getPricePercentage(car.price)));
+
     return topCategoryCars;
   }
 

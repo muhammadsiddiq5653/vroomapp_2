@@ -12,6 +12,8 @@ import '../modules/card_details/bindings/card_details_binding.dart';
 import '../modules/card_details/views/card_details_view.dart';
 import '../modules/coins_inventory/bindings/coins_inventory_binding.dart';
 import '../modules/coins_inventory/views/coins_inventory_view.dart';
+import '../modules/customize_avatar/bindings/customize_avatar_binding.dart';
+import '../modules/customize_avatar/views/customize_avatar_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/leaderboard/bindings/leaderboard_binding.dart';
@@ -161,6 +163,11 @@ class AppPages {
       name: _Paths.PIMP_MY_RIDE,
       page: () => PimpMyRideView(),
       binding: PimpMyRideBinding(),
+    ),
+    GetPage(
+      name: _Paths.CUSTOMIZE_AVATAR,
+      page: () => const CustomizeAvatarView(),
+      binding: CustomizeAvatarBinding(),
     ),
   ];
 }

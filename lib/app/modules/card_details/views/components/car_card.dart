@@ -45,6 +45,14 @@ class CarCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     CarSpecProgress(
+                      value: AppUtilities.getPricePercentage(car.price),
+                      title: 'Price',
+                      valueTitle: '${car.price} USD',
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    CarSpecProgress(
                       value: AppUtilities.getWeightPercentage(car.enginePower),
                       title: 'Power',
                       valueTitle: '${car.enginePower} HP',
@@ -65,9 +73,6 @@ class CarCard extends StatelessWidget {
                           AppUtilities.getCityMilagePercentage(car.cityMilage),
                       title: 'City Milage',
                       valueTitle: '${car.cityMilage} KM/L',
-                    ),
-                    SizedBox(
-                      height: 20,
                     ),
                   ],
                 ),
