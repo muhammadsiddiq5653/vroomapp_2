@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 
 class AppApiUrl {
-  static final root = false
+  static final root = true
       ? 'https://vroom-api-6lt4pibyja-uc.a.run.app/'
       : (Platform.isAndroid ? 'http://10.0.2.2/' : 'http://127.0.0.1/');
   static final rootUrl = '${root}api/';
