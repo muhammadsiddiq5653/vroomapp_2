@@ -63,7 +63,7 @@ class FeedCard extends StatelessWidget {
                       sigmaY: 5,
                     ),
                     child: Container(
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery.of(context).size.width - 20,
                       color: HexColor("#2e2e2e").withOpacity(0.25),
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -101,6 +102,7 @@ class ScanCarView extends GetView<ScanCarController> {
   Widget _getChildrenDependOnCameraState() {
     if (controller.cameraStates == CameraStates.cameraError) {
       return Container(
+        padding: EdgeInsets.all(20),
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -114,8 +116,10 @@ class ScanCarView extends GetView<ScanCarController> {
             SizedBox(
               height: 20,
             ),
-            Text700(text: 'Ooops! somthing doesnt look right'),
-            if (controller.errorMessage != null)
+            Text700(
+                text:
+                    'Something went wrong. But dont worry you can just try again.'),
+            if (controller.errorMessage != null && !kReleaseMode)
               Container(
                 margin: EdgeInsets.only(top: 20),
                 child: Text700(text: controller.errorMessage!),
@@ -130,7 +134,7 @@ class ScanCarView extends GetView<ScanCarController> {
                 onPressed: () {
                   controller.retry();
                 },
-                text: 'Retry',
+                text: 'Wroom again',
               ),
             )
           ],
