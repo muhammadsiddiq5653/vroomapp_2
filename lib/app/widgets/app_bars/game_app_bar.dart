@@ -10,65 +10,19 @@ import 'package:vroom_app/app/widgets/app_text/small_bold_text.dart';
 import 'package:vroom_app/app/widgets/app_text/small_text.dart';
 
 class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final UserModel userModel;
-  GameAppBar({
-    required this.userModel,
-  });
+  GameAppBar();
   @override
   Widget build(BuildContext context) {
     return Container(
       color: HexColor("#141415"),
       padding: EdgeInsets.only(top: 50, left: 10, right: 0),
       child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  Get.toNamed(Routes.PROFILE);
-                },
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(26),
-                      child: Container(
-                        color: AppColors.primary,
-                        child: Image.asset(
-                          'assets/images/user.png',
-                          width: 52,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 120,
-                              child: SmallBoldText(
-                                text: userModel.name ?? '',
-                                color: Colors.white,
-                                textOverflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SmallText(
-                          text: '@jjo',
-                          color: Colors.white.withOpacity(0.7),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
+            Image.asset(
+              'assets/images/logowithname.png',
+              width: 150,
             ),
             GestureDetector(
               onTap: () {

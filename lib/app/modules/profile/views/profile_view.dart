@@ -5,6 +5,7 @@ import 'package:fluttermoji/fluttermojiCircleAvatar.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
+import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_text/text_600.dart';
 import 'package:vroom_app/app/widgets/app_tile.dart';
@@ -16,13 +17,12 @@ import '../../../widgets/app_text/text_700.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  const ProfileView({Key? key}) : super(key: key);
+  final ProfileController profileController = Get.put(ProfileController());
+  ProfileView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: InsideAppBar(
-        title: '',
-      ),
+      appBar: GameAppBar(),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: Column(children: [

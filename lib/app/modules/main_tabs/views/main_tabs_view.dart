@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/helpers/hexcolor.dart';
+import 'package:vroom_app/app/modules/alerts/views/alerts_view.dart';
 import 'package:vroom_app/app/modules/battle/views/battle_view.dart';
+import 'package:vroom_app/app/modules/feed/views/feed_view.dart';
 import 'package:vroom_app/app/modules/home/views/home_view.dart';
 import 'package:vroom_app/app/modules/leaderboard/views/leaderboard_view.dart';
+import 'package:vroom_app/app/modules/profile/views/profile_view.dart';
 
 import '../controllers/main_tabs_controller.dart';
 
@@ -52,10 +55,22 @@ class MainTabsView extends GetView<MainTabsController> {
                         label: 'Garage'.toUpperCase()),
                     BottomNavigationBarItem(
                         icon: Icon(
+                          Remix.compass_3_line,
+                          size: 25,
+                        ),
+                        label: 'Feed'.toUpperCase()),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Remix.notification_2_line,
+                          size: 25,
+                        ),
+                        label: 'Alerts'.toUpperCase()),
+                    BottomNavigationBarItem(
+                        icon: Icon(
                           Remix.gamepad_fill,
                           size: 25,
                         ),
-                        label: 'Battle'.toUpperCase()),
+                        label: 'Profile'.toUpperCase()),
                     // BottomNavigationBarItem(
                     //     icon: Icon(
                     //       Remix.group_line,
@@ -73,9 +88,11 @@ class MainTabsView extends GetView<MainTabsController> {
       case 0:
         return HomeView();
       case 1:
-        return BattleView();
-      // case 2:
-      //   return LeaderboardView();
+        return FeedView();
+      case 2:
+        return AlertsView();
+      case 3:
+        return ProfileView();
       default:
         return Scaffold(
           backgroundColor: Colors.white,

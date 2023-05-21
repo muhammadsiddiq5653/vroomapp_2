@@ -28,6 +28,8 @@ abstract class Routes {
   static const LOGIN_DETAILS_STEP = _Paths.LOGIN + _Paths.LOGIN_DETAILS_STEP;
   static const PIMP_MY_RIDE = _Paths.PIMP_MY_RIDE;
   static const CUSTOMIZE_AVATAR = _Paths.CUSTOMIZE_AVATAR;
+  static const ALERTS = _Paths.ALERTS;
+  static const FEED = _Paths.FEED;
 }
 
 abstract class _Paths {
@@ -54,4 +56,6 @@ abstract class _Paths {
   static const LOGIN_DETAILS_STEP = '/login-details-step';
   static const PIMP_MY_RIDE = '/pimp-my-ride';
   static const CUSTOMIZE_AVATAR = '/customize-avatar';
+  static const ALERTS = '/alerts';
+  static const FEED = '/feed';
 }

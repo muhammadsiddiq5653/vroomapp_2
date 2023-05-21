@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/alerts/bindings/alerts_binding.dart';
+import '../modules/alerts/views/alerts_view.dart';
 import '../modules/battle/battle_step_battle_action/bindings/battle_step_battle_action_binding.dart';
 import '../modules/battle/battle_step_battle_action/views/battle_step_battle_action_view.dart';
 import '../modules/battle/battle_step_choose_car/bindings/battle_step_choose_car_binding.dart';
@@ -14,6 +16,8 @@ import '../modules/coins_inventory/bindings/coins_inventory_binding.dart';
 import '../modules/coins_inventory/views/coins_inventory_view.dart';
 import '../modules/customize_avatar/bindings/customize_avatar_binding.dart';
 import '../modules/customize_avatar/views/customize_avatar_view.dart';
+import '../modules/feed/bindings/feed_binding.dart';
+import '../modules/feed/views/feed_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/leaderboard/bindings/leaderboard_binding.dart';
@@ -168,6 +172,16 @@ class AppPages {
       name: _Paths.CUSTOMIZE_AVATAR,
       page: () => const CustomizeAvatarView(),
       binding: CustomizeAvatarBinding(),
+    ),
+    GetPage(
+      name: _Paths.ALERTS,
+      page: () => const AlertsView(),
+      binding: AlertsBinding(),
+    ),
+    GetPage(
+      name: _Paths.FEED,
+      page: () => const FeedView(),
+      binding: FeedBinding(),
     ),
   ];
 }
