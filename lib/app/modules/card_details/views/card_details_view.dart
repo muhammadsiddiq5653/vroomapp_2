@@ -211,17 +211,17 @@ class CardDetailsView extends GetView<CardDetailsController> {
               ),
             ),
           ),
-          Container(
-            height: 100,
-            width: double.infinity,
-            padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
-            child: AppButtonField(
-              text: 'Battle now'.toUpperCase(),
-              onPressed: () {
-                controller.battleNow();
-              },
-            ),
-          )
+          // Container(
+          //   height: 100,
+          //   width: double.infinity,
+          //   padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
+          //   child: AppButtonField(
+          //     text: 'Battle now'.toUpperCase(),
+          //     onPressed: () {
+          //       controller.battleNow();
+          //     },
+          //   ),
+          // )
         ],
       ),
     );

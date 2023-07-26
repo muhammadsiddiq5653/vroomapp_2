@@ -23,7 +23,7 @@ class DialogService extends GetxService {
         backgroundColor: AppColors.error, colorText: AppColors.onError);
   }
 
-  void showInfo(message, {title = 'Uprise', onTap}) {
+  void showInfo(message, {title = 'Wroom', onTap}) {
     Get.snackbar(title, message,
         backgroundColor: AppColors.primary,
         colorText: Colors.white, onTap: (_) {

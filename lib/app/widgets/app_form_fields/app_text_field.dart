@@ -53,12 +53,12 @@ class AppTextField extends StatelessWidget {
         labelStyle: TextStyle(color: Colors.white.withOpacity(0.8)),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: AppColors.primary),
-        ),
-        border: UnderlineInputBorder(
-          borderSide: BorderSide(color: AppColors.primary),
-        ),
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.primary),
+            borderRadius: BorderRadius.circular(10.0)),
+        border: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.primary),
+            borderRadius: BorderRadius.circular(10.0)),
       ),
     );
   }

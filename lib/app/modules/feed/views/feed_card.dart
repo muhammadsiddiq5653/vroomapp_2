@@ -2,14 +2,15 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:vroom_app/app/data/models/feed_model.dart';
+import 'package:vroom_app/app/widgets/app_network_image.dart';
 
 import '../../../helpers/hexcolor.dart';
 import '../../../widgets/app_text/small_bold_text.dart';
 
 class FeedCard extends StatelessWidget {
-  const FeedCard({
-    super.key,
-  });
+  FeedModel feedModel;
+  FeedCard({super.key, required this.feedModel});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,8 @@ class FeedCard extends StatelessWidget {
         child: Container(
           // color: Colors.black,
           child: Stack(fit: StackFit.loose, children: [
-            Image.asset(
-              'assets/images/carFeedDemo.png',
+            AppNetworkImage(
+              url: feedModel.image!,
               width: double.infinity,
             ),
             ClipRRect(

@@ -19,10 +19,14 @@ class ScanCarView extends GetView<ScanCarController> {
   const ScanCarView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: InsideAppBar(title: ''),
-      body: GetBuilder<ScanCarController>(
-        builder: (_) => _getChildrenDependOnCameraState(),
+    return GetBuilder<ScanCarController>(
+      builder: (_) => Scaffold(
+        appBar: controller.cameraStates != CameraStates.cameraDone
+            ? InsideAppBar(
+                title: '',
+              )
+            : null,
+        body: _getChildrenDependOnCameraState(),
       ),
     );
   }
@@ -31,12 +35,18 @@ class ScanCarView extends GetView<ScanCarController> {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Container(
-            width: Get.width,
-            height: Get.width / controller.cameraController!.value.aspectRatio,
-            child: AspectRatio(
-                aspectRatio: controller.cameraController!.value.aspectRatio,
-                child: CameraPreview(controller.cameraController!))),
+        if (controller.isSimulator)
+          Container(
+            child: Image.asset('assets/images/bmwx1.png'),
+          ),
+        if (!controller.isSimulator)
+          Container(
+              width: Get.width,
+              height:
+                  Get.width / controller.cameraController!.value.aspectRatio,
+              child: AspectRatio(
+                  aspectRatio: controller.cameraController!.value.aspectRatio,
+                  child: CameraPreview(controller.cameraController!))),
         // _getCameraOverlay(),
         Positioned(
           bottom: 30,
@@ -158,12 +168,22 @@ class ScanCarView extends GetView<ScanCarController> {
             // crossAxisAlignment: CrossAxisAlignment.center,
             // mainAxisSize: MainAxisSize.max,
             children: [
-              Image.file(
-                File(controller.licenceImage!.path),
-                width: double.infinity,
-                height: double.infinity,
-                fit: BoxFit.cover,
-              ),
+              if (controller.isSimulator)
+                Container(
+                  child: Image.asset(
+                    'assets/images/bmwx1.png',
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              if (!controller.isSimulator)
+                Image.file(
+                  File(controller.licenceImage!.path),
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               Container(
                   // padding: EdgeInsets.all(200),
                   height: 200,
@@ -176,6 +196,53 @@ class ScanCarView extends GetView<ScanCarController> {
             ],
           ),
         ),
+      );
+    }
+    if (controller.cameraStates == CameraStates.cameraDone) {
+      return Container(
+        padding: EdgeInsets.all(20),
+        width: double.infinity,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/done.png',
+                width: 200,
+              ),
+              Text700(
+                text: 'Car Wroomed',
+                fontSize: 28,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text400(
+                text:
+                    'The ${controller.car.make} ${controller.car.model} has been added to your garage.',
+                fontSize: 15,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Container(
+                  margin: EdgeInsets.all(20),
+                  height: 56,
+                  width: double.infinity,
+                  child: AppButtonField(
+                      text: 'Share on feed',
+                      onPressed: controller.shareOnFeed)),
+              Container(
+                  margin: EdgeInsets.all(20),
+                  height: 56,
+                  width: double.infinity,
+                  child: AppButtonField(
+                      haveBorder: true,
+                      primary: Colors.transparent,
+                      text: 'View in Garage',
+                      onPressed: controller.viewInGarage))
+            ]),
       );
     }
 

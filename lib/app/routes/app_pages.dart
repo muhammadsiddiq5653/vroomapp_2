@@ -170,17 +170,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CUSTOMIZE_AVATAR,
-      page: () => const CustomizeAvatarView(),
+      page: () => CustomizeAvatarView(),
       binding: CustomizeAvatarBinding(),
     ),
     GetPage(
       name: _Paths.ALERTS,
-      page: () => const AlertsView(),
+      page: () => AlertsView(),
       binding: AlertsBinding(),
     ),
     GetPage(
       name: _Paths.FEED,
-      page: () => const FeedView(),
+      page: () => FeedView(),
       binding: FeedBinding(),
     ),
   ];

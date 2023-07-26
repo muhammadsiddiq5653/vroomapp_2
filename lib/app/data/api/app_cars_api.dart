@@ -8,8 +8,17 @@ import '../models/envelope_model.dart';
 class AppCarsApi extends GetxService {
   var networkService = Get.put(NetworkService());
 
-  Future<EnvelopeModel<CarModel>> getCars({required int page}) async {
-    var query = {'page': page};
+  Future<EnvelopeModel<CarModel>> getCars(
+      {required int page, String? sort, String? searchQuery}) async {
+    var query = <String, dynamic>{
+      'page': page,
+    };
+    if (sort != null) {
+      query['sort'] = sort;
+    }
+    if (searchQuery != null && searchQuery.trim() != '') {
+      query['search_query'] = searchQuery;
+    }
     var result = await networkService.get(AppApiUrl.cars, query: query);
     return EnvelopeModel<CarModel>.fromJson(result.data, (data) {
       var cars = <CarModel>[];

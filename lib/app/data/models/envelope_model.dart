@@ -20,9 +20,9 @@ class EnvelopeModel<T extends Serializable> {
   EnvelopeModel.fromJson(
       Map<String, dynamic> json, Function(List<dynamic>) create) {
     var data = create(json['data']);
-    total = json['meta']?['total'] ?? 0;
-    haveNext = json['links']?['next'] == null ? false : true;
-    currentPage = json['meta']['current_page'] ?? 1;
+    total = json['total'] ?? 0;
+    haveNext = json['next_page_url'] == null ? false : true;
+    currentPage = json['current_page'] ?? 1;
     collection = data;
   }
 }
