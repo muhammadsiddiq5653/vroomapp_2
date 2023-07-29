@@ -9,6 +9,7 @@ import 'package:vroom_app/app/modules/feed/views/feed_view.dart';
 import 'package:vroom_app/app/modules/home/views/home_view.dart';
 import 'package:vroom_app/app/modules/leaderboard/views/leaderboard_view.dart';
 import 'package:vroom_app/app/modules/profile/views/profile_view.dart';
+import 'package:vroom_app/app/widgets/app_profile_avatar.dart';
 
 import '../controllers/main_tabs_controller.dart';
 
@@ -66,8 +67,8 @@ class MainTabsView extends GetView<MainTabsController> {
                         ),
                         label: 'Alerts'.toUpperCase()),
                     BottomNavigationBarItem(
-                        icon: Icon(
-                          Remix.gamepad_fill,
+                        icon: AppProfileAvatar(
+                          user: controller.settingsService.authModel?.userModel,
                           size: 25,
                         ),
                         label: 'Profile'.toUpperCase()),

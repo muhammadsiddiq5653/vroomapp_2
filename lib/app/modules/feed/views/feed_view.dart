@@ -40,6 +40,8 @@ class FeedView extends GetView<FeedController> {
                     var item = controller.feed!.collection[index];
                     return FeedCard(
                       feedModel: item,
+                      onLikeButton: controller.like,
+                      onShareButton: controller.share,
                     );
                   }),
             ),

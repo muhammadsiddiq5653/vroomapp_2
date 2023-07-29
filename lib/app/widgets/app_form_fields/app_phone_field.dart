@@ -43,8 +43,12 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
             hintText: 'Enter your phone number',
             filled: false,
             fillColor: Colors.white,
-            enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: AppColors.primary)),
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.primary),
+                borderRadius: BorderRadius.circular(10.0)),
+            border: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.primary),
+                borderRadius: BorderRadius.circular(10.0)),
             hintStyle: TextStyle(color: Colors.white),
             hoverColor: AppColors.primary),
         onSaved: (PhoneNumber number) {

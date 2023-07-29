@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:vroom_app/app/data/models/car_model.dart';
+import 'package:vroom_app/app/routes/app_pages.dart';
 import '../app_constants.dart';
 import './analytics_service.dart';
 
@@ -34,5 +35,6 @@ class SettingsService extends GetxService {
   void logout() {
     box.write(AppConstants.accessTokenKey, null);
     authModel = null;
+    Get.offAllNamed(Routes.PREVIEW);
   }
 }

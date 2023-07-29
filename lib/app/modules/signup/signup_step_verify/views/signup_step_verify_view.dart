@@ -45,13 +45,13 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                   focusNode: controller.myFocusNode,
                   textStyle: TextStyle(color: AppColors.primary),
                   pinTheme: PinTheme(
-                    shape: PinCodeFieldShape.underline,
+                    shape: PinCodeFieldShape.box,
                     activeColor: AppColors.primary,
                     selectedColor: AppColors.primary,
                     selectedFillColor: AppColors.primary,
                     inactiveColor: AppColors.primary,
                     inactiveFillColor: AppColors.primary,
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(10),
                     fieldHeight: 50,
                     // fieldWidth: 40,
                     activeFillColor: Colors.transparent,
@@ -78,24 +78,34 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                 SizedBox(
                   height: 30,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text400(
-                      text: 'Resend code in',
-                      fontSize: 14,
+                AnimatedCrossFade(
+                    firstChild: TextButton(
+                        child: Text('Retry'),
+                        onPressed: () {
+                          controller.init();
+                        }),
+                    secondChild: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text400(
+                          text: 'Resend code in',
+                          fontSize: 14,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text400(
+                          text: '${controller.counter}',
+                          fontSize: 14,
+                          color: AppColors.primary,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text400(
-                      text: '33',
-                      fontSize: 14,
-                      color: AppColors.primary,
-                    ),
-                  ],
-                ),
+                    crossFadeState: controller.counter == null
+                        ? CrossFadeState.showFirst
+                        : CrossFadeState.showSecond,
+                    duration: Duration(milliseconds: 200)),
                 Spacer(),
                 Container(
                   height: 55,

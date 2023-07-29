@@ -10,6 +10,7 @@ class UserModel extends Serializable {
   int? id;
   String? firebaseToken;
   bool phoneVerified = false;
+  String? media;
   UserModel({
     this.id,
     this.avatar,
@@ -33,17 +34,20 @@ class UserModel extends Serializable {
   @override
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['phone'] = phone;
-    data['phone_code'] = phoneCode;
-    data['email'] = email;
+    if (id != null) data['id'] = id;
+    if (name != null) data['name'] = name;
+    if (phone != null) data['phone'] = phone;
+    if (phoneCode != null) data['phone_code'] = phoneCode;
+    if (email.isNotEmpty) data['email'] = email;
 
     if (password != null) {
       data['password'] = password;
     }
     if (firebaseToken != null) {
       data['firebase_token'] = firebaseToken;
+    }
+    if (media != null) {
+      data['media'] = media;
     }
     return data;
   }

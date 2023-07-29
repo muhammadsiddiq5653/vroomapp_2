@@ -10,6 +10,7 @@ import 'package:vroom_app/app/data/models/car_model.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
+import 'package:vroom_app/app/widgets/app_state_handler.dart';
 import 'package:vroom_app/app/widgets/app_text/big_header_text.dart';
 
 import '../../../widgets/app_network_image.dart';
@@ -25,204 +26,210 @@ class CardDetailsView extends GetView<CardDetailsController> {
   CardDetailsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: InsideAppBar(title: ''),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+    return GetBuilder<CardDetailsController>(
+      builder: (_) => Scaffold(
+        appBar: InsideAppBar(title: ''),
+        body: AppStateHandler(
+          loadingState: controller.loadingState,
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CarCardHeader(
-                          car: controller.car,
-                        ),
-                        if (false)
-                          GestureDetector(
-                            onTap: () {
-                              Get.toNamed(Routes.PIMP_MY_RIDE);
-                            },
-                            child: Column(
-                              children: [
-                                ShakeWidget(
-                                  duration: Duration(seconds: 10),
-                                  shakeConstant: ShakeRotateConstant1(),
-                                  autoPlay: true,
-                                  enableWebMouseHover: true,
-                                  child: CustomPaint(
-                                      painter: AppMessageBubble(),
-                                      child: Container(
-                                        alignment: Alignment.topCenter,
-                                        height: 38,
-                                        width: 114,
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Text400(text: 'pimp your ride'),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  width: 45,
-                                  height: 45,
-                                  child: AppButtonField(
-                                    prefix: Icon(
-                                      Remix.vip_diamond_line,
-                                      size: 12,
-                                      color: AppColors.primary,
-                                    ),
-                                    text: '',
-                                    textColor: AppColors.primary,
-                                    onPressed: () {},
-                                    primary: Colors.transparent,
-                                  ),
-                                ),
-                              ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            CarCardHeader(
+                              car: controller.car ?? CarModel(make: '-', id: 1),
                             ),
-                          )
+                            if (false)
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(Routes.PIMP_MY_RIDE);
+                                },
+                                child: Column(
+                                  children: [
+                                    ShakeWidget(
+                                      duration: Duration(seconds: 10),
+                                      shakeConstant: ShakeRotateConstant1(),
+                                      autoPlay: true,
+                                      enableWebMouseHover: true,
+                                      child: CustomPaint(
+                                          painter: AppMessageBubble(),
+                                          child: Container(
+                                            alignment: Alignment.topCenter,
+                                            height: 38,
+                                            width: 114,
+                                            padding: EdgeInsets.only(top: 10),
+                                            child:
+                                                Text400(text: 'pimp your ride'),
+                                          )),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      width: 45,
+                                      height: 45,
+                                      child: AppButtonField(
+                                        prefix: Icon(
+                                          Remix.vip_diamond_line,
+                                          size: 12,
+                                          color: AppColors.primary,
+                                        ),
+                                        text: '',
+                                        textColor: AppColors.primary,
+                                        onPressed: () {},
+                                        primary: Colors.transparent,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Hero(
+                          tag: 'car-card-${controller.car.hashCode}',
+                          child: Container(
+                              width: double.infinity,
+                              child: AppNetworkImage(
+                                url: controller.car?.image ?? '',
+                              )),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CarSpecProgress(
+                          value: AppUtilities.getPricePercentage(
+                              controller.car?.price),
+                          title: 'Price',
+                          valueTitle: '${controller.car?.price} USD',
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CarSpecProgress(
+                          value: AppUtilities.getWeightPercentage(
+                              controller.car?.enginePower),
+                          title: 'Power',
+                          valueTitle: '${controller.car?.enginePower} HP',
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CarSpecProgress(
+                          value: AppUtilities.getWeightPercentage(
+                              controller.car?.weight),
+                          title: 'Weight',
+                          valueTitle: '${controller.car?.weight} KG',
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CarSpecProgress(
+                          value: AppUtilities.getCityMilagePercentage(
+                              controller.car?.cityMilage),
+                          title: 'City Milage',
+                          valueTitle: '${controller.car?.cityMilage} KM/L',
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            BigHeaderText(text: 'Other details'),
+                            // Icon(
+                            //   Remix.information_line,
+                            //   size: 23,
+                            //   color: Colors.white,
+                            // )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text400(
+                              text: 'Make',
+                              fontSize: 14,
+                            ),
+                            Text600(
+                              text: controller.car?.make ?? '',
+                              fontSize: 14,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text400(
+                              text: 'Model',
+                              fontSize: 14,
+                            ),
+                            Text600(
+                              text: controller.car?.model ?? '',
+                              fontSize: 14,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text400(
+                              text: 'Year',
+                              fontSize: 14,
+                            ),
+                            Text600(
+                              text: controller.car?.year.toString() ?? '',
+                              fontSize: 14,
+                            ),
+                          ],
+                        ),
+                        // SizedBox(
+                        //   height: 40,
+                        // ),
+                        // Text400(
+                        //   text:
+                        //       'The Honda NSX, marketed in North America as the Acura NSX, is a two-seat, mid-engined coupe sports car manufactured by Honda.',
+                        //   fontSize: 14,
+                        // ),
                       ],
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Hero(
-                      tag: 'car-card-${controller.car.hashCode}',
-                      child: Container(
-                          width: double.infinity,
-                          child: AppNetworkImage(
-                            url: controller.car.image!,
-                          )),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CarSpecProgress(
-                      value:
-                          AppUtilities.getPricePercentage(controller.car.price),
-                      title: 'Price',
-                      valueTitle: '${controller.car.price} USD',
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CarSpecProgress(
-                      value: AppUtilities.getWeightPercentage(
-                          controller.car.enginePower),
-                      title: 'Power',
-                      valueTitle: '${controller.car.enginePower} HP',
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CarSpecProgress(
-                      value: AppUtilities.getWeightPercentage(
-                          controller.car.weight),
-                      title: 'Weight',
-                      valueTitle: '${controller.car.weight} KG',
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CarSpecProgress(
-                      value: AppUtilities.getCityMilagePercentage(
-                          controller.car.cityMilage),
-                      title: 'City Milage',
-                      valueTitle: '${controller.car.cityMilage} KM/L',
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        BigHeaderText(text: 'Other details'),
-                        // Icon(
-                        //   Remix.information_line,
-                        //   size: 23,
-                        //   color: Colors.white,
-                        // )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text400(
-                          text: 'Make',
-                          fontSize: 14,
-                        ),
-                        Text600(
-                          text: controller.car.make,
-                          fontSize: 14,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text400(
-                          text: 'Model',
-                          fontSize: 14,
-                        ),
-                        Text600(
-                          text: controller.car.model,
-                          fontSize: 14,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text400(
-                          text: 'Year',
-                          fontSize: 14,
-                        ),
-                        Text600(
-                          text: controller.car.year.toString(),
-                          fontSize: 14,
-                        ),
-                      ],
-                    ),
-                    // SizedBox(
-                    //   height: 40,
-                    // ),
-                    // Text400(
-                    //   text:
-                    //       'The Honda NSX, marketed in North America as the Acura NSX, is a two-seat, mid-engined coupe sports car manufactured by Honda.',
-                    //   fontSize: 14,
-                    // ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+              // Container(
+              //   height: 100,
+              //   width: double.infinity,
+              //   padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
+              //   child: AppButtonField(
+              //     text: 'Battle now'.toUpperCase(),
+              //     onPressed: () {
+              //       controller.battleNow();
+              //     },
+              //   ),
+              // )
+            ],
           ),
-          // Container(
-          //   height: 100,
-          //   width: double.infinity,
-          //   padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
-          //   child: AppButtonField(
-          //     text: 'Battle now'.toUpperCase(),
-          //     onPressed: () {
-          //       controller.battleNow();
-          //     },
-          //   ),
-          // )
-        ],
+        ),
       ),
     );
   }

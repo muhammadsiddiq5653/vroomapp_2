@@ -76,7 +76,7 @@ class BattleStepMatchingOpponentController extends AppAbstractController {
     var opponenetCard =
         cardIds.firstWhereOrNull((element) => element != car.userCardId);
     if (opponenetCard != null) {
-      secondPlayerCar = await carsApi.getBattleCar(opponenetCard);
+      secondPlayerCar = await carsApi.getCar(opponenetCard);
       update();
     }
     await Future.delayed(Duration(milliseconds: 2000));

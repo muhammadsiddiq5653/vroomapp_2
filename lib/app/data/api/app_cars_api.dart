@@ -29,7 +29,7 @@ class AppCarsApi extends GetxService {
     });
   }
 
-  Future<CarModel> getBattleCar(cardId) async {
+  Future<CarModel> getCar(cardId) async {
     var result = await networkService.get(AppApiUrl.cars + "/$cardId");
     return CarModel.fromJson(result.data);
   }

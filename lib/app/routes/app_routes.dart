@@ -30,6 +30,8 @@ abstract class Routes {
   static const CUSTOMIZE_AVATAR = _Paths.CUSTOMIZE_AVATAR;
   static const ALERTS = _Paths.ALERTS;
   static const FEED = _Paths.FEED;
+  static const SETTINGS = _Paths.SETTINGS;
+  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
 }
 
 abstract class _Paths {
@@ -58,4 +60,6 @@ abstract class _Paths {
   static const CUSTOMIZE_AVATAR = '/customize-avatar';
   static const ALERTS = '/alerts';
   static const FEED = '/feed';
+  static const SETTINGS = '/settings';
+  static const EDIT_PROFILE = '/edit-profile';
 }

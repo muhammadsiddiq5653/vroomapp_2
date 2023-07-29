@@ -90,13 +90,15 @@ class ScanCarController extends AppAbstractController {
         update();
         final byteData = await rootBundle.load('assets/images/bmwx1.png');
 
-        final file = File('${(await getTemporaryDirectory()).path}/$path');
+        final file = File(
+            '${(await getTemporaryDirectory()).path}/${DateTime.now().toIso8601String().replaceAll('.', '-')}.png');
         await file.create(recursive: true);
         path = await file.writeAsBytes(byteData.buffer
             .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
       } else {
         path = await _takePicture();
       }
+      print(path);
       if (path == null)
         throw Exception(
             'we had issues with scanning this car, please try again');

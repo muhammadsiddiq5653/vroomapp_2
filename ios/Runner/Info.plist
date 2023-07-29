@@ -74,15 +74,20 @@
 				<string>FirebaseAuth</string>
 				<key>CFBundleURLSchemes</key>
 				<array>
-					<string>app-1-610630071415-ios-2d1db93a1581673ade4272</string>
+					<string>app-1-318842092311-ios-ccbfc2d6e05926d3219552</string>
 				</array>
 			</dict>
+		</array>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>fetch</string>
+			<string>remote-notification</string>
 		</array>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>App needs access to location and direction when open to check nearest courts</string>
 		<key>NSCalendarsUsageDescription</key>
 		<string>Padel Finder wants to access your calendar to add your booking to it.</string>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
-		<true/>
+		<true />
 	</dict>
 </plist>

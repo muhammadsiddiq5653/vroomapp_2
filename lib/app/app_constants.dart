@@ -4,6 +4,7 @@ class AppConstants {
   static const String firebaseToken = "firebaseToken";
   static const String lastNotificationReadTime = "lastNotificationReadTime";
   static const String profilePageArgument = "profilePageArgument";
+  static const String carArgumentId = "carArgumentId";
 
   static var carArgument = 'carArgument';
   static var topHorsePower = 1914;

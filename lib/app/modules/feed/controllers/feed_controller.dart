@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:vroom_app/app/data/api/app_feed_api.dart';
 import 'package:vroom_app/app/data/models/envelope_model.dart';
 import 'package:vroom_app/app/data/models/feed_model.dart';
@@ -52,5 +53,11 @@ class FeedController extends AppAbstractController {
     } finally {
       update();
     }
+  }
+
+  like(FeedModel p1) {}
+
+  share(FeedModel p1) {
+    Share.share('check out my website https://example.com');
   }
 }

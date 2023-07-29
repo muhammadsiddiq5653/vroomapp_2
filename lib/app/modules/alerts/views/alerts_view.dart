@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vroom_app/app/app_colors.dart';
+import 'package:vroom_app/app/app_utilities.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_text/small_bold_text.dart';
 import 'package:vroom_app/app/widgets/app_text/small_text.dart';
@@ -73,7 +74,8 @@ class AlertsView extends GetView<AlertsController> {
                               width: 10,
                             ),
                             Text600(
-                              text: '19:40',
+                              text: AppUtilities.dateToCoolStringWithHour(
+                                  item.createdAt),
                             ),
                             SizedBox(
                               width: 10,

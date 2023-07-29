@@ -14,18 +14,21 @@ class FeedModel extends Serializable {
   bool liked = false;
   int comments = 1;
   DateTime createdAt = DateTime.now();
-  FeedModel({
-    this.id = 0,
-    required this.description,
-    required this.cover,
-    required this.createdAt,
-    this.comments = 1,
-    this.liked = false,
-    this.likes = 1,
-    this.image,
-    this.carModel,
-    this.userModel,
-  });
+  int shares = 1;
+  int userCarId = 1;
+  FeedModel(
+      {this.id = 0,
+      required this.description,
+      required this.cover,
+      required this.createdAt,
+      this.comments = 1,
+      this.liked = false,
+      this.likes = 1,
+      this.shares = 1,
+      this.image,
+      this.carModel,
+      this.userModel,
+      this.userCarId = 1});
   FeedModel.clone(FeedModel feedModel)
       : this(
             id: feedModel.id,
@@ -40,10 +43,12 @@ class FeedModel extends Serializable {
   FeedModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     likes = json['likes'] ?? 1;
+    shares = json['shares'] ?? 1;
     comments = json['comments'] ?? 1;
     image = json['image'];
     liked = json['liked'] != null ? true : false;
     description = json['description'];
+    userCarId = json['user_car_id'];
     if (json['user'] != null) {
       userModel = UserModel.fromJson(json['user']);
     }

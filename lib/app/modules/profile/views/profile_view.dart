@@ -8,6 +8,8 @@ import 'package:vroom_app/app/modules/feed/views/feed_card.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
+import 'package:vroom_app/app/widgets/app_network_image.dart';
+import 'package:vroom_app/app/widgets/app_profile_avatar.dart';
 import 'package:vroom_app/app/widgets/app_text/text_600.dart';
 import 'package:vroom_app/app/widgets/app_tile.dart';
 
@@ -29,7 +31,7 @@ class ProfileView extends GetView<ProfileController> {
       appBar: GameAppBar(),
       body: GetBuilder<ProfileController>(
         builder: (_) => Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
             child: Column(
               children: [
                 AnimatedCrossFade(
@@ -37,7 +39,48 @@ class ProfileView extends GetView<ProfileController> {
                   firstChild: Container(
                     child: _getProfileHeader(),
                   ),
-                  secondChild: Container(),
+                  secondChild: Container(
+                    child: AppTile(
+                        padding: EdgeInsets.all(20),
+                        child: Row(
+                          children: [
+                            AppProfileAvatar(
+                              size: 50,
+                              user: controller
+                                  .settingsService.authModel!.userModel,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: Text700(
+                                text: controller.settingsService.authModel
+                                        ?.userModel.name ??
+                                    '',
+                                fontSize: 30,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            AppIconButton(
+                              onPressed: () {
+                                Get.toNamed(Routes.SETTINGS);
+                              },
+                              icon: Remix.settings_2_fill,
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            AppIconButton(
+                              onPressed: () {
+                                Get.toNamed(Routes.EDIT_PROFILE);
+                              },
+                              icon: Remix.pencil_fill,
+                            ),
+                          ],
+                        )),
+                  ),
                   firstCurve: Curves.easeOut,
                   secondCurve: Curves.easeOut,
                   crossFadeState: controller.direction == 0
@@ -62,11 +105,16 @@ class ProfileView extends GetView<ProfileController> {
                               page: (controller.feed?.currentPage ?? 0) + 1);
                         },
                         child: ListView.separated(
+                          physics: AlwaysScrollableScrollPhysics(),
                           controller: controller.scrollController,
                           itemCount: (controller.feed?.collection.length ?? 0),
                           itemBuilder: (context, index) {
                             var item = controller.feed!.collection[index];
-                            return FeedCard(feedModel: item);
+                            return FeedCard(
+                              feedModel: item,
+                              onLikeButton: controller.like,
+                              onShareButton: controller.share,
+                            );
                           },
                           separatorBuilder: (BuildContext context, int index) {
                             return SizedBox(
@@ -99,7 +147,7 @@ class ProfileView extends GetView<ProfileController> {
                 children: [
                   AppIconButton(
                     onPressed: () {
-                      // controller.logout();
+                      Get.toNamed(Routes.SETTINGS);
                     },
                     icon: Remix.settings_2_fill,
                   ),
@@ -114,7 +162,9 @@ class ProfileView extends GetView<ProfileController> {
                     ],
                   ),
                   AppIconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(Routes.EDIT_PROFILE);
+                    },
                     icon: Remix.pencil_fill,
                   ),
                 ]),
@@ -122,18 +172,10 @@ class ProfileView extends GetView<ProfileController> {
           Positioned(
             top: -30,
             child: GestureDetector(
-              onTap: () {
-                Get.toNamed(Routes.CUSTOMIZE_AVATAR);
-              },
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Container(
-                  color: AppColors.primary,
-                  child: Image.asset(
-                    'assets/images/user.png',
-                    width: 100,
-                  ),
-                ),
+              onTap: () {},
+              child: AppProfileAvatar(
+                size: 100,
+                user: controller.settingsService.authModel!.userModel,
               ),
             ),
           ),

@@ -11,10 +11,8 @@ class AppUsersApi extends GetxService {
   var networkService = Get.put(NetworkService());
 
   Future<UserModel> edit(UserModel model) async {
-    var result =
-        await networkService.put('${AppApiUrl.users}/${model.id}', data: {
-      'user': model.toJson(),
-    });
+    var result = await networkService.put('${AppApiUrl.users}/${model.id}',
+        data: model.toJson());
     return UserModel.fromJson(result.data);
   }
 

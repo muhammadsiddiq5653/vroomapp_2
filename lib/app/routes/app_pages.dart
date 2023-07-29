@@ -16,6 +16,8 @@ import '../modules/coins_inventory/bindings/coins_inventory_binding.dart';
 import '../modules/coins_inventory/views/coins_inventory_view.dart';
 import '../modules/customize_avatar/bindings/customize_avatar_binding.dart';
 import '../modules/customize_avatar/views/customize_avatar_view.dart';
+import '../modules/edit_profile/bindings/edit_profile_binding.dart';
+import '../modules/edit_profile/views/edit_profile_view.dart';
 import '../modules/feed/bindings/feed_binding.dart';
 import '../modules/feed/views/feed_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -38,6 +40,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/scan_car/bindings/scan_car_binding.dart';
 import '../modules/scan_car/views/scan_car_view.dart';
+import '../modules/settings/bindings/settings_binding.dart';
+import '../modules/settings/views/settings_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/signup_step_detail/bindings/signup_step_detail_binding.dart';
 import '../modules/signup/signup_step_detail/views/signup_step_detail_view.dart';
@@ -182,6 +186,16 @@ class AppPages {
       name: _Paths.FEED,
       page: () => FeedView(),
       binding: FeedBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTINGS,
+      page: () => const SettingsView(),
+      binding: SettingsBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PROFILE,
+      page: () => EditProfileView(),
+      binding: EditProfileBinding(),
     ),
   ];
 }

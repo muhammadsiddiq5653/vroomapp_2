@@ -12,7 +12,7 @@ class NotificationModel extends Serializable {
     message = json['message'];
     directLink = json['direct_link'];
     image = json['image'];
-    createdAt = json['created_at'] ?? DateTime.now();
+    createdAt = DateTime.tryParse(json['created_at']) ?? DateTime.now();
   }
 
   @override

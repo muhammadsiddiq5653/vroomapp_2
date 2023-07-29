@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
 import '../../../app_enums.dart';
@@ -75,5 +76,11 @@ class ProfileController extends AppAbstractController {
   void setDirection(int i) {
     direction = i;
     update();
+  }
+
+  like(FeedModel p1) {}
+
+  share(FeedModel p1) {
+    Share.share('check out my website https://example.com');
   }
 }
