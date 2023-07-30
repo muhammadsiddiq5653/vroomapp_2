@@ -63,7 +63,7 @@ class FeedController extends AppAbstractController {
 
   like(FeedModel feed) async {
     try {
-      await appFeedApi.like(feed);
+      appFeedApi.like(feed);
       feed.liked = !feed.liked;
       if (feed.liked) {
         feed.likes++;
