@@ -20,6 +20,7 @@ class Text600 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      textDirection: TextDirection.ltr,
       maxLines: maxLines,
       textAlign: textAlign,
       style: TextStyle(

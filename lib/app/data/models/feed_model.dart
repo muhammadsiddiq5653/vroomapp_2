@@ -46,7 +46,7 @@ class FeedModel extends Serializable {
     shares = json['shares'] ?? 1;
     comments = json['comments'] ?? 1;
     image = json['image'];
-    liked = json['liked'] != null ? true : false;
+    liked = json['liked'] ?? false;
     description = json['description'];
     userCarId = json['user_car_id'];
     if (json['user'] != null) {

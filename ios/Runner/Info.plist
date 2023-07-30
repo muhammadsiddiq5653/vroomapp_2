@@ -78,6 +78,11 @@
 				</array>
 			</dict>
 		</array>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>itms-beta</string>
+			<string>itms</string>
+		</array>
 		<key>UIBackgroundModes</key>
 		<array>
 			<string>fetch</string>

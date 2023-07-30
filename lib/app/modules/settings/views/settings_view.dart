@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
@@ -35,41 +37,52 @@ class SettingsView extends GetView<SettingsController> {
                 SizedBox(
                   height: 30,
                 ),
-                AppTile(
-                    padding: EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text400(
-                            text: 'Get to know the team',
-                            fontSize: 16,
+                GestureDetector(
+                  onTap: () {
+                    launchUrlString(
+                        controller.settingsService.settingsModel!.about!);
+                  },
+                  child: AppTile(
+                      padding: EdgeInsets.all(20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text400(
+                              text: 'Get to know the team',
+                              fontSize: 16,
+                            ),
                           ),
-                        ),
-                        Icon(
-                          Remix.arrow_right_circle_fill,
-                          color: Colors.red,
-                        )
-                      ],
-                    )),
+                          Icon(
+                            Remix.arrow_right_circle_fill,
+                            color: Colors.red,
+                          )
+                        ],
+                      )),
+                ),
                 SizedBox(
                   height: 20,
                 ),
-                AppTile(
-                    padding: EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text400(
-                            text: 'Rate and Review the game',
-                            fontSize: 16,
+                GestureDetector(
+                  onTap: () {
+                    LaunchReview.launch(iOSAppId: '1665912517');
+                  },
+                  child: AppTile(
+                      padding: EdgeInsets.all(20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text400(
+                              text: 'Rate and Review the game',
+                              fontSize: 16,
+                            ),
                           ),
-                        ),
-                        Icon(
-                          Remix.arrow_right_circle_fill,
-                          color: Colors.red,
-                        )
-                      ],
-                    )),
+                          Icon(
+                            Remix.arrow_right_circle_fill,
+                            color: Colors.red,
+                          )
+                        ],
+                      )),
+                ),
                 SizedBox(
                   height: 50,
                 ),
@@ -80,22 +93,25 @@ class SettingsView extends GetView<SettingsController> {
                 SizedBox(
                   height: 30,
                 ),
-                AppTile(
-                    padding: EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text400(
-                            text: 'Delete your account',
-                            fontSize: 16,
+                GestureDetector(
+                  onTap: controller.deleteAccount,
+                  child: AppTile(
+                      padding: EdgeInsets.all(20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text400(
+                              text: 'Delete your account',
+                              fontSize: 16,
+                            ),
                           ),
-                        ),
-                        Icon(
-                          Remix.arrow_right_circle_fill,
-                          color: Colors.red,
-                        )
-                      ],
-                    )),
+                          Icon(
+                            Remix.arrow_right_circle_fill,
+                            color: Colors.red,
+                          )
+                        ],
+                      )),
+                ),
                 SizedBox(
                   height: 30,
                 ),

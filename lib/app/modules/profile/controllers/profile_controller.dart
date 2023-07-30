@@ -1,6 +1,10 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
@@ -8,6 +12,7 @@ import '../../../app_enums.dart';
 import '../../../data/api/app_feed_api.dart';
 import '../../../data/models/envelope_model.dart';
 import '../../../data/models/feed_model.dart';
+import '../../../helpers/widgets_to_image_controller.dart';
 
 class ProfileController extends AppAbstractController {
   AppFeedApi appFeedApi = Get.put(AppFeedApi());
@@ -78,9 +83,42 @@ class ProfileController extends AppAbstractController {
     update();
   }
 
-  like(FeedModel p1) {}
+  like(FeedModel feed) async {
+    try {
+      await appFeedApi.like(feed);
+      feed.liked = !feed.liked;
+      if (feed.liked) {
+        feed.likes++;
+      } else {
+        feed.likes--;
+      }
+      if (feed.likes < 0) {
+        feed.likes = 0;
+      }
+      update();
+    } catch (ex) {
+      print(ex);
+      dialogService.showError(ex);
+    } finally {}
+  }
 
-  share(FeedModel p1) {
-    Share.share('check out my website https://example.com');
+  share(FeedModel feed, Uint8List? bytes) async {
+    try {
+      showLoading();
+      final file = File(
+          '${(await getTemporaryDirectory()).path}/${DateTime.now().toIso8601String().replaceAll('.', '-')}.png');
+      await file.create(recursive: true);
+      File path = await file.writeAsBytes(bytes!);
+      await Share.shareFiles([path.path], text: 'Check it out in Wroom App');
+      hideLoading();
+      await appFeedApi.share(feed);
+      feed.shares++;
+      update();
+    } catch (ex) {
+      print(ex);
+      dialogService.showError(ex);
+    } finally {
+      hideLoading();
+    }
   }
 }

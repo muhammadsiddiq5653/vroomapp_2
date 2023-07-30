@@ -81,4 +81,11 @@ class AppUsersApi extends GetxService {
     });
     return true;
   }
+
+  Future<bool> deleteAccount(userId) async {
+    var result = await networkService.delete(
+      '${AppApiUrl.users}/$userId',
+    );
+    return true;
+  }
 }

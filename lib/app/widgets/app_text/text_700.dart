@@ -25,6 +25,7 @@ class Text700 extends StatelessWidget {
   Widget build(BuildContext context) {
     var widget = Text(
       text,
+      textDirection: TextDirection.ltr,
       maxLines: maxLines,
       textAlign: textAlign,
       style: TextStyle(

@@ -18,6 +18,7 @@ class SmallBoldText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      textDirection: TextDirection.ltr,
       textAlign: textAlign,
       style: TextStyle(
           fontSize: 14,

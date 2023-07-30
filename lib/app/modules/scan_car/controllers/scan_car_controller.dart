@@ -175,6 +175,8 @@ class ScanCarController extends AppAbstractController {
           cover: '',
           createdAt: DateTime.now(),
           description: ''));
+      Get.offAndToNamed(Routes.CARD_DETAILS,
+          arguments: {AppConstants.carArgument: car});
       dialogService.showInfo('Car added to the feed');
     } catch (ex) {
       dialogService.showError(ex);

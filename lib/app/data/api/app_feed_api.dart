@@ -46,6 +46,12 @@ class AppFeedApi extends GetxService {
     return true;
   }
 
+  Future<bool> share(FeedModel feed) async {
+    await networkService.put('${AppApiUrl.feed}/${feed.id}/share',
+        data: feed.toJson());
+    return true;
+  }
+
   Future<FeedModel> get(int id) async {
     var result = await networkService.get('${AppApiUrl.feed}/$id');
     return FeedModel.fromJson(result.data);

@@ -1,14 +1,20 @@
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:flutter/src/widgets/container.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:vroom_app/app/data/api/app_feed_api.dart';
 import 'package:vroom_app/app/data/models/envelope_model.dart';
 import 'package:vroom_app/app/data/models/feed_model.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
+import 'package:vroom_app/app/services/create_image_service.dart';
 
 import '../../../app_enums.dart';
 
 class FeedController extends AppAbstractController {
   AppFeedApi appFeedApi = Get.put(AppFeedApi());
+  CreateImageService createImageService = Get.put(CreateImageService());
   EnvelopeModel<FeedModel>? feed;
   @override
   void onInit() {
@@ -55,9 +61,42 @@ class FeedController extends AppAbstractController {
     }
   }
 
-  like(FeedModel p1) {}
+  like(FeedModel feed) async {
+    try {
+      await appFeedApi.like(feed);
+      feed.liked = !feed.liked;
+      if (feed.liked) {
+        feed.likes++;
+      } else {
+        feed.likes--;
+      }
+      if (feed.likes < 0) {
+        feed.likes = 0;
+      }
+      update();
+    } catch (ex) {
+      print(ex);
+      dialogService.showError(ex);
+    } finally {}
+  }
 
-  share(FeedModel p1) {
-    Share.share('check out my website https://example.com');
+  share(FeedModel feed, Uint8List? bytes) async {
+    try {
+      showLoading();
+      final file = File(
+          '${(await getTemporaryDirectory()).path}/${DateTime.now().toIso8601String().replaceAll('.', '-')}.png');
+      await file.create(recursive: true);
+      File path = await file.writeAsBytes(bytes!);
+      await Share.shareFiles([path.path], text: 'Check it out in Wroom App');
+      hideLoading();
+      await appFeedApi.share(feed);
+      feed.shares++;
+      update();
+    } catch (ex) {
+      print(ex);
+      dialogService.showError(ex);
+    } finally {
+      hideLoading();
+    }
   }
 }
