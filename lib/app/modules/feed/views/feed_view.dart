@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
 import 'package:vroom_app/app/widgets/loadmore.dart';
 
+import '../../../widgets/app_floating_action_button.dart';
 import '../../../widgets/app_state_handler.dart';
 import '../../../widgets/app_text/small_bold_text.dart';
 import '../controllers/feed_controller.dart';
@@ -16,6 +17,10 @@ class FeedView extends GetView<FeedController> {
     return GetBuilder<FeedController>(
       builder: (_) => Scaffold(
         appBar: GameAppBar(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: AppFloatingActionButton(
+          onClick: controller.scanCar,
+        ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: AppStateHandler(

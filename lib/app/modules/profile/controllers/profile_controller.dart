@@ -13,6 +13,7 @@ import '../../../data/api/app_feed_api.dart';
 import '../../../data/models/envelope_model.dart';
 import '../../../data/models/feed_model.dart';
 import '../../../helpers/widgets_to_image_controller.dart';
+import '../../../routes/app_pages.dart';
 
 class ProfileController extends AppAbstractController {
   AppFeedApi appFeedApi = Get.put(AppFeedApi());
@@ -120,5 +121,9 @@ class ProfileController extends AppAbstractController {
     } finally {
       hideLoading();
     }
+  }
+
+  void scanCar() async {
+    await Get.toNamed(Routes.SCAN_CAR);
   }
 }

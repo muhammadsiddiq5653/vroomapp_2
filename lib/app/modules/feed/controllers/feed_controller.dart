@@ -11,6 +11,7 @@ import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 import 'package:vroom_app/app/services/create_image_service.dart';
 
 import '../../../app_enums.dart';
+import '../../../routes/app_pages.dart';
 
 class FeedController extends AppAbstractController {
   AppFeedApi appFeedApi = Get.put(AppFeedApi());
@@ -98,5 +99,9 @@ class FeedController extends AppAbstractController {
     } finally {
       hideLoading();
     }
+  }
+
+  void scanCar() async {
+    await Get.toNamed(Routes.SCAN_CAR);
   }
 }

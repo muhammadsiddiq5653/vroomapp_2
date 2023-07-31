@@ -11,6 +11,7 @@ import 'package:vroom_app/app/widgets/app_text/small_text.dart';
 import 'package:vroom_app/app/widgets/app_text/text_600.dart';
 import 'package:vroom_app/app/widgets/app_tile.dart';
 
+import '../../../widgets/app_floating_action_button.dart';
 import '../../../widgets/app_state_handler.dart';
 import '../../../widgets/loadmore.dart';
 import '../controllers/alerts_controller.dart';
@@ -23,6 +24,10 @@ class AlertsView extends GetView<AlertsController> {
     return GetBuilder<AlertsController>(
       builder: (_) => Scaffold(
         appBar: GameAppBar(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: AppFloatingActionButton(
+          onClick: controller.scanCar,
+        ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: AppStateHandler(

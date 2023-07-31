@@ -15,6 +15,7 @@ import 'package:vroom_app/app/widgets/app_tile.dart';
 
 import '../../../app_colors.dart';
 import '../../../helpers/hexcolor.dart';
+import '../../../widgets/app_floating_action_button.dart';
 import '../../../widgets/app_form_fields/app_icon_button.dart';
 import '../../../widgets/app_state_handler.dart';
 import '../../../widgets/app_text/small_bold_text.dart';
@@ -29,6 +30,10 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GameAppBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: AppFloatingActionButton(
+        onClick: controller.scanCar,
+      ),
       body: GetBuilder<ProfileController>(
         builder: (_) => Container(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),

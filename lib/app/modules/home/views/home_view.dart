@@ -10,6 +10,7 @@ import 'package:vroom_app/app/widgets/app_state_handler.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 import 'package:vroom_app/app/widgets/loadmore.dart';
 
+import '../../../widgets/app_floating_action_button.dart';
 import '../../../widgets/app_text/text_600.dart';
 import '../../card_details/views/components/car_card.dart';
 import '../controllers/home_controller.dart';
@@ -24,39 +25,10 @@ class HomeView extends GetView<HomeController> {
       builder: (HomeController _) => AppKeyboardHider(
         child: Scaffold(
             appBar: GameAppBar(),
-            floatingActionButton: Container(
-              height: 52,
-              width: 52,
-              child: FittedBox(
-                child: FloatingActionButton(
-                  elevation: 5,
-                  backgroundColor: AppColors.primary,
-                  onPressed: () {
-                    controller.scanCar();
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(100),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.primary,
-                          spreadRadius: 14,
-                          blurRadius: 7,
-                          offset: Offset(3, 5),
-                        ),
-                      ],
-                    ),
-                    child: Icon(
-                      Icons.document_scanner,
-                      color: Colors.white,
-                      size: 32,
-                    ),
-                  ),
-                ),
-              ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: AppFloatingActionButton(
+              onClick: controller.scanCar,
             ),
             body: Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),

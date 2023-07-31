@@ -5,6 +5,7 @@ import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
 import '../../../app_enums.dart';
 import '../../../data/models/envelope_model.dart';
+import '../../../routes/app_pages.dart';
 
 class AlertsController extends AppAbstractController {
   AppNotificationsApi appNotificationsApi = Get.put(AppNotificationsApi());
@@ -52,5 +53,9 @@ class AlertsController extends AppAbstractController {
     } finally {
       update();
     }
+  }
+
+  void scanCar() async {
+    await Get.toNamed(Routes.SCAN_CAR);
   }
 }
