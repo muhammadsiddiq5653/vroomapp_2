@@ -12,28 +12,30 @@ import 'components/slider_dots.dart';
 
 class PreviewView extends GetView<PreviewController> {
   final controller = Get.put(PreviewController());
-  final pages = [
+  final pages = <Map<String, String>>[
     {
-      "icon": Remix.search_2_line,
-      "title": "Your Inner Athlete",
-      "subtitle": "Discover",
-      "image": "assets/images/slider/1.png"
+      "title": "Wroom Cars Around You",
+      "subtitle":
+          "Just point your phone at the car with the app open and Wroom will add that car to your garage.",
+      "image": "assets/images/Slide01.png"
     },
     {
-      "icon": Remix.map_pin_2_line,
-      "title": "Nearby Venues",
-      "subtitle": "Find",
-      "image": "assets/images/slider/2.png"
+      "title": "Show Them What You Got",
+      "subtitle":
+          "Share the best pictures of cars you wroom with your friends and everyone else on the app.",
+      "image": "assets/images/Slide02.png"
     },
     {
-      "title": "Nearby Venues",
-      "subtitle": "Book",
-      "image": "assets/images/slider/3.png"
+      "title": "Get Notified About What’s Important",
+      "subtitle":
+          "Stay up-to-date with what’s going on in Wroom with push notifications",
+      "image": "assets/images/Slide03.png"
     },
     {
-      "title": "With Passion",
-      "subtitle": "Play",
-      "image": "assets/images/slider/4.png"
+      "title": "Your Profile Is The Home For Your Activities",
+      "subtitle":
+          "All your settings, personalization and posts can be managed from your profile page",
+      "image": "assets/images/Slide04.png"
     }
   ];
   @override
