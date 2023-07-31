@@ -105,7 +105,9 @@ class HomeController extends AppAbstractController {
                   Get.back(result: item['sort'] as String?);
                 },
                 child: Container(
-                  margin: EdgeInsets.only(bottom: 30),
+                  color: Colors.transparent,
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  width: double.infinity,
                   child: Row(
                     children: [
                       Icon(

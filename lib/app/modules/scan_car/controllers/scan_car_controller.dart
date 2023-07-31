@@ -103,7 +103,6 @@ class ScanCarController extends AppAbstractController {
         throw Exception(
             'we had issues with scanning this car, please try again');
       car = await appCarsApi.vroomCar(path.path);
-      settingsService.cars.add(car);
       cameraStates = CameraStates.cameraDone;
     } catch (e, ex) {
       print(e);

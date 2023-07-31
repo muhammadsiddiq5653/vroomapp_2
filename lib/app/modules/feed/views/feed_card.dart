@@ -41,49 +41,60 @@ class FeedCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Container(
               // color: Colors.black,
+              constraints: BoxConstraints(minHeight: 370),
               child: Stack(
+                  alignment: Alignment.center,
                   textDirection: TextDirection.ltr,
                   fit: StackFit.loose,
                   children: [
                     AppNetworkImage(
                       url: feedModel.image!,
                       width: double.infinity,
+                      loadingWidget:
+                          Container(child: CircularProgressIndicator()),
                     ),
-                    ClipRRect(
-                      child: Container(
-                        height: 70,
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(
-                            sigmaX: 5,
-                            sigmaY: 5,
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.only(left: 10, right: 10),
-                            color: HexColor("#2e2e2e").withOpacity(0.25),
-                            child: Row(children: [
-                              AppProfileAvatar(
-                                size: 50,
-                                user: feedModel.userModel,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              SmallBoldText(
-                                text: feedModel.userModel?.name ?? '',
-                                color: Colors.white,
-                              )
-                            ]),
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      child: ClipRRect(
+                        child: Container(
+                          height: 70,
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(
+                              sigmaX: 5,
+                              sigmaY: 5,
+                            ),
+                            child: Container(
+                              padding: EdgeInsets.only(left: 10, right: 10),
+                              color: HexColor("#2e2e2e").withOpacity(0.25),
+                              child: Row(children: [
+                                AppProfileAvatar(
+                                  size: 50,
+                                  user: feedModel.userModel,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                SmallBoldText(
+                                  text: feedModel.userModel?.name ?? '',
+                                  color: Colors.white,
+                                )
+                              ]),
+                            ),
                           ),
                         ),
                       ),
                     ),
                     Positioned(
                       bottom: 0,
+                      left: 0,
+                      right: 0,
                       child: ClipRRect(
                         child: Container(
                           height: 70,
                           child: Container(
-                            width: MediaQuery.of(context).size.width - 20,
+                            // width: MediaQuery.of(context).size.width - 20,
                             color: HexColor("#2e2e2e").withOpacity(0.25),
                             child: Row(
                                 mainAxisAlignment:
@@ -111,6 +122,11 @@ class FeedCard extends StatelessWidget {
                                         ],
                                       )),
                                   OutlinedButton(
+                                      style: OutlinedButton.styleFrom(
+                                        shape: StadiumBorder(),
+                                        side: BorderSide(
+                                            width: 3.0, color: Colors.white),
+                                      ),
                                       onPressed: () {
                                         Get.toNamed(Routes.CARD_DETAILS,
                                             parameters: {

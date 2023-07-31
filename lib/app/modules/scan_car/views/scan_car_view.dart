@@ -129,7 +129,7 @@ class ScanCarView extends GetView<ScanCarController> {
             Text700(
                 text:
                     'Something went wrong. But dont worry you can just try again.'),
-            if (controller.errorMessage != null)
+            if (controller.errorMessage != null && !kReleaseMode)
               Container(
                 margin: EdgeInsets.only(top: 20),
                 child: Text700(text: controller.errorMessage!),
