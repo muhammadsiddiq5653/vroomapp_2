@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/widgets/app_state_handler.dart';
 import 'package:launch_review/launch_review.dart';
+import 'package:vroom_app/app/widgets/app_text/small_bold_text.dart';
+import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 import '../../../app_colors.dart';
 import '../../../widgets/app_form_fields/app_button_field.dart';
 import '../controllers/splash_controller.dart';
@@ -49,7 +51,7 @@ class SplashView extends GetView<SplashController> {
               height: 40,
             ),
             Text(
-              'Hurrayyy!!\n\nUprise have new exciting update click the button to update now',
+              'Hurrayyy!!\n\nWroom have new exciting update click the button to update now',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
@@ -60,26 +62,33 @@ class SplashView extends GetView<SplashController> {
                 text: 'Update now',
                 onPressed: () {
                   LaunchReview.launch(
-                      iOSAppId: '1605453313', writeReview: false);
+                      iOSAppId: '1665912517', writeReview: false);
                 })
           ],
         ),
       );
     }
     return Container(
+      color: AppColors.primary,
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            'assets/images/logo.png',
-            width: 300,
+            'assets/images/splashicon.png',
+            width: 230,
           ),
+          SizedBox(
+            height: 20,
+          ),
+          Text700(text: 'Wroom', color: Colors.white, fontSize: 50),
           SizedBox(
             height: 40,
           ),
-          CircularProgressIndicator()
+          CircularProgressIndicator(
+            color: Colors.white,
+          )
         ],
       ),
     );

@@ -50,7 +50,7 @@ class ProfileView extends GetView<ProfileController> {
                         child: Row(
                           children: [
                             AppProfileAvatar(
-                              size: 50,
+                              size: 35,
                               user: controller
                                   .settingsService.authModel!.userModel,
                             ),
@@ -62,7 +62,7 @@ class ProfileView extends GetView<ProfileController> {
                                 text: controller.settingsService.authModel
                                         ?.userModel.name ??
                                     '',
-                                fontSize: 30,
+                                fontSize: 20,
                               ),
                             ),
                             SizedBox(
@@ -73,6 +73,7 @@ class ProfileView extends GetView<ProfileController> {
                                 Get.toNamed(Routes.SETTINGS);
                               },
                               icon: Remix.settings_2_fill,
+                              size: 30,
                             ),
                             SizedBox(
                               width: 20,
@@ -82,6 +83,7 @@ class ProfileView extends GetView<ProfileController> {
                                 Get.toNamed(Routes.EDIT_PROFILE);
                               },
                               icon: Remix.pencil_fill,
+                              size: 30,
                             ),
                           ],
                         )),
