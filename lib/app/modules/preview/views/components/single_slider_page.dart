@@ -30,6 +30,13 @@ class SingleSliderPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 100,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 Image.asset(item['image']!),
                 BigHeaderText(
                   text: item['title'] ?? '',

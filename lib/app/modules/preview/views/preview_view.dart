@@ -74,7 +74,7 @@ class PreviewView extends GetView<PreviewController> {
                   children: [
                     SliderDots(pages: pages, pageIndex: controller.pageIndex),
                     SizedBox(
-                      height: 70,
+                      height: 20,
                     ),
                     Container(
                       height: 55,
