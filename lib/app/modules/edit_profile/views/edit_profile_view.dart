@@ -57,17 +57,17 @@ class EditProfileView extends GetView<EditProfileController> {
                               controller.name = val;
                             },
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          AppTextField(
-                            defaultValue: controller.email,
-                            hintText: 'Email',
-                            labelText: 'Enter user email',
-                            onChanged: (val) {
-                              controller.email = val;
-                            },
-                          ),
+                          // SizedBox(
+                          //   height: 20,
+                          // ),
+                          // AppTextField(
+                          //   defaultValue: controller.email,
+                          //   hintText: 'Email',
+                          //   labelText: 'Enter user email',
+                          //   onChanged: (val) {
+                          //     controller.email = val;
+                          //   },
+                          // ),
                           // SizedBox(
                           //   height: 10,
                           // ),

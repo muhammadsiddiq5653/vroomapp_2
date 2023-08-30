@@ -50,24 +50,23 @@ vroomApp() async {
       builder: (_, child) {
         return FlutterEasyLoading(child: child ?? Container());
       },
-      theme:
-          ThemeData(fontFamily: 'Exo 2', scaffoldBackgroundColor: Colors.white)
-              .copyWith(
-                  backgroundColor: AppColors.background,
-                  scaffoldBackgroundColor: AppColors.background,
-                  primaryColor: AppColors.primary,
-                  colorScheme: ColorScheme(
-                      primary: AppColors.primary,
-                      secondary: AppColors.secondary,
-                      surface: AppColors.surface,
-                      background: AppColors.background,
-                      error: AppColors.error,
-                      onPrimary: AppColors.onPrimary,
-                      onSecondary: AppColors.onSecondary,
-                      onSurface: AppColors.onSurface,
-                      onBackground: AppColors.onBackground,
-                      onError: AppColors.onError,
-                      brightness: Brightness.light)),
+      theme: ThemeData(fontFamily: 'Exo', scaffoldBackgroundColor: Colors.white)
+          .copyWith(
+              backgroundColor: AppColors.background,
+              scaffoldBackgroundColor: AppColors.background,
+              primaryColor: AppColors.primary,
+              colorScheme: ColorScheme(
+                  primary: AppColors.primary,
+                  secondary: AppColors.secondary,
+                  surface: AppColors.surface,
+                  background: AppColors.background,
+                  error: AppColors.error,
+                  onPrimary: AppColors.onPrimary,
+                  onSecondary: AppColors.onSecondary,
+                  onSurface: AppColors.onSurface,
+                  onBackground: AppColors.onBackground,
+                  onError: AppColors.onError,
+                  brightness: Brightness.light)),
     ),
   );
 }

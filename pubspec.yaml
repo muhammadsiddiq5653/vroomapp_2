@@ -79,6 +79,12 @@ flutter_icons:
 
 flutter: 
   uses-material-design: true 
+  fonts:
+    - family: Exo
+      fonts:
+        - asset: assets/fonts/Exo/Exo2-VariableFont_wght.ttf
+        - asset: assets/fonts/Exo/Exo2-Italic-VariableFont_wght.ttf
+          style: italic
   assets:
     - assets/images/
     - assets/images/logo.png

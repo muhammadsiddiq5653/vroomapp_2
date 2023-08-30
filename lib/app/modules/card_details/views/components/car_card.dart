@@ -25,11 +25,11 @@ class CarCard extends StatelessWidget {
           Positioned(
               left: -160,
               top: 0,
-              bottom: -40,
+              bottom: -100,
               child: Hero(
                 tag: 'car-card-${car.hashCode}',
                 child: Container(
-                    width: 400,
+                    width: 350,
                     child: AppNetworkImage(
                       url: car.image!,
                     )),
@@ -47,7 +47,7 @@ class CarCard extends StatelessWidget {
                     CarSpecProgress(
                       value: AppUtilities.getPricePercentage(car.price),
                       title: 'Price',
-                      valueTitle: '${car.price} USD',
+                      valueTitle: '${car.price?.truncate()} USD',
                     ),
                     SizedBox(
                       height: 20,

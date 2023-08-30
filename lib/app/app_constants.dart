@@ -10,5 +10,5 @@ class AppConstants {
   static var topHorsePower = 1914;
   static var topWeight = 3335;
   static var topCityMilage = 1000;
-  static var topPrice = 200000;
+  static var topPrice = 100000;
 }
