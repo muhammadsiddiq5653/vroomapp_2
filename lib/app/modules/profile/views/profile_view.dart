@@ -29,11 +29,12 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GameAppBar(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: AppFloatingActionButton(
-        onClick: controller.scanCar,
-      ),
+      appBar: GameAppBar(
+          userModel: profileController.settingsService.authModel!.userModel),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: AppFloatingActionButton(
+      //   onClick: controller.scanCar,
+      // ),
       body: GetBuilder<ProfileController>(
         builder: (_) => Container(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),

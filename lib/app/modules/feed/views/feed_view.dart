@@ -16,11 +16,12 @@ class FeedView extends GetView<FeedController> {
   Widget build(BuildContext context) {
     return GetBuilder<FeedController>(
       builder: (_) => Scaffold(
-        appBar: GameAppBar(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: AppFloatingActionButton(
-          onClick: controller.scanCar,
-        ),
+        appBar: GameAppBar(
+            userModel: feedController.settingsService.authModel!.userModel),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        // floatingActionButton: AppFloatingActionButton(
+        //   onClick: controller.scanCar,
+        // ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: AppStateHandler(

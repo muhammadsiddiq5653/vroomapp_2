@@ -24,12 +24,13 @@ class HomeView extends GetView<HomeController> {
     return GetBuilder(
       builder: (HomeController _) => AppKeyboardHider(
         child: Scaffold(
-            appBar: GameAppBar(),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: AppFloatingActionButton(
-              onClick: controller.scanCar,
-            ),
+            appBar: GameAppBar(
+                userModel: homeController.settingsService.authModel!.userModel),
+            // floatingActionButtonLocation:
+            //     FloatingActionButtonLocation.centerDocked,
+            // floatingActionButton: AppFloatingActionButton(
+            //   onClick: controller.scanCar,
+            // ),
             body: Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
               child: Column(
@@ -72,9 +73,9 @@ class HomeView extends GetView<HomeController> {
                             itemBuilder: (BuildContext context, int index) {
                               var car = controller.cars!.collection[index];
                               return CarCard(
-                                car: car,
-                                onTap: controller.onCarTap,
-                              );
+                                  car: car,
+                                  onTap: controller.onCarTap,
+                                  onLongTap: controller.onCarLongTap);
                             }),
                       ),
                     ),

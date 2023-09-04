@@ -38,7 +38,7 @@ class DialogService extends GetxService {
   }
 
   Future<bool> showConfirm(String message,
-      {String? title, bool alternate = false, String? confirmText}) async {
+      {String? title, String? confirmText}) async {
     return (await Get.bottomSheet(AppBottomSheet(
           child: Container(
             padding: EdgeInsets.all(20),
@@ -64,51 +64,35 @@ class DialogService extends GetxService {
                     SizedBox(
                       height: 40,
                     ),
-                    if (alternate)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          AppButtonField(
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          height: 50,
+                          child: AppButtonField(
+                            primary: AppColors.primary,
                             onPressed: () {
                               Get.back(result: true);
                             },
-                            text: confirmText ?? 'I understand',
+                            text: (confirmText ?? 'I understand').toUpperCase(),
                           ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          TextButton(
-                              child: Text(
-                                'Cancel',
-                                style: TextStyle(fontSize: 18),
-                              ),
-                              onPressed: () {
-                                Get.back(result: false);
-                              }),
-                        ],
-                      ),
-                    if (!alternate)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                              onPressed: () {
-                                Get.back(result: true);
-                              },
-                              child: Text(
-                                'I understand',
-                                style: TextStyle(fontSize: 18),
-                              )),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          AppButtonField(
-                              text: 'Cancel',
-                              onPressed: () {
-                                Get.back(result: false);
-                              }),
-                        ],
-                      )
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                            margin: EdgeInsets.only(top: 20),
+                            width: double.infinity,
+                            height: 50,
+                            child: AppButtonField(
+                                primary: Colors.transparent,
+                                text: 'Cancel'.toUpperCase(),
+                                onPressed: () {
+                                  Get.back(result: false);
+                                }))
+                      ],
+                    ),
                   ],
                 ),
               ],

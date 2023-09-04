@@ -30,7 +30,8 @@ class BattleView extends GetView<BattleController> {
       },
     ];
     return Scaffold(
-      appBar: GameAppBar(),
+      appBar: GameAppBar(
+          userModel: battleController.settingsService.authModel!.userModel),
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
         child: Column(

@@ -211,15 +211,22 @@ class ScanCarView extends GetView<ScanCarController> {
                 width: 200,
               ),
               Text700(
-                text: 'Car Wroomed',
+                text: 'Wroomed!',
                 fontSize: 28,
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Text700(
+                text: '${controller.car.make} ${controller.car.model}',
+                fontSize: 23,
+                textAlign: TextAlign.center,
               ),
               SizedBox(
                 height: 20,
               ),
               Text400(
-                text:
-                    'The ${controller.car.make} ${controller.car.model} has been added to your garage.',
+                text: 'has been added to your garage.',
                 fontSize: 15,
                 textAlign: TextAlign.center,
               ),
@@ -231,17 +238,37 @@ class ScanCarView extends GetView<ScanCarController> {
                   height: 56,
                   width: double.infinity,
                   child: AppButtonField(
-                      text: 'Share on feed',
-                      onPressed: controller.shareOnFeed)),
+                      text: 'View in Garage'.toUpperCase(),
+                      onPressed: controller.viewInGarage)),
               Container(
-                  margin: EdgeInsets.all(20),
+                  margin: EdgeInsets.symmetric(horizontal: 20),
                   height: 56,
                   width: double.infinity,
                   child: AppButtonField(
                       haveBorder: true,
+                      text: 'Share on feed'.toUpperCase(),
                       primary: Colors.transparent,
-                      text: 'View in Garage',
-                      onPressed: controller.viewInGarage))
+                      onPressed: controller.shareOnFeed)),
+              SizedBox(
+                height: 40,
+              ),
+              GestureDetector(
+                onTap: controller.reset,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text400(
+                      text: 'Spotted another car? ',
+                      fontSize: 16,
+                    ),
+                    Text400(
+                      text: 'Wroom again',
+                      fontSize: 16,
+                      color: AppColors.primary,
+                    ),
+                  ],
+                ),
+              )
             ]),
       );
     }

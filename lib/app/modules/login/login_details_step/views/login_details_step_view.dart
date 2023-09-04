@@ -57,6 +57,7 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                           height: 30,
                         ),
                         AppTextField(
+                          obscureText: true,
                           hintText: 'Enter password',
                           labelText: 'Enter password',
                           onChanged: (val) {

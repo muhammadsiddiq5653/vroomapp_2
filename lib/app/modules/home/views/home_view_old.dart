@@ -21,7 +21,8 @@ class HomeViewOld extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return GetBuilder(
       builder: (HomeController _) => Scaffold(
-        appBar: GameAppBar(),
+        appBar: GameAppBar(
+            userModel: homeController.settingsService.authModel!.userModel),
         floatingActionButton: Container(
           height: 52,
           width: 52,

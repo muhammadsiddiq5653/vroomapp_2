@@ -87,7 +87,7 @@ class SettingsView extends GetView<SettingsController> {
                   height: 50,
                 ),
                 Text700(
-                  text: 'Danger Zone',
+                  text: 'Account',
                   fontSize: 20,
                 ),
                 SizedBox(

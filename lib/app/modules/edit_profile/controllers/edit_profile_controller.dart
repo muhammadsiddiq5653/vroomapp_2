@@ -16,7 +16,7 @@ class EditProfileController extends AppAbstractController {
   void onInit() {
     super.onInit();
     name = settingsService.authModel!.userModel.name ?? '';
-    email = settingsService.authModel!.userModel.email;
+    email = settingsService.authModel!.userModel.email ?? '';
   }
 
   @override

@@ -19,7 +19,9 @@ class LeaderboardView extends GetView<LeaderboardController> {
   Widget build(BuildContext context) {
     return GetBuilder<LeaderboardController>(
       builder: (_) => Scaffold(
-        appBar: GameAppBar(),
+        appBar: GameAppBar(
+            userModel:
+                leaderboardController.settingsService.authModel!.userModel),
         body: Stack(
           alignment: Alignment.bottomCenter,
           children: [

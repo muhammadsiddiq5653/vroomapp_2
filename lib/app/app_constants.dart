@@ -7,8 +7,8 @@ class AppConstants {
   static const String carArgumentId = "carArgumentId";
 
   static var carArgument = 'carArgument';
-  static var topHorsePower = 1914;
-  static var topWeight = 3335;
-  static var topCityMilage = 1000;
+  static var topHorsePower = 500;
+  static var topWeight = 9335;
+  static var topCityMilage = 50;
   static var topPrice = 100000;
 }

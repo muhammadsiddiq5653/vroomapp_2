@@ -181,4 +181,8 @@ class ScanCarController extends AppAbstractController {
       dialogService.showError(ex);
     }
   }
+
+  void reset() {
+    loadCameras();
+  }
 }

@@ -28,7 +28,68 @@ class CardDetailsView extends GetView<CardDetailsController> {
   Widget build(BuildContext context) {
     return GetBuilder<CardDetailsController>(
       builder: (_) => Scaffold(
-        appBar: InsideAppBar(title: ''),
+        appBar: InsideAppBar(
+          title: '',
+          actions: [
+            Theme(
+              data: Theme.of(context).copyWith(
+                cardColor: Colors.black,
+              ),
+              child: PopupMenuButton<int>(
+                // color: Colors.white,
+                icon: Icon(
+                  Remix.more_fill,
+                  color: Colors.white,
+                ),
+                initialValue: null,
+                // Callback that sets the selected popup menu item.
+                onSelected: controller.onMenuSelected,
+                itemBuilder: (BuildContext context) => <PopupMenuEntry<int>>[
+                  PopupMenuItem<int>(
+                    value: 0,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Remix.share_fill,
+                          color: Colors.white,
+                          size: 16,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text400(
+                          text: 'Share this car',
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Remix.delete_bin_fill,
+                          color: Colors.white,
+                          size: 16,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text400(
+                          text: 'Delete this car',
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
         body: AppStateHandler(
           loadingState: controller.loadingState,
           child: Column(
@@ -117,7 +178,7 @@ class CardDetailsView extends GetView<CardDetailsController> {
                           height: 20,
                         ),
                         CarSpecProgress(
-                          value: AppUtilities.getWeightPercentage(
+                          value: AppUtilities.getPowerPercentage(
                               controller.car?.enginePower),
                           title: 'Power',
                           valueTitle: '${controller.car?.enginePower} HP',
@@ -216,17 +277,18 @@ class CardDetailsView extends GetView<CardDetailsController> {
                   ),
                 ),
               ),
-              // Container(
-              //   height: 100,
-              //   width: double.infinity,
-              //   padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
-              //   child: AppButtonField(
-              //     text: 'Battle now'.toUpperCase(),
-              //     onPressed: () {
-              //       controller.battleNow();
-              //     },
-              //   ),
-              // )
+              Container(
+                height: 100,
+                width: double.infinity,
+                margin: EdgeInsets.only(bottom: 20),
+                padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
+                child: AppButtonField(
+                  text: 'share this car'.toUpperCase(),
+                  onPressed: () {
+                    controller.shareCar();
+                  },
+                ),
+              )
             ],
           ),
         ),

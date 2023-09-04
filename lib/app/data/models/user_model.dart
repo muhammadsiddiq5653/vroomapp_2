@@ -1,9 +1,11 @@
+import 'package:vroom_app/app/app_utilities.dart';
+
 import 'serializable.dart';
 
 class UserModel extends Serializable {
   String? avatar;
   String? name;
-  String email = '';
+  String? email = '';
   String? password;
   String? phone;
   String? phoneCode;
@@ -11,6 +13,7 @@ class UserModel extends Serializable {
   String? firebaseToken;
   bool phoneVerified = false;
   String? media;
+  double? totalPrice = 0;
   UserModel({
     this.id,
     this.avatar,
@@ -29,6 +32,7 @@ class UserModel extends Serializable {
     phoneVerified = json['phone_verified_at'] != null;
     phoneCode = json['phone_code'];
     firebaseToken = json['firebase_token'];
+    totalPrice = AppUtilities.ensureDouble(json['total_price']);
   }
 
   @override
@@ -38,7 +42,7 @@ class UserModel extends Serializable {
     if (name != null) data['name'] = name;
     if (phone != null) data['phone'] = phone;
     if (phoneCode != null) data['phone_code'] = phoneCode;
-    if (email.isNotEmpty) data['email'] = email;
+    if (email?.isNotEmpty == true) data['email'] = email;
 
     if (password != null) {
       data['password'] = password;

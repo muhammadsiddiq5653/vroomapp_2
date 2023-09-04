@@ -12,11 +12,16 @@ import 'car_spec_progress.dart';
 class CarCard extends StatelessWidget {
   final CarModel car;
   final Function(CarModel)? onTap;
-  const CarCard({Key? key, this.onTap, required this.car}) : super(key: key);
+  final Function(CarModel)? onLongTap;
+  const CarCard({Key? key, this.onTap, required this.car, this.onLongTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onLongPress: () {
+        if (onLongTap != null) onLongTap!(car);
+      },
       onTap: () {
         if (onTap != null) onTap!(car);
       },
@@ -53,7 +58,7 @@ class CarCard extends StatelessWidget {
                       height: 20,
                     ),
                     CarSpecProgress(
-                      value: AppUtilities.getWeightPercentage(car.enginePower),
+                      value: AppUtilities.getPowerPercentage(car.enginePower),
                       title: 'Power',
                       valueTitle: '${car.enginePower} HP',
                     ),

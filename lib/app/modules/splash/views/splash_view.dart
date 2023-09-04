@@ -69,7 +69,14 @@ class SplashView extends GetView<SplashController> {
       );
     }
     return Container(
-      color: AppColors.primary,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment(1, 0.2),
+              colors: [
+            Color(0XFF3E3D41),
+            Color(0XFF0D0D0F),
+          ])),
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

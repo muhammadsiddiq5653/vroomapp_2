@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/app_colors.dart';
@@ -13,12 +14,14 @@ import 'package:vroom_app/app/widgets/app_bottom_sheet.dart';
 import 'package:vroom_app/app/widgets/app_text/text_600.dart';
 
 import '../../../widgets/app_text/text_400.dart';
+import '../../../widgets/app_text/text_700.dart';
 
 class HomeController extends AppAbstractController {
   AppCarsApi appCarsApi = Get.put(AppCarsApi());
   EnvelopeModel<CarModel>? cars;
   String? sort;
   String? searchQuery;
+  var deleteCarConst = 'delete';
   @override
   void onInit() {
     super.onInit();
@@ -35,9 +38,73 @@ class HomeController extends AppAbstractController {
     super.onClose();
   }
 
-  void onCarTap(CarModel car) {
-    Get.toNamed(Routes.CARD_DETAILS,
+  void onCarTap(CarModel car) async {
+    hideKeyboard();
+    var result = await Get.toNamed(Routes.CARD_DETAILS,
         arguments: {AppConstants.carArgument: car});
+    if (result == true) {
+      loadCards();
+    }
+  }
+
+  void onCarLongTap(CarModel car) async {
+    try {
+      hideKeyboard();
+      var result = await Get.bottomSheet(AppBottomSheet(
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Wrap(
+            children: [
+              Container(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    Text700(
+                      textAlign: TextAlign.center,
+                      fontSize: 14,
+                      text: 'Manage Your Wroom',
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 40),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.back(result: deleteCarConst);
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Remix.delete_bin_fill,
+                              color: AppColors.primary,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text400(
+                              text: 'Delete this car',
+                              fontSize: 16,
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ));
+      if (result == deleteCarConst) {
+        EasyLoading.show();
+        await appCarsApi.deleteUserCar(car.userCardId);
+        EasyLoading.dismiss();
+        loadCards();
+      }
+    } catch (ex) {
+      dialogService.showError('Something went wrong, please try again');
+    } finally {
+      EasyLoading.dismiss();
+    }
   }
 
   Future<bool> loadCards({int page = 1}) async {

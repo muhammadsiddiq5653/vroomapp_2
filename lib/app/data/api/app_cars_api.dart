@@ -34,6 +34,11 @@ class AppCarsApi extends GetxService {
     return CarModel.fromJson(result.data);
   }
 
+  Future<bool> deleteUserCar(userCarID) async {
+    await networkService.delete(AppApiUrl.cars + "/$userCarID");
+    return true;
+  }
+
   Future<CarModel> vroomCar(imagePath) async {
     var result =
         await networkService.uploadFile(AppApiUrl.cars, image: imagePath);

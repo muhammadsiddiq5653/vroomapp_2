@@ -66,16 +66,6 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                             height: 10,
                           ),
                           AppTextField(
-                            hintText: 'Email',
-                            labelText: 'Enter user email',
-                            onChanged: (val) {
-                              controller.user.email = val;
-                            },
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          AppTextField(
                             hintText: 'Password',
                             labelText: 'Enter user password',
                             obscureText: true,
