@@ -3,9 +3,10 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 
+import '../../../../app_constants.dart';
+
 class SignupStepPhoneController extends AppAbstractController {
-  String initialCountry = 'EG';
-  PhoneNumber number = PhoneNumber(isoCode: 'EG');
+  PhoneNumber number = PhoneNumber(isoCode: AppConstants.localeForPhone);
   String phone = '';
   String phoneCode = '';
 

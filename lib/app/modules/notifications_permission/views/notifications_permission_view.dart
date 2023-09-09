@@ -71,7 +71,7 @@ class NotificationsPermissionView
                 onPressed: () {
                   controller.checkNotification();
                 },
-                text: 'Enable notifications'.toUpperCase(),
+                text: 'Enable notifications',
               ),
             ),
             Container(
@@ -84,7 +84,7 @@ class NotificationsPermissionView
                   onPressed: () {
                     controller.skip();
                   },
-                  text: 'Do it later in settings'.toUpperCase(),
+                  text: 'Do it later in settings',
                 ))
           ],
         ),

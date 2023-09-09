@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_sim_country_code/flutter_sim_country_code.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../../app_constants.dart';
@@ -45,9 +46,11 @@ class SplashController extends GetxController {
 
   void init() async {
     try {
+      await _getSimCountry();
       loadingState = GeneralLoadingState.waiting;
       update();
       settingsService.settingsModel = await appSettingsApi.getAppSettings();
+      AppConstants.appLink = settingsService.settingsModel!.appLink!;
       await Future.delayed(Duration(seconds: 1));
       if (settingsService.settingsModel?.forceUpdate == true) {
         forceUpdateView = true;
@@ -102,6 +105,15 @@ class SplashController extends GetxController {
       loadingState = GeneralLoadingState.error;
     } finally {
       update();
+    }
+  }
+
+  Future<void> _getSimCountry() async {
+    try {
+      var simCountry = await FlutterSimCountryCode.simCountryCode;
+      AppConstants.localeForPhone = simCountry ?? 'US';
+    } catch (ex) {
+      print(ex);
     }
   }
 }

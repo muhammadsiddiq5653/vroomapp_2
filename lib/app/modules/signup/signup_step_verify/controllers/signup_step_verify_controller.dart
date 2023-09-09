@@ -53,7 +53,7 @@ class SignupStepVerifyController extends AppAbstractController {
           verificationFailed: (FirebaseAuthException e) {
             print(e);
             dialogService.showError(
-                'Can not verify your number at the moment, please try again later.'
+                "We can't verify your number. Please enter the 6 digit code again"
                     .tr);
           },
           codeSent: (String verificationId, int? resendToken) {
@@ -86,7 +86,7 @@ class SignupStepVerifyController extends AppAbstractController {
       await FirebaseAuth.instance
           .signInWithCredential(credential)
           .catchError((onError) {
-        dialogService.showError('Wrong OTP code'.tr);
+        dialogService.showError('Sorry, Wrong OTP. Please try again'.tr);
         print('SignIn Error: ${onError.toString()}\n\n');
       });
 
@@ -97,7 +97,7 @@ class SignupStepVerifyController extends AppAbstractController {
     } catch (ex) {
       print(ex);
       dialogService.showError(
-          'Can not verify your number at the moment, make sure you wrote the correct OTP'
+          "We can't verify your number. Please enter the 6 digit code again"
               .tr);
     } finally {
       unawaited(EasyLoading.dismiss());

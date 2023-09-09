@@ -88,7 +88,7 @@ class EditProfileView extends GetView<EditProfileController> {
                   height: 55,
                   width: double.infinity,
                   child: AppButtonField(
-                    text: 'Save'.toUpperCase(),
+                    text: 'Save',
                     onPressed: () {
                       controller.save();
                     },

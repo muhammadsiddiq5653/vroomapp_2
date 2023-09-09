@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vroom_app/app/modules/forgot_password_phone/views/forgot_password_phone_view.dart';
 
 import '../modules/alerts/bindings/alerts_binding.dart';
 import '../modules/alerts/views/alerts_view.dart';
@@ -12,6 +13,8 @@ import '../modules/battle/bindings/battle_binding.dart';
 import '../modules/battle/views/battle_view.dart';
 import '../modules/card_details/bindings/card_details_binding.dart';
 import '../modules/card_details/views/card_details_view.dart';
+import '../modules/change_password/bindings/change_password_binding.dart';
+import '../modules/change_password/views/change_password_view.dart';
 import '../modules/coins_inventory/bindings/coins_inventory_binding.dart';
 import '../modules/coins_inventory/views/coins_inventory_view.dart';
 import '../modules/customize_avatar/bindings/customize_avatar_binding.dart';
@@ -20,6 +23,9 @@ import '../modules/edit_profile/bindings/edit_profile_binding.dart';
 import '../modules/edit_profile/views/edit_profile_view.dart';
 import '../modules/feed/bindings/feed_binding.dart';
 import '../modules/feed/views/feed_view.dart';
+import '../modules/forgot_password_phone/bindings/forgot_password_phone_binding.dart';
+import '../modules/forgot_password_phone_verify/bindings/forgot_password_phone_verify_binding.dart';
+import '../modules/forgot_password_phone_verify/views/forgot_password_phone_verify_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/leaderboard/bindings/leaderboard_binding.dart';
@@ -196,6 +202,21 @@ class AppPages {
       name: _Paths.EDIT_PROFILE,
       page: () => EditProfileView(),
       binding: EditProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOT_PASSWORD_PHONE,
+      page: () => ForgotPasswordPhoneView(),
+      binding: ForgotPasswordPhoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGE_PASSWORD,
+      page: () => ChangePasswordView(),
+      binding: ChangePasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOT_PASSWORD_PHONE_VERIFY,
+      page: () => ForgotPasswordPhoneVerifyView(),
+      binding: ForgotPasswordPhoneVerifyBinding(),
     ),
   ];
 }

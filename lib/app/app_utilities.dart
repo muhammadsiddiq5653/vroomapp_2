@@ -1,5 +1,10 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:vroom_app/app/app_constants.dart';
 
 class AppUtilities {
@@ -154,5 +159,14 @@ class AppUtilities {
     price ??= 0;
     var percentage = price / AppConstants.topPrice;
     return percentage > 1 ? 1 : percentage;
+  }
+
+  static void share(Uint8List? bytes) async {
+    final file = File(
+        '${(await getTemporaryDirectory()).path}/${DateTime.now().toIso8601String().replaceAll('.', '-')}.png');
+    await file.create(recursive: true);
+    File path = await file.writeAsBytes(bytes!);
+    await Share.shareFiles([path.path],
+        text: 'Check it out in Wroom App\n\n${AppConstants.appLink}');
   }
 }

@@ -13,7 +13,7 @@ class AppIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(5)),
+      borderRadius: BorderRadius.all(Radius.circular(20)),
       child: Container(
         height: size,
         width: size,

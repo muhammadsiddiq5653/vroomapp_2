@@ -743,6 +743,8 @@ PODS:
     - Flutter
   - flutter_notification_channel (0.0.1):
     - Flutter
+  - flutter_sim_country_code (0.0.1):
+    - Flutter
   - geolocator_apple (1.2.0):
     - Flutter
   - GoogleAppMeasurement (10.3.0):
@@ -907,6 +909,7 @@ DEPENDENCIES:
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_notification_channel (from `.symlinks/plugins/flutter_notification_channel/ios`)
+  - flutter_sim_country_code (from `.symlinks/plugins/flutter_sim_country_code/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - launch_review (from `.symlinks/plugins/launch_review/ios`)
@@ -984,6 +987,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_notification_channel:
     :path: ".symlinks/plugins/flutter_notification_channel/ios"
+  flutter_sim_country_code:
+    :path: ".symlinks/plugins/flutter_sim_country_code/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
   image_picker_ios:
@@ -1041,6 +1046,7 @@ SPEC CHECKSUMS:
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_notification_channel: 42a4f4938a3654cca62aa2a51aba0021dbfcac88
+  flutter_sim_country_code: 364e91e71f067cdec1dd1228eb4d1f13ab1a54e5
   geolocator_apple: b741765c55dc21950e3e106e8b3584e55cf81ce5
   GoogleAppMeasurement: c7d6fff39bf2d829587d74088d582e32d75133c3
   GoogleDataTransport: 8378d1fa8ac49753ea6ce70d65a7cb70ce5f66e6

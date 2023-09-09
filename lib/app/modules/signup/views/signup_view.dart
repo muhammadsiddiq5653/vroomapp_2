@@ -61,7 +61,7 @@ class SignupView extends GetView<SignupController> {
                     height: 54,
                     width: double.infinity,
                     child: AppButtonField(
-                      text: 'Signup with your info'.toUpperCase(),
+                      text: 'Signup with your info',
                       onPressed: () {
                         Get.toNamed(Routes.SIGNUP_STEP_PHONE);
                       },

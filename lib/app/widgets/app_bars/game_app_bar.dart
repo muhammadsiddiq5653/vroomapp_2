@@ -29,8 +29,8 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.asset(
-              'assets/images/logowithname.png',
-              width: 150,
+              'assets/images/wroom.png',
+              width: 100,
             ),
             GestureDetector(
               onTap: () {
@@ -56,7 +56,7 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
                                 onPressed: () {
                                   Get.back(result: true);
                                 },
-                                text: 'okay'.toUpperCase(),
+                                text: 'okay',
                               ),
                             ),
                           ],
@@ -97,7 +97,7 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _getIconPair('assets/images/coins.png',
-                    userModel.totalPrice?.truncate().toString() ?? '0'),
+                    (userModel.totalPrice?.toString() ?? '0') + 'K'),
                 // SizedBox(
                 //   height: 5,
                 // ),

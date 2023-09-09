@@ -57,7 +57,7 @@ class ScanCarView extends GetView<ScanCarController> {
             padding: EdgeInsets.symmetric(horizontal: 20),
             width: 200,
             child: AppButtonField(
-              text: 'Wroom car'.toUpperCase(),
+              text: 'Wroom car',
               onPressed: () {
                 controller.findCar();
               },
@@ -186,13 +186,16 @@ class ScanCarView extends GetView<ScanCarController> {
                 ),
               Container(
                   // padding: EdgeInsets.all(200),
-                  height: 200,
-                  width: 200,
+                  height: 400,
+                  margin: EdgeInsets.all(20),
+                  width: double.infinity,
                   decoration: BoxDecoration(
                       color: Colors.black38,
                       borderRadius: BorderRadius.circular(20)),
-                  child:
-                      RiveAnimation.asset('assets/images/vroom_animation.riv')),
+                  child: RiveAnimation.asset(
+                    'assets/images/vroom_animation.riv',
+                    fit: BoxFit.cover,
+                  )),
             ],
           ),
         ),
@@ -238,7 +241,7 @@ class ScanCarView extends GetView<ScanCarController> {
                   height: 56,
                   width: double.infinity,
                   child: AppButtonField(
-                      text: 'View in Garage'.toUpperCase(),
+                      text: 'View in Garage',
                       onPressed: controller.viewInGarage)),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 20),
@@ -246,7 +249,7 @@ class ScanCarView extends GetView<ScanCarController> {
                   width: double.infinity,
                   child: AppButtonField(
                       haveBorder: true,
-                      text: 'Share on feed'.toUpperCase(),
+                      text: 'Share on feed',
                       primary: Colors.transparent,
                       onPressed: controller.shareOnFeed)),
               SizedBox(

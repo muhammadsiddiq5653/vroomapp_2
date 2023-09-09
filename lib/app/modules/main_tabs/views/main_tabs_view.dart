@@ -58,25 +58,21 @@ class MainTabsView extends GetView<MainTabsController> {
                           Get.toNamed(Routes.SCAN_CAR);
                         },
                         child: Container(
+                          height: 50,
+                          width: 50,
                           decoration: BoxDecoration(
-                            color: Colors.transparent,
+                            color: AppColors.primary,
                             borderRadius: BorderRadius.all(
                               Radius.circular(100),
                             ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.primary,
-                                spreadRadius: 2,
-                                blurRadius: 2,
-                                offset: Offset(0, 1),
-                              ),
-                            ],
                           ),
-                          child: Image.asset(
-                            'assets/images/scanicon.png',
-                            alignment: Alignment.center,
-                            height: 50,
-                            width: 50,
+                          child: Container(
+                            padding: EdgeInsets.only(top: 5, right: 1),
+                            child: Image.asset(
+                              'assets/images/scanicon.png',
+                              alignment: Alignment.center,
+                              width: 30,
+                            ),
                           ),
                         ),
                       )),

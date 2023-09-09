@@ -82,7 +82,7 @@ class PreviewView extends GetView<PreviewController> {
                       margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                       child: AppButtonField(
                           primary: AppColors.primary,
-                          text: 'Create an account'.toUpperCase(),
+                          text: 'Create an account',
                           elevation: 3,
                           onPressed: () {
                             Get.toNamed(Routes.SIGNUP_STEP_PHONE);
@@ -97,7 +97,7 @@ class PreviewView extends GetView<PreviewController> {
                       margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                       child: AppButtonField(
                           primary: Colors.transparent,
-                          text: 'Login'.toUpperCase(),
+                          text: 'Login',
                           elevation: 0,
                           onPressed: () {
                             Get.toNamed(Routes.LOGIN_DETAILS_STEP);

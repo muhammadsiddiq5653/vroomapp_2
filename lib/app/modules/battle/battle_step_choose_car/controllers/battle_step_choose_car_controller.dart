@@ -58,7 +58,7 @@ class BattleStepChooseCarController extends AppAbstractController {
     topCategoryCars.add(TopCategoryCarModel(
         car: car,
         categoryHeadLine: 'Best in Price',
-        unit: 'USD',
+        unit: '\$',
         value: car.price!.toDouble(),
         percentage: AppUtilities.getPricePercentage(car.price)));
 

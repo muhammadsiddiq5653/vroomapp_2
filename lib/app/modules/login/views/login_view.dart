@@ -60,7 +60,7 @@ class LoginView extends GetView<LoginController> {
                     height: 54,
                     width: double.infinity,
                     child: AppButtonField(
-                      text: 'Login with your phone'.toUpperCase(),
+                      text: 'Login with your phone',
                       onPressed: () {
                         Get.toNamed(Routes.LOGIN_DETAILS_STEP);
                       },

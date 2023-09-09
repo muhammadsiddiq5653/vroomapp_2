@@ -53,17 +53,24 @@ class SplashView extends GetView<SplashController> {
             Text(
               'Hurrayyy!!\n\nWroom have new exciting update click the button to update now',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
             ),
             SizedBox(
               height: 40,
             ),
-            AppButtonField(
-                text: 'Update now',
-                onPressed: () {
-                  LaunchReview.launch(
-                      iOSAppId: '1665912517', writeReview: false);
-                })
+            Container(
+              width: 200,
+              height: 50,
+              child: AppButtonField(
+                  text: 'Update now',
+                  onPressed: () {
+                    LaunchReview.launch(
+                        iOSAppId: '1665912517', writeReview: false);
+                  }),
+            )
           ],
         ),
       );
@@ -89,7 +96,10 @@ class SplashView extends GetView<SplashController> {
           SizedBox(
             height: 20,
           ),
-          Text700(text: 'Wroom', color: Colors.white, fontSize: 50),
+          Image.asset(
+            'assets/images/wroom.png',
+            width: 180,
+          ),
           SizedBox(
             height: 40,
           ),

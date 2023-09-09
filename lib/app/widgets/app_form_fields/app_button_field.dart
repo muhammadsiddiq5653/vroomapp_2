@@ -66,7 +66,7 @@ class AppButtonField extends StatelessWidget {
             ),
           if (haveText)
             Text(
-              text,
+              text.toUpperCase(),
               style: textStyle ??
                   TextStyle(
                       fontSize: 18,

@@ -31,6 +31,38 @@ class SettingsView extends GetView<SettingsController> {
                   height: 50,
                 ),
                 Text700(
+                  text: 'Basic',
+                  fontSize: 20,
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    launchUrlString(
+                        controller.settingsService.settingsModel!.faq!);
+                  },
+                  child: AppTile(
+                      padding: EdgeInsets.all(20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text400(
+                              text: 'FAQ',
+                              fontSize: 16,
+                            ),
+                          ),
+                          Icon(
+                            Remix.arrow_right_circle_fill,
+                            color: Colors.red,
+                          )
+                        ],
+                      )),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Text700(
                   text: 'About Us',
                   fontSize: 20,
                 ),

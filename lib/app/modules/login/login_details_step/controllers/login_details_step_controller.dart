@@ -5,10 +5,12 @@ import 'package:vroom_app/app/data/models/user_model.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 
+import '../../../../app_constants.dart';
+
 class LoginDetailsStepController extends AppAbstractController {
   AuthApi authApi = Get.put(AuthApi());
   String initialCountry = 'EG';
-  PhoneNumber number = PhoneNumber(isoCode: 'EG');
+  PhoneNumber number = PhoneNumber(isoCode: AppConstants.localeForPhone);
 
   String password = '';
   String phone = '';

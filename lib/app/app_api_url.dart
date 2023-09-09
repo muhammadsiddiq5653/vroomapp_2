@@ -9,6 +9,7 @@ class AppApiUrl {
   static final rootUrl = '${root}api/';
 
   static const login = 'login';
+  static const chanePasswordByFirebaseToken = 'auth/change-password';
   static const register = 'register';
   static const appSettings = 'app-settings';
   static const cars = 'cars';
@@ -21,6 +22,7 @@ class AppApiUrl {
   static const imageUpload = 'uploader/media/upload';
   static final feed = 'feed';
   static final notifications = 'notifications';
+  static const phoneExist = 'auth/phone-exist';
   //App Links Ops
   static final appLink = '${root}app-link';
 }

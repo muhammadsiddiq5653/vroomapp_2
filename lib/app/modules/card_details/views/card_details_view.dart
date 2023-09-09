@@ -172,7 +172,7 @@ class CardDetailsView extends GetView<CardDetailsController> {
                           value: AppUtilities.getPricePercentage(
                               controller.car?.price),
                           title: 'Price',
-                          valueTitle: '${controller.car?.price} USD',
+                          valueTitle: '${controller.car?.price} \$',
                         ),
                         SizedBox(
                           height: 20,
@@ -283,7 +283,7 @@ class CardDetailsView extends GetView<CardDetailsController> {
                 margin: EdgeInsets.only(bottom: 20),
                 padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
                 child: AppButtonField(
-                  text: 'share this car'.toUpperCase(),
+                  text: 'share this car',
                   onPressed: () {
                     controller.shareCar();
                   },

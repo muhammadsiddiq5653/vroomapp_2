@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../../../app_colors.dart';
+import '../../../widgets/app_bars/inside_app_bar.dart';
+import '../../../widgets/app_form_fields/app_button_field.dart';
+import '../../../widgets/app_text/text_400.dart';
+import '../../../widgets/app_text/text_700.dart';
+import '../controllers/forgot_password_phone_verify_controller.dart';
 
-import '../../../../app_colors.dart';
-import '../../../../routes/app_pages.dart';
-import '../../../../widgets/app_bars/inside_app_bar.dart';
-import '../../../../widgets/app_form_fields/app_button_field.dart';
-import '../../../../widgets/app_text/text_400.dart';
-import '../../../../widgets/app_text/text_700.dart';
-import '../controllers/signup_step_verify_controller.dart';
-
-class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
-  final controller = Get.put(SignupStepVerifyController());
-  SignupStepVerifyView({Key? key}) : super(key: key);
+class ForgotPasswordPhoneVerifyView
+    extends GetView<ForgotPasswordPhoneVerifyController> {
+  const ForgotPasswordPhoneVerifyView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SignupStepVerifyController>(
+    return GetBuilder<ForgotPasswordPhoneVerifyController>(
       builder: (_) => Scaffold(
         appBar: InsideAppBar(
           title: '',

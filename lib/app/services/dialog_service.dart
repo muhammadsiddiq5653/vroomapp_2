@@ -10,8 +10,12 @@ import '../widgets/app_form_fields/app_button_field.dart';
 class DialogService extends GetxService {
   void showError(error) {
     if (error is String) {
-      Get.snackbar('Oops!', error,
-          backgroundColor: AppColors.error, colorText: AppColors.onError);
+      Get.snackbar(
+        'Oops!',
+        error,
+        backgroundColor: Color(0xFFFB0540),
+        colorText: AppColors.onError,
+      );
       return;
     }
     var message = error.toString();
@@ -22,12 +26,12 @@ class DialogService extends GetxService {
       if (kReleaseMode) message = 'Unexpected error occured';
     }
     Get.snackbar('Oops!', message,
-        backgroundColor: AppColors.error, colorText: AppColors.onError);
+        backgroundColor: Color(0xFFFB0540), colorText: AppColors.onError);
   }
 
   void showInfo(message, {title = 'Wroom', onTap}) {
     Get.snackbar(title, message,
-        backgroundColor: AppColors.primary,
+        backgroundColor: Color(0xFF00C969),
         colorText: Colors.white, onTap: (_) {
       try {
         onTap();
@@ -87,7 +91,7 @@ class DialogService extends GetxService {
                             height: 50,
                             child: AppButtonField(
                                 primary: Colors.transparent,
-                                text: 'Cancel'.toUpperCase(),
+                                text: 'Cancel',
                                 onPressed: () {
                                   Get.back(result: false);
                                 }))

@@ -82,7 +82,7 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                   height: 55,
                   width: double.infinity,
                   child: AppButtonField(
-                    text: 'Continue'.toUpperCase(),
+                    text: 'Continue',
                     onPressed: () {
                       controller.regsiter();
                     },

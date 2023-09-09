@@ -34,10 +34,6 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'assets/images/logo.png',
-                          width: 100,
-                        ),
                         SizedBox(
                           height: 30,
                         ),
@@ -46,7 +42,7 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 50,
                         ),
                         AppPhoneField(
                             number: controller.number,
@@ -65,7 +61,30 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                           },
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 50,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.FORGOT_PASSWORD_PHONE);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text400(
+                                text: 'Forgot Password?',
+                                fontSize: 14,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text400(
+                                text: 'Reset it now',
+                                fontSize: 14,
+                                color: AppColors.primary,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -78,7 +97,7 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
               margin: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
               width: double.infinity,
               child: AppButtonField(
-                text: 'Login'.toUpperCase(),
+                text: 'Login',
                 onPressed: () {
                   controller.login();
                 },

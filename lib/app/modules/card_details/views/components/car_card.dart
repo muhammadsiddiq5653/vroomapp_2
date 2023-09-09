@@ -52,7 +52,7 @@ class CarCard extends StatelessWidget {
                     CarSpecProgress(
                       value: AppUtilities.getPricePercentage(car.price),
                       title: 'Price',
-                      valueTitle: '${car.price?.truncate()} USD',
+                      valueTitle: '${car.price?.truncate()} \$',
                     ),
                     SizedBox(
                       height: 20,

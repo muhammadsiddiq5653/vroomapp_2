@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:vroom_app/app/app_colors.dart';
-import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
-import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
-import 'package:vroom_app/app/widgets/app_form_fields/app_phone_field.dart';
-import 'package:vroom_app/app/widgets/app_keyboard_hider.dart';
-import 'package:vroom_app/app/widgets/app_text/text_400.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-import '../../../../widgets/app_text/text_700.dart';
-import '../controllers/signup_step_phone_controller.dart';
+import '../../../app_colors.dart';
+import '../../../widgets/app_bars/inside_app_bar.dart';
+import '../../../widgets/app_form_fields/app_button_field.dart';
+import '../../../widgets/app_form_fields/app_phone_field.dart';
+import '../../../widgets/app_keyboard_hider.dart';
+import '../../../widgets/app_text/text_400.dart';
+import '../../../widgets/app_text/text_700.dart';
+import '../controllers/forgot_password_phone_controller.dart';
 
-class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
-  final controller = Get.put(SignupStepPhoneController());
-  SignupStepPhoneView({Key? key}) : super(key: key);
+class ForgotPasswordPhoneView extends GetView<ForgotPasswordPhoneController> {
+  ForgotPasswordPhoneView({Key? key}) : super(key: key);
+  final ForgotPasswordPhoneController forgotPasswordPhoneController =
+      Get.put(ForgotPasswordPhoneController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SignupStepPhoneController>(
+    return GetBuilder<ForgotPasswordPhoneController>(
       builder: (_) => AppKeyboardHider(
         child: Scaffold(
           appBar: InsideAppBar(
@@ -43,7 +45,6 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                     number: controller.number,
                     onChanged: (val) {
                       controller.phone = val.phoneNumber ?? '';
-                      controller.phoneCode = val.dialCode ?? '';
                     },
                   ),
                   SizedBox(
@@ -61,7 +62,7 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                     child: AppButtonField(
                       text: 'Continue',
                       onPressed: () {
-                        controller.next();
+                        controller.finish();
                       },
                       primary: AppColors.primary,
                     ),

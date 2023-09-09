@@ -34,4 +34,22 @@ class AuthApi extends GetxService {
     });
     return true;
   }
+
+  Future<bool> phoneExist(String phone) async {
+    try {
+      await networkService.post(AppApiUrl.phoneExist, data: {
+        'phone': phone,
+      });
+      return true;
+    } catch (ex) {
+      return false;
+    }
+  }
+
+  Future<bool> resetPasswordByFirebaseToken(
+      String password, String firebaseToken) async {
+    await networkService.post(AppApiUrl.chanePasswordByFirebaseToken,
+        data: {'password': password, 'firebase_token': firebaseToken});
+    return true;
+  }
 }

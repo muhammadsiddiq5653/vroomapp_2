@@ -32,6 +32,10 @@ abstract class Routes {
   static const FEED = _Paths.FEED;
   static const SETTINGS = _Paths.SETTINGS;
   static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
+  static const FORGOT_PASSWORD_PHONE = _Paths.FORGOT_PASSWORD_PHONE;
+  static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
+  static const FORGOT_PASSWORD_PHONE_VERIFY =
+      _Paths.FORGOT_PASSWORD_PHONE_VERIFY;
 }
 
 abstract class _Paths {
@@ -62,4 +66,7 @@ abstract class _Paths {
   static const FEED = '/feed';
   static const SETTINGS = '/settings';
   static const EDIT_PROFILE = '/edit-profile';
+  static const FORGOT_PASSWORD_PHONE = '/forgot-password-phone';
+  static const FORGOT_PASSWORD_PHONE_VERIFY = '/forgot-password-phone-verify';
+  static const CHANGE_PASSWORD = '/change-password';
 }

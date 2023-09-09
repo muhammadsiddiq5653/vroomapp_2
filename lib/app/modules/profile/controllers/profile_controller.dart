@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:vroom_app/app/app_utilities.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
 import '../../../app_enums.dart';
@@ -106,11 +107,7 @@ class ProfileController extends AppAbstractController {
   share(FeedModel feed, Uint8List? bytes) async {
     try {
       showLoading();
-      final file = File(
-          '${(await getTemporaryDirectory()).path}/${DateTime.now().toIso8601String().replaceAll('.', '-')}.png');
-      await file.create(recursive: true);
-      File path = await file.writeAsBytes(bytes!);
-      await Share.shareFiles([path.path], text: 'Check it out in Wroom App');
+      AppUtilities.share(bytes);
       hideLoading();
       await appFeedApi.share(feed);
       feed.shares++;

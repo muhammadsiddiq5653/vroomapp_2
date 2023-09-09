@@ -26,8 +26,11 @@ class AppStateHandler extends StatelessWidget {
     if (loadingState == GeneralLoadingState.done) {
       childToReturn = child;
     } else if (loadingState == GeneralLoadingState.waiting) {
-      childToReturn =
-          Center(child: loadingWidget ?? CircularProgressIndicator());
+      childToReturn = Center(
+          child: loadingWidget ??
+              CircularProgressIndicator(
+                color: Colors.white,
+              ));
     } else if (loadingState == GeneralLoadingState.empty) {
       childToReturn = SingleChildScrollView(
         controller: scrollController,
