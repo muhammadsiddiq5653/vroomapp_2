@@ -34,6 +34,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                 Text700(
                   text: 'Verify the 6-Digit Code',
                   textAlign: TextAlign.center,
+                  fontSize: 22,
                 ),
                 SizedBox(
                   height: 30,

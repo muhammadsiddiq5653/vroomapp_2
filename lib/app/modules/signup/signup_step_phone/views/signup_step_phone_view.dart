@@ -35,6 +35,7 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                   Text700(
                     text: 'Enter your phone number',
                     textAlign: TextAlign.center,
+                    fontSize: 22,
                   ),
                   SizedBox(
                     height: 50,

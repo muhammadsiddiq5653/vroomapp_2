@@ -41,6 +41,7 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                           Text700(
                             text: 'Add more details to the account',
                             textAlign: TextAlign.center,
+                            fontSize: 22,
                           ),
                           SizedBox(
                             height: 30,

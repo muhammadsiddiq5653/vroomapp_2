@@ -55,7 +55,7 @@ class MainTabsView extends GetView<MainTabsController> {
                       label: '',
                       icon: GestureDetector(
                         onTap: () {
-                          Get.toNamed(Routes.SCAN_CAR);
+                          controller.scan();
                         },
                         child: Container(
                           height: 50,

@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "318842092311",
+    "firebase_url": "https://vroom-4b229-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "vroom-4b229",
     "storage_bucket": "vroom-4b229.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:318842092311:android:ab33683157e2b337219552",
+        "mobilesdk_app_id": "1:318842092311:android:dc5030374c828599219552",
         "android_client_info": {
-          "package_name": "com.vroom.vroom_app"
+          "package_name": "com.vroom.vroomApp"
         }
       },
       "oauth_client": [

@@ -14,27 +14,23 @@ class PreviewView extends GetView<PreviewController> {
   final controller = Get.put(PreviewController());
   final pages = <Map<String, String>>[
     {
-      "title": "Wroom Cars Around You",
-      "subtitle":
-          "Just point your phone at the car with the app open and Wroom will add that car to your garage.",
+      "title": "Discover any car",
+      "subtitle": "Point your phone to any car and get cool images and info",
       "image": "assets/images/Slide01.png"
     },
     {
-      "title": "Show Them What You Got",
-      "subtitle":
-          "Share the best pictures of cars you wroom with your friends and everyone else on the app.",
+      "title": "Love cars?",
+      "subtitle": "Show other Wroomers what cars you find and get reacts",
       "image": "assets/images/Slide02.png"
     },
     {
-      "title": "Get Notified About What’s Important",
-      "subtitle":
-          "Stay up-to-date with what’s going on in Wroom with push notifications",
+      "title": "Get updated",
+      "subtitle": "Get alerts when other people love the cars you find",
       "image": "assets/images/Slide03.png"
     },
     {
-      "title": "Your Profile Is The Home For Your Activities",
-      "subtitle":
-          "All your settings, personalization and posts can be managed from your profile page",
+      "title": "You're in the drivers seat",
+      "subtitle": "Easily update settings and preferences in your profile",
       "image": "assets/images/Slide04.png"
     }
   ];

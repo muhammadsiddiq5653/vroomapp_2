@@ -14,6 +14,7 @@ class LoginDetailsStepController extends AppAbstractController {
 
   String password = '';
   String phone = '';
+  bool isObscure = true;
 
   @override
   void onInit() {
@@ -41,5 +42,10 @@ class LoginDetailsStepController extends AppAbstractController {
     } finally {
       hideLoading();
     }
+  }
+
+  void toggleObscure() {
+    isObscure = !isObscure;
+    update();
   }
 }
