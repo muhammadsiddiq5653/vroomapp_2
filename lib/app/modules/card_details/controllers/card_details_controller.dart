@@ -64,14 +64,18 @@ class CardDetailsController extends AppAbstractController {
 
   void shareCar() async {
     try {
+      EasyLoading.show();
       await appFeedApi.add(FeedModel(
           carModel: car,
           cover: '',
           createdAt: DateTime.now(),
           description: ''));
+      EasyLoading.dismiss();
       dialogService.showInfo('Car added to the feed');
     } catch (ex) {
       dialogService.showError(ex);
+    } finally {
+      EasyLoading.dismiss();
     }
   }
 
