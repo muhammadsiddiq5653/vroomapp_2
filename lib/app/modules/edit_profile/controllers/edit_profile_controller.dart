@@ -46,6 +46,7 @@ class EditProfileController extends AppAbstractController {
       dialogService.showError(ex);
     } finally {
       hideLoading();
+      Get.back();
     }
   }
 }

@@ -1,24 +1,16 @@
 import 'package:get/get.dart';
 import 'package:vroom_app/app/modules/forgot_password_phone/views/forgot_password_phone_view.dart';
+import 'package:vroom_app/app/modules/preview/bindings/preview_binding.dart';
+import 'package:vroom_app/app/modules/preview/views/preview_view.dart';
 
 import '../modules/alerts/bindings/alerts_binding.dart';
 import '../modules/alerts/views/alerts_view.dart';
-import '../modules/battle/battle_step_battle_action/bindings/battle_step_battle_action_binding.dart';
-import '../modules/battle/battle_step_battle_action/views/battle_step_battle_action_view.dart';
-import '../modules/battle/battle_step_choose_car/bindings/battle_step_choose_car_binding.dart';
-import '../modules/battle/battle_step_choose_car/views/battle_step_choose_car_view.dart';
-import '../modules/battle/battle_step_matching_opponent/bindings/battle_step_matching_opponent_binding.dart';
-import '../modules/battle/battle_step_matching_opponent/views/battle_step_matching_opponent_view.dart';
-import '../modules/battle/bindings/battle_binding.dart';
-import '../modules/battle/views/battle_view.dart';
 import '../modules/card_details/bindings/card_details_binding.dart';
 import '../modules/card_details/views/card_details_view.dart';
 import '../modules/change_password/bindings/change_password_binding.dart';
 import '../modules/change_password/views/change_password_view.dart';
 import '../modules/coins_inventory/bindings/coins_inventory_binding.dart';
 import '../modules/coins_inventory/views/coins_inventory_view.dart';
-import '../modules/customize_avatar/bindings/customize_avatar_binding.dart';
-import '../modules/customize_avatar/views/customize_avatar_view.dart';
 import '../modules/edit_profile/bindings/edit_profile_binding.dart';
 import '../modules/edit_profile/views/edit_profile_view.dart';
 import '../modules/feed/bindings/feed_binding.dart';
@@ -28,8 +20,6 @@ import '../modules/forgot_password_phone_verify/bindings/forgot_password_phone_v
 import '../modules/forgot_password_phone_verify/views/forgot_password_phone_verify_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/leaderboard/bindings/leaderboard_binding.dart';
-import '../modules/leaderboard/views/leaderboard_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/login_details_step/bindings/login_details_step_binding.dart';
 import '../modules/login/login_details_step/views/login_details_step_view.dart';
@@ -38,10 +28,6 @@ import '../modules/main_tabs/bindings/main_tabs_binding.dart';
 import '../modules/main_tabs/views/main_tabs_view.dart';
 import '../modules/notifications_permission/bindings/notifications_permission_binding.dart';
 import '../modules/notifications_permission/views/notifications_permission_view.dart';
-import '../modules/pimp_my_ride/bindings/pimp_my_ride_binding.dart';
-import '../modules/pimp_my_ride/views/pimp_my_ride_view.dart';
-import '../modules/preview/bindings/preview_binding.dart';
-import '../modules/preview/views/preview_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/scan_car/bindings/scan_car_binding.dart';
@@ -88,33 +74,6 @@ class AppPages {
           binding: LoginDetailsStepBinding(),
         ),
       ],
-    ),
-    GetPage(
-      name: _Paths.BATTLE,
-      page: () => BattleView(),
-      binding: BattleBinding(),
-      children: [
-        GetPage(
-          name: _Paths.BATTLE_STEP_MATCHING_OPPONENT,
-          page: () => BattleStepMatchingOpponentView(),
-          binding: BattleStepMatchingOpponentBinding(),
-        ),
-        GetPage(
-          name: _Paths.BATTLE_STEP_BATTLE_ACTION,
-          page: () => BattleStepBattleActionView(),
-          binding: BattleStepBattleActionBinding(),
-        ),
-        GetPage(
-          name: _Paths.BATTLE_STEP_CHOOSE_CAR,
-          page: () => BattleStepChooseCarView(),
-          binding: BattleStepChooseCarBinding(),
-        ),
-      ],
-    ),
-    GetPage(
-      name: _Paths.LEADERBOARD,
-      page: () => LeaderboardView(),
-      binding: LeaderboardBinding(),
     ),
     GetPage(
       name: _Paths.CARD_DETAILS,
@@ -174,16 +133,6 @@ class AppPages {
       ],
     ),
     GetPage(
-      name: _Paths.PIMP_MY_RIDE,
-      page: () => PimpMyRideView(),
-      binding: PimpMyRideBinding(),
-    ),
-    GetPage(
-      name: _Paths.CUSTOMIZE_AVATAR,
-      page: () => CustomizeAvatarView(),
-      binding: CustomizeAvatarBinding(),
-    ),
-    GetPage(
       name: _Paths.ALERTS,
       page: () => AlertsView(),
       binding: AlertsBinding(),
@@ -195,7 +144,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SETTINGS,
-      page: () => const SettingsView(),
+      page: () =>  SettingsView(),
       binding: SettingsBinding(),
     ),
     GetPage(

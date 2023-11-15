@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_phone_field.dart';
@@ -117,6 +116,63 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                     controller.login();
                   },
                   primary: AppColors.primary,
+                ),
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      color: Colors.white,
+height: 2,
+                      width: MediaQuery.of(context).size.width /2.8,
+                    ),
+                    Text(
+                      " OR ".toUpperCase(),
+                      style:
+                          TextStyle(
+                              fontSize: 18,
+                              color:  Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.italic),
+                    ),
+                    Container(
+                      color: Colors.white,
+                      height: 2,
+                      width: MediaQuery.of(context).size.width /2.8,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 55,
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                width: double.infinity,
+                child: AppButtonField(
+                  prefix: Image.asset('assets/images/google.png', height: 24,width: 24,),
+                  text: 'Continue with Google',
+                  onPressed: () {
+                    controller.login();
+                  },
+                  textColor: Colors.black.withOpacity(0.54),
+                  primary: Colors.white,
+                  haveBorder: false,
+                ),
+              ),
+              Container(
+    
+                height: 55,
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                width: double.infinity,
+                child: AppButtonField(
+                  prefix: Image.asset('assets/images/facebook.png', height: 24,width: 24,),
+                  text: 'Continue with Facebook',
+                  onPressed: () {
+                    controller.login();
+                  },
+                  primary: Color(0xfff1877F2),
+                  haveBorder: false,
                 ),
               ),
             ],

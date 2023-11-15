@@ -6,8 +6,6 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const PREVIEW = _Paths.PREVIEW;
   static const LOGIN = _Paths.LOGIN;
-  static const BATTLE = _Paths.BATTLE;
-  static const LEADERBOARD = _Paths.LEADERBOARD;
   static const CARD_DETAILS = _Paths.CARD_DETAILS;
   static const COINS_INVENTORY = _Paths.COINS_INVENTORY;
   static const SCAN_CAR = _Paths.SCAN_CAR;
@@ -19,15 +17,7 @@ abstract class Routes {
   static const SIGNUP_STEP_PHONE = _Paths.SIGNUP + _Paths.SIGNUP_STEP_PHONE;
   static const SIGNUP_STEP_VERIFY = _Paths.SIGNUP + _Paths.SIGNUP_STEP_VERIFY;
   static const SIGNUP_STEP_DETAIL = _Paths.SIGNUP + _Paths.SIGNUP_STEP_DETAIL;
-  static const BATTLE_STEP_CHOOSE_CAR =
-      _Paths.BATTLE + _Paths.BATTLE_STEP_CHOOSE_CAR;
-  static const BATTLE_STEP_MATCHING_OPPONENT =
-      _Paths.BATTLE + _Paths.BATTLE_STEP_MATCHING_OPPONENT;
-  static const BATTLE_STEP_BATTLE_ACTION =
-      _Paths.BATTLE + _Paths.BATTLE_STEP_BATTLE_ACTION;
   static const LOGIN_DETAILS_STEP = _Paths.LOGIN + _Paths.LOGIN_DETAILS_STEP;
-  static const PIMP_MY_RIDE = _Paths.PIMP_MY_RIDE;
-  static const CUSTOMIZE_AVATAR = _Paths.CUSTOMIZE_AVATAR;
   static const ALERTS = _Paths.ALERTS;
   static const FEED = _Paths.FEED;
   static const SETTINGS = _Paths.SETTINGS;
@@ -43,8 +33,6 @@ abstract class _Paths {
   static const HOME = '/home';
   static const PREVIEW = '/preview';
   static const LOGIN = '/login';
-  static const BATTLE = '/battle';
-  static const LEADERBOARD = '/leaderboard';
   static const CARD_DETAILS = '/card-details';
   static const COINS_INVENTORY = '/coins-inventory';
   static const SCAN_CAR = '/scan-car';
@@ -56,12 +44,7 @@ abstract class _Paths {
   static const SIGNUP_STEP_PHONE = '/signup-step-phone';
   static const SIGNUP_STEP_VERIFY = '/signup-step-verify';
   static const SIGNUP_STEP_DETAIL = '/signup-step-detail';
-  static const BATTLE_STEP_CHOOSE_CAR = '/battle-step-choose-car';
-  static const BATTLE_STEP_MATCHING_OPPONENT = '/battle-step-matching-opponent';
-  static const BATTLE_STEP_BATTLE_ACTION = '/battle-step-battle-action';
   static const LOGIN_DETAILS_STEP = '/login-details-step';
-  static const PIMP_MY_RIDE = '/pimp-my-ride';
-  static const CUSTOMIZE_AVATAR = '/customize-avatar';
   static const ALERTS = '/alerts';
   static const FEED = '/feed';
   static const SETTINGS = '/settings';

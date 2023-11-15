@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/helpers/hexcolor.dart';
 import 'package:vroom_app/app/modules/alerts/views/alerts_view.dart';
-import 'package:vroom_app/app/modules/battle/views/battle_view.dart';
 import 'package:vroom_app/app/modules/feed/views/feed_view.dart';
 import 'package:vroom_app/app/modules/home/views/home_view.dart';
-import 'package:vroom_app/app/modules/leaderboard/views/leaderboard_view.dart';
 import 'package:vroom_app/app/modules/profile/views/profile_view.dart';
-import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/widgets/app_profile_avatar.dart';
 
 import '../../../app_colors.dart';
@@ -17,7 +13,9 @@ import '../controllers/main_tabs_controller.dart';
 
 class MainTabsView extends GetView<MainTabsController> {
   final mainTabsController = Get.put(MainTabsController());
+
   MainTabsView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MainTabsController>(

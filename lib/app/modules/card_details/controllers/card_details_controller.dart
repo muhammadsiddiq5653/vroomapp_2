@@ -1,11 +1,15 @@
+import 'dart:typed_data';
+
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:vroom_app/app/app_constants.dart';
 import 'package:vroom_app/app/app_enums.dart';
+import 'package:vroom_app/app/app_utilities.dart';
 import 'package:vroom_app/app/data/api/app_cars_api.dart';
 import 'package:vroom_app/app/data/api/app_feed_api.dart';
 import 'package:vroom_app/app/data/models/car_model.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
+import 'package:vroom_app/app/modules/feed/controllers/feed_controller.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/services/sound_service.dart';
 
@@ -15,8 +19,10 @@ class CardDetailsController extends AppAbstractController {
   final soundService = Get.put(SoundService());
   final appCarsApi = Get.put(AppCarsApi());
   final appFeedApi = Get.put(AppFeedApi());
+  final feedController = Get.put(FeedController());
   CarModel? car;
   int? carId;
+
   @override
   void onInit() {
     super.onInit();
@@ -57,11 +63,6 @@ class CardDetailsController extends AppAbstractController {
     super.onClose();
   }
 
-  void battleNow() {
-    Get.offAndToNamed(Routes.BATTLE_STEP_MATCHING_OPPONENT,
-        arguments: {'car': car});
-  }
-
   void shareCar() async {
     try {
       EasyLoading.show();
@@ -79,6 +80,22 @@ class CardDetailsController extends AppAbstractController {
     }
   }
 
+  void shareOutsideApp(Uint8List? bytes) async {
+    FeedModel feed = FeedModel(
+        carModel: car, cover: '', createdAt: DateTime.now(), description: '');
+    try {
+      showLoading();
+      AppUtilities.share(bytes);
+      hideLoading();
+      update();
+    } catch (ex) {
+      print(ex);
+      dialogService.showError(ex);
+    } finally {
+      hideLoading();
+    }
+  }
+
   void deleteCar() async {
     try {
       EasyLoading.show();
@@ -92,11 +109,4 @@ class CardDetailsController extends AppAbstractController {
     }
   }
 
-  void onMenuSelected(int value) {
-    if (value == 0) {
-      shareCar();
-    } else if (value == 1) {
-      deleteCar();
-    }
-  }
 }

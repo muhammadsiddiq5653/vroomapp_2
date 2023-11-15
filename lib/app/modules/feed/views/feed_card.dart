@@ -102,6 +102,9 @@ class FeedCard extends StatelessWidget {
                                 textDirection: TextDirection.ltr,
                                 children: [
                                   TextButton(
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor: Colors.transparent, shape: StadiumBorder(),
+                                      ),
                                       onPressed: () {
                                         onLikeButton(feedModel);
                                       },
@@ -123,7 +126,7 @@ class FeedCard extends StatelessWidget {
                                       )),
                                   OutlinedButton(
                                       style: OutlinedButton.styleFrom(
-                                        shape: StadiumBorder(),
+                                      foregroundColor: Colors.transparent, shape: StadiumBorder(),
                                         side: BorderSide(
                                             width: 3.0, color: Colors.white),
                                       ),
@@ -138,6 +141,9 @@ class FeedCard extends StatelessWidget {
                                         text: 'View Card'.toUpperCase(),
                                       )),
                                   TextButton(
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor: Colors.transparent, shape: StadiumBorder(),
+                                      ),
                                       onPressed: () async {
                                         onShareButton(
                                             feedModel,

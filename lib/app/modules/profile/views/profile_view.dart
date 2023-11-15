@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:fluttermoji/fluttermoji.dart';
-import 'package:fluttermoji/fluttermojiCircleAvatar.dart';
-
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/modules/feed/views/feed_card.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
-import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
-import 'package:vroom_app/app/widgets/app_network_image.dart';
 import 'package:vroom_app/app/widgets/app_profile_avatar.dart';
-import 'package:vroom_app/app/widgets/app_text/text_600.dart';
 import 'package:vroom_app/app/widgets/app_tile.dart';
 
-import '../../../app_colors.dart';
-import '../../../helpers/hexcolor.dart';
-import '../../../widgets/app_floating_action_button.dart';
 import '../../../widgets/app_form_fields/app_icon_button.dart';
 import '../../../widgets/app_state_handler.dart';
 import '../../../widgets/app_text/small_bold_text.dart';
 import '../../../widgets/app_text/text_700.dart';
 import '../../../widgets/loadmore.dart';
+import '../../edit_profile/views/edit_profile_view.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
   final ProfileController profileController = Get.put(ProfileController());
+
   ProfileView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +75,10 @@ class ProfileView extends GetView<ProfileController> {
                             ),
                             AppIconButton(
                               onPressed: () {
-                                Get.toNamed(Routes.EDIT_PROFILE);
+                                Get.bottomSheet(
+                                    Container(
+                                        height: 100, child: EditProfileView()),
+                                    persistent: false);
                               },
                               icon: Remix.pencil_fill,
                               size: 30,
@@ -171,7 +168,9 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                   AppIconButton(
                     onPressed: () {
-                      Get.toNamed(Routes.EDIT_PROFILE);
+                      Get.bottomSheet(
+                        EditProfileView(),
+                      );
                     },
                     icon: Remix.pencil_fill,
                   ),

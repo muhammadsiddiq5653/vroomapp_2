@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/app_colors.dart';
 
 import '../../../routes/app_pages.dart';
@@ -34,6 +32,7 @@ class PreviewView extends GetView<PreviewController> {
       "image": "assets/images/Slide04.png"
     }
   ];
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PreviewController>(
@@ -78,10 +77,10 @@ class PreviewView extends GetView<PreviewController> {
                       margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                       child: AppButtonField(
                           primary: AppColors.primary,
-                          text: 'Create an account',
+                          text: 'Login',
                           elevation: 3,
                           onPressed: () {
-                            Get.toNamed(Routes.SIGNUP_STEP_PHONE);
+                            Get.toNamed(Routes.LOGIN_DETAILS_STEP);
                           }),
                     ),
                     SizedBox(
@@ -93,10 +92,10 @@ class PreviewView extends GetView<PreviewController> {
                       margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                       child: AppButtonField(
                           primary: Colors.transparent,
-                          text: 'Login',
+                          text: 'Create an account',
                           elevation: 0,
                           onPressed: () {
-                            Get.toNamed(Routes.LOGIN_DETAILS_STEP);
+                            Get.toNamed(Routes.SIGNUP_STEP_PHONE);
                           }),
                     ),
                     SizedBox(

@@ -30,7 +30,7 @@ class CarSpecProgress extends StatelessWidget {
             Text(valueTitle,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 13,
+                    fontSize: 12,
                     fontWeight: FontWeight.w600,
                     fontStyle: FontStyle.italic)),
           ],

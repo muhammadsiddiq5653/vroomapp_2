@@ -37,7 +37,7 @@ class HomeView extends GetView<HomeController> {
                 children: [
                   AppTextField(
                       prefixIcon: Icon(
-                        Remix.search_2_fill,
+                        Remix.search_2_line,
                         color: AppColors.primary,
                       ),
                       suffixIcon: IconButton(
