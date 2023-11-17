@@ -54,49 +54,65 @@ class _AppUploadPhotoField extends State<AppUploadPhotoField> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        _showPicker(context);
-      },
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(widget.borderRadius == 0
-                ? widget.borderRadius
-                : (widget.borderRadius - 5)),
-            // backgroundColor: AppColors.primary,
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(widget.borderRadius == 0
+              ? widget.borderRadius
+              : (widget.borderRadius - 5)),
+          // backgroundColor: AppColors.primary,
+          child: Container(
+              padding: EdgeInsets.all(2),
+              color: AppColors.primary,
+              child: _getImageOrPlaceHolder()),
+        ),
+        Visibility(
+          visible:
+              _image != null || ![null, ''].contains(widget.initialImage),
+          child: Positioned(
+            right: 30,
+            top: -10,
             child: Container(
-                padding: EdgeInsets.all(2),
-                color: AppColors.primary,
-                child: _getImageOrPlaceHolder()),
-          ),
-          Visibility(
-            visible:
-                _image != null || ![null, ''].contains(widget.initialImage),
-            child: Positioned(
-              right: 30,
-              top: -10,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(40)),
-                child: IconButton(
-                    iconSize: 20,
-                    color: Colors.white,
-                    onPressed: () {
-                      setState(() {
-                        _image = null;
-                        widget.initialImage = null;
-                        widget.onImageChanged(null);
-                      });
-                    },
-                    icon: Icon(Icons.close)),
-              ),
+              decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(40)),
+              child: IconButton(
+                  iconSize: 20,
+                  color: Colors.white,
+                  onPressed: () {
+                    setState(() {
+                      _image = null;
+                      widget.initialImage = null;
+                      widget.onImageChanged(null);
+                    });
+                  },
+                  icon: Icon(Icons.close)),
             ),
-          )
-        ],
-      ),
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+
+          right: 0,
+          child: GestureDetector(
+            onTap: (){
+              _showPicker(context);
+            },
+            child: Container(
+              width: 42,
+              height: 42,
+              decoration: ShapeDecoration(
+                color: Color(0xFFC90000),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+              child: Icon(Icons.add,color: Colors.white,),
+            ),
+          ),
+        )
+      ],
     );
   }
 
@@ -128,8 +144,8 @@ class _AppUploadPhotoField extends State<AppUploadPhotoField> {
       );
     }
     return Container(
-      width: widget.width - 10,
-      height: widget.height - 10,
+      width: widget.width - 40,
+      height: widget.height - 40,
       decoration: BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.circular(widget.borderRadius)),

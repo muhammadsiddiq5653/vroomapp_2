@@ -39,7 +39,7 @@ class MainTabsController extends AppAbstractController {
     if (!box.hasData(dontShowAgain) || box.read<bool>(dontShowAgain) == false) {
       var result = await Get.bottomSheet(AppBottomSheet(
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(10),
           child: Wrap(
             children: [
               Container(
@@ -52,25 +52,25 @@ class MainTabsController extends AppAbstractController {
                       text: 'Instructions to Wroom',
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Image.asset(
                       'assets/images/bmw.png',
                       width: 253,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Text400(
                         fontSize: 14,
                         text:
                             'Wrooming a car works in a THREE QUARTER angle. Please make sure to hold your phone at the angle where your car looks similar to the above image to Wroom Successfully.'),
                     SizedBox(
-                      height: 40,
+                      height: 10,
                     ),
                     Container(
                       width: double.infinity,
-                      height: 50,
+                      height: 40,
                       child: AppButtonField(
                         text: 'Got it',
                         onPressed: () {
@@ -79,11 +79,11 @@ class MainTabsController extends AppAbstractController {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Container(
                       width: double.infinity,
-                      height: 50,
+                      height: 40,
                       child: AppButtonField(
                         primary: Colors.transparent,
                         text: 'Don\'t show this again',

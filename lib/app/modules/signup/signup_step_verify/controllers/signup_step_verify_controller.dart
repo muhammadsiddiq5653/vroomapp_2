@@ -9,6 +9,7 @@ import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
 import '../../../../app_exception.dart';
 import '../../../../routes/app_pages.dart';
+import '../../tap_to_start.dart';
 
 class SignupStepVerifyController extends AppAbstractController {
   AppUsersApi appUsersApi = Get.put(AppUsersApi());
@@ -80,20 +81,20 @@ class SignupStepVerifyController extends AppAbstractController {
 
   void verify() async {
     try {
-      unawaited(EasyLoading.show());
-      var credential = PhoneAuthProvider.credential(
-          verificationId: verificationId, smsCode: code);
-      await FirebaseAuth.instance
-          .signInWithCredential(credential)
-          .catchError((onError) {
-        dialogService.showError('Sorry, Wrong OTP. Please try again'.tr);
-        print('SignIn Error: ${onError.toString()}\n\n');
-      });
-
+      // unawaited(EasyLoading.show());
+      // var credential = PhoneAuthProvider.credential(
+      //     verificationId: verificationId, smsCode: code);
+      // await FirebaseAuth.instance
+      //     .signInWithCredential(credential)
+      //     .catchError((onError) {
+      //   dialogService.showError('Sorry, Wrong OTP. Please try again'.tr);
+      //   print('SignIn Error: ${onError.toString()}\n\n');
+      // });
+      Get.to(TapToStart());
       // await appUsersApi.verify(settingsService.authModel!.userModel.id!);
       // settingsService.authModel!.userModel.phoneVerified = true;
-      Get.toNamed(Routes.SIGNUP_STEP_DETAIL,
-          arguments: {'phone': phone, 'phoneCode': phoneCode});
+      // Get.toNamed(Routes.SIGNUP_STEP_DETAIL,
+      //     arguments: {'phone': phone, 'phoneCode': phoneCode});
     } catch (ex) {
       print(ex);
       dialogService.showError(

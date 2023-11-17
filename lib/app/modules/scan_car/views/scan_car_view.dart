@@ -12,6 +12,7 @@ import 'package:vroom_app/app/widgets/app_text/small_text.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../widgets/app_text/text_600.dart';
 import '../controllers/scan_car_controller.dart';
 
@@ -59,7 +60,8 @@ class ScanCarView extends GetView<ScanCarController> {
             child: AppButtonField(
               text: 'Wroom car',
               onPressed: () {
-                controller.findCar();
+                //controller.findCar();
+                Get.toNamed(Routes.SIGNUP_STEP_DETAIL);
               },
             ),
           ),

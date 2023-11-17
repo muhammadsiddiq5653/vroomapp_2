@@ -5,12 +5,14 @@ import 'package:get/get.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:vroom_app/app/modules/settings/views/meet_our_team.dart';
 import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 import 'package:vroom_app/app/widgets/app_tile.dart';
 
 import '../controllers/settings_controller.dart';
+import 'FAQS.dart';
 
 class SettingsView extends GetView<SettingsController> {
    SettingsView({Key? key}) : super(key: key);
@@ -103,8 +105,9 @@ class SettingsView extends GetView<SettingsController> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    launchUrlString(
-                        controller.settingsService.settingsModel!.faq!);
+                    // launchUrlString(
+                    //     controller.settingsService.settingsModel!.faq!);
+                  Get.to(FaQs());
                   },
                   child: AppTile(
                       padding: EdgeInsets.all(20),
@@ -183,8 +186,9 @@ class SettingsView extends GetView<SettingsController> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    launchUrlString(
-                        controller.settingsService.settingsModel!.about!);
+                    Get.to(MeetTeam());
+                    // launchUrlString(
+                    //     controller.settingsService.settingsModel!.about!);
                   },
                   child: AppTile(
                       padding: EdgeInsets.all(20),

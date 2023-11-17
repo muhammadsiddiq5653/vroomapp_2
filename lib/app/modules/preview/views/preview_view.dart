@@ -77,30 +77,30 @@ class PreviewView extends GetView<PreviewController> {
                       margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                       child: AppButtonField(
                           primary: AppColors.primary,
-                          text: 'Get Started'.toUpperCase(),
+                          text: 'Login',
                           elevation: 3,
                           onPressed: () {
-                            Get.toNamed(Routes.MAIN_TABS);
+                            Get.toNamed(Routes.LOGIN_DETAILS_STEP);
                           }),
                     ),
                     SizedBox(
                       height: 30,
                     ),
-                    // Container(
-                    //   height: 55,
-                    //   width: double.infinity,
-                    //   margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                    //   child: AppButtonField(
-                    //       primary: Colors.transparent,
-                    //       text: 'Create an account',
-                    //       elevation: 0,
-                    //       onPressed: () {
-                    //         Get.toNamed(Routes.SIGNUP_STEP_PHONE);
-                    //       }),
-                    // ),
-                    // SizedBox(
-                    //   height: 70,
-                    // )
+                    Container(
+                      height: 55,
+                      width: double.infinity,
+                      margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: AppButtonField(
+                          primary: Colors.transparent,
+                          text: 'Create an account',
+                          elevation: 0,
+                          onPressed: () {
+                            Get.toNamed(Routes.SIGNUP_STEP_PHONE);
+                          }),
+                    ),
+                    SizedBox(
+                      height: 70,
+                    )
                   ],
                 ),
               ),

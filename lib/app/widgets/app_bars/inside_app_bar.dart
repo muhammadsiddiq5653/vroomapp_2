@@ -24,6 +24,13 @@ class InsideAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading:GestureDetector(
+        onTap: (){
+          Get.back();
+
+        },
+        child: Image.asset("assets/images/backicon.png"),
+      ),
       title: Text700(
         text: title,
       ),
@@ -40,13 +47,13 @@ class InsideAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   Widget _getLeading() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      // margin: EdgeInsets.symmetric(horizontal: 10),
       child: leading ??
           AppButtonField(
-              prefix: Icon(Remix.arrow_left_fill),
+              prefix: Image.asset("assets/images/backicon.png"),
               text: '< sasds',
-              primary: AppColors.primary,
-              textColor: Colors.white,
+              // primary: AppColors.primary,
+              // textColor: Colors.white,
               onPressed: () {
                 Get.back();
               }),

@@ -130,7 +130,7 @@ class HomeController extends AppAbstractController {
       settingsService.cars = cars!.collection;
       return true;
     } catch (ex) {
-      loadingState = GeneralLoadingState.empty;
+      loadingState = GeneralLoadingState.error;
       return false;
     } finally {
       update();

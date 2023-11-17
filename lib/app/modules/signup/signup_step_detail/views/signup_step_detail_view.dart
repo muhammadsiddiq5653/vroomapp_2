@@ -39,9 +39,9 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                             height: 30,
                           ),
                           Text700(
-                            text: 'Add more details to the account',
+                            text: 'Let’s personalize your profile',
                             textAlign: TextAlign.center,
-                            fontSize: 22,
+                            fontSize: 18,
                           ),
                           SizedBox(
                             height: 30,
@@ -57,7 +57,7 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                             height: 50,
                           ),
                           AppTextField(
-                            hintText: 'Name',
+                            hintText: 'Enter your full name',
                             labelText: 'Enter number',
                             onChanged: (val) {
                               controller.user.name = val;
@@ -67,11 +67,20 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                             height: 10,
                           ),
                           AppTextField(
-                            hintText: 'Password',
-                            labelText: 'Enter user password',
-                            obscureText: true,
+                            hintText: 'Enter username',
+                            labelText: 'Enter user name',
                             onChanged: (val) {
-                              controller.user.password = val;
+                              controller.user.username = val;
+                            },
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          AppTextField(
+                            hintText: 'Enter your favorite Car Brand',
+                            labelText: 'Enter favorite Car Brand',
+                            onChanged: (val) {
+                              controller.user.favoriteCarBrand = val;
                             },
                           ),
                         ],
@@ -85,7 +94,9 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                   child: AppButtonField(
                     text: 'Continue',
                     onPressed: () {
-                      controller.regsiter();
+                      //controller.regsiter();
+                      Get.toNamed(Routes.MAIN_TABS);
+
                     },
                     primary: AppColors.primary,
                   ),

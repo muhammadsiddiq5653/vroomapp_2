@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:vroom_app/app/data/models/user_model.dart';
 import 'package:vroom_app/app/modules/feed/views/feed_card.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_profile_avatar.dart';
 import 'package:vroom_app/app/widgets/app_tile.dart';
 
+import '../../../data/models/user_model.dart';
 import '../../../widgets/app_form_fields/app_icon_button.dart';
 import '../../../widgets/app_state_handler.dart';
 import '../../../widgets/app_text/small_bold_text.dart';
@@ -18,7 +18,6 @@ import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
   final ProfileController profileController = Get.put(ProfileController());
-  UserModel? userModel;
 
   ProfileView({Key? key}) : super(key: key);
 
@@ -26,10 +25,9 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GameAppBar(
-        userModel: profileController.settingsService.authModel != null
-            ? profileController.settingsService.authModel!.userModel
-            : UserModel(email: ""),
-      ),
+          userModel: profileController.settingsService.authModel != null
+              ? profileController.settingsService.authModel!.userModel
+              : UserModel(email: ""),),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // floatingActionButton: AppFloatingActionButton(
       //   onClick: controller.scanCar,
@@ -51,8 +49,9 @@ class ProfileView extends GetView<ProfileController> {
                           children: [
                             AppProfileAvatar(
                               size: 35,
-                              user: controller
-                                  .settingsService.authModel!.userModel,
+                              user: profileController.settingsService.authModel != null
+                                  ? profileController.settingsService.authModel!.userModel
+                                  : UserModel(email: ""),
                             ),
                             SizedBox(
                               width: 10,
@@ -187,7 +186,9 @@ class ProfileView extends GetView<ProfileController> {
               onTap: () {},
               child: AppProfileAvatar(
                 size: 100,
-                user: controller.settingsService.authModel!.userModel,
+                user: profileController.settingsService.authModel != null
+                    ? profileController.settingsService.authModel!.userModel
+                    : UserModel(email: ""),
               ),
             ),
           ),

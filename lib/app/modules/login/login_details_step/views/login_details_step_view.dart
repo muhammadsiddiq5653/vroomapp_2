@@ -52,54 +52,54 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                               onChanged: (number) {
                                 controller.phone = number.phoneNumber ?? '';
                               }),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          AppTextField(
-                            obscureText: controller.isObscure,
-                            hintText: 'Enter password',
-                            labelText: 'Enter password',
-                            onChanged: (val) {
-                              controller.password = val;
-                            },
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                controller.isObscure
-                                    ? Remix.eye_fill
-                                    : Remix.eye_close_fill,
-                                color: AppColors.primary,
-                              ),
-                              onPressed: () {
-                                controller.toggleObscure();
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            height: 50,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.toNamed(Routes.FORGOT_PASSWORD_PHONE);
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text400(
-                                  text: 'Forgot Password?',
-                                  fontSize: 14,
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text400(
-                                  text: 'Reset it now',
-                                  fontSize: 14,
-                                  color: AppColors.primary,
-                                ),
-                              ],
-                            ),
-                          ),
+                          // SizedBox(
+                          //   height: 30,
+                          // ),
+                          // AppTextField(
+                          //   obscureText: controller.isObscure,
+                          //   hintText: 'Enter password',
+                          //   labelText: 'Enter password',
+                          //   onChanged: (val) {
+                          //     controller.password = val;
+                          //   },
+                          //   suffixIcon: IconButton(
+                          //     icon: Icon(
+                          //       controller.isObscure
+                          //           ? Remix.eye_fill
+                          //           : Remix.eye_close_fill,
+                          //       color: AppColors.primary,
+                          //     ),
+                          //     onPressed: () {
+                          //       controller.toggleObscure();
+                          //     },
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 30,
+                          // ),
+                          // GestureDetector(
+                          //   onTap: () {
+                          //     Get.toNamed(Routes.FORGOT_PASSWORD_PHONE);
+                          //   },
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.center,
+                          //     crossAxisAlignment: CrossAxisAlignment.center,
+                          //     children: [
+                          //       Text400(
+                          //         text: 'Forgot Password?',
+                          //         fontSize: 14,
+                          //       ),
+                          //       SizedBox(
+                          //         width: 5,
+                          //       ),
+                          //       Text400(
+                          //         text: 'Reset it now',
+                          //         fontSize: 14,
+                          //         color: AppColors.primary,
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -113,10 +113,15 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                 child: AppButtonField(
                   text: 'Login',
                   onPressed: () {
-                    controller.login();
+                   //controller.verifyPhoneNumber();
+                   Get.toNamed(Routes.MAIN_TABS);
+
                   },
                   primary: AppColors.primary,
                 ),
+              ),
+              SizedBox(
+                height: 40,
               ),
               Container(
                 child: Row(
@@ -144,6 +149,9 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 40,
+              ),
               Container(
                 height: 55,
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -155,8 +163,10 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                     width: 24,
                   ),
                   text: 'Continue with Google',
-                  onPressed: () {
-                    controller.login();
+                  onPressed: () async{
+                    await controller.signInWithGoogle();
+                    //Get.toNamed(Routes.MAIN_TABS);
+
                   },
                   textColor: Colors.black.withOpacity(0.54),
                   primary: Colors.white,
@@ -174,12 +184,24 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                     width: 24,
                   ),
                   text: 'Continue with Facebook',
-                  onPressed: () {
-                    controller.login();
+                  onPressed: () async{
+                    await controller.signInWithFacebook();
+                    //Get.toNamed(Routes.MAIN_TABS);
+
                   },
                   primary: Color(0xfff1877F2),
                   haveBorder: false,
                 ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text400(
+                  textAlign: TextAlign.center,
+                    text:
+                        "By continuing you are agreeing our license agreement,privacy policy, Agreement on the processing of personal data."),
               ),
             ],
           ),

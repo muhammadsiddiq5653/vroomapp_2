@@ -42,7 +42,7 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
         keyboardType: TextInputType.number,
         cursorColor: AppColors.primary,
         inputDecoration: InputDecoration(
-            hintText: 'Enter your phone number',
+            hintText: 'Phone..',
             filled: false,
             fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(

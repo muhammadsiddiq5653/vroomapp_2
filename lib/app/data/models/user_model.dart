@@ -5,6 +5,8 @@ import 'serializable.dart';
 class UserModel extends Serializable {
   String? avatar;
   String? name;
+  String? username;
+  String? favoriteCarBrand;
   String? email = '';
   String? password;
   String? phone;
@@ -18,6 +20,8 @@ class UserModel extends Serializable {
     this.id,
     this.avatar,
     this.name,
+    this.username,
+    this.favoriteCarBrand,
     this.phoneVerified = false,
     required this.email,
     this.firebaseToken,
@@ -27,6 +31,8 @@ class UserModel extends Serializable {
     id = json['id'];
     avatar = json['avatar'];
     name = json['name'];
+    username = json['username'];
+    favoriteCarBrand = json['favoriteCarBrand'];
     email = json['email'];
     phone = json['phone'];
     phoneVerified = json['phone_verified_at'] != null;
@@ -40,6 +46,8 @@ class UserModel extends Serializable {
     final data = <String, dynamic>{};
     if (id != null) data['id'] = id;
     if (name != null) data['name'] = name;
+    if (username != null) data['username'] = username;
+    if (favoriteCarBrand != null) data['favoriteCarBrand'] = favoriteCarBrand;
     if (phone != null) data['phone'] = phone;
     if (phoneCode != null) data['phone_code'] = phoneCode;
     if (email?.isNotEmpty == true) data['email'] = email;
