@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_sim_country_code/flutter_sim_country_code.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:vroom_app/app/data/models/auth_model.dart';
+import 'package:vroom_app/app/data/models/user_model.dart';
 import '../../../app_constants.dart';
 import '../../../app_enums.dart';
 import '../../../app_exception.dart';
@@ -66,6 +69,7 @@ class SplashController extends GetxController {
           var response = await authApi.signInWithtoken(accessToken);
           settingsService.setAuth(response);
         } else {
+          settingsService.setAuth(AuthModel(accessToken: "", userModel: UserModel(email: '')));
           Get.offAndToNamed(Routes.PREVIEW);
           return;
         }

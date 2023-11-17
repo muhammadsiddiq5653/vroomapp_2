@@ -5,6 +5,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/app_utilities.dart';
+import 'package:vroom_app/app/data/models/user_model.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_text/small_bold_text.dart';
 import 'package:vroom_app/app/widgets/app_text/small_text.dart';
@@ -24,7 +25,9 @@ class AlertsView extends GetView<AlertsController> {
     return GetBuilder<AlertsController>(
       builder: (_) => Scaffold(
         appBar: GameAppBar(
-            userModel: alertsController.settingsService.authModel!.userModel),
+            userModel: alertsController.settingsService.authModel != null
+                ? alertsController.settingsService.authModel!.userModel
+                : UserModel(email: ""),),
         // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // floatingActionButton: AppFloatingActionButton(
         //   onClick: controller.scanCar,

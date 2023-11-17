@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:vroom_app/app/data/models/user_model.dart';
 import 'package:vroom_app/app/modules/feed/views/feed_card.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
@@ -17,6 +18,7 @@ import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
   final ProfileController profileController = Get.put(ProfileController());
+  UserModel? userModel;
 
   ProfileView({Key? key}) : super(key: key);
 
@@ -24,7 +26,10 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GameAppBar(
-          userModel: profileController.settingsService.authModel!.userModel),
+        userModel: profileController.settingsService.authModel != null
+            ? profileController.settingsService.authModel!.userModel
+            : UserModel(email: ""),
+      ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // floatingActionButton: AppFloatingActionButton(
       //   onClick: controller.scanCar,

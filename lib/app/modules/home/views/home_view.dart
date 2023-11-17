@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/app_colors.dart';
+import 'package:vroom_app/app/data/models/user_model.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_text_field.dart';
 import 'package:vroom_app/app/widgets/app_keyboard_hider.dart';
@@ -10,13 +10,15 @@ import 'package:vroom_app/app/widgets/app_state_handler.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 import 'package:vroom_app/app/widgets/loadmore.dart';
 
-import '../../../widgets/app_floating_action_button.dart';
+import '../../../routes/app_pages.dart';
+import '../../../widgets/app_form_fields/app_button_field.dart';
 import '../../../widgets/app_text/text_600.dart';
 import '../../card_details/views/components/car_card.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   final homeController = Get.put(HomeController());
+
   HomeView({Key? key}) : super(key: key);
 
   @override
@@ -25,7 +27,9 @@ class HomeView extends GetView<HomeController> {
       builder: (HomeController _) => AppKeyboardHider(
         child: Scaffold(
             appBar: GameAppBar(
-                userModel: homeController.settingsService.authModel!.userModel),
+                userModel: homeController.settingsService.authModel != null
+                    ? homeController.settingsService.authModel!.userModel
+                    : UserModel(email: "")),
             // floatingActionButtonLocation:
             //     FloatingActionButtonLocation.centerDocked,
             // floatingActionButton: AppFloatingActionButton(
@@ -98,23 +102,61 @@ class HomeView extends GetView<HomeController> {
           children: [
             SizedBox(height: 30),
             Text700(
-              text: "New to the game?",
+              text: "Welcome to your Garage",
               fontSize: 25,
               textAlign: TextAlign.center,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 16,
+              ),
+              child: Text600(
+                text:
+                    "The cars you wroom \n will be stored here once you \n login or create an account",
+                textAlign: TextAlign.center,
+                fontSize: 12,
+              ),
             ),
             Image.asset('assets/images/blankslatehome.png'),
             SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text600(
-                text:
-                    "You haven’t vroomed any cars, yet! Tap on the BIG RED scan button to get started.",
-                textAlign: TextAlign.center,
-                fontSize: 12,
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                height: 54,
+                width: double.infinity,
+                child: AppButtonField(
+                  text: 'LOGIN',
+                  onPressed: () {
+                    Get.toNamed(Routes.LOGIN);
+                  },
+                  primary: AppColors.primary,
+                )),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              height: 54,
+              width: double.infinity,
+              child: AppButtonField(
+                text: 'CREATE AN ACCOUNT',
+                onPressed: () {
+                  Get.toNamed(Routes.SIGNUP_STEP_PHONE);
+                },
+                primary: AppColors.background,
               ),
             ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            //   child: Text600(
+            //     text:
+            //         "You haven’t vroomed any cars, yet! Tap on the BIG RED scan button to get started.",
+            //     textAlign: TextAlign.center,
+            //     fontSize: 12,
+            //   ),
+            // ),
             // SizedBox(
             //   height: 20,
             // ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vroom_app/app/data/models/user_model.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
 import 'package:vroom_app/app/widgets/loadmore.dart';
 
@@ -17,7 +18,9 @@ class FeedView extends GetView<FeedController> {
     return GetBuilder<FeedController>(
       builder: (_) => Scaffold(
         appBar: GameAppBar(
-            userModel: feedController.settingsService.authModel!.userModel),
+            userModel: feedController.settingsService.authModel != null
+                ? feedController.settingsService.authModel!.userModel
+                : UserModel(email: "")),
         // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // floatingActionButton: AppFloatingActionButton(
         //   onClick: controller.scanCar,

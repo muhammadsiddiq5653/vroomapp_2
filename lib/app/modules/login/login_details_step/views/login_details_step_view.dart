@@ -125,22 +125,21 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                   children: [
                     Container(
                       color: Colors.white,
-height: 2,
-                      width: MediaQuery.of(context).size.width /2.8,
+                      height: 2,
+                      width: MediaQuery.of(context).size.width / 2.8,
                     ),
                     Text(
                       " OR ".toUpperCase(),
-                      style:
-                          TextStyle(
-                              fontSize: 18,
-                              color:  Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontStyle: FontStyle.italic),
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontStyle: FontStyle.italic),
                     ),
                     Container(
                       color: Colors.white,
                       height: 2,
-                      width: MediaQuery.of(context).size.width /2.8,
+                      width: MediaQuery.of(context).size.width / 2.8,
                     ),
                   ],
                 ),
@@ -150,7 +149,11 @@ height: 2,
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 width: double.infinity,
                 child: AppButtonField(
-                  prefix: Image.asset('assets/images/google.png', height: 24,width: 24,),
+                  prefix: Image.asset(
+                    'assets/images/google.png',
+                    height: 24,
+                    width: 24,
+                  ),
                   text: 'Continue with Google',
                   onPressed: () {
                     controller.login();
@@ -161,12 +164,15 @@ height: 2,
                 ),
               ),
               Container(
-    
                 height: 55,
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 width: double.infinity,
                 child: AppButtonField(
-                  prefix: Image.asset('assets/images/facebook.png', height: 24,width: 24,),
+                  prefix: Image.asset(
+                    'assets/images/facebook.png',
+                    height: 24,
+                    width: 24,
+                  ),
                   text: 'Continue with Facebook',
                   onPressed: () {
                     controller.login();
