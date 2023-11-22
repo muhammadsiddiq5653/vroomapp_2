@@ -7,8 +7,14 @@ class AppProfileAvatar extends StatelessWidget {
   final double size;
   final UserModel? user;
   final bool shouldEnlarge;
-  const AppProfileAvatar(
-      {Key? key, required this.size, this.user, this.shouldEnlarge = false})
+  bool notLoggedInCard;
+
+   AppProfileAvatar(
+      {Key? key,
+      required this.size,
+      this.user,
+      this.notLoggedInCard = false,
+      this.shouldEnlarge = false})
       : super(key: key);
 
   @override
@@ -20,7 +26,16 @@ class AppProfileAvatar extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(size / 2),
             ),
-            child: AppNetworkImage(
+            child:notLoggedInCard ?
+            Image.asset('assets/images/ProfileDummy.png',
+              width: 42,
+              fit: BoxFit.fitWidth,
+
+            ) :
+
+
+
+            AppNetworkImage(
               url: user?.avatar ?? '',
               alignment: Alignment.center,
               width: size,

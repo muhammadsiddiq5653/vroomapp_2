@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vroom_app/app/app_colors.dart';
+import 'package:vroom_app/app/modules/alerts/notloggedin_alerts.dart';
+import 'package:vroom_app/app/modules/feed/notloggedin_feed.dart';
+import 'package:vroom_app/app/modules/home/notloggedin_home.dart';
+import 'package:vroom_app/app/modules/profile/notloggedin_profile.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../widgets/app_form_fields/app_button_field.dart';
@@ -13,22 +17,22 @@ class PreviewView extends GetView<PreviewController> {
   final pages = <Map<String, String>>[
     {
       "title": "Discover any car",
-      "subtitle": "Point your phone to any car and get cool images and info",
+      "subtitle": "Point your phone to any car and get cool \nimages and info",
       "image": "assets/images/Slide01.png"
     },
     {
       "title": "Love cars?",
-      "subtitle": "Show other Wroomers what cars you find and get reacts",
+      "subtitle": "Show other Wroomers what cars you find \nand get reacts",
       "image": "assets/images/Slide02.png"
     },
     {
       "title": "Get updated",
-      "subtitle": "Get alerts when other people love the cars you find",
+      "subtitle": "Get alerts when other people love the cars \nyou find",
       "image": "assets/images/Slide03.png"
     },
     {
       "title": "You're in the drivers seat",
-      "subtitle": "Easily update settings and preferences in your profile",
+      "subtitle": "Easily update settings and preferences in \nyour profile",
       "image": "assets/images/Slide04.png"
     }
   ];
@@ -42,6 +46,7 @@ class PreviewView extends GetView<PreviewController> {
         width: double.infinity,
         child: Stack(
           children: [
+
             Container(
               height: double.infinity,
               width: double.infinity,
@@ -55,6 +60,22 @@ class PreviewView extends GetView<PreviewController> {
                     return SingleSliderPage(item: item);
                   }),
             ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                margin: EdgeInsets.only(top: 45),
+                child: Image.asset(
+                  'assets/images/LogoforGettingStarted.png',
+                  width: 100,
+                ),
+              ),
+            ),
+            Positioned(
+            bottom: 215,
+              left: 0,
+              right: 0,
+              child: SliderDots(pages: pages, pageIndex: controller.pageIndex),
+            ),
             Positioned(
               bottom: 0,
               left: 0,
@@ -67,40 +88,55 @@ class PreviewView extends GetView<PreviewController> {
                         topRight: Radius.circular(20))),
                 child: Column(
                   children: [
-                    SliderDots(pages: pages, pageIndex: controller.pageIndex),
-                    SizedBox(
-                      height: 20,
-                    ),
                     Container(
                       height: 55,
                       width: double.infinity,
-                      margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
                       child: AppButtonField(
                           primary: AppColors.primary,
-                          text: 'Login',
+                          text: 'Get Started',
                           elevation: 3,
                           onPressed: () {
-                            Get.toNamed(Routes.LOGIN_DETAILS_STEP);
+                            Get.toNamed(Routes.MAIN_TABS);
+                            //Get.to(NotLoggedinProfile());
+                            //Get.to(NotLoggedinAlert());
+                            //Get.to(NotLoggedinFeed());
+                            //Get.to(NotLoggedinHome());
                           }),
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 40,
                     ),
-                    Container(
-                      height: 55,
-                      width: double.infinity,
-                      margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                      child: AppButtonField(
-                          primary: Colors.transparent,
-                          text: 'Create an account',
-                          elevation: 0,
-                          onPressed: () {
-                            Get.toNamed(Routes.SIGNUP_STEP_PHONE);
-                          }),
-                    ),
-                    SizedBox(
-                      height: 70,
-                    )
+                    // Container(
+                    //   height: 55,
+                    //   width: double.infinity,
+                    //   margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    //   child: AppButtonField(
+                    //       primary: AppColors.primary,
+                    //       text: 'Login',
+                    //       elevation: 3,
+                    //       onPressed: () {
+                    //         Get.toNamed(Routes.LOGIN_DETAILS_STEP);
+                    //       }),
+                    // ),
+                    // SizedBox(
+                    //   height: 30,
+                    // ),
+                    // Container(
+                    //   height: 55,
+                    //   width: double.infinity,
+                    //   margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    //   child: AppButtonField(
+                    //       primary: Colors.transparent,
+                    //       text: 'Create an account',
+                    //       elevation: 0,
+                    //       onPressed: () {
+                    //         Get.toNamed(Routes.SIGNUP_STEP_PHONE);
+                    //       }),
+                    // ),
+                    // SizedBox(
+                    //   height: 70,
+                    // )
                   ],
                 ),
               ),

@@ -21,7 +21,10 @@ class SmallText extends StatelessWidget {
       textDirection: TextDirection.ltr,
       maxLines: maxLines,
       textAlign: textAlign,
-      style: TextStyle(fontSize: 14, color: color),
+      style: TextStyle(fontSize: 16, color: color,
+      fontStyle: FontStyle.italic,
+
+      ),
     );
   }
 }

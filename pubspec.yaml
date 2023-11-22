@@ -67,6 +67,7 @@ dependencies:
   audioplayers: ^4.0.0
   get: 4.6.5
   rive: ^0.10.2
+  shared_preferences:
   flutter: 
     sdk: flutter
 

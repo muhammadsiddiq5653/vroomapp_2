@@ -20,14 +20,14 @@ class SliderDots extends StatelessWidget {
           int index = pages.indexOf(page);
           return Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(1.5),
+              borderRadius: BorderRadius.circular(100),
               color: index == pageIndex
-                  ? AppColors.primary
-                  : AppColors.primary.withOpacity(0.25),
+                  ? Colors.white
+                  : Colors.white.withOpacity(0.10),
             ),
-            width: 16,
-            height: 3,
-            margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+            width: 8,
+            height: 8,
+            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
           );
         }).toList(),
       ),

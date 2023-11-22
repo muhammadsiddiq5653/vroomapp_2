@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/widgets/app_state_handler.dart';
-import 'package:launch_review/launch_review.dart';
-import 'package:vroom_app/app/widgets/app_text/small_bold_text.dart';
-import 'package:vroom_app/app/widgets/app_text/text_700.dart';
+
 import '../../../app_colors.dart';
 import '../../../widgets/app_form_fields/app_button_field.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
   const SplashView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SplashController>(
@@ -19,14 +18,14 @@ class SplashView extends GetView<SplashController> {
         body: AppStateHandler(
           loadingState: controller.loadingState,
           onRetry: controller.init,
-          child: _getView(),
-          loadingWidget: _getView(),
+          child: _getView(context),
+          loadingWidget: _getView(context),
         ),
       ),
     );
   }
 
-  Container _getView() {
+  Container _getView(BuildContext context) {
     if (controller.forceUpdateView == true) {
       return Container(
         width: double.infinity,
@@ -86,9 +85,46 @@ class SplashView extends GetView<SplashController> {
           ])),
       width: double.infinity,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          logo(),
+          versionText(),
+        ],
+      ),
+    );
+  }
+
+  Widget versionText() {
+    return Column(
+      children: [
+        Text(
+          'Version 1.0',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              fontStyle: FontStyle.italic,
+              fontFamily: 'Exo 2',
+              color: Colors.white),
+        ),
+        SizedBox(
+          height: 30,
+        )
+      ],
+    );
+  }
+
+  Widget logo() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 170.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 50,
+          ),
           Image.asset(
             'assets/images/splashicon.png',
             width: 230,
@@ -100,12 +136,6 @@ class SplashView extends GetView<SplashController> {
             'assets/images/wroom.png',
             width: 180,
           ),
-          SizedBox(
-            height: 40,
-          ),
-          CircularProgressIndicator(
-            color: Colors.white,
-          )
         ],
       ),
     );

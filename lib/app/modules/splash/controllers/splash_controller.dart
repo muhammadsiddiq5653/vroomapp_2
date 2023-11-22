@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_sim_country_code/flutter_sim_country_code.dart';
 import 'package:get/get.dart';
@@ -30,9 +30,13 @@ class SplashController extends GetxController {
 
   @override
   void onInit() {
+    //writeToPreferences();
     super.onInit();
   }
-
+  // writeToPreferences() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   await prefs.setBool("isloggedin",false);
+  // }
   @override
   void onReady() {
     super.onReady();
@@ -95,10 +99,10 @@ class SplashController extends GetxController {
           Get.offAndToNamed(Routes.NOTIFICATIONS_PERMISSION);
         } else {
           // ignore: unawaited_futures
-          Get.offAndToNamed(Routes.MAIN_TABS);
+          await Get.offAndToNamed(Routes.MAIN_TABS);
         }
       } catch (ex) {
-        Get.offAndToNamed(Routes.MAIN_TABS);
+        await Get.offAndToNamed(Routes.MAIN_TABS);
       }
     } catch (ex, stack) {
       captureException(ex, stackTrace: stack);

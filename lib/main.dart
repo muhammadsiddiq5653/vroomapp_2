@@ -40,6 +40,7 @@ vroomApp() async {
     ..dismissOnTap = false;
   runApp(
     GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

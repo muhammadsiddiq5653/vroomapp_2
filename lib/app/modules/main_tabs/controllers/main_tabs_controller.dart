@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
@@ -14,9 +15,12 @@ class MainTabsController extends AppAbstractController {
   var pageIndex = 0;
   final dontShowAgain = 'dontShowAgain';
   final box = GetStorage();
+
+  RxBool isLoggedin = false.obs;
   @override
   void onInit() {
     super.onInit();
+    readFromPreferences();
   }
 
   @override
@@ -34,7 +38,10 @@ class MainTabsController extends AppAbstractController {
     update();
     soundService.playclick();
   }
-
+   readFromPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    isLoggedin.value = prefs.getBool("isloggedin") ?? false;
+  }
   Future<void> scan() async {
     if (!box.hasData(dontShowAgain) || box.read<bool>(dontShowAgain) == false) {
       var result = await Get.bottomSheet(AppBottomSheet(

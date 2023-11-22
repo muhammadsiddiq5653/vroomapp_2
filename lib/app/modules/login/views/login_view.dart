@@ -35,24 +35,24 @@ class LoginView extends GetView<LoginController> {
                   text: 'Welcome back,\nPlease login to continue',
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
-                  height: 30,
-                ),
-                GoogleLogin(),
-                SizedBox(
-                  height: 20,
-                ),
-                FacebookLogin(),
-                SizedBox(
-                  height: 20,
-                ),
-                AppleLogin(),
-                SizedBox(
-                  height: 20,
-                ),
-                Divider(
-                  color: Colors.white,
-                ),
+                // SizedBox(
+                //   height: 30,
+                // ),
+                // GoogleLogin(),
+                // SizedBox(
+                //   height: 20,
+                // ),
+                // FacebookLogin(),
+                // SizedBox(
+                //   height: 20,
+                // ),
+                // AppleLogin(),
+                // SizedBox(
+                //   height: 20,
+                // ),
+                // Divider(
+                //   color: Colors.white,
+                // ),
                 SizedBox(
                   height: 20,
                 ),

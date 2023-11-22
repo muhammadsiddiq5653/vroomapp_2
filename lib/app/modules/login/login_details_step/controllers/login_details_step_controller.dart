@@ -3,6 +3,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vroom_app/app/data/api/auth_api.dart';
 import 'package:vroom_app/app/data/models/user_model.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
@@ -21,6 +22,7 @@ class LoginDetailsStepController extends AppAbstractController {
   String password = '';
   String phone = '';
   bool isObscure = true;
+
 
   @override
   void onInit() {
@@ -62,18 +64,21 @@ class LoginDetailsStepController extends AppAbstractController {
     //Get.toNamed(Routes.MAIN_TABS);
 
   }
-  // void login() async {
-  //   try {
-  //     showLoading();
-  //     var authModel = await authApi.signInWithPhonePassword(phone, password);
-  //     settingsService.setAuth(authModel);
-  //     Get.toNamed(Routes.MAIN_TABS);
-  //   } catch (ex) {
-  //     dialogService.showError(ex);
-  //   } finally {
-  //     hideLoading();
-  //   }
-  // }
+  void login() async {
+    try {
+      showLoading();
+      var authModel = await authApi.signInWithPhonePassword(phone, password);
+      settingsService.setAuth(authModel);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool("isloggedin", true);
+      await Get.toNamed(Routes.MAIN_TABS);
+
+    } catch (ex) {
+      dialogService.showError(ex);
+    } finally {
+      hideLoading();
+    }
+  }
 
 
   Rx<User?> user = Rx<User?>(null);

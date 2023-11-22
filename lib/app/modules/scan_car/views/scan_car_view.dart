@@ -60,8 +60,8 @@ class ScanCarView extends GetView<ScanCarController> {
             child: AppButtonField(
               text: 'Wroom car',
               onPressed: () {
-                //controller.findCar();
-                Get.toNamed(Routes.SIGNUP_STEP_DETAIL);
+             controller.findCar();
+              //  Get.toNamed(Routes.SIGNUP_STEP_DETAIL);
               },
             ),
           ),

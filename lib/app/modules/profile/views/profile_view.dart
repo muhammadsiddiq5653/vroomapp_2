@@ -120,6 +120,7 @@ class ProfileView extends GetView<ProfileController> {
                           itemBuilder: (context, index) {
                             var item = controller.feed!.collection[index];
                             return FeedCard(
+
                               feedModel: item,
                               onLikeButton: controller.like,
                               onShareButton: controller.share,

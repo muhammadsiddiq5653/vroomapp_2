@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_launcher_icons/xml_templates.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/app_colors.dart';
@@ -24,12 +25,15 @@ class InsideAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+
       leading:GestureDetector(
         onTap: (){
           Get.back();
 
         },
-        child: Image.asset("assets/images/backicon.png"),
+        child: Container(
+
+            child: SvgPicture.asset("assets/images/svg/BackIcon.svg", width: 42, height: 42,)),
       ),
       title: Text700(
         text: title,

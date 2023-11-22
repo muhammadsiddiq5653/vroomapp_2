@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:rive/rive.dart';
 import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/data/models/feed_model.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
@@ -24,9 +24,14 @@ class FeedCard extends StatelessWidget {
       WidgetsToImageController();
   Function(FeedModel) onLikeButton;
   Function(FeedModel, Uint8List?) onShareButton;
+  bool notLoggedInCard;
+  bool manageShare;
+
   FeedCard(
       {super.key,
       required this.feedModel,
+      this.notLoggedInCard = false,
+      this.manageShare = false,
       required this.onLikeButton,
       required this.onShareButton});
 
@@ -41,18 +46,27 @@ class FeedCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Container(
               // color: Colors.black,
-              constraints: BoxConstraints(minHeight: 370),
+              constraints: BoxConstraints(maxHeight: 545, minHeight: 545),
               child: Stack(
                   alignment: Alignment.center,
                   textDirection: TextDirection.ltr,
                   fit: StackFit.loose,
                   children: [
-                    AppNetworkImage(
-                      url: feedModel.image!,
-                      width: double.infinity,
-                      loadingWidget:
-                          Container(child: CircularProgressIndicator()),
-                    ),
+                    notLoggedInCard
+                        ? Image.asset(
+                            feedModel.image!,
+                            width: double.infinity,
+                            fit: BoxFit.fitWidth,
+                          )
+                        : AppNetworkImage(
+                            url: feedModel.image!,
+                            width: double.infinity,
+                            fit: BoxFit.fitWidth,
+                            loadingWidget: Container(
+                                child: Center(
+                                    child: RiveAnimation.asset(
+                                        'assets/images/vroom_animation.riv'))),
+                          ),
                     Positioned(
                       top: 0,
                       left: 0,
@@ -70,15 +84,38 @@ class FeedCard extends StatelessWidget {
                               color: HexColor("#2e2e2e").withOpacity(0.25),
                               child: Row(children: [
                                 AppProfileAvatar(
+                                  notLoggedInCard: notLoggedInCard,
                                   size: 50,
                                   user: feedModel.userModel,
                                 ),
                                 SizedBox(
                                   width: 10,
                                 ),
-                                SmallBoldText(
-                                  text: feedModel.userModel?.name ?? '',
-                                  color: Colors.white,
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      feedModel.userModel?.name ?? '',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 2,
+                                    ),
+                                    Text(
+                                      feedModel.userModel?.username ?? '',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.white.withOpacity(0.90),
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                    ),
+                                  ],
                                 )
                               ]),
                             ),
@@ -97,38 +134,44 @@ class FeedCard extends StatelessWidget {
                             // width: MediaQuery.of(context).size.width - 20,
                             color: HexColor("#2e2e2e").withOpacity(0.25),
                             child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: notLoggedInCard
+                                    ? MainAxisAlignment.center
+                                    : MainAxisAlignment.spaceBetween,
                                 textDirection: TextDirection.ltr,
                                 children: [
-                                  TextButton(
-                                      style: OutlinedButton.styleFrom(
-                                        foregroundColor: Colors.transparent, shape: StadiumBorder(),
-                                      ),
-                                      onPressed: () {
-                                        onLikeButton(feedModel);
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            feedModel.liked
-                                                ? Remix.heart_2_fill
-                                                : Remix.heart_2_line,
-                                            color: feedModel.liked
-                                                ? AppColors.primary
-                                                : Colors.white,
-                                          ),
-                                          SmallBoldText(
-                                            text: feedModel.likes.toString(),
-                                            color: Colors.white,
-                                          )
-                                        ],
-                                      )),
+                                  if (!notLoggedInCard)
+                                    TextButton(
+                                        style: OutlinedButton.styleFrom(
+                                          foregroundColor: Colors.transparent,
+                                          shape: StadiumBorder(),
+                                        ),
+                                        onPressed: () {
+                                          onLikeButton(feedModel);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              feedModel.liked
+                                                  ? Remix.heart_fill
+                                                  : Remix.heart_line,
+                                              color: feedModel.liked
+                                                  ? AppColors.primary
+                                                  : Colors.white,
+                                            ),
+                                            if (!notLoggedInCard)
+                                              SmallBoldText(
+                                                text:
+                                                    feedModel.likes.toString(),
+                                                color: Colors.white,
+                                              )
+                                          ],
+                                        )),
                                   OutlinedButton(
                                       style: OutlinedButton.styleFrom(
-                                      foregroundColor: Colors.transparent, shape: StadiumBorder(),
+                                        foregroundColor: Colors.transparent,
+                                        shape: StadiumBorder(),
                                         side: BorderSide(
-                                            width: 3.0, color: Colors.white),
+                                            width: 2.0, color: Colors.white),
                                       ),
                                       onPressed: () {
                                         Get.toNamed(Routes.CARD_DETAILS,
@@ -137,31 +180,41 @@ class FeedCard extends StatelessWidget {
                                                   feedModel.userCarId.toString()
                                             });
                                       },
-                                      child: Text700(
-                                        text: 'View Card'.toUpperCase(),
+                                      child: Container(
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 47, vertical: 18),
+                                        child: Text700(
+                                          text: notLoggedInCard
+                                              ? "Login".toUpperCase()
+                                              : 'View Card'.toUpperCase(),
+                                        ),
                                       )),
-                                  TextButton(
-                                      style: OutlinedButton.styleFrom(
-                                        foregroundColor: Colors.transparent, shape: StadiumBorder(),
-                                      ),
-                                      onPressed: () async {
-                                        onShareButton(
-                                            feedModel,
-                                            await widgetsToImageController
-                                                .capture());
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Remix.share_line,
-                                            color: Colors.white,
-                                          ),
-                                          SmallBoldText(
-                                            text: feedModel.shares.toString(),
-                                            color: Colors.white,
-                                          )
-                                        ],
-                                      )),
+                                  if (!notLoggedInCard)
+                                    TextButton(
+                                        style: OutlinedButton.styleFrom(
+                                          foregroundColor: Colors.transparent,
+                                          shape: StadiumBorder(),
+                                        ),
+                                        onPressed: () async {
+                                          onShareButton(
+                                              feedModel,
+                                          manageShare? null :    await widgetsToImageController
+                                                  .capture());
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Remix.share_line,
+                                              color: Colors.white,
+                                            ),
+                                            if (!notLoggedInCard)
+                                              SmallBoldText(
+                                                text:
+                                                    feedModel.shares.toString(),
+                                                color: Colors.white,
+                                              )
+                                          ],
+                                        )),
                                 ]),
                           ),
                         ),

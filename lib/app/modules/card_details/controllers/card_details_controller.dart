@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vroom_app/app/app_constants.dart';
 import 'package:vroom_app/app/app_enums.dart';
 import 'package:vroom_app/app/app_utilities.dart';
@@ -22,11 +23,14 @@ class CardDetailsController extends AppAbstractController {
   final feedController = Get.put(FeedController());
   CarModel? car;
   int? carId;
+  RxBool isLoggedin = false.obs;
+
 
   @override
   void onInit() {
     super.onInit();
     loadingState = GeneralLoadingState.waiting;
+    readFromPreferences();
     if (Get.arguments?[AppConstants.carArgument] != null) {
       car = Get.arguments?[AppConstants.carArgument];
     }
@@ -38,6 +42,10 @@ class CardDetailsController extends AppAbstractController {
       loadingState = GeneralLoadingState.done;
       soundService.playEngineIgnition();
     }
+  }
+  readFromPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    isLoggedin.value = prefs.getBool("isloggedin") ?? false;
   }
 
   void loadCarModel() async {

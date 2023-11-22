@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vroom_app/app/data/models/car_model.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 import '../app_constants.dart';
@@ -32,9 +33,11 @@ class SettingsService extends GetxService {
     }
   }
 
-  void logout() {
+  void logout() async {
     box.write(AppConstants.accessTokenKey, null);
     authModel = null;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
     Get.offAllNamed(Routes.PREVIEW);
   }
 }
