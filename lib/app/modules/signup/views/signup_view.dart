@@ -39,15 +39,15 @@ class SignupView extends GetView<SignupController> {
                 SizedBox(
                   height: 30,
                 ),
-                // GoogleLogin(),
-                // SizedBox(
-                //   height: 20,
-                // ),
-                // FacebookLogin(),
-                // SizedBox(
-                //   height: 20,
-                // ),
-                // AppleLogin(),
+                GoogleLogin(),
+                SizedBox(
+                  height: 20,
+                ),
+                FacebookLogin(),
+                SizedBox(
+                  height: 20,
+                ),
+                AppleLogin(),
                 SizedBox(
                   height: 20,
                 ),

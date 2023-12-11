@@ -1,10 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';

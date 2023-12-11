@@ -60,8 +60,8 @@ class ScanCarView extends GetView<ScanCarController> {
             child: AppButtonField(
               text: 'Wroom car',
               onPressed: () {
-             controller.findCar();
-              //  Get.toNamed(Routes.SIGNUP_STEP_DETAIL);
+                controller.findCar();
+                //Get.toNamed(Routes.SIGNUP_STEP_DETAIL);
               },
             ),
           ),
@@ -129,13 +129,14 @@ class ScanCarView extends GetView<ScanCarController> {
               height: 20,
             ),
             Text700(
+              textAlign: TextAlign.center,
                 text:
                     'Something went wrong. But dont worry you can just try again.'),
-            if (controller.errorMessage != null && !kReleaseMode)
-              Container(
-                margin: EdgeInsets.only(top: 20),
-                child: Text700(text: controller.errorMessage!),
-              ),
+            // if (controller.errorMessage != null && !kReleaseMode)
+            //   Container(
+            //     margin: EdgeInsets.only(top: 20),
+            //     child: Text700(text: controller.errorMessage!),
+            //   ),
             SizedBox(
               height: 20,
             ),
@@ -222,8 +223,9 @@ class ScanCarView extends GetView<ScanCarController> {
               SizedBox(
                 height: 50,
               ),
+              if(controller.car != null)
               Text700(
-                text: '${controller.car.make} ${controller.car.model}',
+                text: '${controller.car!.make} ${controller.car!.model}',
                 fontSize: 23,
                 textAlign: TextAlign.center,
               ),

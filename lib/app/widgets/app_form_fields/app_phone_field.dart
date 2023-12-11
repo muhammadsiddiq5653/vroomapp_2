@@ -5,10 +5,13 @@ import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/app_constants.dart';
 
 class AppPhoneField extends StatefulWidget {
-  const AppPhoneField({Key? key, required this.number, required this.onChanged})
+  const AppPhoneField({Key? key, required this.number, required this.onChanged,this.Validator})
       : super(key: key);
 
   final PhoneNumber number;
+
+  final String? Function(String?)? Validator;
+
   final Function(PhoneNumber) onChanged;
   @override
   State<StatefulWidget> createState() {
@@ -22,7 +25,8 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: InternationalPhoneNumberInput(
-        locale: AppConstants.localeForPhone,
+        validator: widget.Validator,
+       // locale: AppConstants.localeForPhone,
         initialValue: widget.number,
         onInputChanged: (PhoneNumber number) {
           widget.onChanged(number);

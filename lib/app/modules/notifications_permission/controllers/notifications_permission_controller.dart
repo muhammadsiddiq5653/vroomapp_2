@@ -26,11 +26,11 @@ class NotificationsPermissionController extends AppAbstractController {
     } catch (ex, stack) {
       captureException(ex, stackTrace: stack);
     } finally {
-      Get.offAndToNamed(Routes.MAIN_TABS);
+      Get.offAndToNamed(Routes.SIGNUP_STEP_DETAIL);
     }
   }
 
   void skip() {
-    Get.offAndToNamed(Routes.MAIN_TABS);
+    Get.offAndToNamed(Routes.SIGNUP_STEP_DETAIL);
   }
 }

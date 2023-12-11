@@ -37,7 +37,7 @@ class NotificationsPermissionView
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: Text(
-                      'One last thing - Do You want to get alerts of what’s happening in the app?',
+                      'Do You want to get alerts of what’s happening in the app?',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,

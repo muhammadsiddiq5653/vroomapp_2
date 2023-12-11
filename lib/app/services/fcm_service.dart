@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 
 import '../app_constants.dart';
 import '../app_exception.dart';
@@ -18,7 +17,6 @@ class FcmService extends GetxService {
   FirebaseMessaging? messaging;
   @override
   void onInit() {
-    var fiam = FirebaseInAppMessaging.instance;
     messaging = FirebaseMessaging.instance;
     setupListner();
     super.onInit();

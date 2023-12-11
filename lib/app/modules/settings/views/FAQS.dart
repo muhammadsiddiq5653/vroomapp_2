@@ -25,6 +25,7 @@ class _FaQsState extends State<FaQs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black87.withOpacity(0.8),
       appBar: InsideAppBar(
         title: '',
       ),
@@ -47,7 +48,6 @@ class _FaQsState extends State<FaQs> {
               padding: const EdgeInsets.all(20.0),
               child: ExpansionPanelList(
                 elevation: 1,
-
                 expandedHeaderPadding: EdgeInsets.all(0),
                 expansionCallback: (int index, bool isExpanded) {
                   setState(() {
@@ -56,8 +56,8 @@ class _FaQsState extends State<FaQs> {
                 },
                 children: items.map<ExpansionPanel>((Item item) {
                   return ExpansionPanel(
-                    backgroundColor: HexColor("#2D2D3A"),
-
+                    backgroundColor: HexColor("#17171A"),
+canTapOnHeader: true,
                     headerBuilder: (BuildContext context, bool isExpanded) {
                       return Container(
                         decoration: BoxDecoration(
@@ -85,35 +85,35 @@ class _FaQsState extends State<FaQs> {
                 }).toList(),
               ),
             ),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'Couldn’t find something? ',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontStyle: FontStyle.italic,
-                      fontFamily: 'Exo 2',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'Get in touch',
-                    style: TextStyle(
-                      color: Color(0xFFC90000),
-                      fontSize: 16,
-                      fontStyle: FontStyle.italic,
-                      fontFamily: 'Exo 2',
-                      fontWeight: FontWeight.w600,
-                      decoration: TextDecoration.underline,
-                      height: 0,
-                    ),
-                  ),
-                ],
-              ),
-            )
+            // Text.rich(
+            //   TextSpan(
+            //     children: [
+            //       TextSpan(
+            //         text: 'Couldn’t find something? ',
+            //         style: TextStyle(
+            //           color: Colors.white,
+            //           fontSize: 16,
+            //           fontStyle: FontStyle.italic,
+            //           fontFamily: 'Exo 2',
+            //           fontWeight: FontWeight.w400,
+            //           height: 0,
+            //         ),
+            //       ),
+            //       TextSpan(
+            //         text: 'Get in touch',
+            //         style: TextStyle(
+            //           color: Color(0xFFC90000),
+            //           fontSize: 16,
+            //           fontStyle: FontStyle.italic,
+            //           fontFamily: 'Exo 2',
+            //           fontWeight: FontWeight.w600,
+            //           decoration: TextDecoration.underline,
+            //           height: 0,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // )
           ],
         ),
       ),

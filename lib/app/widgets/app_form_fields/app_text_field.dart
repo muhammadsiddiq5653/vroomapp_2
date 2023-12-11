@@ -14,8 +14,10 @@ class AppTextField extends StatelessWidget {
   final bool obscureText;
   final TextEditingController? textEditingController;
   final Function(String)? onChanged;
+  final String? Function(String?)? Validator;
   final Function()? onTap;
   final Function(String)? onSubmitted;
+
   const AppTextField(
       {Key? key,
       required this.hintText,
@@ -28,6 +30,7 @@ class AppTextField extends StatelessWidget {
       this.obscureText = false,
       this.textEditingController,
       this.onTap,
+      this.Validator,
       this.onSubmitted,
       this.keyboardType,
       this.onChanged})
@@ -36,6 +39,7 @@ class AppTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: Validator,
       keyboardType: keyboardType,
       maxLines: maxLines,
       onChanged: onChanged,

@@ -71,6 +71,7 @@ class LoginDetailsStepController extends AppAbstractController {
       settingsService.setAuth(authModel);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setBool("isloggedin", true);
+      showLoading();
       await Get.toNamed(Routes.MAIN_TABS);
 
     } catch (ex) {

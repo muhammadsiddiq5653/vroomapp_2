@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vroom_app/app/widgets/app_text/text_400.dart';
+import 'package:vroom_app/app/routes/app_pages.dart';
 
-import '../../routes/app_pages.dart';
 import '../main_tabs/controllers/main_tabs_controller.dart';
+
 class TapToStart extends StatelessWidget {
-   TapToStart({super.key});
+  TapToStart({super.key});
+
   final mainTabsController = Get.put(MainTabsController());
 
   @override
@@ -38,11 +39,14 @@ class TapToStart extends StatelessWidget {
               ),
             ),
             GestureDetector(
-                onTap: (){
+                onTap: () {
                   //_showBottomSheet();
                   mainTabsController.scan();
                 },
-                child: Image.asset("assets/images/taptostart.png",height: Get.height*0.4,)),
+                child: Image.asset(
+                  "assets/images/taptostart.png",
+                  height: Get.height * 0.4,
+                )),
             Text(
               'Tap on the button to start',
               textAlign: TextAlign.center,
@@ -55,33 +59,38 @@ class TapToStart extends StatelessWidget {
                 height: 0.06,
               ),
             ),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'No thanks, ',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontStyle: FontStyle.italic,
-                      fontFamily: 'Exo 2',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
+            GestureDetector(
+              onTap: (){
+                Get.offAndToNamed(Routes.NOTIFICATIONS_PERMISSION);
+              },
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'No thanks, ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                        fontFamily: 'Exo 2',
+                        fontWeight: FontWeight.w400,
+                        height: 0,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: 'I’ll do it later',
-                    style: TextStyle(
-                      color: Color(0xFFC90000),
-                      fontSize: 16,
-                      fontStyle: FontStyle.italic,
-                      fontFamily: 'Exo 2',
-                      fontWeight: FontWeight.w600,
-                      decoration: TextDecoration.underline,
-                      height: 0,
+                    TextSpan(
+                      text: 'I’ll do it later',
+                      style: TextStyle(
+                        color: Color(0xFFC90000),
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                        fontFamily: 'Exo 2',
+                        fontWeight: FontWeight.w600,
+                        decoration: TextDecoration.underline,
+                        height: 0,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             )
           ],

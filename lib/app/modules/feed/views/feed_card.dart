@@ -182,11 +182,14 @@ class FeedCard extends StatelessWidget {
                                       },
                                       child: Container(
                                         margin: EdgeInsets.symmetric(
-                                            horizontal: 47, vertical: 18),
+                                          horizontal: 41,
+                                          vertical: 16,
+                                        ),
                                         child: Text700(
                                           text: notLoggedInCard
                                               ? "Login".toUpperCase()
                                               : 'View Card'.toUpperCase(),
+                                          fontSize: notLoggedInCard ? 18 : 14,
                                         ),
                                       )),
                                   if (!notLoggedInCard)
@@ -198,8 +201,10 @@ class FeedCard extends StatelessWidget {
                                         onPressed: () async {
                                           onShareButton(
                                               feedModel,
-                                          manageShare? null :    await widgetsToImageController
-                                                  .capture());
+                                              manageShare
+                                                  ? null
+                                                  : await widgetsToImageController
+                                                      .capture());
                                         },
                                         child: Row(
                                           children: [

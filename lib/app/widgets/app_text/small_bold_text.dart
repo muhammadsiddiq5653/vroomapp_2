@@ -16,19 +16,15 @@ class SmallBoldText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0),
-      child: Text(
-        text,
-        textDirection: TextDirection.ltr,
-        textAlign: textAlign,
-        style: TextStyle(
-            fontSize: 16,
-            color: color,
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic,
-            overflow: textOverflow),
-      ),
+    return Text(
+      text,
+      textDirection: TextDirection.ltr,
+      textAlign: textAlign,
+      style: TextStyle(
+          fontSize: 14,
+          color: color,
+          fontWeight: FontWeight.bold,
+          overflow: textOverflow),
     );
   }
 }

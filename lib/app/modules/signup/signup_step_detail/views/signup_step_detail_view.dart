@@ -16,14 +16,16 @@ import '../controllers/signup_step_detail_controller.dart';
 class SignupStepDetailView extends GetView<SignupStepDetailController> {
   final controller = Get.put(SignupStepDetailController());
   SignupStepDetailView({Key? key}) : super(key: key);
+  final personalizeProfile = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SignupStepDetailController>(
       builder: (_) => AppKeyboardHider(
         child: Scaffold(
-          appBar: InsideAppBar(
-            title: '',
-          ),
+          // appBar: InsideAppBar(
+          //   title: '',
+          // ),
           body: Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
             child: Column(
@@ -31,59 +33,79 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                 Expanded(
                   child: SingleChildScrollView(
                     child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Text700(
-                            text: 'Let’s personalize your profile',
-                            textAlign: TextAlign.center,
-                            fontSize: 18,
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          AppUploadPhotoField(
-                            width: 150,
-                            height: 150,
-                            onImageChanged: (String? img) {
-                              controller.userImage = img;
+                      child: Form(
+                        key: personalizeProfile,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Text700(
+                              text: 'Let’s personalize your profile',
+                              textAlign: TextAlign.center,
+                              fontSize: 18,
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            AppUploadPhotoField(
+                              width: 150,
+                              height: 150,
+                              onImageChanged: (String? img) {
+                                controller.userImage = img;
+                              },
+                            ),
+                            SizedBox(
+                              height: 50,
+                            ),
+                            AppTextField(
+                              Validator: (val) {
+                                if (val == null || val.isEmpty) {
+                                  return 'Please Enter Name';
+                                }
+                                return null; // Return null if the input is valid
+                              },
+                              hintText: 'Enter your full name',
+                              labelText: 'Enter Name',
+                              onChanged: (val) {
+                                controller.user.name = val;
+                              },
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            AppTextField(
+                              Validator: (val) {
+                                if (val == null || val.isEmpty) {
+                                  return 'Choose a username';
+                                }
+                                return null; // Return null if the input is valid
+                              },
+                              hintText: 'Choose a username',
+                              labelText: 'Enter user name',
+                              onChanged: (val) {
+                                controller.user.username = val;
+                              },
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            AppTextField(Validator: (val) {
+                              if (val == null || val.isEmpty) {
+                                return 'Please Enter your favorite Car Brand';
+                              }
+                              return null; // Return null if the input is valid
                             },
-                          ),
-                          SizedBox(
-                            height: 50,
-                          ),
-                          AppTextField(
-                            hintText: 'Enter your full name',
-                            labelText: 'Enter number',
-                            onChanged: (val) {
-                              controller.user.name = val;
-                            },
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          AppTextField(
-                            hintText: 'Enter username',
-                            labelText: 'Enter user name',
-                            onChanged: (val) {
-                              controller.user.username = val;
-                            },
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          AppTextField(
-                            hintText: 'Enter your favorite Car Brand',
-                            labelText: 'Enter favorite Car Brand',
-                            onChanged: (val) {
-                              controller.user.favoriteCarBrand = val;
-                            },
-                          ),
-                        ],
+                              hintText: 'Whats your favorite car brand?',
+                              labelText: 'Enter favorite Car Brand',
+                              onChanged: (val) {
+                                controller.user.favoriteCarBrand = val;
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -92,11 +114,12 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                   height: 55,
                   width: double.infinity,
                   child: AppButtonField(
-                    text: 'Continue',
+                    text: 'Complete Setup'.toUpperCase(),
                     onPressed: () {
-                      //controller.regsiter();
-                      Get.toNamed(Routes.MAIN_TABS);
 
+                      if (personalizeProfile.currentState!.validate()) {
+                        controller.regsiter();
+                      }
                     },
                     primary: AppColors.primary,
                   ),

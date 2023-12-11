@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:launch_review/launch_review.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:vroom_app/app/modules/settings/views/meet_our_team.dart';
@@ -15,13 +13,14 @@ import '../controllers/settings_controller.dart';
 import 'FAQS.dart';
 
 class SettingsView extends GetView<SettingsController> {
-   SettingsView({Key? key}) : super(key: key);
-   RxBool _switchValue = false.obs;
-   // swap true/false & save it to observable
-   void toggle() => _switchValue.value = _switchValue.value ? false : true;
-   @override
-  Widget build(BuildContext context) {
+  SettingsView({Key? key}) : super(key: key);
+  RxBool _switchValue = false.obs;
 
+  // swap true/false & save it to observable
+  void toggle() => _switchValue.value = _switchValue.value ? false : true;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: InsideAppBar(
         title: 'Settings',
@@ -44,62 +43,49 @@ class SettingsView extends GetView<SettingsController> {
                 SizedBox(
                   height: 30,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    launchUrlString(
-                        controller.settingsService.settingsModel!.faq!);
-                  },
-                  child: AppTile(
-                      padding: EdgeInsets.all(20),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text400(
-                              text: 'Wroom Alerts',
-                              fontSize: 16,
-                            ),
-                          ),
-                          CupertinoSwitch(
-                            value: _switchValue.value,
-                            onChanged: (value) {
-
-                                _switchValue = value.obs;
-
-                            },
-                          ),
-                        ],
-                      )),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    launchUrlString(
-                        controller.settingsService.settingsModel!.faq!);
-                  },
-                  child: AppTile(
-                      padding: EdgeInsets.all(20),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text400(
-                              text: 'Units',
-                              fontSize: 16,
-                            ),
-                          ),
-                          Spacer(),
-                          Text400(
-                            text: 'Imperial',
-                            fontSize: 16,
-                          ),
-                          Icon(
-                            Remix.arrow_right_s_line,
-                            color: Colors.white,
-                          )
-                        ],
-                      )),
-                ),
+                // AppTile(
+                //   padding: EdgeInsets.all(20),
+                //   child: Row(
+                //     children: [
+                //       Expanded(
+                //         child: Text400(
+                //           text: 'Wroom Alerts',
+                //           fontSize: 16,
+                //         ),
+                //       ),
+                //       CupertinoSwitch(
+                //         value: _switchValue.value,
+                //         onChanged: (value) {
+                //           _switchValue = value.obs;
+                //         },
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 30,
+                // ),
+                // AppTile(
+                //     padding: EdgeInsets.all(20),
+                //     child: Row(
+                //       children: [
+                //         Expanded(
+                //           child: Text400(
+                //             text: 'Units',
+                //             fontSize: 16,
+                //           ),
+                //         ),
+                //         Spacer(),
+                //         Text400(
+                //           text: 'Imperial',
+                //           fontSize: 16,
+                //         ),
+                //         Icon(
+                //           Remix.arrow_right_s_line,
+                //           color: Colors.white,
+                //         )
+                //       ],
+                //     )),
                 SizedBox(
                   height: 30,
                 ),
@@ -107,7 +93,7 @@ class SettingsView extends GetView<SettingsController> {
                   onTap: () {
                     // launchUrlString(
                     //     controller.settingsService.settingsModel!.faq!);
-                  Get.to(FaQs());
+                    Get.to(FaQs());
                   },
                   child: AppTile(
                       padding: EdgeInsets.all(20),
@@ -125,55 +111,45 @@ class SettingsView extends GetView<SettingsController> {
                           )
                         ],
                       )),
-                ), SizedBox(
-                  height: 30,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    launchUrlString(
-                        controller.settingsService.settingsModel!.faq!);
-                  },
-                  child: AppTile(
-                      padding: EdgeInsets.all(20),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text400(
-                              text: 'Report an issue',
-                              fontSize: 16,
-                            ),
-                          ),
-                          Icon(
-                            Remix.arrow_right_s_line,
-                            color: Colors.white,
-                          )
-                        ],
-                      )),
-                ), SizedBox(
-                  height: 30,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    launchUrlString(
-                        controller.settingsService.settingsModel!.faq!);
-                  },
-                  child: AppTile(
-                      padding: EdgeInsets.all(20),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text400(
-                              text: 'Rate and Review the App',
-                              fontSize: 16,
-                            ),
-                          ),
-                          Icon(
-                            Remix.arrow_right_s_line,
-                            color: Colors.white,
-                          )
-                        ],
-                      )),
-                ),
+                // SizedBox(
+                //   height: 30,
+                // ),
+                // AppTile(
+                //     padding: EdgeInsets.all(20),
+                //     child: Row(
+                //       children: [
+                //         Expanded(
+                //           child: Text400(
+                //             text: 'Report an issue',
+                //             fontSize: 16,
+                //           ),
+                //         ),
+                //         Icon(
+                //           Remix.arrow_right_s_line,
+                //           color: Colors.white,
+                //         )
+                //       ],
+                //     )),
+                // SizedBox(
+                //   height: 30,
+                // ),
+                // AppTile(
+                //     padding: EdgeInsets.all(20),
+                //     child: Row(
+                //       children: [
+                //         Expanded(
+                //           child: Text400(
+                //             text: 'Rate and Review the App',
+                //             fontSize: 16,
+                //           ),
+                //         ),
+                //         Icon(
+                //           Remix.arrow_right_s_line,
+                //           color: Colors.white,
+                //         )
+                //       ],
+                //     )),
                 SizedBox(
                   height: 50,
                 ),
@@ -201,37 +177,31 @@ class SettingsView extends GetView<SettingsController> {
                             ),
                           ),
                           Icon(
-                            Remix.arrow_right_circle_fill,
-                            color: Colors.red,
-                          )
-                        ],
-                      )),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    launchUrlString(
-                        controller.settingsService.settingsModel!.faq!);
-                  },
-                  child: AppTile(
-                      padding: EdgeInsets.all(20),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text400(
-                              text: 'Rate and Review the App',
-                              fontSize: 16,
-                            ),
-                          ),
-                          Icon(
                             Remix.arrow_right_s_line,
                             color: Colors.white,
                           )
                         ],
                       )),
                 ),
+                // SizedBox(
+                //   height: 30,
+                // ),
+                // AppTile(
+                //     padding: EdgeInsets.all(20),
+                //     child: Row(
+                //       children: [
+                //         Expanded(
+                //           child: Text400(
+                //             text: 'Rate and Review the App',
+                //             fontSize: 16,
+                //           ),
+                //         ),
+                //         Icon(
+                //           Remix.arrow_right_s_line,
+                //           color: Colors.white,
+                //         )
+                //       ],
+                //     )),
                 SizedBox(
                   height: 50,
                 ),
@@ -252,12 +222,10 @@ class SettingsView extends GetView<SettingsController> {
                             child: Text400(
                               text: 'Delete your account',
                               fontSize: 16,
+                              color: Colors.red,
                             ),
                           ),
-                          Icon(
-                            Remix.arrow_right_circle_fill,
-                            color: Colors.red,
-                          )
+
                         ],
                       )),
                 ),
@@ -284,10 +252,6 @@ class SettingsView extends GetView<SettingsController> {
                               fontSize: 16,
                             ),
                           ),
-                          Icon(
-                            Remix.arrow_right_circle_fill,
-                            color: Colors.red,
-                          )
                         ],
                       )),
                 ),

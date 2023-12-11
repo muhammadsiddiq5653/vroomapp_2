@@ -11,7 +11,6 @@ import 'package:vroom_app/app/data/api/app_feed_api.dart';
 import 'package:vroom_app/app/data/models/car_model.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 import 'package:vroom_app/app/modules/feed/controllers/feed_controller.dart';
-import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/services/sound_service.dart';
 
 import '../../../data/models/feed_model.dart';
@@ -24,7 +23,6 @@ class CardDetailsController extends AppAbstractController {
   CarModel? car;
   int? carId;
   RxBool isLoggedin = false.obs;
-
 
   @override
   void onInit() {
@@ -43,9 +41,11 @@ class CardDetailsController extends AppAbstractController {
       soundService.playEngineIgnition();
     }
   }
+
   readFromPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isLoggedin.value = prefs.getBool("isloggedin") ?? false;
+    update();
   }
 
   void loadCarModel() async {
@@ -116,5 +116,4 @@ class CardDetailsController extends AppAbstractController {
       EasyLoading.dismiss();
     }
   }
-
 }

@@ -20,6 +20,7 @@ class MainTabsController extends AppAbstractController {
   @override
   void onInit() {
     super.onInit();
+
     readFromPreferences();
   }
 
@@ -41,6 +42,7 @@ class MainTabsController extends AppAbstractController {
    readFromPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isLoggedin.value = prefs.getBool("isloggedin") ?? false;
+    update();
   }
   Future<void> scan() async {
     if (!box.hasData(dontShowAgain) || box.read<bool>(dontShowAgain) == false) {

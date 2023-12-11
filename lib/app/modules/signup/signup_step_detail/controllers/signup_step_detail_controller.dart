@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vroom_app/app/data/api/app_images_api.dart';
 import 'package:vroom_app/app/data/api/auth_api.dart';
 import 'package:vroom_app/app/data/models/user_model.dart';
@@ -37,6 +38,8 @@ class SignupStepDetailController extends AppAbstractController {
       }
       var auth = await authApi.signUp(user);
       settingsService.setAuth(auth);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool("isloggedin", true);
       Get.toNamed(Routes.MAIN_TABS);
     } catch (ex) {
       dialogService.showError(ex);

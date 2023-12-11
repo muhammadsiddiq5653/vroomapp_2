@@ -49,7 +49,16 @@ vroomApp() async {
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
       builder: (_, child) {
-        return FlutterEasyLoading(child: child ?? Container());
+        child = FlutterEasyLoading(child: child ?? Container());
+
+        // Add botToastBuilder and MediaQuery functionality
+        // child = botToastBuilder(_, child);
+        child = MediaQuery(
+          data: MediaQuery.of(_).copyWith(textScaleFactor: 1),
+          child: child,
+        );
+
+        return child;
       },
       theme: ThemeData(fontFamily: 'Exo', scaffoldBackgroundColor: Colors.white)
           .copyWith(

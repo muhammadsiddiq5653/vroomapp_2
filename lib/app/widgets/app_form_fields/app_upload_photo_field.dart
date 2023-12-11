@@ -71,7 +71,7 @@ class _AppUploadPhotoField extends State<AppUploadPhotoField> {
           visible:
               _image != null || ![null, ''].contains(widget.initialImage),
           child: Positioned(
-            right: 30,
+            right: 50,
             top: -10,
             child: Container(
               decoration: BoxDecoration(
@@ -92,9 +92,9 @@ class _AppUploadPhotoField extends State<AppUploadPhotoField> {
           ),
         ),
         Positioned(
-          bottom: 0,
+          bottom: -17,
 
-          right: 0,
+          right: 30,
           child: GestureDetector(
             onTap: (){
               _showPicker(context);
@@ -151,8 +151,8 @@ class _AppUploadPhotoField extends State<AppUploadPhotoField> {
           borderRadius: BorderRadius.circular(widget.borderRadius)),
       child: Center(
         child: Icon(
-          Remix.camera_2_fill,
-          color: Colors.white,
+          Remix.user_smile_fill,
+          color: Colors.white.withOpacity(0.2),
         ),
       ),
     );
