@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vroom_app/app/app_colors.dart';
 
 class SliderDots extends StatelessWidget {
   const SliderDots({

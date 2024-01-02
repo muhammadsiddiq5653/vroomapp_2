@@ -160,7 +160,7 @@ class CardDetailsView extends GetView<CardDetailsController> {
                               value: AppUtilities.getPricePercentage(
                                   controller.car?.price),
                               title: 'Price',
-                              valueTitle: '${controller.car?.price} \$',
+                              valueTitle: '${controller.car?.price?.truncate()} \$',
                             ),
                             SizedBox(
                               height: 20,

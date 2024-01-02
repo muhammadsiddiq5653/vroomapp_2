@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:rive/rive.dart';
 import 'package:vroom_app/app/app_colors.dart';
+
 import '../app_enums.dart';
 import 'app_text/text_600.dart';
 
@@ -12,6 +14,7 @@ class AppStateHandler extends StatelessWidget {
   late final Function()? onRetry;
   final bool hasRefreshIndicator;
   final ScrollController? scrollController;
+
   AppStateHandler(
       {required this.child,
       required this.loadingState,
@@ -20,6 +23,7 @@ class AppStateHandler extends StatelessWidget {
       this.hasRefreshIndicator: false,
       this.scrollController,
       this.onRetry});
+
   @override
   Widget build(BuildContext context) {
     Widget childToReturn = Container();
@@ -27,48 +31,51 @@ class AppStateHandler extends StatelessWidget {
       childToReturn = child;
     } else if (loadingState == GeneralLoadingState.waiting) {
       childToReturn = Center(
-          child: loadingWidget ??
-              CircularProgressIndicator(
-                color: Colors.white,
-              ));
-    } else if (loadingState == GeneralLoadingState.empty) {
-      childToReturn = SingleChildScrollView(
-        controller: scrollController,
-        physics: AlwaysScrollableScrollPhysics(),
-        child: emptyWidget ??
+        child: loadingWidget ??
             Container(
-              padding: EdgeInsets.all(20),
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Remix.emotion_happy_fill,
-                    size: 120,
-                    color: Colors.orangeAccent,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text600(
-                    text: "Hmmm, its seems quite in here. For now ;)",
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  onRetry != null
-                      ? ElevatedButton(
-                          onPressed: onRetry,
-                          child: Text(
-                            "Try again",
-                            style: TextStyle(color: Colors.white),
-                          ))
-                      : Container()
-                ],
+              // padding: EdgeInsets.all(200),
+              width: 92,
+              height: 92,
+              child: RiveAnimation.asset(
+                'assets/images/vroom_animation.riv',
+                // fit: BoxFit.fitWidth,
               ),
             ),
       );
+    } else if (loadingState == GeneralLoadingState.empty) {
+      childToReturn = emptyWidget ??
+          Container(
+            padding: EdgeInsets.all(20),
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Remix.emotion_happy_fill,
+                  size: 120,
+                  color: Colors.orangeAccent,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text600(
+                  text: "Hmmm, its seems quite in here. For now ;)",
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                onRetry != null
+                    ? ElevatedButton(
+                        onPressed: onRetry,
+                        child: Text(
+                          "Try again",
+                          style: TextStyle(color: Colors.white),
+                        ))
+                    : Container()
+              ],
+            ),
+          );
     } else if (loadingState == GeneralLoadingState.error) {
       childToReturn = Container(
         color: AppColors.background,

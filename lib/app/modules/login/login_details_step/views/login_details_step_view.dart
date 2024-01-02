@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:remixicon/remixicon.dart';
-import 'package:vroom_app/app/widgets/app_form_fields/app_phone_field.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:vroom_app/app/routes/app_pages.dart';
+import 'package:vroom_app/app/widgets/app_bars/outer_app_bar.dart';
 
 import '../../../../app_colors.dart';
-import '../../../../routes/app_pages.dart';
-import '../../../../widgets/app_bars/inside_app_bar.dart';
 import '../../../../widgets/app_form_fields/app_button_field.dart';
 import '../../../../widgets/app_form_fields/app_text_field.dart';
 import '../../../../widgets/app_keyboard_hider.dart';
@@ -14,26 +13,35 @@ import '../../../../widgets/app_text/text_700.dart';
 import '../controllers/login_details_step_controller.dart';
 
 class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
-  const LoginDetailsStepView({Key? key}) : super(key: key);
+   LoginDetailsStepView({Key? key}) : super(key: key);
+  final Uri _url = Uri.parse('http://wroom.zedandwhite.com/privacy/');
+
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginDetailsStepController>(
       builder: (_) => AppKeyboardHider(
         child: Scaffold(
-          appBar: InsideAppBar(
-            title: '',
-          ),
+          // appBar: InsideAppBar(
+          //   title: '',
+          // ),
           body: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 60),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      OuterAppBar(
+                        title: '',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       SizedBox(
                         height: 30,
                       ),
@@ -45,32 +53,20 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                       SizedBox(
                         height: 50,
                       ),
-                      AppPhoneField(
-                          number: controller.number,
-                          onChanged: (number) {
-                            controller.phone = number.phoneNumber ?? '';
-                          }),
-                      SizedBox(
-                        height: 30,
-                      ),
+                      // AppPhoneField(
+                      //     number: controller.number,
+                      //     onChanged: (number) {
+                      //       controller.phone = number.phoneNumber ?? '';
+                      //     }),
+                      // SizedBox(
+                      //   height: 30,
+                      // ),
                       AppTextField(
-                        obscureText: controller.isObscure,
-                        hintText: 'Enter password',
-                        labelText: 'Enter password',
+                        hintText: 'Username',
+                        labelText: 'Username',
                         onChanged: (val) {
-                          controller.password = val;
+                          controller.userName = val;
                         },
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            controller.isObscure
-                                ? Remix.eye_fill
-                                : Remix.eye_close_fill,
-                            color: AppColors.primary,
-                          ),
-                          onPressed: () {
-                            controller.toggleObscure();
-                          },
-                        ),
                       ),
                       SizedBox(
                         height: 30,
@@ -103,14 +99,27 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                 ),
                 Container(
                   height: 55,
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 47,),
+                  margin: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 47,
+                  ),
                   width: double.infinity,
                   child: AppButtonField(
-                    text: 'Login',
+                    text: 'Continue'.toUpperCase(),
                     onPressed: () {
-                      //  controller.verifyPhoneNumber();
-                      // Get.toNamed(Routes.MAIN_TABS);
-                      controller.login();
+                      if(controller.userName.isNotEmpty)
+                        {
+                          controller.verifyUserName();
+                          Get.toNamed(Routes.LOGIN);
+                        }
+                      else
+                        {
+                          controller.dialogService.showError("Please enter valid username");
+                        }
+
+
+
+                      // controller.login();
                     },
                     primary: AppColors.primary,
                   ),
@@ -129,7 +138,7 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                 //         width: MediaQuery.of(context).size.width / 2.8,
                 //       ),
                 //       Text(
-                //         " OR ".toUpperCase(),
+                //         " or ",
                 //         style: TextStyle(
                 //             fontSize: 18,
                 //             color: Colors.white,
@@ -149,7 +158,10 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                 // ),
                 // Container(
                 //   height: 55,
-                //   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 47,),
+                //   margin: EdgeInsets.symmetric(
+                //     vertical: 10,
+                //     horizontal: 47,
+                //   ),
                 //   width: double.infinity,
                 //   child: AppButtonField(
                 //     prefix: Image.asset(
@@ -189,12 +201,26 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                 SizedBox(
                   height: 40,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text400(
-                      textAlign: TextAlign.center,
-                      text:
-                          "By continuing you are agreeing our license agreement,privacy policy, Agreement on the processing of personal data."),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text400(
+                        textAlign: TextAlign.center,
+                        fontSize: 14,
+                        text: "By continuing you are agreeing with our "),
+                    GestureDetector(
+                      onTap: () {
+                        launchUrl(_url);
+                      },
+                      child: Text400(
+                          textAlign: TextAlign.center,
+                          decoration: TextDecoration.underline,
+                          fontSize: 14,
+                          color: AppColors.primary,
+                          text: " privacy policy"),
+                    ),
+                  ],
                 ),
               ],
             ),

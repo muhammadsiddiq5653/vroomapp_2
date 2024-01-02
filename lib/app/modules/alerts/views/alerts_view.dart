@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/app_utilities.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
@@ -10,8 +9,6 @@ import 'package:vroom_app/app/widgets/app_text/small_bold_text.dart';
 import 'package:vroom_app/app/widgets/app_text/small_text.dart';
 import 'package:vroom_app/app/widgets/app_text/text_600.dart';
 import 'package:vroom_app/app/widgets/app_tile.dart';
-
-import '../../../widgets/app_floating_action_button.dart';
 import '../../../widgets/app_state_handler.dart';
 import '../../../widgets/loadmore.dart';
 import '../controllers/alerts_controller.dart';
@@ -107,6 +104,7 @@ class AlertsView extends GetView<AlertsController> {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
             'assets/images/alertsEmptyState.png',

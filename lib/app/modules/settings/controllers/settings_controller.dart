@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vroom_app/app/app_enums.dart';
 import 'package:vroom_app/app/data/api/app_users_api.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
@@ -24,7 +25,7 @@ class SettingsController extends AppAbstractController {
       var result = dialogService
           .showConfirm('Are you sure you want to delete your account?');
       if (result == true) {
-        showLoading();
+        loadingState = GeneralLoadingState.waiting;
         await appsersApi
             .deleteAccount(settingsService.authModel!.userModel.id!);
         logout();
@@ -32,7 +33,8 @@ class SettingsController extends AppAbstractController {
     } catch (ex) {
       dialogService.showError(ex);
     } finally {
-      hideLoading();
+      loadingState = GeneralLoadingState.done;
+
     }
   }
 }

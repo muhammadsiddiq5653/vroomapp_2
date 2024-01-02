@@ -24,7 +24,7 @@ class InsideAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
 
-      leading:GestureDetector(
+      leading: leading ?? GestureDetector(
         onTap: (){
           Get.back();
 

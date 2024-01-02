@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
 

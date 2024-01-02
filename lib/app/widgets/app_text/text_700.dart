@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/animate.dart';
 import 'package:flutter_animate/effects/effects.dart';
-import 'package:flutter_animate/effects/fade_effect.dart';
-import '../../app_colors.dart';
 
 class Text700 extends StatelessWidget {
   final String text;

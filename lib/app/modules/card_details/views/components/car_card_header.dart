@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:vroom_app/app/data/models/car_model.dart';
 import 'package:vroom_app/app/helpers/hexcolor.dart';
 import 'package:vroom_app/app/widgets/app_network_image.dart';
-import 'package:vroom_app/app/widgets/app_text/small_text.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 
 class CarCardHeader extends StatelessWidget {

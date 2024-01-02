@@ -35,11 +35,10 @@ class MainTabsView extends GetView<MainTabsController> {
                     ),
                   ),
                   child: Container(
-                    padding: EdgeInsets.only(top: 5, right: 1),
-                    child: SvgPicture.asset(
-                      'assets/images/svg/bottomNav/WroomIcon.svg',
+                    padding: EdgeInsets.all(14),
+                    child: Image.asset(
+                      'assets/images/svg/bottomNav/wroomIcon1.png',
                       alignment: Alignment.center,
-                      width: 30,
                     ),
                   ),
                 ),
@@ -48,12 +47,12 @@ class MainTabsView extends GetView<MainTabsController> {
                   //     ?
 
                   controller.scan();
-                      // : Get.snackbar(
-                      //     'You are Not Logged in',
-                      //     'Please Login First',
-                      //     snackPosition: SnackPosition.TOP,
-                      //     colorText: Colors.white,
-                      //   );
+                  // : Get.snackbar(
+                  //     'You are Not Logged in',
+                  //     'Please Login First',
+                  //     snackPosition: SnackPosition.TOP,
+                  //     colorText: Colors.white,
+                  //   );
                 },
               ),
               floatingActionButtonLocation:
@@ -141,7 +140,7 @@ class MainTabsView extends GetView<MainTabsController> {
         return controller.isLoggedin.value ? HomeView() : NotLoggedinHome();
 
       case 1:
-        return controller.isLoggedin.value ? FeedView()  : NotLoggedInFeedView();
+        return controller.isLoggedin.value ? FeedView() : NotLoggedInFeedView();
 
       case 2:
         return controller.isLoggedin.value ? AlertsView() : NotLoggedinAlert();

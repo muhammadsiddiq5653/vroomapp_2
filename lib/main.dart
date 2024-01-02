@@ -1,8 +1,6 @@
-import 'dart:async';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -11,7 +9,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:vroom_app/app/app_colors.dart';
 import 'app/routes/app_pages.dart';
 import 'app/services/local_notification_service.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 late PackageInfo packageInfo;
 void main() {
@@ -25,19 +22,6 @@ vroomApp() async {
   packageInfo = await PackageInfo.fromPlatform();
   Get.put(LocalNotificationService());
   var analytics = FirebaseAnalytics.instance;
-  EasyLoading.instance
-    ..displayDuration = const Duration(milliseconds: 2000)
-    ..indicatorType = EasyLoadingIndicatorType.threeBounce
-    ..loadingStyle = EasyLoadingStyle.custom
-    ..indicatorSize = 45.0
-    ..radius = 10.0
-    ..progressColor = AppColors.primary
-    ..backgroundColor = Colors.white
-    ..indicatorColor = AppColors.primary
-    ..textColor = AppColors.primary
-    ..maskColor = Colors.blue.withOpacity(0.5)
-    ..userInteractions = false
-    ..dismissOnTap = false;
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
@@ -49,7 +33,7 @@ vroomApp() async {
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
       builder: (_, child) {
-        child = FlutterEasyLoading(child: child ?? Container());
+        child =  child ?? Container();
 
         // Add botToastBuilder and MediaQuery functionality
         // child = botToastBuilder(_, child);

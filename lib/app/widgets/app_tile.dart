@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../app_colors.dart';
 import '../helpers/hexcolor.dart';
 
 class AppTile extends StatelessWidget {
@@ -15,10 +16,10 @@ class AppTile extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       width: double.infinity,
-      padding: padding,
+      padding: padding ?? EdgeInsets.symmetric(vertical: 25, horizontal: 15),
       decoration: BoxDecoration(
           boxShadow: boxShadow,
-          color: containerColor ?? HexColor("#2D2D3A"),
+          color: containerColor ?? AppColors.cardColor,
           borderRadius: BorderRadius.circular(15)),
       child: child,
     );

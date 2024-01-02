@@ -1,7 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-import '../../main.dart';
 import '../app_exception.dart';
 import '../data/models/auth_model.dart';
 

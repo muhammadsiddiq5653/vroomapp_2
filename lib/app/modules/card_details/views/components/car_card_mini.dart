@@ -4,10 +4,8 @@ import 'package:vroom_app/app/data/models/top_category_car_model.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 import 'package:vroom_app/app/widgets/app_tile.dart';
 
-import '../../../../helpers/hexcolor.dart';
 import '../../../../widgets/app_network_image.dart';
 import '../../../../widgets/app_text/text_400.dart';
-import 'car_card_header.dart';
 import 'car_price.dart';
 import 'car_spec_progress.dart';
 

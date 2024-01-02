@@ -1,9 +1,5 @@
-import 'dart:io';
 import 'dart:typed_data';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:vroom_app/app/data/api/app_feed_api.dart';
 import 'package:vroom_app/app/data/models/envelope_model.dart';
 import 'package:vroom_app/app/data/models/feed_model.dart';
@@ -16,7 +12,7 @@ import '../../../routes/app_pages.dart';
 
 class FeedController extends AppAbstractController {
   AppFeedApi appFeedApi = Get.put(AppFeedApi());
-  CreateImageService createImageService = Get.put(CreateImageService());
+ // CreateImageService createImageService = Get.put(CreateImageService());
   EnvelopeModel<FeedModel>? feed;
   @override
   void onInit() {
@@ -56,7 +52,7 @@ class FeedController extends AppAbstractController {
       return true;
     } catch (ex) {
       print(ex);
-      loadingState = GeneralLoadingState.error;
+      loadingState = GeneralLoadingState.empty;
       return false;
     } finally {
       update();
@@ -84,9 +80,9 @@ class FeedController extends AppAbstractController {
 
   share(FeedModel feed, Uint8List? bytes) async {
     try {
-      showLoading();
+      loadingState = GeneralLoadingState.waiting;
       AppUtilities.share(bytes);
-      hideLoading();
+      loadingState = GeneralLoadingState.done;
       await appFeedApi.share(feed);
       feed.shares++;
       update();
@@ -94,7 +90,7 @@ class FeedController extends AppAbstractController {
       print(ex);
       dialogService.showError(ex);
     } finally {
-      hideLoading();
+      loadingState = GeneralLoadingState.done;
     }
   }
 

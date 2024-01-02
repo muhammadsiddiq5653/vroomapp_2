@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/app_utilities.dart';
 import 'package:vroom_app/app/data/models/car_model.dart';
 import 'package:vroom_app/app/widgets/app_network_image.dart';
 import 'package:vroom_app/app/widgets/app_tile.dart';
 
-import '../../../../helpers/hexcolor.dart';
 import 'car_card_header.dart';
-import 'car_price.dart';
 import 'car_spec_progress.dart';
 
 class CarCard extends StatelessWidget {
@@ -26,6 +25,7 @@ class CarCard extends StatelessWidget {
         if (onTap != null) onTap!(car);
       },
       child: AppTile(
+        containerColor: AppColors.cardColor,
         child: Stack(children: [
           Positioned(
               left: -160,

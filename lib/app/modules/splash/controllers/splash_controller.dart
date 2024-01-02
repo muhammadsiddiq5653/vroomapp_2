@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_sim_country_code/flutter_sim_country_code.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../../app_constants.dart';
@@ -114,8 +112,8 @@ class SplashController extends GetxController {
 
   Future<void> _getSimCountry() async {
     try {
-      var simCountry = await FlutterSimCountryCode.simCountryCode;
-      AppConstants.localeForPhone = simCountry ?? 'US';
+
+      AppConstants.localeForPhone = 'US';
     } catch (ex) {
       print(ex);
     }

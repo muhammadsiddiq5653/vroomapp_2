@@ -1,8 +1,5 @@
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttermoji/fluttermoji.dart';
-import 'package:get/get.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
-import 'package:fluttermoji/fluttermoji.dart';
 
 class CustomizeAvatarController extends AppAbstractController {
   final FluttermojiFunctions fluttermojiFunctions = FluttermojiFunctions();

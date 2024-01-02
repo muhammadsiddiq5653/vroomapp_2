@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/app_colors.dart';
@@ -11,7 +10,6 @@ import 'package:vroom_app/app/data/models/envelope_model.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/widgets/app_bottom_sheet.dart';
-import 'package:vroom_app/app/widgets/app_text/text_600.dart';
 
 import '../../../widgets/app_text/text_400.dart';
 import '../../../widgets/app_text/text_700.dart';
@@ -95,15 +93,16 @@ class HomeController extends AppAbstractController {
         ),
       ));
       if (result == deleteCarConst) {
-        EasyLoading.show();
+        loadingState = GeneralLoadingState.waiting;
+
         await appCarsApi.deleteUserCar(car.userCardId);
-        EasyLoading.dismiss();
+        loadingState = GeneralLoadingState.done;
         loadCards();
       }
     } catch (ex) {
       dialogService.showError('Something went wrong, please try again');
     } finally {
-      EasyLoading.dismiss();
+      loadingState = GeneralLoadingState.done;
     }
   }
 

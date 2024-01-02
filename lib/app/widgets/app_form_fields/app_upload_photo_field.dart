@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:remixicon/remixicon.dart';
@@ -11,6 +12,7 @@ class AppUploadPhotoField extends StatefulWidget {
   final double width;
   final double height;
   final double borderRadius;
+
   AppUploadPhotoField(
       {Key? key,
       required this.onImageChanged,
@@ -67,51 +69,53 @@ class _AppUploadPhotoField extends State<AppUploadPhotoField> {
               color: AppColors.primary,
               child: _getImageOrPlaceHolder()),
         ),
-        Visibility(
-          visible:
-              _image != null || ![null, ''].contains(widget.initialImage),
-          child: Positioned(
-            right: 50,
-            top: -10,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(40)),
-              child: IconButton(
-                  iconSize: 20,
-                  color: Colors.white,
-                  onPressed: () {
-                    setState(() {
-                      _image = null;
-                      widget.initialImage = null;
-                      widget.onImageChanged(null);
-                    });
-                  },
-                  icon: Icon(Icons.close)),
-            ),
-          ),
-        ),
         Positioned(
+          right: 50,
           bottom: -17,
+          child: _image != null || ![null, ''].contains(widget.initialImage)
+              ?
+              Container(
+                  width: 42,
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(15),),
+                  child: IconButton(
+                      iconSize: 20,
+                      color: Colors.white,
+                      onPressed: () {
+                        setState(() {
+                          _image = null;
+                          widget.initialImage = null;
+                          widget.onImageChanged(null);
+                        });
+                      },
+                      icon: Icon(Icons.close)),
+                )
 
-          right: 30,
-          child: GestureDetector(
-            onTap: (){
+          :
+
+          GestureDetector(
+            onTap: () {
               _showPicker(context);
             },
             child: Container(
               width: 42,
               height: 42,
               decoration: ShapeDecoration(
-                color: Color(0xFFC90000),
+                color: AppColors.primary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
-              child: Icon(Icons.add,color: Colors.white,),
+              child: Icon(
+                Icons.edit,
+                color: Colors.white,
+              ),
             ),
-          ),
-        )
+          )
+          ,
+        ),
       ],
     );
   }
@@ -144,8 +148,8 @@ class _AppUploadPhotoField extends State<AppUploadPhotoField> {
       );
     }
     return Container(
-      width: widget.width - 40,
-      height: widget.height - 40,
+      width: widget.width - 10,
+      height: widget.height - 10,
       decoration: BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.circular(widget.borderRadius)),

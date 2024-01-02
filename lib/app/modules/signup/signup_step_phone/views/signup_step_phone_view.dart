@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vroom_app/app/app_colors.dart';
-import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
+import 'package:vroom_app/app/widgets/app_bars/outer_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
-import 'package:vroom_app/app/widgets/app_form_fields/app_phone_field.dart';
+import 'package:vroom_app/app/widgets/app_form_fields/app_text_field.dart';
 import 'package:vroom_app/app/widgets/app_keyboard_hider.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 
-import '../../../../app_validations.dart';
 import '../../../../widgets/app_text/text_700.dart';
 import '../controllers/signup_step_phone_controller.dart';
 
 class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
   final controller = Get.put(SignupStepPhoneController());
+  final Uri _url = Uri.parse('http://wroom.zedandwhite.com/privacy/');
 
   SignupStepPhoneView({Key? key}) : super(key: key);
   final empSignUpFormKey = GlobalKey<FormState>();
@@ -23,59 +23,66 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
     return GetBuilder<SignupStepPhoneController>(
       builder: (_) => AppKeyboardHider(
         child: Scaffold(
-          appBar: InsideAppBar(
-            title: '',
-          ),
-          body: Center(
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
+          // appBar: InsideAppBar(
+          //   title: '',
+          // ),
+          body: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 60,
+            ),
+            child: Expanded(
               child: SingleChildScrollView(
                 child: Form(
                   key: empSignUpFormKey,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      OuterAppBar(
+                        title: '',
+                      ),
                       SizedBox(
-                        height: 30,
+                        height: 100,
                       ),
                       Text700(
-                        text: 'Enter your phone number',
+                        text: 'Welcome, Lets setup your account',
                         textAlign: TextAlign.center,
                         fontSize: 22,
                       ),
                       SizedBox(
                         height: 50,
                       ),
-                      AppPhoneField(
-                        Validator: AppValidations.validatePhoneNumber,
-                        number: controller.number,
+
+                      AppTextField(
+                        hintText: 'Username',
+                        labelText: 'Username',
                         onChanged: (val) {
-                          controller.phone = val.phoneNumber ?? '';
-                          controller.phoneCode = val.dialCode ?? '';
+                          controller.username = val;
                         },
                       ),
                       SizedBox(
-                        height: 30,
-                      ),
-                      Text400(
-                        text:
-                            'We will send a 4-Digit confirmation code on this phone. You will have to verify that on the next screen to continue.',
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(
-                        height: 30,
+                        height: 80,
                       ),
                       Container(
                         height: 55,
+                        margin:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                         width: double.infinity,
                         child: AppButtonField(
                           text: 'Continue',
                           onPressed: () {
-                            if (empSignUpFormKey.currentState!.validate()) {
-                              controller.next();
+                            FocusScope.of(context).unfocus();
+                            if (controller.username.isEmpty) {
+                              controller.dialogService
+                                  .showError('Please Enter a UserName');
+                            } else if (controller.username.isNotEmpty) {
+                              if (RegExp(r'\s').hasMatch(controller.username)) {
+                                controller.dialogService.showError(
+                                    'Username can not include spaces');
+                              } else {
+                                controller.next();
+                              }
                             }
                           },
                           primary: AppColors.primary,
@@ -126,7 +133,7 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                       //     ),
                       //     text: 'Continue with Google',
                       //     onPressed: () async {
-                      //       await controller.signInWithGoogle();
+                      //      // await controller.signInWithGoogle();
                       //       //Get.toNamed(Routes.MAIN_TABS);
                       //     },
                       //     textColor: Colors.black.withOpacity(0.54),
@@ -147,7 +154,7 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                       //     ),
                       //     text: 'Continue with Facebook',
                       //     onPressed: () async {
-                      //       await controller.signInWithFacebook();
+                      //      // await controller.signInWithFacebook();
                       //       //Get.toNamed(Routes.MAIN_TABS);
                       //     },
                       //     primary: Color(0xfff1877F2),
@@ -155,14 +162,28 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                       //   ),
                       // ),
                       SizedBox(
-                        height: 20,
+                        height: 100,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text400(
-                            textAlign: TextAlign.center,
-                            text:
-                                "By continuing you are agreeing our license agreement,privacy policy, Agreement on the processing of personal data."),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text400(
+                              textAlign: TextAlign.center,
+                              fontSize: 14,
+                              text: "By continuing you are agreeing with our "),
+                          GestureDetector(
+                            onTap: () {
+                              launchUrl(_url);
+                            },
+                            child: Text400(
+                                textAlign: TextAlign.center,
+                                decoration: TextDecoration.underline,
+                                fontSize: 14,
+                                color: AppColors.primary,
+                                text: " privacy policy"),
+                          ),
+                        ],
                       ),
                     ],
                   ),

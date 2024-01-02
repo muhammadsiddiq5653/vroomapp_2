@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vroom_app/app/app_constants.dart';
@@ -73,18 +72,18 @@ class CardDetailsController extends AppAbstractController {
 
   void shareCar() async {
     try {
-      EasyLoading.show();
+      loadingState = GeneralLoadingState.waiting;
       await appFeedApi.add(FeedModel(
           carModel: car,
           cover: '',
           createdAt: DateTime.now(),
           description: ''));
-      EasyLoading.dismiss();
+      loadingState = GeneralLoadingState.done;
       dialogService.showInfo('Car added to the feed');
     } catch (ex) {
       dialogService.showError(ex);
     } finally {
-      EasyLoading.dismiss();
+      loadingState = GeneralLoadingState.done;
     }
   }
 
@@ -92,28 +91,28 @@ class CardDetailsController extends AppAbstractController {
     FeedModel feed = FeedModel(
         carModel: car, cover: '', createdAt: DateTime.now(), description: '');
     try {
-      showLoading();
+      loadingState = GeneralLoadingState.waiting;
       AppUtilities.share(bytes);
-      hideLoading();
+      loadingState = GeneralLoadingState.done;
       update();
     } catch (ex) {
       print(ex);
       dialogService.showError(ex);
     } finally {
-      hideLoading();
+      loadingState = GeneralLoadingState.done;
     }
   }
 
   void deleteCar() async {
     try {
-      EasyLoading.show();
+      loadingState = GeneralLoadingState.waiting;
       await appCarsApi.deleteUserCar(car!.userCardId);
       // dialogService.showInfo('Car deleted');
       Get.back(result: true);
     } catch (ex) {
       dialogService.showError('Cant delete the car, already deleted?');
     } finally {
-      EasyLoading.dismiss();
+      loadingState = GeneralLoadingState.done;
     }
   }
 }

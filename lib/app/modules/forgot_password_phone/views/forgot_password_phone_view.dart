@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../../../app_colors.dart';
 import '../../../widgets/app_bars/inside_app_bar.dart';
@@ -41,12 +40,12 @@ class ForgotPasswordPhoneView extends GetView<ForgotPasswordPhoneController> {
                   SizedBox(
                     height: 50,
                   ),
-                  AppPhoneField(
-                    number: controller.number,
-                    onChanged: (val) {
-                      controller.phone = val.phoneNumber ?? '';
-                    },
-                  ),
+                  // AppPhoneField(
+                  //   number: controller.number,
+                  //   onChanged: (val) {
+                  //     controller.phone = val.phoneNumber ?? '';
+                  //   },
+                  // ),
                   SizedBox(
                     height: 30,
                   ),

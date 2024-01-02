@@ -1,32 +1,23 @@
-import 'package:camera/camera.dart';
-import 'package:extended_image/extended_image.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'dart:io';
 
+import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
 import 'package:vroom_app/app/app_colors.dart';
-import 'package:vroom_app/app/widgets/app_bars/inside_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
-import 'package:vroom_app/app/widgets/app_text/small_text.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 
-import '../../../routes/app_pages.dart';
-import '../../../widgets/app_text/text_600.dart';
 import '../controllers/scan_car_controller.dart';
 
 class ScanCarView extends GetView<ScanCarController> {
   const ScanCarView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ScanCarController>(
       builder: (_) => Scaffold(
-        appBar: controller.cameraStates != CameraStates.cameraDone
-            ? InsideAppBar(
-                title: '',
-              )
-            : null,
         body: _getChildrenDependOnCameraState(),
       ),
     );
@@ -49,21 +40,28 @@ class ScanCarView extends GetView<ScanCarController> {
                   aspectRatio: controller.cameraController!.value.aspectRatio,
                   child: CameraPreview(controller.cameraController!))),
         // _getCameraOverlay(),
-        Positioned(
-          bottom: 30,
-          left: 0,
-          right: 0,
-          child: Container(
-            height: 54,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            width: 200,
-            child: AppButtonField(
-              text: 'Wroom car',
-              onPressed: () {
-                controller.findCar();
-                //Get.toNamed(Routes.SIGNUP_STEP_DETAIL);
-              },
-            ),
+        Align(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                  onTap: () {
+                    //_showBottomSheet();
+                    controller.findCar();
+                  },
+                  child: Image.asset(
+                    "assets/images/taptostart.png",
+                    height: Get.height * 0.4,
+                  )),
+              SizedBox(
+                height: 25,
+              ),
+              Text400(
+                text: 'Tap on the button when ready',
+                fontSize: 22,
+              ),
+            ],
           ),
         ),
       ],
@@ -129,7 +127,7 @@ class ScanCarView extends GetView<ScanCarController> {
               height: 20,
             ),
             Text700(
-              textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
                 text:
                     'Something went wrong. But dont worry you can just try again.'),
             // if (controller.errorMessage != null && !kReleaseMode)
@@ -188,17 +186,23 @@ class ScanCarView extends GetView<ScanCarController> {
                   fit: BoxFit.cover,
                 ),
               Container(
-                  // padding: EdgeInsets.all(200),
-                  height: 400,
-                  margin: EdgeInsets.all(20),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.black38,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: RiveAnimation.asset(
-                    'assets/images/vroom_animation.riv',
-                    fit: BoxFit.cover,
-                  )),
+                // padding: EdgeInsets.all(200),
+                height: 400,
+                margin: EdgeInsets.all(20),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Colors.black38,
+                    borderRadius: BorderRadius.circular(20)),
+                child: RiveAnimation.asset(
+                  'assets/images/vroom_animation.riv',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Text400(
+                text: 'Keep your camera pointed at the car',
+                fontSize: 16,
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
         ),
@@ -223,12 +227,12 @@ class ScanCarView extends GetView<ScanCarController> {
               SizedBox(
                 height: 50,
               ),
-              if(controller.car != null)
-              Text700(
-                text: '${controller.car!.make} ${controller.car!.model}',
-                fontSize: 23,
-                textAlign: TextAlign.center,
-              ),
+              if (controller.car != null)
+                Text700(
+                  text: '${controller.car!.make} ${controller.car!.model}',
+                  fontSize: 23,
+                  textAlign: TextAlign.center,
+                ),
               SizedBox(
                 height: 20,
               ),

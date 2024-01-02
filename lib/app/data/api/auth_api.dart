@@ -12,7 +12,7 @@ class AuthApi extends GetxService {
   Future<AuthModel> signInWithPhonePassword(
       String phone, String password) async {
     var response = await networkService
-        .post(AppApiUrl.login, data: {'phone': phone, 'password': password});
+        .post(AppApiUrl.login, data: {'username': phone, 'password': password});
     return AuthModel.fromJson(response.data);
   }
 
@@ -35,10 +35,10 @@ class AuthApi extends GetxService {
     return true;
   }
 
-  Future<bool> phoneExist(String phone) async {
+  Future<bool> userNameExist(String userName) async {
     try {
-      await networkService.post(AppApiUrl.phoneExist, data: {
-        'phone': phone,
+      await networkService.post(AppApiUrl.usernameExist, data: {
+        'username': userName,
       });
       return true;
     } catch (ex) {

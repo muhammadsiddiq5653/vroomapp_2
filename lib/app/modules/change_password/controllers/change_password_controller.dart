@@ -1,5 +1,5 @@
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:vroom_app/app/app_enums.dart';
 
 import '../../../app_constants.dart';
 import '../../../data/api/app_users_api.dart';
@@ -33,7 +33,7 @@ class ChangePasswordController extends AppAbstractController {
 
   void finish() async {
     try {
-      EasyLoading.show();
+      loadingState = GeneralLoadingState.waiting;
       if (newPassword != confirmPassword) {
         throw Exception('Passowrd and Confirm Password at are not matched'.tr);
       }
@@ -53,7 +53,7 @@ class ChangePasswordController extends AppAbstractController {
       print(ex);
       dialogService.showError(ex);
     } finally {
-      EasyLoading.dismiss();
+      loadingState = GeneralLoadingState.done;
     }
   }
 }

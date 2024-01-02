@@ -1,11 +1,8 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:vroom_app/app/app_utilities.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
@@ -13,7 +10,6 @@ import '../../../app_enums.dart';
 import '../../../data/api/app_feed_api.dart';
 import '../../../data/models/envelope_model.dart';
 import '../../../data/models/feed_model.dart';
-import '../../../helpers/widgets_to_image_controller.dart';
 import '../../../routes/app_pages.dart';
 
 class ProfileController extends AppAbstractController {
@@ -62,7 +58,7 @@ class ProfileController extends AppAbstractController {
       return true;
     } catch (ex) {
       print(ex);
-      loadingState = GeneralLoadingState.error;
+      loadingState = GeneralLoadingState.empty;
       return false;
     } finally {
       update();
@@ -106,9 +102,9 @@ class ProfileController extends AppAbstractController {
 
   share(FeedModel feed, Uint8List? bytes) async {
     try {
-      showLoading();
+      loadingState = GeneralLoadingState.waiting;
       AppUtilities.share(bytes);
-      hideLoading();
+      loadingState = GeneralLoadingState.done;
       await appFeedApi.share(feed);
       feed.shares++;
       update();
@@ -116,7 +112,7 @@ class ProfileController extends AppAbstractController {
       print(ex);
       dialogService.showError(ex);
     } finally {
-      hideLoading();
+      loadingState = GeneralLoadingState.done;
     }
   }
 

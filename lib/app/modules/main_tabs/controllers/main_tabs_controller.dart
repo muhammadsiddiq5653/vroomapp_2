@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 
@@ -48,38 +47,41 @@ class MainTabsController extends AppAbstractController {
     if (!box.hasData(dontShowAgain) || box.read<bool>(dontShowAgain) == false) {
       var result = await Get.bottomSheet(AppBottomSheet(
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(17),
           child: Wrap(
             children: [
               Container(
                 width: double.infinity,
                 child: Column(
                   children: [
+
                     Text700(
                       textAlign: TextAlign.center,
                       fontSize: 18,
                       text: 'Instructions to Wroom',
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     Image.asset(
                       'assets/images/bmw.png',
                       width: 253,
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     Text400(
+                      textAlign: TextAlign.center,
                         fontSize: 14,
                         text:
                             'Wrooming a car works in a THREE QUARTER angle. Please make sure to hold your phone at the angle where your car looks similar to the above image to Wroom Successfully.'),
                     SizedBox(
-                      height: 10,
+                      height: 45,
                     ),
                     Container(
+                      padding: EdgeInsets.symmetric(horizontal: 30),
                       width: double.infinity,
-                      height: 40,
+                      height: 55,
                       child: AppButtonField(
                         text: 'Got it',
                         onPressed: () {
@@ -88,11 +90,12 @@ class MainTabsController extends AppAbstractController {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     Container(
+                      padding: EdgeInsets.symmetric(horizontal: 30),
                       width: double.infinity,
-                      height: 40,
+                      height: 55,
                       child: AppButtonField(
                         primary: Colors.transparent,
                         text: 'Don\'t show this again',

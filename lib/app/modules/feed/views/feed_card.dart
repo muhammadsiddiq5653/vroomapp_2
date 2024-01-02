@@ -4,11 +4,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:rive/rive.dart';
 import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/data/models/feed_model.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/widgets/app_network_image.dart';
+import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 
 import '../../../app_constants.dart';
@@ -63,9 +63,10 @@ class FeedCard extends StatelessWidget {
                             width: double.infinity,
                             fit: BoxFit.fitWidth,
                             loadingWidget: Container(
+                              //RiveAnimation.asset(
+                              //                                         'assets/images/vroom_animation.riv')
                                 child: Center(
-                                    child: RiveAnimation.asset(
-                                        'assets/images/vroom_animation.riv'))),
+                                    child: CircularProgressIndicator())),
                           ),
                     Positioned(
                       top: 0,
@@ -82,42 +83,52 @@ class FeedCard extends StatelessWidget {
                             child: Container(
                               padding: EdgeInsets.only(left: 10, right: 10),
                               color: HexColor("#2e2e2e").withOpacity(0.25),
-                              child: Row(children: [
-                                AppProfileAvatar(
-                                  notLoggedInCard: notLoggedInCard,
-                                  size: 50,
-                                  user: feedModel.userModel,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      feedModel.userModel?.name ?? '',
-                                      style: TextStyle(
-                                        fontSize: 18,
+                                    _getLeftHeader(),
+                                    PopupMenuButton<int>(
+                                      color: AppColors.cardColor,
+                                      icon: Icon(
+                                        Remix.more_fill,
                                         color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontStyle: FontStyle.italic,
                                       ),
+                                      initialValue: null,
+                                      // Callback that sets the selected popup menu item.
+                                      onSelected: (value) async {
+                                        if (value == 0) {
+                                          // controller.shareOutsideApp(
+                                          //     await widgetsToImageController
+                                          //         .capture());
+                                        }
+                                      },
+                                      itemBuilder: (BuildContext context) =>
+                                          <PopupMenuEntry<int>>[
+                                        PopupMenuItem<int>(
+                                          value: 0,
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Remix.delete_bin_7_fill,
+                                                color: Colors.white,
+                                                size: 24,
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text400(
+                                                text: 'Delete this post',
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+
+                                      ],
                                     ),
-                                    SizedBox(
-                                      height: 2,
-                                    ),
-                                    Text(
-                                      feedModel.userModel?.username ?? '',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.white.withOpacity(0.90),
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ]),
+                                  ]),
                             ),
                           ),
                         ),
@@ -230,6 +241,46 @@ class FeedCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  _getLeftHeader() {
+    return Row(
+      children: [
+        AppProfileAvatar(
+          size: 42,
+          user: feedModel.userModel,
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              feedModel.userModel?.name ?? '',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+            SizedBox(
+              height: 2,
+            ),
+            Text(
+              feedModel.userModel?.username ?? '',
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.white.withOpacity(0.90),
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

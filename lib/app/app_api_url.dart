@@ -1,5 +1,6 @@
 
 class AppApiUrl {
+  //'https://vroom-api-6lt4pibyja-uc.a.run.app/'
   static final root = 'https://vroom-api-6lt4pibyja-uc.a.run.app/';
   // kReleaseMode
   //     ?
@@ -21,7 +22,7 @@ class AppApiUrl {
   static const imageUpload = 'uploader/media/upload';
   static final feed = 'feed';
   static final notifications = 'notifications';
-  static const phoneExist = 'auth/phone-exist';
+  static const usernameExist = 'auth/username-exist';
   //App Links Ops
   static final appLink = '${root}app-link';
 }

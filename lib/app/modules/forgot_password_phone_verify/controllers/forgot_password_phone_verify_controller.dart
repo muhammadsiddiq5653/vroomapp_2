@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
-import '../../../../main.dart';
 import '../../../app_constants.dart';
 import '../../../routes/app_pages.dart';
 import '../../app_abstract_controller.dart';
@@ -79,26 +77,6 @@ class ForgotPasswordPhoneVerifyController extends AppAbstractController {
     }
   }
 
-  void verify() async {
-    try {
-      unawaited(EasyLoading.show());
-      var credential = PhoneAuthProvider.credential(
-          verificationId: verificationId, smsCode: code);
-      var signin = await FirebaseAuth.instance
-          .signInWithCredential(credential)
-          .catchError((onError) {
-        dialogService.showError('Wrong OTP code'.tr);
-        print('SignIn Error: ${onError.toString()}\n\n');
-      });
-      var firebaseToken = await signin.user!.getIdToken();
-      Get.offAndToNamed(Routes.CHANGE_PASSWORD,
-          arguments: {AppConstants.firebaseTokenID: firebaseToken});
-    } catch (ex) {
-      print(ex);
-    } finally {
-      unawaited(EasyLoading.dismiss());
-    }
-  }
 
   void goBack() {
     Get.back();

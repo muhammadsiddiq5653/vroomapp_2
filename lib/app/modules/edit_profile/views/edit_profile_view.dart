@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../app_colors.dart';
-import '../../../widgets/app_bars/inside_app_bar.dart';
 import '../../../widgets/app_form_fields/app_button_field.dart';
 import '../../../widgets/app_form_fields/app_text_field.dart';
 import '../../../widgets/app_form_fields/app_upload_photo_field.dart';
@@ -20,6 +19,7 @@ class EditProfileView extends GetView<EditProfileController> {
     return GetBuilder<EditProfileController>(
       builder: (_) => AppKeyboardHider(
         child:  Container(
+          padding: EdgeInsets.symmetric(horizontal: 27),
           color: AppColors.background,
           child: Column(
                 children: [
@@ -31,7 +31,11 @@ class EditProfileView extends GetView<EditProfileController> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(
-                              height: 30,
+                              height: 45,
+                            ),
+                            Text700(text: "Edit Your Profile", fontSize: 18 ,),
+                            SizedBox(
+                              height: 35,
                             ),
                             AppUploadPhotoField(
                               width: 150,
@@ -81,6 +85,7 @@ class EditProfileView extends GetView<EditProfileController> {
                     ),
                   ),
                   Container(
+                    padding: EdgeInsets.symmetric(horizontal:20 ),
                     height: 55,
                     width: double.infinity,
                     child: AppButtonField(
@@ -91,7 +96,10 @@ class EditProfileView extends GetView<EditProfileController> {
                       },
                       primary: AppColors.primary,
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
                 ],
               ),
         ),

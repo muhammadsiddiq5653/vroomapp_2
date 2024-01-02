@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vroom_app/app/app_colors.dart';
-import 'package:vroom_app/app/modules/alerts/notloggedin_alerts.dart';
-import 'package:vroom_app/app/modules/feed/notloggedin_feed.dart';
-import 'package:vroom_app/app/modules/home/notloggedin_home.dart';
-import 'package:vroom_app/app/modules/profile/notloggedin_profile.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../widgets/app_form_fields/app_button_field.dart';

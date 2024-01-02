@@ -16,4 +16,5 @@ class AppColors {
   static const gold = Color(0xFFF1C644);
   static const inactive = Color(0xFFC5C5C7);
   static const grey = Color(0xFF8A8A8E);
+  static const cardColor = Color(0xFF17171A);
 }

@@ -1,7 +1,4 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-import 'app_colors.dart';
 
 class AppValidations {
   static RegExp nameRegExp = RegExp(r'^[a-zA-Z ]+$'); // Allows only alphabetic characters and spaces

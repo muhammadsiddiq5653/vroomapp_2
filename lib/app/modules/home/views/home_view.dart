@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/app_colors.dart';
+import 'package:vroom_app/app/data/models/user_model.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_text_field.dart';
 import 'package:vroom_app/app/widgets/app_keyboard_hider.dart';
@@ -10,7 +11,6 @@ import 'package:vroom_app/app/widgets/app_state_handler.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 import 'package:vroom_app/app/widgets/loadmore.dart';
 
-import '../../../widgets/app_floating_action_button.dart';
 import '../../../widgets/app_text/text_600.dart';
 import '../../card_details/views/components/car_card.dart';
 import '../controllers/home_controller.dart';
@@ -25,29 +25,32 @@ class HomeView extends GetView<HomeController> {
       builder: (HomeController _) => AppKeyboardHider(
         child: Scaffold(
             appBar: GameAppBar(
-                userModel: homeController.settingsService.authModel!.userModel),
+                userModel: UserModel(email: ""),),
             // floatingActionButtonLocation:
             //     FloatingActionButtonLocation.centerDocked,
             // floatingActionButton: AppFloatingActionButton(
             //   onClick: controller.scanCar,
             // ),
             body: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 17, vertical: 20),
               child: Column(
                 children: [
-                  AppTextField(
-                      prefixIcon: Icon(
-                        Remix.search_2_line,
-                        color: AppColors.primary,
-                      ),
-                      suffixIcon: IconButton(
-                        icon: Icon(Remix.filter_3_fill),
-                        color: AppColors.primary,
-                        onPressed: controller.sortOption,
-                      ),
-                      onChanged: controller.searchChanged,
-                      hintText: 'Search',
-                      labelText: 'Search'),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: AppTextField(
+                        prefixIcon: Icon(
+                          Remix.search_2_line,
+                          color: AppColors.primary,
+                        ),
+                        suffixIcon: IconButton(
+                          icon: Icon(Remix.filter_3_fill),
+                          color: AppColors.primary,
+                          onPressed: controller.sortOption,
+                        ),
+                        onChanged: controller.searchChanged,
+                        hintText: 'Search',
+                        labelText: 'Search'),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -68,7 +71,7 @@ class HomeView extends GetView<HomeController> {
                         child: ListView.separated(
                             itemCount: controller.cars?.collection.length ?? 0,
                             separatorBuilder: ((context, index) => SizedBox(
-                                  height: 10,
+                                  height: 15,
                                 )),
                             itemBuilder: (BuildContext context, int index) {
                               var car = controller.cars!.collection[index];

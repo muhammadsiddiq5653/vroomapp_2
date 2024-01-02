@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../app_colors.dart';
 import '../../../widgets/app_bars/inside_app_bar.dart';
 import '../../../widgets/app_form_fields/app_button_field.dart';
@@ -84,7 +83,7 @@ class ForgotPasswordPhoneVerifyView
                   cursorColor: Colors.white,
                   controller: controller.pinController,
                   onCompleted: (v) {
-                    controller.verify();
+
                   },
                   onChanged: (value) {
                     controller.code = value;
@@ -133,7 +132,7 @@ class ForgotPasswordPhoneVerifyView
                   child: AppButtonField(
                     text: 'Verify',
                     onPressed: () {
-                      controller.verify();
+
                     },
                     primary: AppColors.primary,
                   ),

@@ -67,6 +67,8 @@ class NetworkService extends getx.GetxService {
         queryParameters: query, options: Options(headers: headers));
   }
 
+
+  //{"id":12,"name":"Ashell","email":"S@gmail.com","phone_code":null,"phone":null,"avatar":"","access_token":"KjXK2EXXcqo0kcMDbL84Di1h8rrN9cX0ZZbPJZy6","access_token_orig":"21|KjXK2EXXcqo0kcMDbL84Di1h8rrN9cX0ZZbPJZy6","total_price":null}ash
   Future<Response> post(String url, {Map<String, dynamic>? query, data}) async {
     var request = await dio.post(url, queryParameters: query, data: data);
     return request;

@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vroom_app/app/app_enums.dart';
 import 'package:vroom_app/app/data/api/auth_api.dart';
-import 'package:vroom_app/app/data/models/user_model.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 
@@ -15,20 +15,24 @@ class LoginDetailsStepController extends AppAbstractController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final FacebookAuth facebookAuth = FacebookAuth.instance;
+  TextEditingController pinController = TextEditingController();
   AuthApi authApi = Get.put(AuthApi());
   String initialCountry = 'EG';
-  PhoneNumber number = PhoneNumber(isoCode: AppConstants.localeForPhone);
 
   String password = '';
-  String phone = '';
+  String userName = '';
+  final carBrand = 'Audi'.obs;
   bool isObscure = true;
-
 
   @override
   void onInit() {
     super.onInit();
-    user.bindStream(_auth.authStateChanges());
 
+    // user.bindStream(_auth.authStateChanges());
+  }
+
+  updateCarBrand(String name) {
+    carBrand(name);
   }
 
   @override
@@ -40,55 +44,33 @@ class LoginDetailsStepController extends AppAbstractController {
   void onClose() {
     super.onClose();
   }
-  Future<void> verifyPhoneNumber( ) async {
-    await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: phone,
-      verificationCompleted: (PhoneAuthCredential credential) {
-        // Auto-retrieve verification code on Android
-        FirebaseAuth.instance.signInWithCredential(credential);
 
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        print('Verification Failed: ${e.message}');
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        // Save the verification ID for later use
-        print('Verification Code Sent: $verificationId');
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        // Auto-retrieve timeout on iOS
-        print('Auto-Retrieval Timeout: $verificationId');
-      },
-      timeout: Duration(seconds: 60), // Timeout duration
-    );
-    //Get.toNamed(Routes.MAIN_TABS);
-
-  }
   void login() async {
     try {
-      showLoading();
-      var authModel = await authApi.signInWithPhonePassword(phone, password);
+      loadingState = GeneralLoadingState.waiting;
+
+      var authModel = await authApi.signInWithPhonePassword(userName, password);
       settingsService.setAuth(authModel);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setBool("isloggedin", true);
-      showLoading();
-      await Get.toNamed(Routes.MAIN_TABS);
+      loadingState = GeneralLoadingState.done;
 
+      Get.offAllNamed(Routes.MAIN_TABS);
     } catch (ex) {
       dialogService.showError(ex);
     } finally {
-      hideLoading();
+      loadingState = GeneralLoadingState.done;
     }
   }
 
-
   Rx<User?> user = Rx<User?>(null);
-
 
   Future<UserCredential?> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
-      final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
@@ -103,10 +85,15 @@ class LoginDetailsStepController extends AppAbstractController {
     }
   }
 
+  Future<bool> verifyUserName() async {
+    return false;
+  }
+
   Future<UserCredential?> signInWithFacebook() async {
     try {
       final result = await facebookAuth.login();
-      final AuthCredential facebookAuthCredential = FacebookAuthProvider.credential(result.accessToken!.token);
+      final AuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(result.accessToken!.token);
       // Get.toNamed(Routes.MAIN_TABS);
 
       return await _auth.signInWithCredential(facebookAuthCredential);
@@ -119,6 +106,7 @@ class LoginDetailsStepController extends AppAbstractController {
   void signOut() async {
     await _auth.signOut();
   }
+
   void toggleObscure() {
     isObscure = !isObscure;
     update();

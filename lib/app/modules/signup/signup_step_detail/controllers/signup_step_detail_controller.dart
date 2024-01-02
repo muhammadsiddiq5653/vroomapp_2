@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vroom_app/app/app_enums.dart';
 import 'package:vroom_app/app/data/api/app_images_api.dart';
 import 'package:vroom_app/app/data/api/auth_api.dart';
 import 'package:vroom_app/app/data/models/user_model.dart';
@@ -11,12 +12,17 @@ class SignupStepDetailController extends AppAbstractController {
   AppImagesApi appImagesApi = Get.put(AppImagesApi());
   UserModel user = UserModel(email: '');
   String? userImage;
+  final carBrand = 'Audi'.obs;
 
   @override
   void onInit() {
     super.onInit();
-    user.phone = Get.arguments?['phone'];
-    user.phoneCode = Get.arguments?['phoneCode'];
+    user.username = box.read('phone');
+    user.password = box.read('pin');
+  }
+
+  updateCarBrand(String name) {
+    carBrand(name);
   }
 
   @override
@@ -31,20 +37,31 @@ class SignupStepDetailController extends AppAbstractController {
 
   void regsiter() async {
     try {
-      showLoading();
+      loadingState = GeneralLoadingState.waiting;
+
       if (userImage != null) {
         var token = await appImagesApi.upload(userImage!).whenComplete(() {});
         user.media = token;
       }
+      user.favoriteCarBrand = carBrand.value;
+      box.remove('phone');
+      box.remove('pin');
       var auth = await authApi.signUp(user);
-      settingsService.setAuth(auth);
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool("isloggedin", true);
-      Get.toNamed(Routes.MAIN_TABS);
+      print("User Details ->${auth.toString()}" );
+      if (auth.accessToken.isNotEmpty) {
+        settingsService.setAuth(auth);
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+         prefs.setBool("isloggedin", true);
+        Get.offAllNamed(Routes.MAIN_TABS);
+      } else {
+        dialogService.showError(
+          "Unable to Register. Please try again later",
+        );
+      }
     } catch (ex) {
       dialogService.showError(ex);
     } finally {
-      hideLoading();
+      loadingState = GeneralLoadingState.done;
     }
   }
 }

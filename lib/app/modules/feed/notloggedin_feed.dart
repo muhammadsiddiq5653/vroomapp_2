@@ -50,8 +50,10 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                   itemCount: controller.feed?.collection.length ?? 0,
                   itemBuilder: (BuildContext context, int index) {
                     var item = controller.feed!.collection[index];
-                    return index == 0
-                        ? FeedCard(
+                    return
+                      index == 0
+                        ?
+                    FeedCard(
                             notLoggedInCard: true,
                             feedModel: FeedModel(
                                 description: '',

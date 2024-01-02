@@ -11,6 +11,8 @@ class UserModel extends Serializable {
   String? password;
   String? phone;
   String? phoneCode;
+  String? wrooms;
+  String? posts;
   int? id;
   String? firebaseToken;
   bool phoneVerified = false;
@@ -25,12 +27,16 @@ class UserModel extends Serializable {
     this.phoneVerified = false,
     required this.email,
     this.firebaseToken,
+    this.wrooms,
+    this.posts,
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     avatar = json['avatar'];
     name = json['name'];
+    wrooms = json['wrooms'];
+    posts = json['posts'];
     username = json['username'];
     favoriteCarBrand = json['favoriteCarBrand'];
     email = json['email'];

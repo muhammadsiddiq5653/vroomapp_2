@@ -4,7 +4,6 @@ import 'package:vroom_app/app/data/models/notification_model.dart';
 import '../../app_api_url.dart';
 import '../../services/network_service.dart';
 import '../models/envelope_model.dart';
-import '../models/feed_model.dart';
 
 class AppNotificationsApi extends GetxService {
   var networkService = Get.put(NetworkService());

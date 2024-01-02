@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vroom_app/app/app_enums.dart';
 import 'package:vroom_app/app/data/api/app_users_api.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
@@ -31,11 +32,12 @@ class EditProfileController extends AppAbstractController {
 
   void save() async {
     try {
+      loadingState = GeneralLoadingState.waiting;
       var user = UserModel(
           email: email,
           name: name,
           id: settingsService.authModel?.userModel.id);
-      showLoading();
+
       if (userImage != null) {
         var token = await appImagesApi.upload(userImage!).whenComplete(() {});
         user.media = token;
@@ -45,7 +47,7 @@ class EditProfileController extends AppAbstractController {
     } catch (ex) {
       dialogService.showError(ex);
     } finally {
-      hideLoading();
+      loadingState = GeneralLoadingState.done;
       Get.back();
     }
   }
