@@ -167,10 +167,13 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text400(
-                            textAlign: TextAlign.center,
-                            fontSize: 14,
-                            text: "By continuing you are agreeing with our "),
+                        Expanded(
+                          child: Text400(
+                              textAlign: TextAlign.center,
+                              fontSize: 14,
+                              maxLines: 1,
+                              text: "By continuing you are agreeing with our "),
+                        ),
                         GestureDetector(
                           onTap: () {
                             launchUrl(_url);

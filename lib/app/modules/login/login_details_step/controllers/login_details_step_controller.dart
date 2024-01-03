@@ -14,7 +14,7 @@ class LoginDetailsStepController extends AppAbstractController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final FacebookAuth facebookAuth = FacebookAuth.instance;
-  TextEditingController pinController = TextEditingController();
+  late TextEditingController pinController ;
   AuthApi authApi = Get.put(AuthApi());
   String initialCountry = 'EG';
 
@@ -25,6 +25,7 @@ class LoginDetailsStepController extends AppAbstractController {
 
   @override
   void onInit() {
+    pinController = TextEditingController();
     loadingState = GeneralLoadingState.done;
     super.onInit();
 

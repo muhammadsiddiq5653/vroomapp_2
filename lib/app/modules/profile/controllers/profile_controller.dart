@@ -46,6 +46,7 @@ class ProfileController extends AppAbstractController {
       if (page == 1) {
         feed = result;
         if ((feed?.collection.length ?? 0) == 0) {
+          setDirection(1);
           loadingState = GeneralLoadingState.empty;
         } else {
           loadingState = GeneralLoadingState.done;

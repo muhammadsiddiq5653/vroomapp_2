@@ -11,7 +11,7 @@ import '../../tap_to_start.dart';
 
 class SignupStepVerifyController extends AppAbstractController {
   AppUsersApi appUsersApi = Get.put(AppUsersApi());
-  TextEditingController pinController = TextEditingController();
+  late TextEditingController pinController ;
   FocusNode myFocusNode = FocusNode();
   String phone = '';
   String phoneCode = '';
@@ -24,6 +24,7 @@ class SignupStepVerifyController extends AppAbstractController {
   @override
   void onInit() {
     super.onInit();
+    pinController = TextEditingController();
     phone = Get.arguments?['username'];
     phoneCode = Get.arguments?['password'];
   }

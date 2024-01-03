@@ -32,10 +32,6 @@ class ProfileView extends GetView<ProfileController> {
             ? profileController.settingsService.authModel!.userModel
             : UserModel(email: ""),
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton: AppFloatingActionButton(
-      //   onClick: controller.scanCar,
-      // ),
       body: GetBuilder<ProfileController>(
         builder: (_) => Container(
             padding: EdgeInsets.symmetric(horizontal: 17, vertical: 30),
@@ -90,10 +86,8 @@ class ProfileView extends GetView<ProfileController> {
                               AppIconButton(
                                 onPressed: () {
                                   Get.bottomSheet(
-                                      Container(
-                                          height: 100,
-                                          child: EditProfileView()),
-                                      persistent: false);
+                                      EditProfileView(),
+                                      );
                                 },
                                 icon: Remix.pencil_fill,
                                 size: 42,
@@ -299,6 +293,7 @@ class ProfileView extends GetView<ProfileController> {
   }
 
   _getEmptyState() {
+    controller.setDirection(1);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

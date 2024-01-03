@@ -29,6 +29,7 @@ class Text400 extends StatelessWidget {
           color: color,
           fontSize: fontSize,
           decoration: decoration,
+          overflow: TextOverflow.visible,
           height: height,
           fontStyle: FontStyle.italic,
           fontWeight: FontWeight.w400),

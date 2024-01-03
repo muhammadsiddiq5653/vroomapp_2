@@ -19,6 +19,7 @@ class EditProfileView extends GetView<EditProfileController> {
     return GetBuilder<EditProfileController>(
       builder: (_) => AppKeyboardHider(
         child:  Container(
+
           padding: EdgeInsets.symmetric(horizontal: 27),
           color: AppColors.background,
           child: Column(

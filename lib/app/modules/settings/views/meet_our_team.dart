@@ -11,7 +11,7 @@ class MeetTeam extends StatelessWidget {
     'Bachelor in Business Administration. Two times founder of successful technology companies. Two exits. Author of two books on marketing management.',
     'Master in Software programming. CTO at Shopbox.com. UI Developer Link Management. Owner of Egypts biggest Paddle Tennis App.',
     'Front end game designer. Bachelors in Computer Programming. Previously, Creative Director at Code Avenue (Karachi). Design Director at TickFilm Lead designer at Zed & White. ',
-    'Full Stack Mobile Apps Developer .Bachelor in Software Engineering.I seamlessly blend technical virtuosity with an artist touch, crafting mobile masterpieces that transcend industry bounds. Committed to delivering high-caliber, timeless solutions, my work consistently exceeds the realm of digital expectations.'
+    'Full Stack Mobile Apps Developer .Bachelor in Software Engineering. crafting mobile masterpieces that transcend industry bounds.'
   ];
   List<String> assetsUrls = [
     'assets/images/christian.jpeg',

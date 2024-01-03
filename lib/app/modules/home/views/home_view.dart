@@ -93,7 +93,7 @@ class HomeView extends GetView<HomeController> {
   Widget _getEmptyState() {
     return Center(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 20),
+        padding: EdgeInsets.symmetric(vertical: 10),
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

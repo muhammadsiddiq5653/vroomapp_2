@@ -13,7 +13,9 @@ import '../controllers/signup_step_verify_controller.dart';
 
 class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
   final controller = Get.put(SignupStepVerifyController());
+
   SignupStepVerifyView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SignupStepVerifyController>(
@@ -21,9 +23,9 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
         // appBar: InsideAppBar(
         //   title: '',
         // ),
-        body: Center(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,7 +55,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                     length: 4,
                     obscureText: false,
                     animationType: AnimationType.fade,
-                  //  focusNode: controller.myFocusNode,
+                    //  focusNode: controller.myFocusNode,
                     textStyle: TextStyle(color: AppColors.primary),
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.box,
@@ -64,7 +66,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                       inactiveFillColor: AppColors.primary,
                       borderRadius: BorderRadius.circular(10),
                       fieldHeight: 50,
-                       fieldWidth: 40,
+                      fieldWidth: 40,
                       activeFillColor: Colors.transparent,
                     ),
                     autoFocus: true,
@@ -92,7 +94,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                   height: 30,
                 ),
                 VirtualKeyboard(
-                  // [0-9] + .
+                    // [0-9] + .
                     fontSize: 20,
                     type: VirtualKeyboardType.Numeric,
                     textColor: Colors.white,
@@ -105,8 +107,8 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                             if (controller.pinController.text.isEmpty) {
                             } else {
                               controller.pinController.text =
-                                  controller.pinController.text.substring(
-                                      0, controller.pinController.text.length - 1);
+                                  controller.pinController.text.substring(0,
+                                      controller.pinController.text.length - 1);
                             }
                           }
 
@@ -116,7 +118,8 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                             if (key.text == ".") {
                             } else if (controller.pinController.text.isEmpty) {
                               controller.pinController.text = key.text;
-                            } else if (controller.pinController.text.isNotEmpty) {
+                            } else if (controller
+                                .pinController.text.isNotEmpty) {
                               controller.pinController.text =
                                   controller.pinController.text + key.text;
                             }
@@ -126,7 +129,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
 
                       print(controller.pinController.text);
                     }),
-                Spacer(),
+                //Spacer(),
                 Container(
                   height: 50,
                   margin: EdgeInsets.only(top: 30),

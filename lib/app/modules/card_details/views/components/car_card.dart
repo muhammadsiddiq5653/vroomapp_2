@@ -28,7 +28,7 @@ class CarCard extends StatelessWidget {
         containerColor: AppColors.cardColor,
         child: Stack(children: [
           Positioned(
-              left: -160,
+              left: -175,
               top: 0,
               bottom: -100,
               child: Hero(
@@ -45,7 +45,7 @@ class CarCard extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: CarCardHeader(car: car)),
               Container(
-                padding: EdgeInsets.fromLTRB(210, 20, 20, 20),
+                padding: EdgeInsets.fromLTRB(180, 20, 10, 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
