@@ -27,14 +27,16 @@ class FeedCard extends StatelessWidget {
   Function(FeedModel, Uint8List?) onShareButton;
   bool notLoggedInCard;
   bool manageShare;
+  bool notLoggedIn;
 
   FeedCard(
       {super.key,
       required this.feedModel,
       this.notLoggedInCard = false,
+      this.notLoggedIn = false,
       this.manageShare = false,
       required this.onLikeButton,
-        required this.onDeleteButton,
+      required this.onDeleteButton,
       required this.onShareButton});
 
   @override
@@ -90,7 +92,7 @@ class FeedCard extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     _getLeftHeader(),
-                            //  if (feedModel.)
+                                    if (!notLoggedIn)
                                       PopupMenuButton<int>(
                                         color: AppColors.cardColor,
                                         icon: Icon(

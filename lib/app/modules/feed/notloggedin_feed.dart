@@ -54,6 +54,7 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                       index == 0
                         ?
                     FeedCard(
+                      notLoggedIn: true,
                             notLoggedInCard: true,
                             feedModel: FeedModel(
                                 description: '',
@@ -69,6 +70,7 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                             onShareButton: (FeedModel, b) {}, onDeleteButton: (FeedModel ) {  },
                           )
                         : FeedCard(
+                        notLoggedIn: true,
                             manageShare: true,
                             feedModel: item,
                         onDeleteButton: (FeedModel f) {
