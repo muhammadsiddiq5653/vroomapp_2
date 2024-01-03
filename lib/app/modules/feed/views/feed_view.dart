@@ -5,7 +5,6 @@ import 'package:vroom_app/app/widgets/loadmore.dart';
 
 import '../../../app_colors.dart';
 import '../../../widgets/app_state_handler.dart';
-import '../../../widgets/app_text/small_bold_text.dart';
 import '../../../widgets/app_text/text_400.dart';
 import '../../../widgets/app_text/text_700.dart';
 import '../controllers/feed_controller.dart';
@@ -50,10 +49,10 @@ class FeedView extends GetView<FeedController> {
                   itemBuilder: (BuildContext context, int index) {
                     var item = controller.feed!.collection[index];
                     return FeedCard(
-                      feedModel: item,
-                      onLikeButton: controller.like,
-                      onShareButton: controller.share,
-                    );
+                        feedModel: item,
+                        onLikeButton: controller.like,
+                        onShareButton: controller.share,
+                        onDeleteButton: controller.delete);
                   }),
             ),
           ),
@@ -71,17 +70,22 @@ class FeedView extends GetView<FeedController> {
             'assets/images/NoPosts.png',
             width: 92,
           ),
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           Text700(
             text: 'No Posts, Yet!',
             color: AppColors.surface,
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Text400(
             fontSize: 12,
             textAlign: TextAlign.center,
-            text: 'Wroom some cars and share them\non the feed to fill this space!',
+            text:
+                'Wroom some cars and share them\non the feed to fill this space!',
             color: AppColors.surface.withOpacity(0.9),
           ),
         ],

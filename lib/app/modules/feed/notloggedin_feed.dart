@@ -62,15 +62,19 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                                 image: 'assets/images/FeedImageNotSignedIn.png',
                                 userModel: UserModel(
                                     email: '',
-                                    avatar: 'assets/images/ProfileDummy.png',
+                                    avatar: '',
                                     username: '@username',
                                     name: 'You')),
                             onLikeButton: (feedModel) {},
-                            onShareButton: (FeedModel, b) {},
+                            onShareButton: (FeedModel, b) {}, onDeleteButton: (FeedModel ) {  },
                           )
                         : FeedCard(
                             manageShare: true,
                             feedModel: item,
+                        onDeleteButton: (FeedModel f) {
+                            feedController.feed!.collection.removeWhere((element) => element.id == f.id);
+                              controller.update();
+                        },
                             onLikeButton: (feedModel) {
                               Get.bottomSheet(Container(
                                 padding: EdgeInsets.all(20),

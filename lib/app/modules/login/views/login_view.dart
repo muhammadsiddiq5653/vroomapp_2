@@ -4,8 +4,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:virtual_keyboard_multi_language/virtual_keyboard_multi_language.dart';
 import 'package:vroom_app/app/modules/login/login_details_step/controllers/login_details_step_controller.dart';
 import 'package:vroom_app/app/widgets/app_bars/outer_app_bar.dart';
-import 'package:vroom_app/app/widgets/app_bottom_sheet.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_drop_down_button.dart';
+import 'package:vroom_app/app/widgets/app_state_handler.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 import 'package:vroom_app/app/widgets/app_text/text_600.dart';
 
@@ -20,147 +20,153 @@ class LoginView extends GetView<LoginDetailsStepController> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: InsideAppBar(title: ''),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Image.asset(
-            //   'assets/images/logo.png',
-            //   width: 100,
-            // ),
-            OuterAppBar(
-              title: '',
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Text700(
-              text: 'Enter your PIN',
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 60,
-            ),
-            Container(
-              width: 200,
-              height: 100,
-             // padding: const EdgeInsets.symmetric(horizontal: 80.0),
-              child: PinCodeTextField(
-                length: 4,
-                obscureText: false,
-                animationType: AnimationType.fade,
-                // focusNode: controller.myFocusNode,
-                textStyle: TextStyle(color: AppColors.primary),
-                pinTheme: PinTheme(
-                  shape: PinCodeFieldShape.box,
-                  activeColor: AppColors.primary,
-                  selectedColor: AppColors.primary,
-                  selectedFillColor: AppColors.primary,
-                  inactiveColor: AppColors.primary,
-                  inactiveFillColor: AppColors.primary,
-                  borderRadius: BorderRadius.circular(10),
-                  fieldHeight: 55,
-                  fieldWidth: 40,
-                  activeFillColor: Colors.transparent,
-                ),
-                useExternalAutoFillGroup: true,
-                autoFocus: false,
-                animationDuration: Duration(milliseconds: 300),
-                backgroundColor: Colors.transparent,
-                enableActiveFill: false,
-                keyboardType: TextInputType.none,
-                cursorColor: Colors.white,
-                controller: controller.pinController,
-                onCompleted: (v) {
-                  // controller.verify();
-                },
-                onChanged: (value) {
-                  if (value.length <= 4) controller.password = value;
-                },
-                beforeTextPaste: (text) {
-                  print("Allowing to paste $text");
-                  return true;
-                },
-                appContext: context,
+      body: AppStateHandler(
+        loadingState: controller.loadingState,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Image.asset(
+              //   'assets/images/logo.png',
+              //   width: 100,
+              // ),
+              OuterAppBar(
+                title: '',
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text600(
-                  text: 'Forgot pin? ',
-                  fontSize: 14,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Get.bottomSheet(
-                        AppBottomSheet(child: forgetPasswordDialog()));
-                    // forgetPasswordDialog(),
-                  },
-                  child: Text600(
-                    text: 'Reset it now',
-                    color: AppColors.primary,
-                    fontSize: 14,
-                    decoration: TextDecoration.underline,
+              SizedBox(
+                height: 50,
+              ),
+              Text700(
+                text: 'Enter your PIN',
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 60,
+              ),
+              Container(
+                width: 200,
+                height: 100,
+                // padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                child: PinCodeTextField(
+                  length: 4,
+                  obscureText: false,
+                  animationType: AnimationType.fade,
+                  // focusNode: controller.myFocusNode,
+                  textStyle: TextStyle(color: AppColors.primary),
+                  pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.box,
+                    activeColor: AppColors.primary,
+                    selectedColor: AppColors.primary,
+                    selectedFillColor: AppColors.primary,
+                    inactiveColor: AppColors.primary,
+                    inactiveFillColor: AppColors.primary,
+                    borderRadius: BorderRadius.circular(10),
+                    fieldHeight: 55,
+                    fieldWidth: 40,
+                    activeFillColor: Colors.transparent,
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-
-            VirtualKeyboard(
-                // [0-9] + .
-                fontSize: 20,
-                type: VirtualKeyboardType.Numeric,
-                textColor: Colors.white,
-                onKeyPress: (key) {
-                  VirtualKeyboardKey k = key;
-                  print(k.toString());
-                  switch (k.keyType) {
-                    case VirtualKeyboardKeyType.Action:
-                      {
-                        if (controller.pinController.text.isEmpty) {
-                        } else {
-                          controller.pinController.text =
-                              controller.pinController.text.substring(
-                                  0, controller.pinController.text.length - 1);
-                        }
-                      }
-
-                      break;
-                    case VirtualKeyboardKeyType.String:
-                      {
-                        if (key.text == ".") {
-                        } else if (controller.pinController.text.isEmpty) {
-                          controller.pinController.text = key.text;
-                        } else if (controller.pinController.text.isNotEmpty) {
-                          controller.pinController.text =
-                              controller.pinController.text + key.text;
-                        }
-                      }
-                      break;
-                  }
-
-                  print(controller.pinController.text);
-                }),
-            SizedBox(
-              height: 50,
-            ),
-            Container(
-                height: 54,
-                width: double.infinity,
-                child: AppButtonField(
-                  text: 'Login'.toUpperCase(),
-                  onPressed: () {
-                    controller.login();
+                  useExternalAutoFillGroup: true,
+                  autoFocus: false,
+                  animationDuration: Duration(milliseconds: 300),
+                  backgroundColor: Colors.transparent,
+                  enableActiveFill: false,
+                  keyboardType: TextInputType.none,
+                  cursorColor: Colors.white,
+                  controller: controller.pinController,
+                  onCompleted: (v) {
+                    // controller.verify();
                   },
-                  primary: AppColors.primary,
-                )),
-          ],
+                  onChanged: (value) {
+                    if (value.length <= 4) controller.password = value;
+                  },
+                  beforeTextPaste: (text) {
+                    print("Allowing to paste $text");
+                    return true;
+                  },
+                  appContext: context,
+                ),
+              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Text600(
+              //       text: 'Forgot pin? ',
+              //       fontSize: 14,
+              //     ),
+              //     GestureDetector(
+              //       onTap: () {
+              //         Get.bottomSheet(
+              //             AppBottomSheet(child: forgetPasswordDialog()));
+              //         // forgetPasswordDialog(),
+              //       },
+              //       child: Text600(
+              //         text: 'Reset it now',
+              //         color: AppColors.primary,
+              //         fontSize: 14,
+              //         decoration: TextDecoration.underline,
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              SizedBox(
+                height: 20,
+              ),
+
+              VirtualKeyboard(
+                  // [0-9] + .
+                  fontSize: 20,
+                  type: VirtualKeyboardType.Numeric,
+                  textColor: Colors.white,
+                  onKeyPress: (key) {
+                    VirtualKeyboardKey k = key;
+                    print(k.toString());
+                    switch (k.keyType) {
+                      case VirtualKeyboardKeyType.Action:
+                        {
+                          if (controller.pinController.text.isEmpty) {
+                          } else {
+                            controller.pinController.text =
+                                controller.pinController.text.substring(0,
+                                    controller.pinController.text.length - 1);
+                          }
+                        }
+
+                        break;
+                      case VirtualKeyboardKeyType.String:
+                        {
+                          if (key.text == ".") {
+                          } else if (controller.pinController.text.isEmpty) {
+                            controller.pinController.text = key.text;
+                          } else if (controller.pinController.text.isNotEmpty) {
+                            controller.pinController.text =
+                                controller.pinController.text + key.text;
+                          }
+                        }
+                        break;
+                    }
+
+                    print(controller.pinController.text);
+                  }),
+              SizedBox(
+                height: 50,
+              ),
+              Container(
+                  height: 54,
+                  width: double.infinity,
+                  child: AppButtonField(
+                    text: 'Login'.toUpperCase(),
+                    onPressed: () {
+                      controller.login();
+                    },
+                    primary: AppColors.primary,
+                  )),
+              SizedBox(
+                height: 25,
+              ),
+            ],
+          ),
         ),
       ),
     );

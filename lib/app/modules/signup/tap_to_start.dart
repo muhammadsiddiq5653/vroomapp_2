@@ -11,89 +11,91 @@ class TapToStart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: Get.width,
-      height: Get.height,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment(-0.71, 0.71),
-          end: Alignment(0.71, -0.71),
-          colors: [Color(0xFF0D0C0E), Color(0xFF3D3C40)],
+    return Scaffold(
+      body: Container(
+        width: Get.width,
+        height: Get.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment(-0.71, 0.71),
+            end: Alignment(0.71, -0.71),
+            colors: [Color(0xFF0D0C0E), Color(0xFF3D3C40)],
+          ),
         ),
-      ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Let’s Wroom your first car!',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontStyle: FontStyle.italic,
-                fontFamily: 'Exo 2',
-                fontWeight: FontWeight.w700,
-                height: 0.05,
-              ),
-            ),
-            GestureDetector(
-                onTap: () {
-                  //_showBottomSheet();
-                  mainTabsController.scan();
-                },
-                child: Image.asset(
-                  "assets/images/taptostart.png",
-                  height: Get.height * 0.4,
-                )),
-            Text(
-              'Tap on the button to start',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 22,
-                fontStyle: FontStyle.italic,
-                fontFamily: 'Exo 2',
-                fontWeight: FontWeight.w400,
-                height: 0.06,
-              ),
-            ),
-            GestureDetector(
-              onTap: (){
-                Get.offAndToNamed(Routes.NOTIFICATIONS_PERMISSION);
-              },
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'No thanks, ',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontStyle: FontStyle.italic,
-                        fontFamily: 'Exo 2',
-                        fontWeight: FontWeight.w400,
-                        height: 0,
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'I’ll do it later',
-                      style: TextStyle(
-                        color: Color(0xFFC90000),
-                        fontSize: 16,
-                        fontStyle: FontStyle.italic,
-                        fontFamily: 'Exo 2',
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.underline,
-                        height: 0,
-                      ),
-                    ),
-                  ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Let’s Wroom your first car!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontStyle: FontStyle.italic,
+                  fontFamily: 'Exo 2',
+                  fontWeight: FontWeight.w700,
+                  height: 0.05,
                 ),
               ),
-            )
-          ],
+              GestureDetector(
+                  onTap: () {
+                    //_showBottomSheet();
+                    mainTabsController.scan();
+                  },
+                  child: Image.asset(
+                    "assets/images/taptostart.png",
+                    height: Get.height * 0.4,
+                  )),
+              Text(
+                'Tap on the button to start',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontStyle: FontStyle.italic,
+                  fontFamily: 'Exo 2',
+                  fontWeight: FontWeight.w400,
+                  height: 0.06,
+                ),
+              ),
+              GestureDetector(
+                onTap: (){
+                  Get.offAndToNamed(Routes.NOTIFICATIONS_PERMISSION);
+                },
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'No thanks, ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontStyle: FontStyle.italic,
+                          fontFamily: 'Exo 2',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'I’ll do it later',
+                        style: TextStyle(
+                          color: Color(0xFFC90000),
+                          fontSize: 16,
+                          fontStyle: FontStyle.italic,
+                          fontFamily: 'Exo 2',
+                          fontWeight: FontWeight.w600,
+                          decoration: TextDecoration.underline,
+                          height: 0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

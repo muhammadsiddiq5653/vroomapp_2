@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vroom_app/app/widgets/app_network_image.dart';
 
 import '../data/models/user_model.dart';
@@ -8,7 +7,6 @@ class AppProfileAvatar extends StatelessWidget {
   final double size;
   final UserModel? user;
   final bool shouldEnlarge;
-
 
   AppProfileAvatar(
       {Key? key,
@@ -26,10 +24,10 @@ class AppProfileAvatar extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(size / 2),
             ),
-            child:  user!.avatar!.isEmpty
-                ? SvgPicture.asset(
-                    'assets/images/svg/ProfilePicture.svg',
-                    width: size,
+            child: user!.avatar!.isEmpty
+                ? Image.asset(
+                    'assets/images/ProfileDummy.png',
+                    width: 42,
                     fit: BoxFit.fitWidth,
                   )
                 : AppNetworkImage(

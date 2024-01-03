@@ -100,6 +100,26 @@ class ProfileController extends AppAbstractController {
     } finally {}
   }
 
+  delete(FeedModel feed) async {
+    try {
+      appFeedApi.delete(feed.id);
+      // appFeedApi.like(feed);
+      // feed.liked = !feed.liked;
+      // if (feed.liked) {
+      //   feed.likes++;
+      // } else {
+      //   feed.likes--;
+      // }
+      // if (feed.likes < 0) {
+      //   feed.likes = 0;
+      // }
+      update();
+    } catch (ex) {
+      print(ex);
+      dialogService.showError(ex);
+    } finally {}
+  }
+
   share(FeedModel feed, Uint8List? bytes) async {
     try {
       loadingState = GeneralLoadingState.waiting;

@@ -9,7 +9,6 @@ import 'package:vroom_app/app/data/api/auth_api.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 
-import '../../../../app_constants.dart';
 
 class LoginDetailsStepController extends AppAbstractController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -50,11 +49,12 @@ class LoginDetailsStepController extends AppAbstractController {
       loadingState = GeneralLoadingState.waiting;
 
       var authModel = await authApi.signInWithPhonePassword(userName, password);
+      pinController.clear();
+      password = '';
       settingsService.setAuth(authModel);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setBool("isloggedin", true);
       loadingState = GeneralLoadingState.done;
-
       Get.offAllNamed(Routes.MAIN_TABS);
     } catch (ex) {
       dialogService.showError(ex);

@@ -23,6 +23,7 @@ class FeedCard extends StatelessWidget {
   WidgetsToImageController widgetsToImageController =
       WidgetsToImageController();
   Function(FeedModel) onLikeButton;
+  Function(FeedModel) onDeleteButton;
   Function(FeedModel, Uint8List?) onShareButton;
   bool notLoggedInCard;
   bool manageShare;
@@ -33,6 +34,7 @@ class FeedCard extends StatelessWidget {
       this.notLoggedInCard = false,
       this.manageShare = false,
       required this.onLikeButton,
+        required this.onDeleteButton,
       required this.onShareButton});
 
   @override
@@ -63,10 +65,10 @@ class FeedCard extends StatelessWidget {
                             width: double.infinity,
                             fit: BoxFit.fitWidth,
                             loadingWidget: Container(
-                              //RiveAnimation.asset(
-                              //                                         'assets/images/vroom_animation.riv')
-                                child: Center(
-                                    child: CircularProgressIndicator())),
+                                //RiveAnimation.asset(
+                                //                                         'assets/images/vroom_animation.riv')
+                                child:
+                                    Center(child: CircularProgressIndicator())),
                           ),
                     Positioned(
                       top: 0,
@@ -88,46 +90,44 @@ class FeedCard extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     _getLeftHeader(),
-                                    PopupMenuButton<int>(
-                                      color: AppColors.cardColor,
-                                      icon: Icon(
-                                        Remix.more_fill,
-                                        color: Colors.white,
-                                      ),
-                                      initialValue: null,
-                                      // Callback that sets the selected popup menu item.
-                                      onSelected: (value) async {
-                                        if (value == 0) {
-                                          // controller.shareOutsideApp(
-                                          //     await widgetsToImageController
-                                          //         .capture());
-                                        }
-                                      },
-                                      itemBuilder: (BuildContext context) =>
-                                          <PopupMenuEntry<int>>[
-                                        PopupMenuItem<int>(
-                                          value: 0,
-                                          child: Row(
-                                            children: [
-                                              Icon(
-                                                Remix.delete_bin_7_fill,
-                                                color: Colors.white,
-                                                size: 24,
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text400(
-                                                text: 'Delete this post',
-                                                color: Colors.white,
-                                                fontSize: 14,
-                                              ),
-                                            ],
-                                          ),
+                            //  if (feedModel.)
+                                      PopupMenuButton<int>(
+                                        color: AppColors.cardColor,
+                                        icon: Icon(
+                                          Remix.more_fill,
+                                          color: Colors.white,
                                         ),
-
-                                      ],
-                                    ),
+                                        initialValue: null,
+                                        // Callback that sets the selected popup menu item.
+                                        onSelected: (value) async {
+                                          if (value == 0) {
+                                            onDeleteButton(feedModel);
+                                          }
+                                        },
+                                        itemBuilder: (BuildContext context) =>
+                                            <PopupMenuEntry<int>>[
+                                          PopupMenuItem<int>(
+                                            value: 0,
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Remix.delete_bin_7_fill,
+                                                  color: Colors.white,
+                                                  size: 24,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Text400(
+                                                  text: 'Delete this post',
+                                                  color: Colors.white,
+                                                  fontSize: 14,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                   ]),
                             ),
                           ),
@@ -185,11 +185,17 @@ class FeedCard extends StatelessWidget {
                                             width: 2.0, color: Colors.white),
                                       ),
                                       onPressed: () {
-                                        Get.toNamed(Routes.CARD_DETAILS,
-                                            parameters: {
-                                              AppConstants.carArgumentId:
-                                                  feedModel.userCarId.toString()
-                                            });
+                                        if (notLoggedInCard) {
+                                          Get.toNamed(
+                                              Routes.LOGIN_DETAILS_STEP);
+                                        } else {
+                                          Get.toNamed(Routes.CARD_DETAILS,
+                                              parameters: {
+                                                AppConstants.carArgumentId:
+                                                    feedModel.userCarId
+                                                        .toString()
+                                              });
+                                        }
                                       },
                                       child: Container(
                                         margin: EdgeInsets.symmetric(

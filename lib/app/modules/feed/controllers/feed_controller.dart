@@ -1,10 +1,10 @@
 import 'dart:typed_data';
+
 import 'package:get/get.dart';
 import 'package:vroom_app/app/data/api/app_feed_api.dart';
 import 'package:vroom_app/app/data/models/envelope_model.dart';
 import 'package:vroom_app/app/data/models/feed_model.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
-import 'package:vroom_app/app/services/create_image_service.dart';
 
 import '../../../app_enums.dart';
 import '../../../app_utilities.dart';
@@ -12,8 +12,10 @@ import '../../../routes/app_pages.dart';
 
 class FeedController extends AppAbstractController {
   AppFeedApi appFeedApi = Get.put(AppFeedApi());
- // CreateImageService createImageService = Get.put(CreateImageService());
+
+  // CreateImageService createImageService = Get.put(CreateImageService());
   EnvelopeModel<FeedModel>? feed;
+
   @override
   void onInit() {
     super.onInit();
@@ -85,6 +87,22 @@ class FeedController extends AppAbstractController {
       loadingState = GeneralLoadingState.done;
       await appFeedApi.share(feed);
       feed.shares++;
+      update();
+    } catch (ex) {
+      print(ex);
+      dialogService.showError(ex);
+    } finally {
+      loadingState = GeneralLoadingState.done;
+    }
+  }
+
+  delete(
+    FeedModel feed,
+  ) async {
+    try {
+      loadingState = GeneralLoadingState.waiting;
+      await appFeedApi.delete(feed.id);
+      loadingState = GeneralLoadingState.done;
       update();
     } catch (ex) {
       print(ex);

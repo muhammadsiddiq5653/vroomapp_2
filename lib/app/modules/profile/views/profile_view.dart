@@ -144,7 +144,7 @@ class ProfileView extends GetView<ProfileController> {
                             return FeedCard(
                               feedModel: item,
                               onLikeButton: controller.like,
-                              onShareButton: controller.share,
+                              onShareButton: controller.share, onDeleteButton: controller.delete,
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) {
