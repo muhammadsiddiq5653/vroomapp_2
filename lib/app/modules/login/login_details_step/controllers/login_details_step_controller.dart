@@ -25,6 +25,7 @@ class LoginDetailsStepController extends AppAbstractController {
 
   @override
   void onInit() {
+    loadingState = GeneralLoadingState.done;
     super.onInit();
 
     // user.bindStream(_auth.authStateChanges());
