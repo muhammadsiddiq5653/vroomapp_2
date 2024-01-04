@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/app_utilities.dart';
 import 'package:vroom_app/app/data/models/car_model.dart';
 import 'package:vroom_app/app/helpers/widgets_to_image_controller.dart';
@@ -51,75 +50,74 @@ class CardDetailsView extends GetView<CardDetailsController> {
                           height: 42,
                         )),
                       ),
-                      controller.isLoggedin.value
-                          ?
-                         Theme(
-                              data: Theme.of(context).copyWith(
-                                cardColor: Colors.black,
-                              ),
-                              child: PopupMenuButton<int>(
-                                // color: Colors.white,
-                                icon: Icon(
-                                  Remix.more_fill,
-                                  color: Colors.white,
-                                ),
-                                initialValue: null,
-                                // Callback that sets the selected popup menu item.
-                                onSelected: (value) async {
-                                  if (value == 0) {
-                                    controller.shareOutsideApp(
-                                        await widgetsToImageController
-                                            .capture());
-                                  } else if (value == 1) {
-                                    controller.deleteCar();
-                                  }
-                                },
-                                itemBuilder: (BuildContext context) =>
-                                    <PopupMenuEntry<int>>[
-                                  PopupMenuItem<int>(
-                                    value: 0,
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Remix.share_fill,
-                                          color: Colors.white,
-                                          size: 16,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text400(
-                                          text: 'Share this car',
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  PopupMenuItem<int>(
-                                    value: 1,
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Remix.delete_bin_fill,
-                                          color: Colors.white,
-                                          size: 16,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text400(
-                                          text: 'Delete this car',
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ) :
-                      SizedBox.shrink()
+                      // controller.isLoggedin.value ?
+                      //    Theme(
+                      //         data: Theme.of(context).copyWith(
+                      //           cardColor: Colors.black,
+                      //         ),
+                      //         child: PopupMenuButton<int>(
+                      //           // color: Colors.white,
+                      //           icon: Icon(
+                      //             Remix.more_fill,
+                      //             color: Colors.white,
+                      //           ),
+                      //           initialValue: null,
+                      //           // Callback that sets the selected popup menu item.
+                      //           onSelected: (value) async {
+                      //             if (value == 0) {
+                      //               controller.shareOutsideApp(
+                      //                   await widgetsToImageController
+                      //                       .capture());
+                      //             } else if (value == 1) {
+                      //               controller.deleteCar();
+                      //             }
+                      //           },
+                      //           itemBuilder: (BuildContext context) =>
+                      //               <PopupMenuEntry<int>>[
+                      //             PopupMenuItem<int>(
+                      //               value: 0,
+                      //               child: Row(
+                      //                 children: [
+                      //                   Icon(
+                      //                     Remix.share_fill,
+                      //                     color: Colors.white,
+                      //                     size: 16,
+                      //                   ),
+                      //                   SizedBox(
+                      //                     width: 10,
+                      //                   ),
+                      //                   Text400(
+                      //                     text: 'Share this car',
+                      //                     color: Colors.white,
+                      //                     fontSize: 16,
+                      //                   ),
+                      //                 ],
+                      //               ),
+                      //             ),
+                      //             PopupMenuItem<int>(
+                      //               value: 1,
+                      //               child: Row(
+                      //                 children: [
+                      //                   Icon(
+                      //                     Remix.delete_bin_fill,
+                      //                     color: Colors.white,
+                      //                     size: 16,
+                      //                   ),
+                      //                   SizedBox(
+                      //                     width: 10,
+                      //                   ),
+                      //                   Text400(
+                      //                     text: 'Delete this car',
+                      //                     color: Colors.white,
+                      //                     fontSize: 16,
+                      //                   ),
+                      //                 ],
+                      //               ),
+                      //             ),
+                      //           ],
+                      //         ),
+                      //       ) :
+                      // SizedBox.shrink()
                     ],
                   ),
                 ),
@@ -160,7 +158,8 @@ class CardDetailsView extends GetView<CardDetailsController> {
                               value: AppUtilities.getPricePercentage(
                                   controller.car?.price),
                               title: 'Price',
-                              valueTitle: '${controller.car?.price?.truncate()} \$',
+                              valueTitle:
+                                  '${controller.car?.price?.truncate()} \$',
                             ),
                             SizedBox(
                               height: 20,
@@ -265,9 +264,14 @@ class CardDetailsView extends GetView<CardDetailsController> {
                     margin: EdgeInsets.only(bottom: 20),
                     padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
                     child: AppButtonField(
-                      text: 'share this car',
-                      onPressed: () {
-                        controller.shareCar();
+                      text:  controller.checkIfLoggedInUserPost() ? 'share on the feed' :'share this car',
+                      onPressed: () async {
+                        if (controller.checkIfLoggedInUserPost()) {
+                          controller.shareCar();
+                        } else {
+                          controller.shareOutsideApp(
+                              await widgetsToImageController.capture());
+                        }
                       },
                     ),
                   )

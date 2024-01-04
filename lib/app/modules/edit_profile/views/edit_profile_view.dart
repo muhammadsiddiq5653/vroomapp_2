@@ -38,15 +38,15 @@ class EditProfileView extends GetView<EditProfileController> {
                             SizedBox(
                               height: 35,
                             ),
-                            AppUploadPhotoField(
-                              width: 150,
-                              height: 150,
-                              initialImage: controller
-                                  .settingsService.authModel?.userModel.avatar,
-                              onImageChanged: (String? img) {
-                                controller.userImage = img;
-                              },
-                            ),
+                            // AppUploadPhotoField(
+                            //   width: 150,
+                            //   height: 150,
+                            //   initialImage: controller
+                            //       .settingsService.authModel?.userModel.avatar,
+                            //   onImageChanged: (String? img) {
+                            //     controller.userImage = img;
+                            //   },
+                            // ),
                             SizedBox(
                               height: 50,
                             ),

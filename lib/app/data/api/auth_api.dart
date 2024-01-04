@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:get/get.dart';
 
 import '../../app_api_url.dart';
@@ -13,7 +14,11 @@ class AuthApi extends GetxService {
       String phone, String password) async {
     var response = await networkService
         .post(AppApiUrl.login, data: {'username': phone, 'password': password});
-    return AuthModel.fromJson(response.data);
+    if (response.data['name'] == '(deleted user)')
+      throw Exception('This Account has been deleted');
+    else {
+      return AuthModel.fromJson(response.data);
+    }
   }
 
   Future<AuthModel> signInWithtoken(String accessToken) async {

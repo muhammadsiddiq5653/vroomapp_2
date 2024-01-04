@@ -24,7 +24,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
         //   title: '',
         // ),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -5,6 +5,7 @@ import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 
 class SettingsController extends AppAbstractController {
   final appsersApi = Get.put(AppUsersApi());
+
   @override
   void onInit() {
     super.onInit();
@@ -20,10 +21,10 @@ class SettingsController extends AppAbstractController {
     super.onClose();
   }
 
-  void deleteAccount() async {
+
+  void deleteAccount(bool result) async {
     try {
-      var result = dialogService
-          .showConfirm('Are you sure you want to delete your account?');
+
       if (result == true) {
         loadingState = GeneralLoadingState.waiting;
         await appsersApi
@@ -34,7 +35,6 @@ class SettingsController extends AppAbstractController {
       dialogService.showError(ex);
     } finally {
       loadingState = GeneralLoadingState.done;
-
     }
   }
 }

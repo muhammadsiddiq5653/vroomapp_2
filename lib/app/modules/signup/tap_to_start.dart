@@ -62,7 +62,7 @@ class TapToStart extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: (){
-                  Get.offAndToNamed(Routes.NOTIFICATIONS_PERMISSION);
+                  Get.offAndToNamed(Routes.SIGNUP_STEP_DETAIL);
                 },
                 child: Text.rich(
                   TextSpan(

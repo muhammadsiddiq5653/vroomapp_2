@@ -45,16 +45,16 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                               textAlign: TextAlign.center,
                               fontSize: 18,
                             ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            AppUploadPhotoField(
-                              width: 150,
-                              height: 150,
-                              onImageChanged: (String? img) {
-                                controller.userImage = img;
-                              },
-                            ),
+                            // SizedBox(
+                            //   height: 30,
+                            // ),
+                            // AppUploadPhotoField(
+                            //   width: 150,
+                            //   height: 150,
+                            //   onImageChanged: (String? img) {
+                            //     controller.userImage = img;
+                            //   },
+                            // ),
                             SizedBox(
                               height: 50,
                             ),
@@ -72,7 +72,7 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                               },
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                             AppTextField(
                               Validator: (val) {
@@ -88,7 +88,7 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                               },
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                             Obx(() {
                               return AppDropdownButton(

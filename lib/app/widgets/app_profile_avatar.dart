@@ -27,7 +27,7 @@ class AppProfileAvatar extends StatelessWidget {
             child: user!.avatar!.isEmpty
                 ? Image.asset(
                     'assets/images/ProfileDummy.png',
-                    width: 42,
+                    width: size,
                     fit: BoxFit.fitWidth,
                   )
                 : AppNetworkImage(

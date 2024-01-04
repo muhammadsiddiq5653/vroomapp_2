@@ -92,44 +92,44 @@ class FeedCard extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     _getLeftHeader(),
-                                    if (!notLoggedIn)
-                                      PopupMenuButton<int>(
-                                        color: AppColors.cardColor,
-                                        icon: Icon(
-                                          Remix.more_fill,
-                                          color: Colors.white,
-                                        ),
-                                        initialValue: null,
-                                        // Callback that sets the selected popup menu item.
-                                        onSelected: (value) async {
-                                          if (value == 0) {
-                                            onDeleteButton(feedModel);
-                                          }
-                                        },
-                                        itemBuilder: (BuildContext context) =>
-                                            <PopupMenuEntry<int>>[
-                                          PopupMenuItem<int>(
-                                            value: 0,
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Remix.delete_bin_7_fill,
-                                                  color: Colors.white,
-                                                  size: 24,
-                                                ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text400(
-                                                  text: 'Delete this post',
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                    // if (!notLoggedIn)
+                                    //   PopupMenuButton<int>(
+                                    //     color: AppColors.cardColor,
+                                    //     icon: Icon(
+                                    //       Remix.more_fill,
+                                    //       color: Colors.white,
+                                    //     ),
+                                    //     initialValue: null,
+                                    //     // Callback that sets the selected popup menu item.
+                                    //     onSelected: (value) async {
+                                    //       if (value == 0) {
+                                    //         onDeleteButton(feedModel);
+                                    //       }
+                                    //     },
+                                    //     itemBuilder: (BuildContext context) =>
+                                    //         <PopupMenuEntry<int>>[
+                                    //       PopupMenuItem<int>(
+                                    //         value: 0,
+                                    //         child: Row(
+                                    //           children: [
+                                    //             Icon(
+                                    //               Remix.delete_bin_7_fill,
+                                    //               color: Colors.white,
+                                    //               size: 24,
+                                    //             ),
+                                    //             SizedBox(
+                                    //               width: 10,
+                                    //             ),
+                                    //             Text400(
+                                    //               text: 'Delete this post',
+                                    //               color: Colors.white,
+                                    //               fontSize: 14,
+                                    //             ),
+                                    //           ],
+                                    //         ),
+                                    //       ),
+                                    //     ],
+                                    //   ),
                                   ]),
                             ),
                           ),

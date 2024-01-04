@@ -23,7 +23,7 @@ class LoginView extends GetView<LoginDetailsStepController> {
       body: AppStateHandler(
         loadingState: controller.loadingState,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

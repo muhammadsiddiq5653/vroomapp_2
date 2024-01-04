@@ -105,6 +105,7 @@ class ProfileView extends GetView<ProfileController> {
                 SizedBox(
                   height: 35,
                 ),
+
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text700(
@@ -112,6 +113,7 @@ class ProfileView extends GetView<ProfileController> {
                     fontSize: 22,
                   ),
                 ),
+
                 SizedBox(
                   height: 15,
                 ),
@@ -171,14 +173,9 @@ class ProfileView extends GetView<ProfileController> {
                 child: Column(
                   children: [
                     Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          AppIconButton(
-                            onPressed: () {
-                              Get.toNamed(Routes.SETTINGS);
-                            },
-                            icon: Remix.settings_4_fill,
-                          ),
+
                           Column(
                             children: [
                               Text700(
@@ -199,14 +196,7 @@ class ProfileView extends GetView<ProfileController> {
                               ),
                             ],
                           ),
-                          AppIconButton(
-                            onPressed: () {
-                              Get.bottomSheet(
-                                EditProfileView(),
-                              );
-                            },
-                            icon: Remix.pencil_fill,
-                          ),
+
                         ]),
                     SizedBox(
                       height: 25,
@@ -273,18 +263,41 @@ class ProfileView extends GetView<ProfileController> {
                 ),
               )),
           Positioned(
-            top: -30,
-            child: GestureDetector(
-              onTap: () {},
-              child: AppProfileAvatar(
-                size: 105,
-                user: profileController.settingsService.authModel != null &&
-                        profileController.settingsService.authModel
-                            .toString()
-                            .isNotEmpty
-                    ? profileController.settingsService.authModel!.userModel
-                    : UserModel(email: ""),
+
+            child: Container(
+              padding: EdgeInsets.all(15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  AppIconButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.SETTINGS);
+                    },
+                    icon: Remix.settings_4_fill,
+                  ),
+                  AppIconButton(
+                    onPressed: () {
+                      Get.bottomSheet(
+                        EditProfileView(),
+                      );
+                    },
+                    icon: Remix.pencil_fill,
+                  ),
+                ],
               ),
+            ),
+          ),
+          Positioned(
+            top: -30,
+            child: AppProfileAvatar(
+              size: 105,
+              user: profileController.settingsService.authModel != null &&
+                      profileController.settingsService.authModel
+                          .toString()
+                          .isNotEmpty
+                  ? profileController.settingsService.authModel!.userModel
+                  : UserModel(email: ""),
             ),
           ),
         ],
@@ -293,30 +306,27 @@ class ProfileView extends GetView<ProfileController> {
   }
 
   _getEmptyState() {
-    controller.setDirection(1);
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            'assets/images/NoPosts.png',
-            width: 92,
-          ),
-          SizedBox(height: 15,),
-          Text700(
-            text: 'No Posts, Yet!',
-            color: AppColors.surface,
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: 10,),
-          Text400(
-            fontSize: 12,
-            textAlign: TextAlign.center,
-            text: 'Wroom some cars and share them\non the feed to fill this space!',
-            color: AppColors.surface.withOpacity(0.9),
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Image.asset(
+          'assets/images/NoPosts.png',
+          width: 92,
+        ),
+        SizedBox(height: 15,),
+        Text700(
+          text: 'No Posts, Yet!',
+          color: AppColors.surface,
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 10,),
+        Text400(
+          fontSize: 12,
+          textAlign: TextAlign.center,
+          text: 'Wroom some cars and share them\non the feed to fill this space!',
+          color: AppColors.surface.withOpacity(0.9),
+        ),
+      ],
     );
   }
 }

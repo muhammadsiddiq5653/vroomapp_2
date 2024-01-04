@@ -49,21 +49,34 @@ class DialogService extends GetxService {
             child: Wrap(
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       title ?? 'Are you sure?',
+                      textAlign: TextAlign.center,
+
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w600),
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontFamily: 'Exo 2',
+                        fontStyle: FontStyle.italic,
+
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     Text(message,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16,
+                            fontSize: 14,
+                            fontFamily: 'Exo 2',
+                            fontStyle: FontStyle.italic,
+                            height: 1.6,
+
                             fontWeight: FontWeight.w400)),
                     SizedBox(
                       height: 40,
@@ -91,7 +104,7 @@ class DialogService extends GetxService {
                             height: 50,
                             child: AppButtonField(
                                 primary: Colors.transparent,
-                                text: 'Cancel',
+                                text: 'Go Back'.toUpperCase(),
                                 onPressed: () {
                                   Get.back(result: false);
                                 }))

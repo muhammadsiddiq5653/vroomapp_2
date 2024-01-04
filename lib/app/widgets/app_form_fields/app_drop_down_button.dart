@@ -37,68 +37,71 @@ class AppDropdownButton<T> extends StatelessWidget {
       onTap: () async {
         await Get.bottomSheet(
 
-          Column(
-            children: <Widget>[
-              Text(
-                title,
-                style: TextStyle(
-                    fontSize: 24,
-                    color: AppColors.surface,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Exo',
-                    fontStyle: FontStyle.italic),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Expanded(
-                child: ListView.separated(
-                  itemCount: options.length,
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 14),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        onChanged(options[index].value);
-                        Get.back();
-                      },
-                      child: AppListTile(
-                        containerColor: AppColors.cardColor,
-                        padding: EdgeInsets.symmetric(
-                          vertical: 25,
-                          horizontal: 10,
-                        ),
-                        leading: options[index].icon == null
-                            ? Container()
-                            : Icon(
-                                Remix.car_fill,
-                                color: AppColors.primary,
-                              ),
-                        title: Text(
-                          options[index].title,
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: AppColors.surface,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Exo',
-                              fontStyle: FontStyle.italic),
-                        ),
-                        trailing: Container(),
-                      ),
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      height: 10,
-                    );
-                  },
+          SizedBox(
+            height: context.size!.longestSide * 1.7,
+            child: Column(
+              children: <Widget>[
+                Text(
+                  title,
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: AppColors.surface,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Exo',
+                      fontStyle: FontStyle.italic),
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 30,
+                ),
+                Expanded(
+                  child: ListView.separated(
+                    itemCount: options.length,
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 14),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          onChanged(options[index].value);
+                          Get.back();
+                        },
+                        child: AppListTile(
+                          containerColor: AppColors.cardColor,
+                          padding: EdgeInsets.symmetric(
+                            vertical: 25,
+                            horizontal: 10,
+                          ),
+                          leading: options[index].icon == null
+                              ? Container()
+                              : Icon(
+                                  Remix.car_fill,
+                                  color: AppColors.primary,
+                                ),
+                          title: Text(
+                            options[index].title,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: AppColors.surface,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: 'Exo',
+                                fontStyle: FontStyle.italic),
+                          ),
+                          trailing: Container(),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(
+                        height: 10,
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
-
+ignoreSafeArea: false,
           backgroundColor: AppColors.background,
-
+isScrollControlled: true
         );
       },
       child: _getBody(),
@@ -128,10 +131,10 @@ class AppDropdownButton<T> extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(width: 2, color: AppColors.primary),
-          top: BorderSide(width: 2, color: AppColors.primary),
-          right: BorderSide(width: 2, color: AppColors.primary),
-          left: BorderSide(width: 2, color: AppColors.primary),
+          bottom: BorderSide(width: 1, color: AppColors.primary),
+          top: BorderSide(width: 1, color: AppColors.primary),
+          right: BorderSide(width: 1, color: AppColors.primary),
+          left: BorderSide(width: 1, color: AppColors.primary),
         ),
         borderRadius: BorderRadius.circular(10),
         color: Colors.transparent,

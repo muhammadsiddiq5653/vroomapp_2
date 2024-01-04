@@ -26,7 +26,6 @@ class CardDetailsController extends AppAbstractController {
   @override
   void onInit() {
     super.onInit();
-    loadingState = GeneralLoadingState.waiting;
     readFromPreferences();
     if (Get.arguments?[AppConstants.carArgument] != null) {
       car = Get.arguments?[AppConstants.carArgument];
@@ -86,6 +85,10 @@ class CardDetailsController extends AppAbstractController {
       loadingState = GeneralLoadingState.done;
     }
   }
+
+  bool checkIfLoggedInUserPost() => loadingState == GeneralLoadingState.done
+      ? car!.user!.id == settingsService.authModel!.userModel.id
+      : false;
 
   void shareOutsideApp(Uint8List? bytes) async {
     FeedModel feed = FeedModel(

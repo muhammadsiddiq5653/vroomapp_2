@@ -113,6 +113,7 @@ class AlertsView extends GetView<AlertsController> {
           SmallBoldText(
             text: 'Nothing so far!',
             color: Colors.white,
+            textAlign: TextAlign.center,
           ),
           SizedBox(
             height: 10,
@@ -120,6 +121,7 @@ class AlertsView extends GetView<AlertsController> {
           SmallText(
             text: 'All your notifications will show up on this screen.',
             color: Colors.white,
+            textAlign: TextAlign.center,
           )
         ],
       ),
