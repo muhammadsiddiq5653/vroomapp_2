@@ -264,7 +264,7 @@ class CardDetailsView extends GetView<CardDetailsController> {
                     margin: EdgeInsets.only(bottom: 20),
                     padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
                     child: AppButtonField(
-                      text:  controller.checkIfLoggedInUserPost() ? 'share on the feed' :'share this car',
+                      text:  controller.checkIfLoggedInUserPost() ? 'share on the feed' :'share with friends',
                       onPressed: () async {
                         if (controller.checkIfLoggedInUserPost()) {
                           controller.shareCar();
