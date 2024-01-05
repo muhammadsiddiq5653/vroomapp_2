@@ -1,1 +1,1 @@
-enum GeneralLoadingState { done, waiting, error, empty }
+enum GeneralLoadingState { done, waiting, error, empty , offline }

@@ -21,11 +21,7 @@ class AlertsView extends GetView<AlertsController> {
     return GetBuilder<AlertsController>(
       builder: (_) => Scaffold(
         appBar: GameAppBar(
-            userModel: alertsController.settingsService.authModel!.userModel),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        // floatingActionButton: AppFloatingActionButton(
-        //   onClick: controller.scanCar,
-        // ),
+           ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: AppStateHandler(

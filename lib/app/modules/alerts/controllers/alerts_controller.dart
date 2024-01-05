@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:vroom_app/app/data/api/app_notifications_api.dart';
 import 'package:vroom_app/app/data/models/notification_model.dart';
@@ -47,8 +48,16 @@ class AlertsController extends AppAbstractController {
       }
       return true;
     } catch (ex) {
-      print(ex);
-      loadingState = GeneralLoadingState.error;
+      if (ConnectivityResult.none == await Connectivity().checkConnectivity())
+        {
+          loadingState = GeneralLoadingState.offline;
+        }
+      else
+        {
+          print(ex);
+          loadingState = GeneralLoadingState.error;
+        }
+
       return false;
     } finally {
       update();

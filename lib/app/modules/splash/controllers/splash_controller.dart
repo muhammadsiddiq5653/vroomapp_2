@@ -48,19 +48,17 @@ class SplashController extends GetxController {
 
   void init() async {
     try {
-      await _getSimCountry();
       loadingState = GeneralLoadingState.waiting;
       update();
-      settingsService.settingsModel = await appSettingsApi.getAppSettings();
-      AppConstants.appLink = settingsService.settingsModel!.appLink!;
-      await Future.delayed(Duration(seconds: 1));
-      if (settingsService.settingsModel?.forceUpdate == true) {
-        forceUpdateView = true;
-        update();
-        return;
-      } else {
-        forceUpdateView = false;
-      }
+    //  settingsService.settingsModel = await appSettingsApi.getAppSettings();
+//      await Future.delayed(Duration(seconds: 1));
+//       if (settingsService.settingsModel?.forceUpdate == true) {
+//         forceUpdateView = true;
+//         update();
+//         return;
+//       } else {
+//         forceUpdateView = false;
+//       }
 
       try {
         var accessToken = box.read(AppConstants.accessTokenKey);
@@ -110,12 +108,4 @@ class SplashController extends GetxController {
     }
   }
 
-  Future<void> _getSimCountry() async {
-    try {
-
-      AppConstants.localeForPhone = 'US';
-    } catch (ex) {
-      print(ex);
-    }
-  }
 }

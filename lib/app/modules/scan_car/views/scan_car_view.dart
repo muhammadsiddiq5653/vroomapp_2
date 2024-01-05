@@ -129,7 +129,7 @@ class ScanCarView extends GetView<ScanCarController> {
             Text700(
                 textAlign: TextAlign.center,
                 text:
-                    'Something went wrong. But dont worry you can just try again.'),
+                    'Something went wrong. Please try again.'),
             // if (controller.errorMessage != null && !kReleaseMode)
             //   Container(
             //     margin: EdgeInsets.only(top: 20),
@@ -197,11 +197,6 @@ class ScanCarView extends GetView<ScanCarController> {
                   'assets/images/vroom_animation.riv',
                   fit: BoxFit.cover,
                 ),
-              ),
-              Text400(
-                text: 'Keep your camera pointed at the car',
-                fontSize: 16,
-                textAlign: TextAlign.center,
               ),
             ],
           ),

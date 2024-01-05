@@ -93,6 +93,7 @@ class EditProfileView extends GetView<EditProfileController> {
                       text: 'Save',
                       onPressed: () {
                         controller.save();
+                        controller.update();
 
                       },
                       primary: AppColors.primary,

@@ -47,7 +47,7 @@ class MainTabsController extends AppAbstractController {
     if (!box.hasData(dontShowAgain) || box.read<bool>(dontShowAgain) == false) {
       var result = await Get.bottomSheet(AppBottomSheet(
         child: Container(
-          padding: EdgeInsets.all(17),
+          padding: EdgeInsets.fromLTRB(17,5,17,17),
           child: Wrap(
             children: [
               Container(
@@ -76,7 +76,7 @@ class MainTabsController extends AppAbstractController {
                         text:
                             'Wrooming a car works in a THREE QUARTER angle. Please make sure to hold your phone at the angle where your car looks similar to the above image to Wroom Successfully.'),
                     SizedBox(
-                      height: 45,
+                      height: 30,
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 30),
@@ -103,6 +103,9 @@ class MainTabsController extends AppAbstractController {
                           Get.back(result: dontShowAgain);
                         },
                       ),
+                    ),
+                    SizedBox(
+                      height: 15,
                     ),
                   ],
                 ),

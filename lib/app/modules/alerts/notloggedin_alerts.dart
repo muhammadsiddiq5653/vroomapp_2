@@ -13,7 +13,7 @@ class NotLoggedinAlert extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: GameAppBar(
-        userModel:UserModel(email: ""),),
+      ),
       body: GestureDetector(
         onTap: (){
           Get.toNamed(Routes.LOGIN_DETAILS_STEP);

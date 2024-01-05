@@ -22,7 +22,7 @@ class NotLoggedInFeedView extends GetView<FeedController> {
     return GetBuilder<FeedController>(
       builder: (_) => Scaffold(
         appBar: GameAppBar(
-          userModel: UserModel(email: ""),
+
         ),
         // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // floatingActionButton: AppFloatingActionButton(

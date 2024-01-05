@@ -13,7 +13,7 @@ class NotLoggedinHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: GameAppBar(
-          userModel:UserModel(email: ""),),
+          ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -45,13 +45,9 @@ class NotLoggedinHome extends StatelessWidget {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+
             Image.asset("assets/images/HomeNotLoggedIn.png"),
-            SizedBox(
-              height: 10,
-            ),
+
             Container(
               height: 55,
               width: double.infinity,

@@ -42,7 +42,7 @@ class CarCard extends StatelessWidget {
           Container(
             child: Column(children: [
               Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                 // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: CarCardHeader(car: car)),
               Container(
                 padding: EdgeInsets.fromLTRB(180, 20, 10, 20),

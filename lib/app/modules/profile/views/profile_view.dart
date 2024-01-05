@@ -28,9 +28,7 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GameAppBar(
-        userModel: profileController.settingsService.authModel != null
-            ? profileController.settingsService.authModel!.userModel
-            : UserModel(email: ""),
+
       ),
       body: GetBuilder<ProfileController>(
         builder: (_) => Container(
@@ -88,6 +86,7 @@ class ProfileView extends GetView<ProfileController> {
                                   Get.bottomSheet(
                                       EditProfileView(),
                                       );
+                                  controller.update();
                                 },
                                 icon: Remix.pencil_fill,
                                 size: 42,
@@ -198,67 +197,67 @@ class ProfileView extends GetView<ProfileController> {
                           ),
 
                         ]),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text400(
-                                text: 'Wrooms',
-                                fontSize: 16,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text600(
-                                text: controller.settingsService.authModel
-                                        ?.userModel.wrooms ??
-                                    '--',
-                                color: AppColors.surface.withOpacity(0.9),
-                                fontSize: 18,
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text400(
-                                text: 'Posts',
-                                fontSize: 16,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text600(
-                                text: controller.settingsService.authModel
-                                        ?.userModel.posts ??
-                                    '--',
-                                color: AppColors.surface.withOpacity(0.9),
-                                fontSize: 18,
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text400(
-                                text: 'Fav. Brand',
-                                fontSize: 16,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text600(
-                                text: controller.settingsService.authModel
-                                        ?.userModel.favoriteCarBrand ??
-                                    '--',
-                                color: AppColors.surface.withOpacity(0.9),
-                                fontSize: 18,
-                              ),
-                            ],
-                          ),
-                        ]),
+                    // SizedBox(
+                    //   height: 25,
+                    // ),
+                    // Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [
+                    //       Column(
+                    //         children: [
+                    //           Text400(
+                    //             text: 'Wrooms',
+                    //             fontSize: 16,
+                    //           ),
+                    //           SizedBox(
+                    //             height: 5,
+                    //           ),
+                    //           Text600(
+                    //             text: controller.settingsService.authModel
+                    //                     ?.userModel.wrooms ??
+                    //                 '--',
+                    //             color: AppColors.surface.withOpacity(0.9),
+                    //             fontSize: 18,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       Column(
+                    //         children: [
+                    //           Text400(
+                    //             text: 'Posts',
+                    //             fontSize: 16,
+                    //           ),
+                    //           SizedBox(
+                    //             height: 5,
+                    //           ),
+                    //           Text600(
+                    //             text: controller.settingsService.authModel
+                    //                     ?.userModel.posts ??
+                    //                 '--',
+                    //             color: AppColors.surface.withOpacity(0.9),
+                    //             fontSize: 18,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       Column(
+                    //         children: [
+                    //           Text400(
+                    //             text: 'Fav. Brand',
+                    //             fontSize: 16,
+                    //           ),
+                    //           SizedBox(
+                    //             height: 5,
+                    //           ),
+                    //           Text600(
+                    //             text: controller.settingsService.authModel
+                    //                     ?.userModel.favoriteCarBrand ??
+                    //                 '--',
+                    //             color: AppColors.surface.withOpacity(0.9),
+                    //             fontSize: 18,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ]),
                   ],
                 ),
               )),

@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:image/image.dart' as imagelib;
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +14,7 @@ import 'package:vroom_app/app/data/api/app_cars_api.dart';
 import 'package:vroom_app/app/data/models/car_model.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
+
 import '../../../app_constants.dart';
 import '../../../data/api/app_feed_api.dart';
 import '../../../data/models/feed_model.dart';
@@ -31,6 +33,7 @@ class ScanCarController extends AppAbstractController {
   CameraController? cameraController;
   AppCarsApi appCarsApi = Get.put(AppCarsApi());
   AppFeedApi appFeedApi = Get.put(AppFeedApi());
+  final box = GetStorage();
   bool cameraReady = false;
   CameraStates cameraStates = CameraStates.cameraStarting;
   Image? licenceImageCropped;
@@ -38,6 +41,7 @@ class ScanCarController extends AppAbstractController {
   XFile? licenceImage;
   bool isSimulator = false;
   CarModel? car;
+
   @override
   void onInit() {
     super.onInit();
@@ -112,69 +116,72 @@ class ScanCarController extends AppAbstractController {
 
         // Show a dialog indicating no internet connection
         showDialog(
-          context: Get.context!,
-          builder: (context) => Center(
-            child: Container(
-              width: Get.width * 0.9,
-              height: Get.height * 0.5,
-              decoration: ShapeDecoration(
-                color: Color(0xFF0E0E0F),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  ),
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    'Currently You Are Offline',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontStyle: FontStyle.italic,
-                      fontFamily: 'Exo 2',
-                      fontWeight: FontWeight.w700,
+            context: Get.context!,
+            builder: (context) => Scaffold(
+              body: Center(
+                      child: Container(
+                    width: Get.width * 0.9,
+                    height: Get.height * 0.5,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFF0E0E0F),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15),
+                        ),
+                      ),
                     ),
-                  ),
-                  Image.asset("assets/images/offlineImage.png",width: 100,),
-                  Text(
-                    'You are currently offline but don’t worry, your\ncar has been wroomed.\nIt will show up in your garage when you go online.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontStyle: FontStyle.italic,
-                      fontFamily: 'Exo 2',
-                      fontWeight: FontWeight.w400,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          'Currently You Are Offline',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontStyle: FontStyle.italic,
+                            fontFamily: 'Exo 2',
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Image.asset(
+                          "assets/images/offlineImage.png",
+                          width: 100,
+                        ),
+                        Text(
+                          'You are currently offline but don’t worry, your\ncar has been wroomed.\nIt will show up in your garage when you go online.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontStyle: FontStyle.italic,
+                            fontFamily: 'Exo 2',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        Container(
+                          height: 55,
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          child: AppButtonField(
+                              text: "GOT IT",
+                              onPressed: () {
+                                Get.back();
+                                Get.back();
+                              }),
+                        )
+                      ],
                     ),
-                  ),
-
-
-                  Container(
-                    height: 55,
-                    width: double.infinity,
-                    margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                    child: AppButtonField(
-                        text: "GOT IT", onPressed: (){
-                      Get.back();
-                      Get.back();
-                    }),
-                  )
-
-                ],
-              ),
-            )
-          )
-        );
+                  )),
+            ));
       } else {
         // If online, send the image file path to the API
+        final String value = box.read(AppConstants.userGarageValueKey);
 
         car = await appCarsApi.vroomCar(path.path);
-
+        box.write(AppConstants.userGarageValueKey,
+            (double.tryParse(value)! + car!.price!).toString());
         // Check if there are any offline images to send
         List<String> offlineImages = await _getOfflineImages();
         if (offlineImages.isNotEmpty) {
@@ -187,7 +194,9 @@ class ScanCarController extends AppAbstractController {
           await _saveOfflineImages([]);
         }
       }
+
       cameraStates = CameraStates.cameraDone;
+
     } catch (e, ex) {
       print(e);
       errorMessage = e.toString();
@@ -197,6 +206,7 @@ class ScanCarController extends AppAbstractController {
       update();
     }
   }
+
   Future<List<String>> _getOfflineImages() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getStringList('offlineImages') ?? [];
@@ -207,6 +217,7 @@ class ScanCarController extends AppAbstractController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('offlineImages', offlineImages);
   }
+
   Future<File?> _takePicture() async {
     try {
       errorMessage = null;

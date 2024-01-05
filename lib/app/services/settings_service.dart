@@ -27,6 +27,14 @@ class SettingsService extends GetxService {
   void setAuth(AuthModel authModel) {
     this.authModel = authModel;
     box.write(AppConstants.accessTokenKey, authModel.accessToken);
+    box.write(AppConstants.userGarageValueKey, authModel.userModel.totalPrice.toString());
+    box.write(AppConstants.userAvatarKey, authModel.userModel.avatar.toString());
+    box.write(AppConstants.userFavouriteBrand, authModel.userModel.favoriteCarBrand.toString());
+    box.write(AppConstants.userFullNameKey, authModel.userModel.name.toString());
+    box.write(AppConstants.userPostsKey, authModel.userModel.posts.toString());
+    box.write(AppConstants.userUserNameKey, authModel.userModel.username.toString());
+    box.write(AppConstants.userWroomsKey, authModel.userModel.wrooms.toString());
+    box.write(AppConstants.userPinKey, authModel.userModel.password.toString());
     analyticsService.logUser(authModel);
     if (isUserChnaged != null) {
       isUserChnaged!();
@@ -35,6 +43,7 @@ class SettingsService extends GetxService {
 
   void logout() async {
     box.write(AppConstants.accessTokenKey, null);
+    box.erase();
     authModel = null;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();

@@ -9,10 +9,7 @@ class AppProfileAvatar extends StatelessWidget {
   final bool shouldEnlarge;
 
   AppProfileAvatar(
-      {Key? key,
-      required this.size,
-      this.user,
-      this.shouldEnlarge = false})
+      {Key? key, required this.size, this.user, this.shouldEnlarge = false})
       : super(key: key);
 
   @override
@@ -24,19 +21,25 @@ class AppProfileAvatar extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(size / 2),
             ),
-            child: user!.avatar!.isEmpty
+            child: user!.avatar == null
                 ? Image.asset(
                     'assets/images/ProfileDummy.png',
                     width: size,
                     fit: BoxFit.fitWidth,
                   )
-                : AppNetworkImage(
-                    url: user?.avatar ?? '',
-                    alignment: Alignment.center,
-                    width: size,
-                    height: size,
-                    fit: BoxFit.cover,
-                  )),
+                : user!.avatar!.isEmpty
+                    ? Image.asset(
+                        'assets/images/ProfileDummy.png',
+                        width: size,
+                        fit: BoxFit.fitWidth,
+                      )
+                    : AppNetworkImage(
+                        url: user?.avatar ?? '',
+                        alignment: Alignment.center,
+                        width: size,
+                        height: size,
+                        fit: BoxFit.cover,
+                      )),
       ],
     );
   }

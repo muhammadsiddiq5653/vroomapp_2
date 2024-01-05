@@ -202,4 +202,32 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
       ),
     );
   }
+  bool isValidName(String username) {
+    // Check length:
+    if (username.length < 4 || username.length > 32) {
+      return false;
+    }
+
+    // Check for alphabets characters only:
+    final validCharacters = RegExp(r'^[a-zA-Z]+$');
+    if (!validCharacters.hasMatch(username)) {
+      return false;
+    }
+
+    return true;
+  }
+  bool isValidEmail(String username) {
+    // Check length:
+    if (username.length < 5 || username.length > 100) {
+      return false;
+    }
+
+    // Check for alphanumeric characters only:
+    final validCharacters = RegExp(r'^[a-zA-Z0-9]+$');
+    if (!validCharacters.hasMatch(username)) {
+      return false;
+    }
+
+    return true;
+  }
 }

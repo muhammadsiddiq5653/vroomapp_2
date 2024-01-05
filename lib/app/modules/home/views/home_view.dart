@@ -25,12 +25,8 @@ class HomeView extends GetView<HomeController> {
       builder: (HomeController _) => AppKeyboardHider(
         child: Scaffold(
             appBar: GameAppBar(
-                userModel: UserModel(email: ""),),
-            // floatingActionButtonLocation:
-            //     FloatingActionButtonLocation.centerDocked,
-            // floatingActionButton: AppFloatingActionButton(
-            //   onClick: controller.scanCar,
-            // ),
+              ),
+
             body: Container(
               padding: EdgeInsets.symmetric(horizontal: 17, vertical: 20),
               child: Column(
@@ -58,6 +54,7 @@ class HomeView extends GetView<HomeController> {
                     child: AppStateHandler(
                       loadingState: controller.loadingState,
                       emptyWidget: _getEmptyState(),
+                      offlineWidget : _getOfflineState(),
                       onRetry: () {
                         controller.loadCards();
                       },
@@ -101,7 +98,7 @@ class HomeView extends GetView<HomeController> {
           children: [
             SizedBox(height: 30),
             Text700(
-              text: "New to the game?",
+              text: "New to the app?",
               fontSize: 25,
               textAlign: TextAlign.center,
             ),
@@ -114,6 +111,52 @@ class HomeView extends GetView<HomeController> {
               child: Text600(
                 text:
                     "You haven’t vroomed any cars, yet! Tap on the BIG RED scan button to get started.",
+                textAlign: TextAlign.center,
+                fontSize: 12,
+              ),
+            ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 35.0),
+            //   child: Align(
+            //     alignment: Alignment.bottomRight,
+            //     child: Image.asset(
+            //       'assets/images/arrow.png',
+            //       height: 100,
+            //     ),
+            //   ),
+            // ),
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _getOfflineState() {
+    return Center(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: 30),
+            Text700(
+              text: "Are you offline?",
+              fontSize: 25,
+              textAlign: TextAlign.center,
+            ),
+            Image.asset('assets/images/blankslatehome.png'),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text600(
+                text:
+                "Make sure you are connected to internet. Your cars will show up when you are back online.",
                 textAlign: TextAlign.center,
                 fontSize: 12,
               ),

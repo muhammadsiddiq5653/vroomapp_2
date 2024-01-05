@@ -1,5 +1,5 @@
 name: vroom_app
-version: 1.0.0+12
+version: 1.0.0+13
 publish_to: none
 description: A new Flutter project.
 environment: 
@@ -92,5 +92,6 @@ flutter:
     - assets/images/match.png
     - assets/images/battle.png
     - assets/images/battlepass.png
+    - assets/images/offlineImage.png
     - assets/sounds/
 

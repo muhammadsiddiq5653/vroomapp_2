@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:vroom_app/app/app_colors.dart';
+import 'package:vroom_app/app/app_constants.dart';
 import 'package:vroom_app/app/custom_painter/app_header_coins_container_painter.dart';
 import 'package:vroom_app/app/data/models/user_model.dart';
 import 'package:vroom_app/app/helpers/hexcolor.dart';
@@ -11,8 +13,9 @@ import '../app_bottom_sheet.dart';
 import '../app_form_fields/app_button_field.dart';
 
 class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
-  UserModel userModel;
-  GameAppBar({required this.userModel});
+  final box = GetStorage();
+  GameAppBar();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -78,32 +81,37 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Container _getFuelWidget() {
-    return Container(
-        alignment: Alignment.bottomCenter,
-        padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-        height: 80,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _getIconPair('assets/images/coins.png',
-                    (userModel.totalPrice?.floorToDouble().toString() ?? '0') + 'K'),
-                // SizedBox(
-                //   height: 5,
-                // ),
-                // _getIconPair('assets/images/coins.png', "\$190,222")
-              ],
-            ),
-            SizedBox(
-              width: 30,
-            ),
-          ],
-        ));
+  Widget _getFuelWidget() {
+
+      return Container(
+          alignment: Alignment.bottomCenter,
+          padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+          height: 80,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _getIconPair(
+                      'assets/images/coins.png',
+                      (box.read(AppConstants.userGarageValueKey) ??
+                              '0') +
+                          'K'),
+                  // SizedBox(
+                  //   height: 5,
+                  // ),
+                  // _getIconPair('assets/images/coins.png', "\$190,222")
+                ],
+              ),
+              SizedBox(
+                width: 30,
+              ),
+            ],
+          ));
+
   }
 
   Row _getIconPair(String img, String title) {

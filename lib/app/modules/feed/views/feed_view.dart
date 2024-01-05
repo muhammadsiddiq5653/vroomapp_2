@@ -20,12 +20,8 @@ class FeedView extends GetView<FeedController> {
     return GetBuilder<FeedController>(
       builder: (_) => Scaffold(
         appBar: GameAppBar(
-            userModel: feedController.settingsService.authModel!.userModel),
+          ),
 
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        // floatingActionButton: AppFloatingActionButton(
-        //   onClick: controller.scanCar,
-        // ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 17, vertical: 15),
           child: AppStateHandler(

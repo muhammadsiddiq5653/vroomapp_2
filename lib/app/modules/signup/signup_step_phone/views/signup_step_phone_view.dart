@@ -17,6 +17,7 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
 
   SignupStepPhoneView({Key? key}) : super(key: key);
   final empSignUpFormKey = GlobalKey<FormState>();
+  Rx<bool?> showValidation = Rx<bool?>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,24 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                       onChanged: (val) {
                         controller.username = val;
                       },
+                      onTap: () {
+                        showValidation.value = true;
+                      },
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Obx(() {
+                      return Visibility(
+                        visible: showValidation.value!,
+                        child: Text400(
+                            textAlign: TextAlign.left,
+                            fontSize: 14,
+                            maxLines: 3,
+                            text:
+                                "Alphabets and Numbers are allowed. Less than 4 characters, Space between characters, Special Charactersare not allowed."),
+                      );
+                    }),
                     SizedBox(
                       height: 80,
                     ),
@@ -77,8 +95,12 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                                 .showError('Please Enter a UserName');
                           } else if (controller.username.isNotEmpty) {
                             if (RegExp(r'\s').hasMatch(controller.username)) {
+                              controller.dialogService
+                                  .showError('Username can not include spaces');
+                            }
+                            if (!isValidUsername(controller.username)) {
                               controller.dialogService.showError(
-                                  'Username can not include spaces');
+                                  'Only alphabets and numbers are allowed in the username');
                             } else {
                               controller.next();
                             }
@@ -195,5 +217,20 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
         ),
       ),
     );
+  }
+
+  bool isValidUsername(String username) {
+    // Check length:
+    if (username.length < 4 || username.length > 32) {
+      return false;
+    }
+
+    // Check for alphanumeric characters only:
+    final validCharacters = RegExp(r'^[a-zA-Z0-9]+$');
+    if (!validCharacters.hasMatch(username)) {
+      return false;
+    }
+
+    return true;
   }
 }

@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
@@ -20,6 +21,7 @@ class HomeController extends AppAbstractController {
   String? sort;
   String? searchQuery;
   var deleteCarConst = 'delete';
+
   @override
   void onInit() {
     super.onInit();
@@ -94,12 +96,16 @@ class HomeController extends AppAbstractController {
       ));
       if (result == deleteCarConst) {
         loadingState = GeneralLoadingState.waiting;
-
+        final value = car.price ?? 0;
         await appCarsApi.deleteUserCar(car.userCardId);
+        final userValue = box.read(AppConstants.userGarageValueKey) ?? 0;
+        box.write(AppConstants.userGarageValueKey,
+            (double.tryParse(userValue)! + value).toString());
         loadingState = GeneralLoadingState.done;
         loadCards();
       }
     } catch (ex) {
+
       dialogService.showError('Something went wrong, please try again');
     } finally {
       loadingState = GeneralLoadingState.done;
@@ -129,6 +135,11 @@ class HomeController extends AppAbstractController {
       settingsService.cars = cars!.collection;
       return true;
     } catch (ex) {
+      if (ConnectivityResult.none == await Connectivity().checkConnectivity())
+      {
+        loadingState = GeneralLoadingState.offline;
+      }
+      else
       loadingState = GeneralLoadingState.error;
       return false;
     } finally {

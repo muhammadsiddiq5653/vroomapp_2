@@ -11,6 +11,7 @@ class AppStateHandler extends StatelessWidget {
   late final GeneralLoadingState loadingState;
   late final Widget? loadingWidget;
   late final Widget? emptyWidget;
+  late final Widget? offlineWidget;
   late final Function()? onRetry;
   final bool hasRefreshIndicator;
   final ScrollController? scrollController;
@@ -20,6 +21,7 @@ class AppStateHandler extends StatelessWidget {
       required this.loadingState,
       this.loadingWidget,
       this.emptyWidget,
+      this.offlineWidget,
       this.hasRefreshIndicator: false,
       this.scrollController,
       this.onRetry});
@@ -42,7 +44,44 @@ class AppStateHandler extends StatelessWidget {
               ),
             ),
       );
-    } else if (loadingState == GeneralLoadingState.empty) {
+    } else if ( loadingState == GeneralLoadingState.offline){
+
+      childToReturn = (offlineWidget !=null ? offlineWidget : emptyWidget !=null ? emptyWidget :   Container(
+        padding: EdgeInsets.all(20),
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Remix.emotion_happy_fill,
+              size: 120,
+              color: Colors.orangeAccent,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text600(
+              text: "Hmmm, its seems quite in here. For now ;)",
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            onRetry != null
+                ? ElevatedButton(
+                onPressed: onRetry,
+                child: Text(
+                  "Try again",
+                  style: TextStyle(color: Colors.white),
+                ))
+                : Container()
+          ],
+        ),
+      ))!;
+    }
+
+
+    else if (loadingState == GeneralLoadingState.empty) {
       childToReturn = emptyWidget ??
           Container(
             padding: EdgeInsets.all(20),
@@ -76,7 +115,7 @@ class AppStateHandler extends StatelessWidget {
               ],
             ),
           );
-    } else if (loadingState == GeneralLoadingState.error) {
+    }  else if (loadingState == GeneralLoadingState.error) {
       childToReturn = Container(
         color: AppColors.background,
         padding: EdgeInsets.all(20),
