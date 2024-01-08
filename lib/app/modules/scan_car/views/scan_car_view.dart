@@ -9,6 +9,7 @@ import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 
+import '../../../widgets/app_text/text_600.dart';
 import '../controllers/scan_car_controller.dart';
 
 class ScanCarView extends GetView<ScanCarController> {
@@ -61,6 +62,20 @@ class ScanCarView extends GetView<ScanCarController> {
                 text: 'Tap on the button when ready',
                 fontSize: 22,
               ),
+              SizedBox(
+                height: 80,
+              ),
+              GestureDetector(
+                onTap: (){
+                  Get.back();
+                },
+                child: Text600(
+                  text: 'Cancel',
+                  color: AppColors.primary,
+                  fontSize: 22,
+
+                ),
+              )
             ],
           ),
         ),
@@ -146,6 +161,20 @@ class ScanCarView extends GetView<ScanCarController> {
                   controller.retry();
                 },
                 text: 'Wroom again',
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 50,
+              width: 300,
+              child: AppButtonField(
+                primary: Colors.transparent,
+                onPressed: () {
+                  Get.back();
+                },
+                text: 'Cancel',
               ),
             )
           ],

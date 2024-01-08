@@ -1,7 +1,7 @@
 name: vroom_app
-version: 1.0.0+13
+version: 1.0.0+15
 publish_to: none
-description: A new Flutter project.
+description: Shazam for cars.
 environment: 
   sdk: '>=2.18.2 <3.0.0'
 
