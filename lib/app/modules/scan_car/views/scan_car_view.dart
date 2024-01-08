@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
 import 'package:vroom_app/app/app_colors.dart';
+import 'package:vroom_app/app/widgets/app_bars/outer_app_bar.dart';
 import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
 import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
@@ -17,9 +18,12 @@ class ScanCarView extends GetView<ScanCarController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ScanCarController>(
-      builder: (_) => Scaffold(
-        body: _getChildrenDependOnCameraState(),
+    return SafeArea(
+
+      child: GetBuilder<ScanCarController>(
+        builder: (_) => Scaffold(
+          body: _getChildrenDependOnCameraState(),
+        ),
       ),
     );
   }
@@ -46,6 +50,10 @@ class ScanCarView extends GetView<ScanCarController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              OuterAppBar(title: '',),
+              SizedBox(
+                height: 200,
+              ),
               GestureDetector(
                   onTap: () {
                     //_showBottomSheet();
@@ -65,17 +73,7 @@ class ScanCarView extends GetView<ScanCarController> {
               SizedBox(
                 height: 80,
               ),
-              GestureDetector(
-                onTap: (){
-                  Get.back();
-                },
-                child: Text600(
-                  text: 'Cancel',
-                  color: AppColors.primary,
-                  fontSize: 22,
 
-                ),
-              )
             ],
           ),
         ),
@@ -174,7 +172,7 @@ class ScanCarView extends GetView<ScanCarController> {
                 onPressed: () {
                   Get.back();
                 },
-                text: 'Cancel',
+                text: 'No, Thanks',
               ),
             )
           ],
