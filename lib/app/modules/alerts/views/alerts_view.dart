@@ -115,7 +115,7 @@ class AlertsView extends GetView<AlertsController> {
             height: 10,
           ),
           SmallText(
-            text: 'All your notifications will show up on this screen.',
+            text: 'Here you can get alerts when your friends wroom cars.',
             color: Colors.white,
             textAlign: TextAlign.center,
           )

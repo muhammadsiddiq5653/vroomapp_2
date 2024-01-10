@@ -22,12 +22,12 @@ class PreviewView extends GetView<PreviewController> {
       "image": "assets/images/Slide02.png"
     },
     {
-      "title": "Get updated",
+      "title": "Follow friends as headline",
       "subtitle": "Get alerts when other people love the cars \nyou find",
       "image": "assets/images/Slide03.png"
     },
     {
-      "title": "You're in the drivers seat",
+      "title": "Your car app.",
       "subtitle": "Easily update settings and preferences in \nyour profile",
       "image": "assets/images/Slide04.png"
     }

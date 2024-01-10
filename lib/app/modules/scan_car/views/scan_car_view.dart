@@ -172,7 +172,7 @@ class ScanCarView extends GetView<ScanCarController> {
                 onPressed: () {
                   Get.back();
                 },
-                text: 'No, Thanks',
+                text: 'Not now',
               ),
             )
           ],

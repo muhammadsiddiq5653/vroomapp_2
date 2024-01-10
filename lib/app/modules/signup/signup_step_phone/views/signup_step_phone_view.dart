@@ -194,7 +194,7 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                               textAlign: TextAlign.center,
                               fontSize: 14,
                               maxLines: 1,
-                              text: "By continuing you are agreeing with our "),
+                              text: "By continuing you are agreeing with our"),
                         ),
                         GestureDetector(
                           onTap: () {

@@ -229,6 +229,31 @@ class SettingsView extends GetView<SettingsController> {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      launchUrl(
+                          Uri.parse('http://wroom.zedandwhite.com/terms'));
+                    },
+                    child: AppTile(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text400(
+                              text: 'Read our Terms',
+                              fontSize: 16,
+                            ),
+                          ),
+                          Icon(
+                            Remix.arrow_right_s_line,
+                            color: Colors.white,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                   // SizedBox(
                   //   height: 30,
                   // ),

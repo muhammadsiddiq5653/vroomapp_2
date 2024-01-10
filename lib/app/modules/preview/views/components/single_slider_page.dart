@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vroom_app/app/widgets/app_text/small_text.dart';
+
 import '../../../../widgets/app_text/big_header_text.dart';
 
 class SingleSliderPage extends StatelessWidget {
@@ -45,6 +46,7 @@ class SingleSliderPage extends StatelessWidget {
                   text: item['subtitle'] ?? '',
                   color: Colors.white,
                   textAlign: TextAlign.center,
+                  fontSize: 18,
                 ),
               ],
             ),

@@ -74,7 +74,7 @@ class MainTabsController extends AppAbstractController {
                       textAlign: TextAlign.center,
                         fontSize: 14,
                         text:
-                            'Wrooming a car works in a THREE QUARTER angle. Please make sure to hold your phone at the angle where your car looks similar to the above image to Wroom Successfully.'),
+                            'Please make sure to hold your phone at the angle where your car looks similar to the above image to Wroom Successfully.'),
                     SizedBox(
                       height: 30,
                     ),
