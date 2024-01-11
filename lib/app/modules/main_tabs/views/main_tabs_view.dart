@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:vroom_app/app/helpers/hexcolor.dart';
@@ -22,114 +23,115 @@ class MainTabsView extends GetView<MainTabsController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MainTabsController>(
-        builder: (_) => Scaffold(
-              floatingActionButton: FloatingActionButton(
-                backgroundColor: AppColors.primary,
-                child: Container(
-                  height: 65,
-                  width: 65,
-                  decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(100),
-                    ),
-                  ),
+        builder: (_) => Container(
+              child: Scaffold(
+                floatingActionButton: FloatingActionButton(
+                  backgroundColor: AppColors.primary,
                   child: Container(
-                    padding: EdgeInsets.all(14),
-                    child: Image.asset(
-                      'assets/images/svg/bottomNav/wroomIcon1.png',
-                      alignment: Alignment.center,
+                    height: 65,
+                    width: 65,
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(100),
+                      ),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.all(14),
+                      child: Image.asset(
+                        'assets/images/svg/bottomNav/wroomIcon1.png',
+                        alignment: Alignment.center,
+                      ),
                     ),
                   ),
+                  onPressed: () {
+                    controller.isLoggedin.value
+                        ? controller.scan()
+                        : Get.snackbar(
+                            'You are Not Logged in',
+                            'Please Login First',
+                            snackPosition: SnackPosition.TOP,
+                            colorText: Colors.white,
+                          );
+                  },
                 ),
-                onPressed: () {
-                  // controller.isLoggedin.value
-                  //     ?
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.centerDocked,
+                body: _getPage(),
+                extendBody: true,
+                bottomNavigationBar: BottomNavigationBar(
+                  showSelectedLabels: true,
+                  showUnselectedLabels: false,
+                  elevation: 0,
+                  backgroundColor: HexColor("#141415").withOpacity(0.3),
+                  onTap: controller.onTap,
+                  unselectedItemColor: Colors.white.withOpacity(0.25),
+                  selectedFontSize: 18.sp,
+                  selectedLabelStyle: TextStyle(
+                      fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
+                  unselectedFontSize: 0,
+                  selectedItemColor: Colors.white,
+                  currentIndex:
+                      controller.pageIndex < 0 ? 0 : controller.pageIndex,
+                  type: BottomNavigationBarType.fixed,
+                  items: [
+                    BottomNavigationBarItem(
+                        activeIcon: SvgPicture.asset(
+                          'assets/images/svg/bottomNav/GarageActive.svg',
+                          width: 32.w,
+                          height: 32.h,
+                        ),
+                        icon: SvgPicture.asset(
+                          'assets/images/svg/bottomNav/GarageInActive.svg',
+                          width: 32.w,
+                          height: 32.h,
+                        ),
+                        label: 'Garage'.toUpperCase()),
+                    BottomNavigationBarItem(
+                        activeIcon: SvgPicture.asset(
+                          'assets/images/svg/bottomNav/FeedActive.svg',
+                          width: 32.w,
+                          height: 32.h,
+                        ),
+                        icon: SvgPicture.asset(
+                          'assets/images/svg/bottomNav/FeedInActive.svg',
+                          width: 32.w,
+                          height: 32.h,
+                        ),
+                        label: 'Feed'.toUpperCase()),
 
-                  controller.scan();
-                  // : Get.snackbar(
-                  //     'You are Not Logged in',
-                  //     'Please Login First',
-                  //     snackPosition: SnackPosition.TOP,
-                  //     colorText: Colors.white,
-                  //   );
-                },
-              ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked,
-              body: _getPage(),
-              bottomNavigationBar: BottomNavigationBar(
-                showSelectedLabels: true,
-                showUnselectedLabels: false,
-                elevation: 0,
-                backgroundColor: HexColor("#141415"),
-                onTap: controller.onTap,
-                unselectedItemColor: Colors.white.withOpacity(0.25),
-                selectedFontSize: 18,
-                selectedLabelStyle: TextStyle(
-                    fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
-                unselectedFontSize: 0,
-                selectedItemColor: Colors.white,
-                currentIndex:
-                    controller.pageIndex < 0 ? 0 : controller.pageIndex,
-                type: BottomNavigationBarType.fixed,
-                items: [
-                  BottomNavigationBarItem(
-                      activeIcon: SvgPicture.asset(
-                        'assets/images/svg/bottomNav/GarageActive.svg',
-                        width: 32,
-                        height: 32,
-                      ),
-                      icon: SvgPicture.asset(
-                        'assets/images/svg/bottomNav/GarageInActive.svg',
-                        width: 32,
-                        height: 32,
-                      ),
-                      label: 'Garage'.toUpperCase()),
-                  BottomNavigationBarItem(
-                      activeIcon: SvgPicture.asset(
-                        'assets/images/svg/bottomNav/FeedActive.svg',
-                        width: 32,
-                        height: 32,
-                      ),
-                      icon: SvgPicture.asset(
-                        'assets/images/svg/bottomNav/FeedInActive.svg',
-                        width: 32,
-                        height: 32,
-                      ),
-                      label: 'Feed'.toUpperCase()),
-
-                  BottomNavigationBarItem(
-                      activeIcon: SvgPicture.asset(
-                        'assets/images/svg/bottomNav/AlertsActive.svg',
-                        width: 32,
-                        height: 32,
-                      ),
-                      icon: SvgPicture.asset(
-                        'assets/images/svg/bottomNav/AlertsInActive.svg',
-                        width: 32,
-                        height: 32,
-                      ),
-                      label: 'Alerts'.toUpperCase()),
-                  BottomNavigationBarItem(
-                      activeIcon: SvgPicture.asset(
-                        'assets/images/svg/bottomNav/ProfileActive.svg',
-                        width: 32,
-                        height: 32,
-                      ),
-                      icon: SvgPicture.asset(
-                        'assets/images/svg/bottomNav/ProfileInActive.svg',
-                        width: 32,
-                        height: 32,
-                      ),
-                      label: 'Profile'.toUpperCase()),
-                  // BottomNavigationBarItem(
-                  //     icon: Icon(
-                  //       Remix.group_line,
-                  //       size: 25,
-                  //     ),
-                  //     label: 'Leaders'.toUpperCase()),
-                ],
+                    BottomNavigationBarItem(
+                        activeIcon: SvgPicture.asset(
+                          'assets/images/svg/bottomNav/AlertsActive.svg',
+                          width: 32.w,
+                          height: 32.h,
+                        ),
+                        icon: SvgPicture.asset(
+                          'assets/images/svg/bottomNav/AlertsInActive.svg',
+                          width: 32.w,
+                          height: 32.h,
+                        ),
+                        label: 'Alerts'.toUpperCase()),
+                    BottomNavigationBarItem(
+                        activeIcon: SvgPicture.asset(
+                          'assets/images/svg/bottomNav/ProfileActive.svg',
+                          width: 32.w,
+                          height: 32.h,
+                        ),
+                        icon: SvgPicture.asset(
+                          'assets/images/svg/bottomNav/ProfileInActive.svg',
+                          width: 32.w,
+                          height: 32.h,
+                        ),
+                        label: 'Profile'.toUpperCase()),
+                    // BottomNavigationBarItem(
+                    //     icon: Icon(
+                    //       Remix.group_line,
+                    //       size: 25,
+                    //     ),
+                    //     label: 'Leaders'.toUpperCase()),
+                  ],
+                ),
               ),
             ));
   }
@@ -150,11 +152,10 @@ class MainTabsView extends GetView<MainTabsController> {
             : NotLoggedinProfile();
       default:
         return Scaffold(
-          backgroundColor: Colors.white,
           body: Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: Colors.white,
+            width: double.infinity.w,
+            height: double.infinity.h,
+            decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
             child: Center(
               child: CircularProgressIndicator(),
             ),

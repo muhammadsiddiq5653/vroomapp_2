@@ -38,68 +38,73 @@ class _FaQsState extends State<FaQs> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 17.0,
-            ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 20,
-                ),
-                OuterAppBar(
-                  title: 'FAQs',
-                  centerTitle: true,
-                ),
-                SizedBox(
-                  height: 45,
-                ),
-                ...List.generate(items.length, (index) {
-                  return Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
-                        decoration: BoxDecoration(
-                            color: AppColors.cardColor,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              items[index].headerValue,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text400(
-                              text: items[index].expandedValue,
-                              fontSize: 14,
-                              height: 1.6,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  );
-                }),
 
-                //
-                // Container(
-                //              padding: EdgeInsets.all(15.0),
-                //              child:
-              ],
+        body: Container(
+          decoration: BoxDecoration(
+              gradient: AppColors.backgroundGradient
+          ),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 17.0,
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  OuterAppBar(
+                    title: 'FAQs',
+                    centerTitle: true,
+                  ),
+                  SizedBox(
+                    height: 45,
+                  ),
+                  ...List.generate(items.length, (index) {
+                    return Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
+                          decoration: BoxDecoration(
+                              color: AppColors.cardColor,
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                items[index].headerValue,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text400(
+                                text: items[index].expandedValue,
+                                fontSize: 14,
+                                height: 1.6,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    );
+                  }),
+
+                  //
+                  // Container(
+                  //              padding: EdgeInsets.all(15.0),
+                  //              child:
+                ],
+              ),
             ),
           ),
         ),

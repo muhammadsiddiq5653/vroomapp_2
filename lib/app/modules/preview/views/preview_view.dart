@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vroom_app/app/app_colors.dart';
 
@@ -22,12 +23,12 @@ class PreviewView extends GetView<PreviewController> {
       "image": "assets/images/Slide02.png"
     },
     {
-      "title": "Follow friends as headline",
+      "title": "Follow friends",
       "subtitle": "Get alerts when other people love the cars \nyou find",
       "image": "assets/images/Slide03.png"
     },
     {
-      "title": "Your car app.",
+      "title": "Your car app",
       "subtitle": "Easily update settings and preferences in \nyour profile",
       "image": "assets/images/Slide04.png"
     }
@@ -38,14 +39,14 @@ class PreviewView extends GetView<PreviewController> {
     return GetBuilder<PreviewController>(
       builder: (_) => Scaffold(
           body: Container(
-        height: double.infinity,
-        width: double.infinity,
+        height: double.infinity.h,
+        width: double.infinity.w,
         child: Stack(
           children: [
 
             Container(
-              height: double.infinity,
-              width: double.infinity,
+              height: double.infinity.h,
+              width: double.infinity.w,
               child: PageView.builder(
                   itemCount: pages.length,
                   onPageChanged: (val) {
@@ -62,7 +63,7 @@ class PreviewView extends GetView<PreviewController> {
                 margin: EdgeInsets.only(top: 45),
                 child: Image.asset(
                   'assets/images/LogoforGettingStarted.png',
-                  width: 100,
+                  width: 100.w,
                 ),
               ),
             ),
@@ -78,15 +79,16 @@ class PreviewView extends GetView<PreviewController> {
               right: 0,
               child: Container(
                 decoration: BoxDecoration(
-                    color: AppColors.background,
+
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),
                 child: Column(
                   children: [
                     Container(
-                      height: 55,
-                      width: double.infinity,
+
+                      height: 55.h,
+                      width: double.infinity.w,
                       margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
                       child: AppButtonField(
                           primary: AppColors.primary,
@@ -101,7 +103,7 @@ class PreviewView extends GetView<PreviewController> {
                           }),
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 40.h,
                     ),
                     // Container(
                     //   height: 55,

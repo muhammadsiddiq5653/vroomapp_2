@@ -30,36 +30,41 @@ class MeetTeam extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.background,
+
         //0E0E0F
 
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 17.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              OuterAppBar(
-                title: 'About the Team',
-                centerTitle: true,
-              ),
-              SizedBox(
-                height: 45,
-              ),
-              Expanded(
-                child: ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 4,
-                  itemBuilder: (BuildContext context, int index) {
-                    return customCard(index);
-                  },
+        body: Container(
+          decoration: BoxDecoration(
+              gradient: AppColors.backgroundGradient
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-            ],
+                OuterAppBar(
+                  title: 'About the Team',
+                  centerTitle: true,
+                ),
+                SizedBox(
+                  height: 45,
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 4,
+                    itemBuilder: (BuildContext context, int index) {
+                      return customCard(index);
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

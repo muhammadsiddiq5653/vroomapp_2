@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vroom_app/app/app_colors.dart';
 
 class AppHeaderCoinsContainerPainter extends CustomPainter {
   @override
@@ -14,7 +15,7 @@ class AppHeaderCoinsContainerPainter extends CustomPainter {
     path_0.close();
 
     Paint paint_0_fill = Paint()..style = PaintingStyle.fill;
-    paint_0_fill.color = Color(0xffC90000).withOpacity(1.0);
+    paint_0_fill.color = AppColors.primary.withOpacity(1.0);
     canvas.drawPath(path_0, paint_0_fill);
   }
 

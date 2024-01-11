@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/data/models/feed_model.dart';
@@ -29,6 +30,9 @@ class NotLoggedInFeedView extends GetView<FeedController> {
         //   onClick: controller.scanCar,
         // ),
         body: Container(
+          decoration: BoxDecoration(
+            gradient: AppColors.backgroundGradient
+          ),
           padding: EdgeInsets.symmetric(horizontal: 17, vertical: 15),
           child: AppStateHandler(
             loadingState: controller.loadingState,
@@ -45,7 +49,7 @@ class NotLoggedInFeedView extends GetView<FeedController> {
               },
               child: ListView.separated(
                   separatorBuilder: (context, index) => SizedBox(
-                        height: 20,
+                        height: 20.h,
                       ),
                   itemCount: controller.feed?.collection.length ?? 0,
                   itemBuilder: (BuildContext context, int index) {
@@ -94,17 +98,17 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                                           "You Need an Account For This",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: 18.sp,
                                               fontWeight: FontWeight.w700,
                                               fontStyle: FontStyle.italic,
                                               fontFamily: 'Exo',
                                               color: Colors.white),
                                         ),
                                         SizedBox(
-                                          height: 40,
+                                          height: 40.h,
                                         ),
                                         Container(
-                                          height: 55,
+                                          height: 55.h,
                                           width: double.infinity,
                                           margin:
                                               EdgeInsets.fromLTRB(47, 0, 47, 0),
@@ -118,10 +122,10 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                                               }),
                                         ),
                                         SizedBox(
-                                          height: 20,
+                                          height: 20.h,
                                         ),
                                         Container(
-                                          height: 55,
+                                          height: 55.h,
                                           width: double.infinity,
                                           margin:
                                               EdgeInsets.fromLTRB(47, 0, 47, 0),
@@ -157,18 +161,18 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                                           "You Need an Account For This",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: 18.sp,
                                               fontWeight: FontWeight.w700,
                                               fontStyle: FontStyle.italic,
                                               fontFamily: 'Exo',
                                               color: Colors.white),
                                         ),
                                         SizedBox(
-                                          height: 40,
+                                          height: 40.h,
                                         ),
                                         Container(
-                                          height: 55,
-                                          width: double.infinity,
+                                          height: 55.h,
+                                          width: double.infinity.w,
                                           margin:
                                               EdgeInsets.fromLTRB(47, 0, 47, 0),
                                           child: AppButtonField(
@@ -181,11 +185,11 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                                               }),
                                         ),
                                         SizedBox(
-                                          height: 20,
+                                          height: 20.h,
                                         ),
                                         Container(
-                                          height: 55,
-                                          width: double.infinity,
+                                          height: 55.h,
+                                          width: double.infinity.w,
                                           margin:
                                               EdgeInsets.fromLTRB(47, 0, 47, 0),
                                           child: AppButtonField(

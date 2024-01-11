@@ -1,5 +1,5 @@
 name: vroom_app
-version: 1.0.0+19
+version: 1.0.0+20
 publish_to: none
 description: Shazam for cars.
 environment: 
@@ -50,6 +50,7 @@ dependencies:
   get: 4.6.5
   rive: ^0.12.4
   shared_preferences:
+  flutter_screenutil:
   flutter: 
     sdk: flutter
 

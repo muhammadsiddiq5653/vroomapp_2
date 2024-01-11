@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/app_colors.dart';
@@ -78,7 +79,7 @@ class FeedCard extends StatelessWidget {
                       right: 0,
                       child: ClipRRect(
                         child: Container(
-                          height: 70,
+                          height: 70.h,
                           child: BackdropFilter(
                             filter: ImageFilter.blur(
                               sigmaX: 5,
@@ -142,7 +143,7 @@ class FeedCard extends StatelessWidget {
                       right: 0,
                       child: ClipRRect(
                         child: Container(
-                          height: 70,
+                          height: 70.h,
                           child: Container(
                             // width: MediaQuery.of(context).size.width - 20,
                             color: HexColor("#2e2e2e").withOpacity(0.25),
@@ -208,7 +209,7 @@ class FeedCard extends StatelessWidget {
                                           text: notLoggedInCard
                                               ? "Login".toUpperCase()
                                               : 'View Card'.toUpperCase(),
-                                          fontSize: notLoggedInCard ? 18 : 14,
+                                          fontSize: notLoggedInCard ? 18.sp : 14.sp,
                                         ),
                                       )),
                                   if (!notLoggedInCard)
@@ -256,11 +257,11 @@ class FeedCard extends StatelessWidget {
     return Row(
       children: [
         AppProfileAvatar(
-          size: 42,
+          size: 42.h,
           user: feedModel.userModel,
         ),
         SizedBox(
-          width: 10,
+          width: 10.w,
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -269,19 +270,19 @@ class FeedCard extends StatelessWidget {
             Text(
               feedModel.userModel?.name ?? '',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 18.sp,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
               ),
             ),
             SizedBox(
-              height: 2,
+              height: 2.h,
             ),
             Text(
               feedModel.userModel?.username ?? '',
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 12.sp,
                 color: Colors.white.withOpacity(0.90),
                 fontStyle: FontStyle.italic,
               ),

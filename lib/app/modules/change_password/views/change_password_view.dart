@@ -15,9 +15,12 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
   Widget build(BuildContext context) {
     return GetBuilder<ChangePasswordController>(
       builder: (controller) => Scaffold(
-        backgroundColor: AppColors.background,
+
         appBar: InsideAppBar(title: ''),
         body: Container(
+          decoration: BoxDecoration(
+              gradient: AppColors.backgroundGradient
+          ),
           padding: EdgeInsets.all(20),
           width: double.infinity,
           child: Center(

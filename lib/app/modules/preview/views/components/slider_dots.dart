@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SliderDots extends StatelessWidget {
   const SliderDots({
@@ -24,8 +25,8 @@ class SliderDots extends StatelessWidget {
                   ? Colors.white
                   : Colors.white.withOpacity(0.10),
             ),
-            width: 8,
-            height: 8,
+            width: 8.w,
+            height: 8.h,
             margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
           );
         }).toList(),

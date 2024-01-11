@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:virtual_keyboard_multi_language/virtual_keyboard_multi_language.dart';
@@ -23,6 +24,11 @@ class LoginView extends GetView<LoginDetailsStepController> {
       body: AppStateHandler(
         loadingState: controller.loadingState,
         child: Container(
+          height: double.infinity,
+
+          decoration: BoxDecoration(
+            gradient: AppColors.backgroundGradient,
+          ),
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
           child: SingleChildScrollView(
             child: Column(
@@ -37,18 +43,18 @@ class LoginView extends GetView<LoginDetailsStepController> {
                   title: '',
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 30.h,
                 ),
                 Text700(
                   text: 'Enter your PIN',
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Container(
-                  width: 200,
-                  height: 100,
+                  width: 200.w,
+                  height: 100.h,
                   // padding: const EdgeInsets.symmetric(horizontal: 80.0),
                   child: PinCodeTextField(
                     length: 4,
@@ -64,8 +70,8 @@ class LoginView extends GetView<LoginDetailsStepController> {
                       inactiveColor: AppColors.primary,
                       inactiveFillColor: AppColors.primary,
                       borderRadius: BorderRadius.circular(10),
-                      fieldHeight: 55,
-                      fieldWidth: 40,
+                      fieldHeight: 55.h,
+                      fieldWidth: 40.w,
                       activeFillColor: Colors.transparent,
                     ),
                     useExternalAutoFillGroup: true,
@@ -112,12 +118,12 @@ class LoginView extends GetView<LoginDetailsStepController> {
                 //   ],
                 // ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
 
                 VirtualKeyboard(
                     // [0-9] + .
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     type: VirtualKeyboardType.Numeric,
                     textColor: Colors.white,
                     onKeyPress: (key) {
@@ -151,10 +157,10 @@ class LoginView extends GetView<LoginDetailsStepController> {
                       print(controller.pinController.text);
                     }),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Container(
-                    height: 54,
+                    height: 54.h,
                     width: double.infinity,
                     child: AppButtonField(
                       text: 'Login'.toUpperCase(),
@@ -163,9 +169,9 @@ class LoginView extends GetView<LoginDetailsStepController> {
                       },
                       primary: AppColors.primary,
                     )),
-                SizedBox(
-                  height: 25,
-                ),
+                // SizedBox(
+                //   height: double.infinity,
+                // ),
               ],
             ),
           ),

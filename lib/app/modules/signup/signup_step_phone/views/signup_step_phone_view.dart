@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vroom_app/app/app_colors.dart';
@@ -28,6 +29,9 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
           //   title: '',
           // ),
           body: Container(
+            decoration: BoxDecoration(
+              gradient: AppColors.backgroundGradient
+            ),
             padding: EdgeInsets.symmetric(
               horizontal: 20,
               vertical: 60,
@@ -43,15 +47,15 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                       title: '',
                     ),
                     SizedBox(
-                      height: 100,
+                      height: 100.h,
                     ),
                     Text700(
                       text: 'Welcome, Lets setup your account',
                       textAlign: TextAlign.center,
-                      fontSize: 22,
+                      fontSize: 22.sp,
                     ),
                     SizedBox(
-                      height: 50,
+                      height: 50.h,
                     ),
 
                     AppTextField(
@@ -65,27 +69,27 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                       },
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                     Obx(() {
                       return Visibility(
                         visible: showValidation.value!,
                         child: Text400(
                             textAlign: TextAlign.left,
-                            fontSize: 14,
+                            fontSize: 14.sp,
                             maxLines: 3,
                             text:
                                 "Alphabets and Numbers are allowed. Less than 4 characters, Space between characters, Special Charactersare not allowed."),
                       );
                     }),
                     SizedBox(
-                      height: 80,
+                      height: 80.h,
                     ),
                     Container(
-                      height: 55,
+                      height: 55.h,
                       margin:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                      width: double.infinity,
+                      width: double.infinity.w,
                       child: AppButtonField(
                         text: 'Continue',
                         onPressed: () {
@@ -110,7 +114,7 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                     // Container(
                     //   child: Row(
@@ -183,19 +187,17 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                     //   ),
                     // ),
                     SizedBox(
-                      height: 100,
+                      height: 100.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Expanded(
-                          child: Text400(
-                              textAlign: TextAlign.center,
-                              fontSize: 14,
-                              maxLines: 1,
-                              text: "By continuing you are agreeing with our"),
-                        ),
+                        Text400(
+                            textAlign: TextAlign.center,
+                            fontSize: 14.sp,
+
+                            text: "Please read our"),
                         GestureDetector(
                           onTap: () {
                             launchUrl(_url);
@@ -203,9 +205,25 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                           child: Text400(
                               textAlign: TextAlign.center,
                               decoration: TextDecoration.underline,
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               color: AppColors.primary,
                               text: " privacy policy"),
+                        ),
+                        Text400(
+                            textAlign: TextAlign.center,
+                            fontSize: 14.sp,
+                            maxLines: 1,
+                            text: " and "),
+                        GestureDetector(
+                          onTap: () {
+                            launchUrl(Uri.parse('http://wroom.zedandwhite.com/terms/'));
+                          },
+                          child: Text400(
+                              textAlign: TextAlign.center,
+                              decoration: TextDecoration.underline,
+                              fontSize: 14.sp,
+                              color: AppColors.primary,
+                              text: " terms"),
                         ),
                       ],
                     ),

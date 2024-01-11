@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vroom_app/app/data/models/car_model.dart';
 import 'package:vroom_app/app/helpers/hexcolor.dart';
 import 'package:vroom_app/app/widgets/app_network_image.dart';
@@ -22,11 +23,11 @@ class CarCardHeader extends StatelessWidget {
           padding: EdgeInsets.all(3),
           child: AppNetworkImage(
             url: car.logo.toString(),
-            width: 32,
+            width: 32.w,
           ),
         ),
         SizedBox(
-          width: 10,
+          width: 10.w,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,13 +36,13 @@ class CarCardHeader extends StatelessWidget {
               car.model,
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 30,
+                  fontSize: 30.sp,
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.w800),
             ),
             Text400(
               text: car.make + " | " + car.year.toString(),
-              fontSize: 14,
+              fontSize: 14.sp,
             ),
           ],
         ),

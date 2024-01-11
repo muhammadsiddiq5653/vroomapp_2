@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vroom_app/app/app_colors.dart';
 
 class CarSpecProgress extends StatelessWidget {
@@ -23,20 +24,20 @@ class CarSpecProgress extends StatelessWidget {
               title,
               style: TextStyle(
                   color: Colors.white.withOpacity(0.9),
-                  fontSize: 13,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.italic),
             ),
             Text(valueTitle,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 12,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w600,
                     fontStyle: FontStyle.italic)),
           ],
         ),
         SizedBox(
-          height: 5,
+          height: 5.h,
         ),
         TweenAnimationBuilder<double>(
           duration: const Duration(milliseconds: 1000),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:vroom_app/app/app_colors.dart';
@@ -19,8 +20,8 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 160,
-      color: HexColor("#141415"),
+      height: 160.h,
+      color: HexColor("#141415").withOpacity(0.6),
       padding: EdgeInsets.only(top: 50, left: 17, right: 0),
       child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,7 +29,7 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             Image.asset(
               'assets/images/wroom.png',
-              width: 100,
+              width: 100.w,
             ),
             GestureDetector(
               onTap: () {
@@ -41,12 +42,12 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
                           children: [
                             Text400(
                               textAlign: TextAlign.center,
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               text:
                                   'This is the total value of cars in your garage. In the future, you will be able to do fun things with it :)',
                             ),
                             Container(
-                              height: 50,
+                              height: 50.h,
                               margin: EdgeInsets.only(top: 30),
                               width: double.infinity,
                               child: AppButtonField(
@@ -77,16 +78,15 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Container(
       alignment: Alignment.bottomCenter,
       padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-      height: 80,
+      height: 80.h,
     );
   }
 
   Widget _getFuelWidget() {
-
       return Container(
           alignment: Alignment.bottomCenter,
           padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-          height: 80,
+          height: 80.h,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +107,7 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ],
               ),
               SizedBox(
-                width: 30,
+                width: 30.h,
               ),
             ],
           ));

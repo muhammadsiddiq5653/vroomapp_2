@@ -25,6 +25,9 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
           //   title: '',
           // ),
           body: Container(
+            decoration: BoxDecoration(
+              gradient: AppColors.backgroundGradient
+            ),
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
             child: Column(
               children: [

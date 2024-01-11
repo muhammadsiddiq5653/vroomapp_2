@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -24,6 +25,9 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
         //   title: '',
         // ),
         body: Container(
+          decoration: BoxDecoration(
+            gradient: AppColors.backgroundGradient
+          ),
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
           child: SingleChildScrollView(
             child: Column(
@@ -32,22 +36,22 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
               children: [
                 OuterAppBar(title: ""),
                 SizedBox(
-                  height: 30,
+                  height: 30.h,
                 ),
                 Text700(
                   text: 'Choose a PIN Code',
                   textAlign: TextAlign.center,
-                  fontSize: 22,
+                  fontSize: 22.sp,
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 15.h,
                 ),
                 Text400(
                   text: 'This will be used as your password',
-                  fontSize: 14,
+                  fontSize: 14.sp,
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 45.h,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 80.0),
@@ -65,8 +69,8 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                       inactiveColor: AppColors.primary,
                       inactiveFillColor: AppColors.primary,
                       borderRadius: BorderRadius.circular(10),
-                      fieldHeight: 50,
-                      fieldWidth: 40,
+                      fieldHeight: 50.h,
+                      fieldWidth: 40.w,
                       activeFillColor: Colors.transparent,
                     ),
                     autoFocus: true,
@@ -91,11 +95,11 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 30.h,
                 ),
                 VirtualKeyboard(
                     // [0-9] + .
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     type: VirtualKeyboardType.Numeric,
                     textColor: Colors.white,
                     onKeyPress: (key) {
@@ -131,7 +135,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                     }),
                 //Spacer(),
                 Container(
-                  height: 50,
+                  height: 50.h,
                   margin: EdgeInsets.only(top: 30),
                   width: double.infinity,
                   child: AppButtonField(

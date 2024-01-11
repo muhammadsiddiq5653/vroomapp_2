@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Text400 extends StatelessWidget {
   final String text;
@@ -8,7 +9,7 @@ class Text400 extends StatelessWidget {
   final double? height;
   final double? fontSize;
   final  TextDecoration? decoration;
-  const Text400(
+   Text400(
       {Key? key,
       required this.text,
       this.textAlign,

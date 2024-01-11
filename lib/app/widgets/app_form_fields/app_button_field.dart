@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vroom_app/app/app_colors.dart';
 
 class AppButtonField extends StatelessWidget {
@@ -69,7 +70,7 @@ class AppButtonField extends StatelessWidget {
               text.toUpperCase(),
               style: textStyle ??
                   TextStyle(
-                      fontSize: 18,
+                      fontSize: 18.sp,
                       color: textColor ?? Colors.white,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Exo',
