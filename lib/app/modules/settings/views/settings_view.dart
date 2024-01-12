@@ -29,6 +29,9 @@ class SettingsView extends GetView<SettingsController> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
+            decoration: BoxDecoration(
+              gradient: AppColors.backgroundGradient
+            ),
             padding: EdgeInsets.all(17),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

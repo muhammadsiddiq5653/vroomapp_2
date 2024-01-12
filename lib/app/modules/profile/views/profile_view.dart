@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/app_colors.dart';
@@ -32,9 +33,22 @@ class ProfileView extends GetView<ProfileController> {
       ),
       body: GetBuilder<ProfileController>(
         builder: (_) => Container(
+            decoration: BoxDecoration(
+                gradient: AppColors.backgroundGradient
+            ),
             padding: EdgeInsets.symmetric(horizontal: 17, vertical: 30),
             child: Column(
               children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text700(
+                    text: 'Profile',
+                    fontSize: 22.sp,
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: AnimatedCrossFade(
@@ -58,18 +72,18 @@ class ProfileView extends GetView<ProfileController> {
                                     : UserModel(email: ""),
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                               Expanded(
                                 child: Text700(
                                   text: controller.settingsService.authModel
                                           ?.userModel.name ??
                                       '',
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                 ),
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                               AppIconButton(
                                 onPressed: () {
@@ -79,7 +93,7 @@ class ProfileView extends GetView<ProfileController> {
                                 size: 42,
                               ),
                               SizedBox(
-                                width: 20,
+                                width: 20.w,
                               ),
                               AppIconButton(
                                 onPressed: () {
@@ -102,19 +116,19 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                 ),
                 SizedBox(
-                  height: 35,
+                  height: 35.h,
                 ),
 
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text700(
                     text: 'Posts',
-                    fontSize: 22,
+                    fontSize: 22.sp,
                   ),
                 ),
 
                 SizedBox(
-                  height: 15,
+                  height: 15.h,
                 ),
                 Expanded(
                   child: AppStateHandler(
@@ -144,7 +158,7 @@ class ProfileView extends GetView<ProfileController> {
                           },
                           separatorBuilder: (BuildContext context, int index) {
                             return SizedBox(
-                              height: 20,
+                              height: 20.h,
                             );
                           },
                         ),
@@ -159,7 +173,7 @@ class ProfileView extends GetView<ProfileController> {
   Column _getProfileHeader() {
     return Column(children: [
       SizedBox(
-        height: 30,
+        height: 30.h,
       ),
       Stack(
         clipBehavior: Clip.none,
@@ -181,17 +195,17 @@ class ProfileView extends GetView<ProfileController> {
                                 text: controller.settingsService.authModel
                                         ?.userModel.name ??
                                     '',
-                                fontSize: 30,
+                                fontSize: 30.sp,
                               ),
                               SizedBox(
-                                height: 5,
+                                height: 5.h,
                               ),
                               Text400(
                                 text:
                                     "@${controller.settingsService.authModel?.userModel.username} " ??
                                         '',
                                 color: AppColors.surface.withOpacity(0.9),
-                                fontSize: 18,
+                                fontSize: 18.sp,
                               ),
                             ],
                           ),
@@ -310,17 +324,17 @@ class ProfileView extends GetView<ProfileController> {
       children: [
         Image.asset(
           'assets/images/NoPosts.png',
-          width: 92,
+          width: 92.w,
         ),
-        SizedBox(height: 15,),
+        SizedBox(height: 15.h,),
         Text700(
           text: 'No Posts, Yet!',
           color: AppColors.surface,
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 10,),
+        SizedBox(height: 10.h,),
         Text400(
-          fontSize: 12,
+          fontSize: 12.sp,
           textAlign: TextAlign.center,
           text: 'Wroom some cars and share them\non the feed to fill this space!',
           color: AppColors.surface.withOpacity(0.9),

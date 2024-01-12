@@ -210,6 +210,9 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                     SizedBox(
                       height: 40.h,
                     ),
+                    SizedBox(
+                      height: 100.h,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -217,7 +220,8 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                         Text400(
                             textAlign: TextAlign.center,
                             fontSize: 14.sp,
-                            text: "By continuing you are agreeing with our "),
+
+                            text: "Please read our"),
                         GestureDetector(
                           onTap: () {
                             launchUrl(_url);
@@ -228,6 +232,22 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                               fontSize: 14.sp,
                               color: AppColors.primary,
                               text: " privacy policy"),
+                        ),
+                        Text400(
+                            textAlign: TextAlign.center,
+                            fontSize: 14.sp,
+                            maxLines: 1,
+                            text: " and "),
+                        GestureDetector(
+                          onTap: () {
+                            launchUrl(Uri.parse('http://wroom.zedandwhite.com/terms/'));
+                          },
+                          child: Text400(
+                              textAlign: TextAlign.center,
+                              decoration: TextDecoration.underline,
+                              fontSize: 14.sp,
+                              color: AppColors.primary,
+                              text: " terms"),
                         ),
                       ],
                     ),

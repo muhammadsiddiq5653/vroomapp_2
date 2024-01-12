@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
 import 'package:vroom_app/app/widgets/loadmore.dart';
@@ -23,6 +24,9 @@ class FeedView extends GetView<FeedController> {
           ),
 
         body: Container(
+          decoration: BoxDecoration(
+              gradient: AppColors.backgroundGradient
+          ),
           padding: EdgeInsets.symmetric(horizontal: 17, vertical: 15),
           child: AppStateHandler(
             loadingState: controller.loadingState,
@@ -37,19 +41,35 @@ class FeedView extends GetView<FeedController> {
                 return await controller.loadFeed(
                     page: (controller.feed?.currentPage ?? 0) + 1);
               },
-              child: ListView.separated(
-                  separatorBuilder: (context, index) => SizedBox(
-                        height: 20,
-                      ),
-                  itemCount: controller.feed?.collection.length ?? 0,
-                  itemBuilder: (BuildContext context, int index) {
-                    var item = controller.feed!.collection[index];
-                    return FeedCard(
-                        feedModel: item,
-                        onLikeButton: controller.like,
-                        onShareButton: controller.share,
-                        onDeleteButton: controller.delete);
-                  }),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text700(
+                      text: 'Feed',
+                      fontSize: 22,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Expanded(
+                    child: ListView.separated(
+                        separatorBuilder: (context, index) => SizedBox(
+                              height: 20.h,
+                            ),
+                        itemCount: controller.feed?.collection.length ?? 0,
+                        itemBuilder: (BuildContext context, int index) {
+                          var item = controller.feed!.collection[index];
+                          return FeedCard(
+                              feedModel: item,
+                              onLikeButton: controller.like,
+                              onShareButton: controller.share,
+                              onDeleteButton: controller.delete);
+                        }),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -64,10 +84,10 @@ class FeedView extends GetView<FeedController> {
         children: [
           Image.asset(
             'assets/images/NoPosts.png',
-            width: 92,
+            width: 92.w,
           ),
           SizedBox(
-            height: 15,
+            height: 15.h,
           ),
           Text700(
             text: 'No Posts, Yet!',
@@ -75,10 +95,10 @@ class FeedView extends GetView<FeedController> {
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
           Text400(
-            fontSize: 12,
+            fontSize: 12.sp,
             textAlign: TextAlign.center,
             text:
                 'Wroom some cars and share them\non the feed to fill this space!',

@@ -265,7 +265,7 @@ class CardDetailsView extends GetView<CardDetailsController> {
                   ),
                   if (controller.isLoggedin.value)
                     Container(
-                      height: 100.h,
+                      height: 75.h,
                       width: double.infinity.w,
                       margin: EdgeInsets.only(bottom: 20),
                       padding: EdgeInsets.fromLTRB(30, 20, 40, 20),

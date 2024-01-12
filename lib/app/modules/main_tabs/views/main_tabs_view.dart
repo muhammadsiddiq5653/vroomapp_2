@@ -63,7 +63,7 @@ class MainTabsView extends GetView<MainTabsController> {
                   showSelectedLabels: true,
                   showUnselectedLabels: false,
                   elevation: 0,
-                  backgroundColor: HexColor("#141415").withOpacity(0.3),
+                  backgroundColor: HexColor("#141415").withOpacity(0.7),
                   onTap: controller.onTap,
                   unselectedItemColor: Colors.white.withOpacity(0.25),
                   selectedFontSize: 18.sp,

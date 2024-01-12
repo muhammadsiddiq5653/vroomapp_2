@@ -22,7 +22,7 @@ class EditProfileView extends GetView<EditProfileController> {
 
           padding: EdgeInsets.symmetric(horizontal: 27),
           decoration: BoxDecoration(
-              gradient: AppColors.backgroundGradient
+              color: AppColors.background
           ),
           child: Column(
                 children: [

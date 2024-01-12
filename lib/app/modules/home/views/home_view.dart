@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:remixicon/remixicon.dart';
@@ -28,9 +29,22 @@ class HomeView extends GetView<HomeController> {
               ),
 
             body: Container(
+              decoration: BoxDecoration(
+                gradient: AppColors.backgroundGradient
+              ),
               padding: EdgeInsets.symmetric(horizontal: 17, vertical: 20),
               child: Column(
                 children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text700(
+                      text: 'Garage',
+                      fontSize: 22.sp,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: AppTextField(
@@ -48,7 +62,7 @@ class HomeView extends GetView<HomeController> {
                         labelText: 'Search'),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   ),
                   Expanded(
                     child: AppStateHandler(
@@ -68,7 +82,7 @@ class HomeView extends GetView<HomeController> {
                         child: ListView.separated(
                             itemCount: controller.cars?.collection.length ?? 0,
                             separatorBuilder: ((context, index) => SizedBox(
-                                  height: 15,
+                                  height: 15.h,
                                 )),
                             itemBuilder: (BuildContext context, int index) {
                               var car = controller.cars!.collection[index];
@@ -96,15 +110,15 @@ class HomeView extends GetView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 30),
+            SizedBox(height: 30.h),
             Text700(
               text: "New to the app?",
-              fontSize: 25,
+              fontSize: 25.sp,
               textAlign: TextAlign.center,
             ),
             Image.asset('assets/images/blankslatehome.png'),
             SizedBox(
-              height: 10,
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -112,7 +126,7 @@ class HomeView extends GetView<HomeController> {
                 text:
                     "You haven’t vroomed any cars, yet! Tap on the BIG RED scan button to get started.",
                 textAlign: TextAlign.center,
-                fontSize: 12,
+                fontSize: 12.sp,
               ),
             ),
             // SizedBox(
@@ -142,15 +156,15 @@ class HomeView extends GetView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 30),
+            SizedBox(height: 30.h),
             Text700(
               text: "Are you offline?",
-              fontSize: 25,
+              fontSize: 25.sp,
               textAlign: TextAlign.center,
             ),
             Image.asset('assets/images/blankslatehome.png'),
             SizedBox(
-              height: 10,
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -158,7 +172,7 @@ class HomeView extends GetView<HomeController> {
                 text:
                 "Make sure you are connected to internet. Your cars will show up when you are back online.",
                 textAlign: TextAlign.center,
-                fontSize: 12,
+                fontSize: 12.sp,
               ),
             ),
             // SizedBox(
