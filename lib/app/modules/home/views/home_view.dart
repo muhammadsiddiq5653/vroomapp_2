@@ -110,21 +110,18 @@ class HomeView extends GetView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 30.h),
+          //  SizedBox(height: 30.h),
             Text700(
               text: "New to the app?",
               fontSize: 25.sp,
               textAlign: TextAlign.center,
             ),
             Image.asset('assets/images/blankslatehome.png'),
-            SizedBox(
-              height: 10.h,
-            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text600(
                 text:
-                    "You haven’t vroomed any cars, yet! Tap on the BIG RED scan button to get started.",
+                    "You haven’t wroomed any cars, yet! Tap on the BIG RED button to get started.",
                 textAlign: TextAlign.center,
                 fontSize: 12.sp,
               ),

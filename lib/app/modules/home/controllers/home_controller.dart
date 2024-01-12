@@ -105,7 +105,6 @@ class HomeController extends AppAbstractController {
         loadCards();
       }
     } catch (ex) {
-
       dialogService.showError('Something went wrong, please try again');
     } finally {
       loadingState = GeneralLoadingState.done;
@@ -120,6 +119,7 @@ class HomeController extends AppAbstractController {
       }
       var result = await appCarsApi.getCars(
           page: page, sort: sort, searchQuery: searchQuery);
+      result.collection.retainWhere((element) => element.user!.id == box.read(AppConstants.userId));
       if (page == 1) {
         cars = result;
         if ((cars?.collection.length ?? 0) == 0) {
@@ -128,19 +128,17 @@ class HomeController extends AppAbstractController {
           loadingState = GeneralLoadingState.done;
         }
       } else {
-        cars!.haveNext = result.haveNext;
+        cars!.haveNext = result!.haveNext;
         cars!.currentPage = result.currentPage;
         cars!.collection.addAll(result.collection);
       }
       settingsService.cars = cars!.collection;
       return true;
     } catch (ex) {
-      if (ConnectivityResult.none == await Connectivity().checkConnectivity())
-      {
+      if (ConnectivityResult.none == await Connectivity().checkConnectivity()) {
         loadingState = GeneralLoadingState.offline;
-      }
-      else
-      loadingState = GeneralLoadingState.error;
+      } else
+        loadingState = GeneralLoadingState.error;
       return false;
     } finally {
       update();

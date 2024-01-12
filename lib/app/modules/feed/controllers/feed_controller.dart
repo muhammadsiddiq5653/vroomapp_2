@@ -44,6 +44,9 @@ class FeedController extends AppAbstractController {
         if ((feed?.collection.length ?? 0) == 0) {
           loadingState = GeneralLoadingState.empty;
         } else {
+          feed!.collection.removeWhere((element) =>
+          element.userModel!.name! == '(deleted user)'
+          );
           loadingState = GeneralLoadingState.done;
         }
       } else {

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
 import 'package:vroom_app/app/app_colors.dart';
@@ -50,9 +51,12 @@ class ScanCarView extends GetView<ScanCarController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OuterAppBar(title: '',),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 17),
+                child: OuterAppBar(title: '',),
+              ),
               SizedBox(
-                height: 200,
+                height: 200.h,
               ),
               GestureDetector(
                   onTap: () {
@@ -64,7 +68,7 @@ class ScanCarView extends GetView<ScanCarController> {
                     height: Get.height * 0.4,
                   )),
               SizedBox(
-                height: 25,
+                height: 25.h,
               ),
               Text400(
                 text: 'Tap on the button when ready',

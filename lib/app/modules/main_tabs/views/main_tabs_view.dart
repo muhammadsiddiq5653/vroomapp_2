@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -59,79 +61,89 @@ class MainTabsView extends GetView<MainTabsController> {
                     FloatingActionButtonLocation.centerDocked,
                 body: _getPage(),
                 extendBody: true,
-                bottomNavigationBar: BottomNavigationBar(
-                  showSelectedLabels: true,
-                  showUnselectedLabels: false,
-                  elevation: 0,
-                  backgroundColor: HexColor("#141415").withOpacity(0.7),
-                  onTap: controller.onTap,
-                  unselectedItemColor: Colors.white.withOpacity(0.25),
-                  selectedFontSize: 18.sp,
-                  selectedLabelStyle: TextStyle(
-                      fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
-                  unselectedFontSize: 0,
-                  selectedItemColor: Colors.white,
-                  currentIndex:
-                      controller.pageIndex < 0 ? 0 : controller.pageIndex,
-                  type: BottomNavigationBarType.fixed,
-                  items: [
-                    BottomNavigationBarItem(
-                        activeIcon: SvgPicture.asset(
-                          'assets/images/svg/bottomNav/GarageActive.svg',
-                          width: 32.w,
-                          height: 32.h,
-                        ),
-                        icon: SvgPicture.asset(
-                          'assets/images/svg/bottomNav/GarageInActive.svg',
-                          width: 32.w,
-                          height: 32.h,
-                        ),
-                        label: 'Garage'.toUpperCase()),
-                    BottomNavigationBarItem(
-                        activeIcon: SvgPicture.asset(
-                          'assets/images/svg/bottomNav/FeedActive.svg',
-                          width: 32.w,
-                          height: 32.h,
-                        ),
-                        icon: SvgPicture.asset(
-                          'assets/images/svg/bottomNav/FeedInActive.svg',
-                          width: 32.w,
-                          height: 32.h,
-                        ),
-                        label: 'Feed'.toUpperCase()),
+                bottomNavigationBar: 
+                  ClipRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(
+                        sigmaX: 5,
+                        sigmaY: 5,
+                      ),
+                 
+                      child: BottomNavigationBar(
+                      showSelectedLabels: true,
+                      showUnselectedLabels: false,
+                      elevation: 0,
+                      backgroundColor: HexColor("#141415").withOpacity(0.7),
+                      onTap: controller.onTap,
+                      unselectedItemColor: Colors.white.withOpacity(0.25),
+                      selectedFontSize: 18.sp,
+                      selectedLabelStyle: TextStyle(
+                          fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
+                      unselectedFontSize: 0,
+                      selectedItemColor: Colors.white,
+                      currentIndex:
+                          controller.pageIndex < 0 ? 0 : controller.pageIndex,
+                      type: BottomNavigationBarType.fixed,
+                      items: [
+                        BottomNavigationBarItem(
+                            activeIcon: SvgPicture.asset(
+                              'assets/images/svg/bottomNav/GarageActive.svg',
+                              width: 32.w,
+                              height: 32.h,
+                            ),
+                            icon: SvgPicture.asset(
+                              'assets/images/svg/bottomNav/GarageInActive.svg',
+                              width: 32.w,
+                              height: 32.h,
+                            ),
+                            label: 'Garage'.toUpperCase()),
+                        BottomNavigationBarItem(
+                            activeIcon: SvgPicture.asset(
+                              'assets/images/svg/bottomNav/FeedActive.svg',
+                              width: 32.w,
+                              height: 32.h,
+                            ),
+                            icon: SvgPicture.asset(
+                              'assets/images/svg/bottomNav/FeedInActive.svg',
+                              width: 32.w,
+                              height: 32.h,
+                            ),
+                            label: 'Feed'.toUpperCase()),
 
-                    BottomNavigationBarItem(
-                        activeIcon: SvgPicture.asset(
-                          'assets/images/svg/bottomNav/AlertsActive.svg',
-                          width: 32.w,
-                          height: 32.h,
-                        ),
-                        icon: SvgPicture.asset(
-                          'assets/images/svg/bottomNav/AlertsInActive.svg',
-                          width: 32.w,
-                          height: 32.h,
-                        ),
-                        label: 'Alerts'.toUpperCase()),
-                    BottomNavigationBarItem(
-                        activeIcon: SvgPicture.asset(
-                          'assets/images/svg/bottomNav/ProfileActive.svg',
-                          width: 32.w,
-                          height: 32.h,
-                        ),
-                        icon: SvgPicture.asset(
-                          'assets/images/svg/bottomNav/ProfileInActive.svg',
-                          width: 32.w,
-                          height: 32.h,
-                        ),
-                        label: 'Profile'.toUpperCase()),
-                    // BottomNavigationBarItem(
-                    //     icon: Icon(
-                    //       Remix.group_line,
-                    //       size: 25,
-                    //     ),
-                    //     label: 'Leaders'.toUpperCase()),
-                  ],
+                        BottomNavigationBarItem(
+                            activeIcon: SvgPicture.asset(
+                              'assets/images/svg/bottomNav/AlertsActive.svg',
+                              width: 32.w,
+                              height: 32.h,
+                            ),
+                            icon: SvgPicture.asset(
+                              'assets/images/svg/bottomNav/AlertsInActive.svg',
+                              width: 32.w,
+                              height: 32.h,
+                            ),
+                            label: 'Alerts'.toUpperCase()),
+                        BottomNavigationBarItem(
+                            activeIcon: SvgPicture.asset(
+                              'assets/images/svg/bottomNav/ProfileActive.svg',
+                              width: 32.w,
+                              height: 32.h,
+                            ),
+                            icon: SvgPicture.asset(
+                              'assets/images/svg/bottomNav/ProfileInActive.svg',
+                              width: 32.w,
+                              height: 32.h,
+                            ),
+                            label: 'Profile'.toUpperCase()),
+                        // BottomNavigationBarItem(
+                        //     icon: Icon(
+                        //       Remix.group_line,
+                        //       size: 25,
+                        //     ),
+                        //     label: 'Leaders'.toUpperCase()),
+                      ],
+                    ),
                 ),
+                  ),
               ),
             ));
   }

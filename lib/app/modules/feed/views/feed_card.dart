@@ -9,7 +9,6 @@ import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/data/models/feed_model.dart';
 import 'package:vroom_app/app/routes/app_pages.dart';
 import 'package:vroom_app/app/widgets/app_network_image.dart';
-import 'package:vroom_app/app/widgets/app_text/text_400.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
 
 import '../../../app_constants.dart';
@@ -44,7 +43,16 @@ class FeedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return WidgetsToImage(
       controller: widgetsToImageController,
-      child: Container(
+      child: GestureDetector(
+        onTap: () {
+          if (notLoggedInCard) {
+            Get.toNamed(Routes.LOGIN_DETAILS_STEP);
+          } else {
+            Get.toNamed(Routes.CARD_DETAILS, parameters: {
+              AppConstants.carArgumentId: feedModel.userCarId.toString()
+            });
+          }
+        },
         child: Container(
           width: double.infinity,
           child: ClipRRect(
@@ -144,7 +152,12 @@ class FeedCard extends StatelessWidget {
                       child: ClipRRect(
                         child: Container(
                           height: 70.h,
-                          child: Container(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(
+                              sigmaX: 5,
+                              sigmaY: 5,
+                            ),
+                            child: Container(
                             // width: MediaQuery.of(context).size.width - 20,
                             color: HexColor("#2e2e2e").withOpacity(0.25),
                             child: Row(
@@ -209,7 +222,8 @@ class FeedCard extends StatelessWidget {
                                           text: notLoggedInCard
                                               ? "Login".toUpperCase()
                                               : 'View Card'.toUpperCase(),
-                                          fontSize: notLoggedInCard ? 18.sp : 14.sp,
+                                          fontSize:
+                                              notLoggedInCard ? 18.sp : 14.sp,
                                         ),
                                       )),
                                   if (!notLoggedInCard)
@@ -244,7 +258,7 @@ class FeedCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
+                    ),),
                   ]),
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:vroom_app/app/app_colors.dart';
@@ -15,10 +16,15 @@ import '../app_form_fields/app_button_field.dart';
 
 class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
   final box = GetStorage();
+   late double? carValues;
   GameAppBar();
 
   @override
   Widget build(BuildContext context) {
+    String value = box.read(AppConstants.userGarageValueKey);
+    print(value);
+     carValues = double.tryParse(value)!;
+    carValues!.toPrecision(1);
     return Container(
       height: 160.h,
       color: HexColor("#141415").withOpacity(0.6),
@@ -96,8 +102,8 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _getIconPair(
-                      'assets/images/coins.png',
-                      (box.read(AppConstants.userGarageValueKey) ??
+                      'assets/images/svg/coins.svg',
+                      (carValues.toString() ??
                               '0') +
                           'K'),
                   // SizedBox(
@@ -117,7 +123,7 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
   Row _getIconPair(String img, String title) {
     return Row(
       children: [
-        Image.asset(
+        SvgPicture.asset(
           img,
           height: 24,
         ),

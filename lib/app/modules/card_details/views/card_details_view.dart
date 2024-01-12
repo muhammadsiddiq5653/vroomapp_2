@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,15 +33,13 @@ class CardDetailsView extends GetView<CardDetailsController> {
       builder: (_) => Scaffold(
         body: SafeArea(
           child: Container(
-            decoration: BoxDecoration(
-              gradient: AppColors.backgroundGradient
-            ),
+            decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
             child: AppStateHandler(
               loadingState: controller.loadingState,
               child: Column(
                 children: [
                   Padding(
-                    padding:  EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                         vertical: 12.0.h, horizontal: 17.w),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,7 +137,8 @@ class CardDetailsView extends GetView<CardDetailsController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   CarCardHeader(
@@ -192,13 +193,15 @@ class CardDetailsView extends GetView<CardDetailsController> {
                                 value: AppUtilities.getCityMilagePercentage(
                                     controller.car?.cityMilage),
                                 title: 'City Milage',
-                                valueTitle: '${controller.car?.cityMilage} KM/L',
+                                valueTitle:
+                                    '${controller.car?.cityMilage} KM/L',
                               ),
                               SizedBox(
                                 height: 40.h,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   BigHeaderText(text: 'Other details'),
@@ -213,7 +216,8 @@ class CardDetailsView extends GetView<CardDetailsController> {
                                 height: 20.h,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text400(
                                     text: 'Make',
@@ -229,7 +233,8 @@ class CardDetailsView extends GetView<CardDetailsController> {
                                 height: 20.h,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text400(
                                     text: 'Model',
@@ -245,7 +250,8 @@ class CardDetailsView extends GetView<CardDetailsController> {
                                 height: 20.h,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text400(
                                     text: 'Year',
@@ -265,12 +271,15 @@ class CardDetailsView extends GetView<CardDetailsController> {
                   ),
                   if (controller.isLoggedin.value)
                     Container(
+
                       height: 75.h,
                       width: double.infinity.w,
                       margin: EdgeInsets.only(bottom: 20),
                       padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
                       child: AppButtonField(
-                        text:  controller.checkIfLoggedInUserPost() ? 'share on the feed' :'share with friends',
+                        text: controller.checkIfLoggedInUserPost()
+                            ? 'share on the feed'
+                            : 'share with friends',
                         onPressed: () async {
                           if (controller.checkIfLoggedInUserPost()) {
                             controller.shareCar();
@@ -280,7 +289,8 @@ class CardDetailsView extends GetView<CardDetailsController> {
                           }
                         },
                       ),
-                    )
+                    ),
+                //    ),
                 ],
               ),
             ),

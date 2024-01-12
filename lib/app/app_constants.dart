@@ -9,6 +9,7 @@ class AppConstants {
   static const String userPostsKey = "user-posts-value";
   static const String userFavouriteBrand = "user-favourite-brand-value";
   static const String userPinKey = "user-pin-value";
+  static const String userId = "user-id";
   static const String firebaseToken = "firebaseToken";
   static const String lastNotificationReadTime = "lastNotificationReadTime";
   static const String profilePageArgument = "profilePageArgument";
@@ -17,10 +18,10 @@ class AppConstants {
   static String appLink = "";
 
   static var carArgument = 'carArgument';
-  static var topHorsePower = 500;
-  static var topWeight = 9335;
-  static var topCityMilage = 50;
-  static var topPrice = 100000;
+  static var topHorsePower = 1600;
+  static var topWeight = 6000;
+  static var topCityMilage = 25;
+  static var topPrice = 170000;
 
   static var localeForPhone = 'US';
 }

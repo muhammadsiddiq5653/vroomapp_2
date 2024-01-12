@@ -23,6 +23,7 @@ vroomApp() async {
   packageInfo = await PackageInfo.fromPlatform();
   Get.put(LocalNotificationService());
   var analytics = FirebaseAnalytics.instance;
+  Paint.enableDithering = true;
   runApp(
     ScreenUtilInit(
       builder: (BuildContext context, Widget? child) {

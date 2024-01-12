@@ -27,6 +27,7 @@ class SettingsService extends GetxService {
   void setAuth(AuthModel authModel) {
     this.authModel = authModel;
     box.write(AppConstants.accessTokenKey, authModel.accessToken);
+    box.write(AppConstants.userId, authModel.userModel.id);
     box.write(AppConstants.userGarageValueKey, authModel.userModel.totalPrice.toString());
     box.write(AppConstants.userAvatarKey, authModel.userModel.avatar.toString());
     box.write(AppConstants.userFavouriteBrand, authModel.userModel.favoriteCarBrand.toString());
