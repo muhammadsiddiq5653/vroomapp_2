@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:launch_review/launch_review.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/widgets/app_state_handler.dart';
 
@@ -9,7 +10,8 @@ import '../../../widgets/app_form_fields/app_button_field.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
-  const SplashView({Key? key}) : super(key: key);
+  SplashView({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -95,11 +97,13 @@ class SplashView extends GetView<SplashController> {
     );
   }
 
+
+
   Widget versionText() {
     return Column(
       children: [
         Text(
-          'Version 1.0',
+          'Version ${controller.version} ${controller.buildNumber} ',
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 18,

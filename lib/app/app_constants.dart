@@ -15,7 +15,8 @@ class AppConstants {
   static const String profilePageArgument = "profilePageArgument";
   static const String carArgumentId = "carArgumentId";
   static String firebaseTokenID = "firebaseTokenID";
-  static String appLink = "";
+  static String appAppLink = "";
+  static String googleAppLink = "https://play.google.com/store/apps/details?id=com.vroom.vroomApp&pcampaignid=web_share";
 
   static var carArgument = 'carArgument';
   static var topHorsePower = 1600;

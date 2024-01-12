@@ -162,11 +162,14 @@ class AppUtilities {
   }
 
   static void share(Uint8List? bytes) async {
+    final String link = Platform.isAndroid
+        ? AppConstants.googleAppLink
+        : AppConstants.appAppLink;
     final file = File(
         '${(await getTemporaryDirectory()).path}/${DateTime.now().toIso8601String().replaceAll('.', '-')}.png');
     await file.create(recursive: true);
     File path = await file.writeAsBytes(bytes!);
     await Share.shareFiles([path.path],
-        text: 'Check it out in Wroom App\n\n${AppConstants.appLink}');
+        text: 'Check this out in the Wroom App\n\n$link');
   }
 }

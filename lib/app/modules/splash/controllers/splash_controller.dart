@@ -1,7 +1,11 @@
 import 'dart:async';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:new_version/new_version.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+
 import '../../../app_constants.dart';
 import '../../../app_enums.dart';
 import '../../../app_exception.dart';
@@ -12,7 +16,6 @@ import '../../../services/fcm_service.dart';
 import '../../../services/local_notification_service.dart';
 import '../../../services/sensor_service.dart';
 import '../../../services/settings_service.dart';
-import 'package:new_version/new_version.dart';
 
 class SplashController extends GetxController {
   final appSettingsApi = Get.put(AppSettingsApi());
@@ -25,16 +28,27 @@ class SplashController extends GetxController {
   final newVersion = NewVersion();
   final box = GetStorage();
   bool forceUpdateView = false;
+  String version = '';
+  String buildNumber = '';
 
   @override
   void onInit() {
     //writeToPreferences();
+    getAppDetails();
     super.onInit();
   }
+
   // writeToPreferences() async {
   //   SharedPreferences prefs = await SharedPreferences.getInstance();
   //   await prefs.setBool("isloggedin",false);
   // }
+
+  getAppDetails() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    version = packageInfo.version;
+    buildNumber = packageInfo.buildNumber;
+  }
+
   @override
   void onReady() {
     super.onReady();
@@ -50,7 +64,7 @@ class SplashController extends GetxController {
     try {
       loadingState = GeneralLoadingState.waiting;
       update();
-    //  settingsService.settingsModel = await appSettingsApi.getAppSettings();
+      //  settingsService.settingsModel = await appSettingsApi.getAppSettings();
 //      await Future.delayed(Duration(seconds: 1));
 //       if (settingsService.settingsModel?.forceUpdate == true) {
 //         forceUpdateView = true;
@@ -107,5 +121,4 @@ class SplashController extends GetxController {
       update();
     }
   }
-
 }

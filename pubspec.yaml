@@ -51,6 +51,7 @@ dependencies:
   rive: ^0.12.4
   shared_preferences:
   flutter_screenutil:
+  package_info_plus:
   flutter: 
     sdk: flutter
 
