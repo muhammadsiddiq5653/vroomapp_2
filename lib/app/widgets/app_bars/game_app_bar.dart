@@ -21,10 +21,17 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    String value = box.read(AppConstants.userGarageValueKey);
+    String value = box.read(AppConstants.userGarageValueKey) ?? "0";
     print(value);
-     carValues = double.tryParse(value)!;
-    carValues!.toPrecision(1);
+    if(value != '0'){
+      carValues = double.tryParse(value)!;
+      carValues!.toPrecision(1);
+    }
+    else
+      {
+        carValues = 0.0;
+      }
+
     return Container(
       height: 160.h,
       color: HexColor("#141415").withOpacity(0.6),
