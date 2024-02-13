@@ -108,7 +108,7 @@ class PreviewView extends GetView<PreviewController> {
                       margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
                       child: AppButtonField(
                           haveBorder: false,
-                          primary: AppColors.background,
+                          primary: AppColors.background.withOpacity(0.8),
                           text: 'Lets Wroom',
                           elevation: 3,
                           onPressed: () {
