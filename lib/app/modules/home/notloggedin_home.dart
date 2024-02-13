@@ -13,11 +13,12 @@ class NotLoggedinHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      backgroundColor: AppColors.background,
       appBar: GameAppBar(
           ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: AppColors.backgroundGradient
+          color: AppColors.background
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -29,7 +30,7 @@ class NotLoggedinHome extends StatelessWidget {
                 'Welcome to your Garage!',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 22.sp,
+                  fontSize: 20.sp,
                   fontStyle: FontStyle.italic,
                   fontFamily: 'Exo',
                   fontWeight: FontWeight.bold,
@@ -44,7 +45,7 @@ class NotLoggedinHome extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16.h,
+                  fontSize: 14.h,
                   fontStyle: FontStyle.italic,
                   fontFamily: 'Exo',
                   fontWeight: FontWeight.w400,
@@ -54,7 +55,7 @@ class NotLoggedinHome extends StatelessWidget {
               Image.asset("assets/images/HomeNotLoggedIn.png"),
 
               Container(
-                height: 55.h,
+                height: 45.h,
                 width: double.infinity,
                 margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
                 child: AppButtonField(
@@ -69,7 +70,7 @@ class NotLoggedinHome extends StatelessWidget {
                 height: 20.h,
               ),
               Container(
-                height: 55.h,
+                height: 45.h,
                 width: double.infinity,
                 margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
                 child: AppButtonField(

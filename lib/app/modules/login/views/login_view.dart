@@ -20,6 +20,7 @@ class LoginView extends GetView<LoginDetailsStepController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       // appBar: InsideAppBar(title: ''),
       body: AppStateHandler(
         loadingState: controller.loadingState,
@@ -27,7 +28,7 @@ class LoginView extends GetView<LoginDetailsStepController> {
           height: double.infinity,
 
           decoration: BoxDecoration(
-            gradient: AppColors.backgroundGradient,
+            color: AppColors.background
           ),
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
           child: SingleChildScrollView(

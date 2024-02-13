@@ -20,12 +20,13 @@ class FeedView extends GetView<FeedController> {
   Widget build(BuildContext context) {
     return GetBuilder<FeedController>(
       builder: (_) => Scaffold(
+        backgroundColor: AppColors.background,
         appBar: GameAppBar(
           ),
 
         body: Container(
           decoration: BoxDecoration(
-              gradient: AppColors.backgroundGradient
+              color: AppColors.background
           ),
           padding: EdgeInsets.symmetric(horizontal: 17, vertical: 15),
           child: AppStateHandler(

@@ -13,12 +13,10 @@ class NotLoggedinAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      backgroundColor: AppColors.background,
       appBar: GameAppBar(
       ),
       body: Container(
-        decoration: BoxDecoration(
-            gradient: AppColors.backgroundGradient
-        ),
         child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +61,7 @@ class NotLoggedinAlert extends StatelessWidget {
                   height: 60.h,
                 ),
                 Container(
-                  height: 55.h,
+                  height: 45.h,
                   width: double.infinity.w,
                   margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
                   child: AppButtonField(
@@ -78,12 +76,12 @@ class NotLoggedinAlert extends StatelessWidget {
                   height: 20.h,
                 ),
                 Container(
-                  height: 55.h,
+                  height: 45.h,
                   width: double.infinity.w,
                   margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
                   child: AppButtonField(
                       primary: Colors.transparent,
-                      text: 'Create an account',
+                      text: 'Be a Wroomer',
                       elevation: 0,
                       onPressed: () {
                         Get.toNamed(Routes.SIGNUP_STEP_PHONE);

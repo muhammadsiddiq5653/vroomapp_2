@@ -40,18 +40,20 @@ class MainTabsController extends AppAbstractController {
     update();
     soundService.playclick();
   }
-   readFromPreferences() async {
+
+  readFromPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isLoggedin.value = prefs.getBool("isloggedin") ?? false;
     update();
   }
+
   Future<void> scan() async {
     if (!box.hasData(dontShowAgain) || box.read<bool>(dontShowAgain) == false) {
       var result = await Get.bottomSheet(Container(
         color: AppColors.cardColor,
         height: 600.h,
         width: double.infinity,
-        padding: EdgeInsets.fromLTRB(17,5,17,0),
+        padding: EdgeInsets.fromLTRB(17, 5, 17, 0),
         child: Column(
           children: [
             Text700(
@@ -70,7 +72,7 @@ class MainTabsController extends AppAbstractController {
               height: 15.h,
             ),
             Text400(
-              textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
                 fontSize: 14.sp,
                 text:
                     'Please make sure to hold your phone at the angle where your car looks similar to the above image to Wroom Successfully.'),
@@ -80,7 +82,7 @@ class MainTabsController extends AppAbstractController {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 30),
               width: double.infinity,
-              height: 55.h,
+              height: 45.h,
               child: AppButtonField(
                 text: 'Got it',
                 onPressed: () {
@@ -94,7 +96,7 @@ class MainTabsController extends AppAbstractController {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 30),
               width: double.infinity,
-              height: 55.h,
+              height: 45.h,
               child: AppButtonField(
                 primary: Colors.transparent,
                 text: 'Don\'t show this again',

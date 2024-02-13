@@ -41,7 +41,7 @@ class _FaQsState extends State<FaQs> {
 
         body: Container(
           decoration: BoxDecoration(
-              gradient: AppColors.backgroundGradient
+              color: AppColors.background
           ),
           child: SingleChildScrollView(
             child: Padding(

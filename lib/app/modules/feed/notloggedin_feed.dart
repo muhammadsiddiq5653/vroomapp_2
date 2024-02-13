@@ -22,16 +22,15 @@ class NotLoggedInFeedView extends GetView<FeedController> {
   Widget build(BuildContext context) {
     return GetBuilder<FeedController>(
       builder: (_) => Scaffold(
-        appBar: GameAppBar(
-
-        ),
+        backgroundColor: AppColors.background,
+        appBar: GameAppBar(),
         // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // floatingActionButton: AppFloatingActionButton(
         //   onClick: controller.scanCar,
         // ),
         body: Container(
           decoration: BoxDecoration(
-            gradient: AppColors.backgroundGradient
+            color: AppColors.background,
           ),
           padding: EdgeInsets.symmetric(horizontal: 17, vertical: 15),
           child: AppStateHandler(
@@ -54,11 +53,9 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                   itemCount: controller.feed?.collection.length ?? 0,
                   itemBuilder: (BuildContext context, int index) {
                     var item = controller.feed!.collection[index];
-                    return
-                      index == 0
-                        ?
-                    FeedCard(
-                      notLoggedIn: true,
+                    return index == 0
+                        ? FeedCard(
+                            notLoggedIn: true,
                             notLoggedInCard: true,
                             feedModel: FeedModel(
                                 description: '',
@@ -71,16 +68,18 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                                     username: '@username',
                                     name: 'You')),
                             onLikeButton: (feedModel) {},
-                            onShareButton: (FeedModel, b) {}, onDeleteButton: (FeedModel ) {  },
+                            onShareButton: (FeedModel, b) {},
+                            onDeleteButton: (FeedModel) {},
                           )
                         : FeedCard(
-                        notLoggedIn: true,
+                            notLoggedIn: true,
                             manageShare: true,
                             feedModel: item,
-                        onDeleteButton: (FeedModel f) {
-                            feedController.feed!.collection.removeWhere((element) => element.id == f.id);
+                            onDeleteButton: (FeedModel f) {
+                              feedController.feed!.collection
+                                  .removeWhere((element) => element.id == f.id);
                               controller.update();
-                        },
+                            },
                             onLikeButton: (feedModel) {
                               Get.bottomSheet(Container(
                                 padding: EdgeInsets.all(20),
@@ -108,7 +107,7 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                                           height: 40.h,
                                         ),
                                         Container(
-                                          height: 55.h,
+                                          height: 45.h,
                                           width: double.infinity,
                                           margin:
                                               EdgeInsets.fromLTRB(47, 0, 47, 0),
@@ -125,7 +124,7 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                                           height: 20.h,
                                         ),
                                         Container(
-                                          height: 55.h,
+                                          height: 45.h,
                                           width: double.infinity,
                                           margin:
                                               EdgeInsets.fromLTRB(47, 0, 47, 0),
@@ -171,7 +170,7 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                                           height: 40.h,
                                         ),
                                         Container(
-                                          height: 55.h,
+                                          height: 45.h,
                                           width: double.infinity.w,
                                           margin:
                                               EdgeInsets.fromLTRB(47, 0, 47, 0),
@@ -188,7 +187,7 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                                           height: 20.h,
                                         ),
                                         Container(
-                                          height: 55.h,
+                                          height: 45.h,
                                           width: double.infinity.w,
                                           margin:
                                               EdgeInsets.fromLTRB(47, 0, 47, 0),

@@ -34,7 +34,7 @@ class ProfileView extends GetView<ProfileController> {
       body: GetBuilder<ProfileController>(
         builder: (_) => Container(
             decoration: BoxDecoration(
-                gradient: AppColors.backgroundGradient
+                color: AppColors.background
             ),
             padding: EdgeInsets.symmetric(horizontal: 17, vertical: 30),
             child: Column(

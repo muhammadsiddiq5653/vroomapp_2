@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const primary = Color(0xFF9C0000);
+  static  Color primary = Color(0xFF9C0000);
   static const secondary = Color(0xFF026BE2);
   static const background = Color(0xFF0E0E0F);
   static const surface = Colors.white;
@@ -18,17 +18,6 @@ class AppColors {
   static const grey = Color(0xFF8A8A8E);
   static const cardColor = Color(0xFF17171A);
 
-  static LinearGradient backgroundGradient = LinearGradient(
-    colors: [
-      Color(0xFF3E3D41),
-      Color(0xFF0D0D0F).withOpacity(0.0),
-
-
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    transform: GradientRotation(5.49779),
-  );
 
   static LinearGradient appBarGradient = LinearGradient(
     colors: [

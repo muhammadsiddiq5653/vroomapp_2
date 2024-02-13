@@ -55,10 +55,10 @@ class FeedCard extends StatelessWidget {
         },
         child: Container(
           width: double.infinity,
+          height: 300.h,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Container(
-              // color: Colors.black,
               constraints: BoxConstraints(maxHeight: 545, minHeight: 545),
               child: Stack(
                   alignment: Alignment.center,
@@ -69,12 +69,12 @@ class FeedCard extends StatelessWidget {
                         ? Image.asset(
                             feedModel.image!,
                             width: double.infinity,
-                            fit: BoxFit.fitWidth,
+                            fit: BoxFit.fitHeight,
                           )
                         : AppNetworkImage(
                             url: feedModel.image!,
                             width: double.infinity,
-                            fit: BoxFit.fitWidth,
+                            fit: BoxFit.fitHeight,
                             loadingWidget: Container(
                                 //RiveAnimation.asset(
                                 //                                         'assets/images/vroom_animation.riv')

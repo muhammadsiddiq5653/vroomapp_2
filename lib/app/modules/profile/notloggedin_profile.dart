@@ -15,9 +15,7 @@ class NotLoggedinProfile extends StatelessWidget {
     return Scaffold(
       appBar: GameAppBar(),
       body: Container(
-        decoration: BoxDecoration(
-            gradient: AppColors.backgroundGradient
-        ),
+        decoration: BoxDecoration(color: AppColors.background),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +48,7 @@ class NotLoggedinProfile extends StatelessWidget {
                 height: 65.h,
               ),
               Container(
-                height: 55.h,
+                height: 45.h,
                 width: double.infinity.w,
                 margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
                 child: AppButtonField(
@@ -65,7 +63,7 @@ class NotLoggedinProfile extends StatelessWidget {
                 height: 20.h,
               ),
               Container(
-                height: 55.h,
+                height: 45.h,
                 width: double.infinity.w,
                 margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
                 child: AppButtonField(

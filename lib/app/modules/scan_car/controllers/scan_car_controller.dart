@@ -161,7 +161,7 @@ class ScanCarController extends AppAbstractController {
                           ),
                         ),
                         Container(
-                          height: 55,
+                          height: 45,
                           width: double.infinity,
                           margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
                           child: AppButtonField(

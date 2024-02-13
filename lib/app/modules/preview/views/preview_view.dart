@@ -43,7 +43,6 @@ class PreviewView extends GetView<PreviewController> {
         width: double.infinity.w,
         child: Stack(
           children: [
-
             Container(
               height: double.infinity.h,
               width: double.infinity.w,
@@ -63,12 +62,12 @@ class PreviewView extends GetView<PreviewController> {
                 margin: EdgeInsets.only(top: 45),
                 child: Image.asset(
                   'assets/images/LogoforGettingStarted.png',
-                  width: 100.w,
+                  width: 50.w,
                 ),
               ),
             ),
             Positioned(
-            bottom: 215,
+              bottom: 190,
               left: 0,
               right: 0,
               child: SliderDots(pages: pages, pageIndex: controller.pageIndex),
@@ -79,20 +78,18 @@ class PreviewView extends GetView<PreviewController> {
               right: 0,
               child: Container(
                 decoration: BoxDecoration(
-
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),
                 child: Column(
                   children: [
                     Container(
-
-                      height: 55.h,
+                      height: 45.h,
                       width: double.infinity.w,
                       margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
                       child: AppButtonField(
                           primary: AppColors.primary,
-                          text: 'Get Started',
+                          text: 'Wroom',
                           elevation: 3,
                           onPressed: () {
                             Get.toNamed(Routes.MAIN_TABS);

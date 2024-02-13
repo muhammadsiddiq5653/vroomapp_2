@@ -30,7 +30,7 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
           // ),
           body: Container(
             decoration: BoxDecoration(
-              gradient: AppColors.backgroundGradient
+                color: AppColors.background
             ),
             padding: EdgeInsets.symmetric(
               horizontal: 20,
@@ -76,7 +76,7 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                         visible: showValidation.value!,
                         child: Text400(
                             textAlign: TextAlign.left,
-                            fontSize: 14.sp,
+                            fontSize: 13.sp,
                             maxLines: 3,
                             text:
                                 "Alphabets and Numbers are allowed. Less than 4 characters, Space between characters, Special Charactersare not allowed."),
@@ -86,7 +86,7 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                       height: 80.h,
                     ),
                     Container(
-                      height: 55.h,
+                      height: 45.h,
                       margin:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                       width: double.infinity.w,

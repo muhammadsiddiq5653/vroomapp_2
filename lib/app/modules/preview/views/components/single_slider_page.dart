@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:video_player/video_player.dart';
 import 'package:vroom_app/app/widgets/app_text/small_text.dart';
 
 import '../../../../app_colors.dart';
 import '../../../../widgets/app_text/big_header_text.dart';
 
-class SingleSliderPage extends StatelessWidget {
+class SingleSliderPage extends StatefulWidget {
   const SingleSliderPage({
     Key? key,
     required this.item,
@@ -14,13 +15,31 @@ class SingleSliderPage extends StatelessWidget {
   final Map<String, String> item;
 
   @override
+  State<SingleSliderPage> createState() => _SingleSliderPageState();
+}
+
+class _SingleSliderPageState extends State<SingleSliderPage> {
+  late VideoPlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset('assets/sounds/1085376104.mp4')
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {});
+      });
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     // return Container(
     //   color: AppColors.primary,
     // );
     return Container(
       decoration: BoxDecoration(
-        gradient: AppColors.backgroundGradient
+          color: AppColors.background
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -34,24 +53,29 @@ class SingleSliderPage extends StatelessWidget {
                 SizedBox(
                   height: 65.h,
                 ),
-                Image.asset(item['image']!),
+                _controller.value.isInitialized
+                    ? AspectRatio(
+                  aspectRatio: _controller.value.aspectRatio,
+                  child: VideoPlayer(_controller),
+                )
+                    : Container(),
                 SizedBox(
                   height: 20.h,
                 ),
                 BigHeaderText(
-                  text: item['title'] ?? '',
+                  text: widget.item['title'] ?? '',
                   color: Colors.white,
-                  fontSize: 28.sp,
+                  fontSize: 20.sp,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
                   height: 15.h,
                 ),
                 SmallText(
-                  text: item['subtitle'] ?? '',
+                  text: widget.item['subtitle'] ?? '',
                   color: Colors.white,
                   textAlign: TextAlign.center,
-                  fontSize: 18.sp,
+                  fontSize: 14.sp,
                 ),
               ],
             ),

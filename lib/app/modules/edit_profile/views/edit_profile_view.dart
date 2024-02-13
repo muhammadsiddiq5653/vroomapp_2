@@ -89,7 +89,7 @@ class EditProfileView extends GetView<EditProfileController> {
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal:20 ),
-                    height: 55,
+                    height: 45,
                     width: double.infinity,
                     child: AppButtonField(
                       text: 'Save',

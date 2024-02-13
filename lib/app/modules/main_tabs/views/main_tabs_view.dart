@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:vroom_app/app/helpers/hexcolor.dart';
 import 'package:vroom_app/app/modules/alerts/notloggedin_alerts.dart';
 import 'package:vroom_app/app/modules/alerts/views/alerts_view.dart';
 import 'package:vroom_app/app/modules/feed/notloggedin_feed.dart';
@@ -13,6 +12,7 @@ import 'package:vroom_app/app/modules/home/views/home_view.dart';
 import 'package:vroom_app/app/modules/profile/views/profile_view.dart';
 
 import '../../../app_colors.dart';
+import '../../../helpers/hexcolor.dart';
 import '../../home/notloggedin_home.dart';
 import '../../profile/notloggedin_profile.dart';
 import '../controllers/main_tabs_controller.dart';
@@ -28,20 +28,20 @@ class MainTabsView extends GetView<MainTabsController> {
         builder: (_) => Container(
               child: Scaffold(
                 floatingActionButton: FloatingActionButton(
-                  backgroundColor: AppColors.primary,
+                  backgroundColor: AppColors.background.withOpacity(0.8),
                   child: Container(
-                    height: 65,
-                    width: 65,
+                    height: 55,
+                    width: 55,
                     decoration: BoxDecoration(
-                      color: AppColors.primary,
+                      color: Colors.transparent,
                       borderRadius: BorderRadius.all(
-                        Radius.circular(100),
+                        Radius.circular(10),
                       ),
                     ),
                     child: Container(
-                      padding: EdgeInsets.all(14),
+                      padding: EdgeInsets.all(2),
                       child: Image.asset(
-                        'assets/images/svg/bottomNav/wroomIcon1.png',
+                        'assets/images/wroom_red.png',
                         alignment: Alignment.center,
                       ),
                     ),
@@ -58,80 +58,82 @@ class MainTabsView extends GetView<MainTabsController> {
                   },
                 ),
                 floatingActionButtonLocation:
-                    FloatingActionButtonLocation.centerDocked,
+                    FloatingActionButtonLocation.endFloat,
                 body: _getPage(),
                 extendBody: true,
-                bottomNavigationBar: 
-                  ClipRect(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(
-                        sigmaX: 5,
-                        sigmaY: 5,
-                      ),
-                 
-                      child: BottomNavigationBar(
+                bottomNavigationBar: ClipRect(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 5,
+                      sigmaY: 5,
+                    ),
+                    child: BottomNavigationBar(
                       showSelectedLabels: true,
                       showUnselectedLabels: false,
-                      elevation: 0,
-                      backgroundColor: HexColor("#141415").withOpacity(0.7),
+                      elevation: 3,
+                       backgroundColor: HexColor("#141415").withOpacity(0.7),
                       onTap: controller.onTap,
-                      unselectedItemColor: Colors.white.withOpacity(0.25),
-                      selectedFontSize: 18.sp,
+
+                      selectedFontSize: 14.sp,
                       selectedLabelStyle: TextStyle(
-                          fontWeight: FontWeight.w600, fontStyle: FontStyle.italic),
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.italic,
+                      ),
                       unselectedFontSize: 0,
-                      selectedItemColor: Colors.white,
+                      selectedItemColor: Colors.black,
                       currentIndex:
                           controller.pageIndex < 0 ? 0 : controller.pageIndex,
-                      type: BottomNavigationBarType.fixed,
+                      type: BottomNavigationBarType.shifting,
                       items: [
                         BottomNavigationBarItem(
+                            backgroundColor: AppColors.background,
                             activeIcon: SvgPicture.asset(
                               'assets/images/svg/bottomNav/GarageActive.svg',
-                              width: 32.w,
-                              height: 32.h,
+                              width: 22.w,
+                              height: 22.h,
                             ),
                             icon: SvgPicture.asset(
                               'assets/images/svg/bottomNav/GarageInActive.svg',
-                              width: 32.w,
-                              height: 32.h,
+                              width: 22.w,
+                              height: 22.h,
                             ),
                             label: 'Garage'.toUpperCase()),
                         BottomNavigationBarItem(
                             activeIcon: SvgPicture.asset(
                               'assets/images/svg/bottomNav/FeedActive.svg',
-                              width: 32.w,
-                              height: 32.h,
+                              width: 22.w,
+                              height: 22.h,
                             ),
                             icon: SvgPicture.asset(
                               'assets/images/svg/bottomNav/FeedInActive.svg',
-                              width: 32.w,
-                              height: 32.h,
+                              width: 22.w,
+                              height: 22.h,
                             ),
                             label: 'Feed'.toUpperCase()),
 
                         BottomNavigationBarItem(
                             activeIcon: SvgPicture.asset(
                               'assets/images/svg/bottomNav/AlertsActive.svg',
-                              width: 32.w,
-                              height: 32.h,
+                              width: 22.w,
+                              height: 22.h,
                             ),
                             icon: SvgPicture.asset(
                               'assets/images/svg/bottomNav/AlertsInActive.svg',
-                              width: 32.w,
-                              height: 32.h,
+                              width: 22.w,
+                              height: 22.h,
                             ),
                             label: 'Alerts'.toUpperCase()),
                         BottomNavigationBarItem(
                             activeIcon: SvgPicture.asset(
                               'assets/images/svg/bottomNav/ProfileActive.svg',
-                              width: 32.w,
-                              height: 32.h,
+                              width: 22.w,
+                              height: 22.h,
                             ),
                             icon: SvgPicture.asset(
                               'assets/images/svg/bottomNav/ProfileInActive.svg',
-                              width: 32.w,
-                              height: 32.h,
+                              width: 22.w,
+                              height: 22.h,
                             ),
                             label: 'Profile'.toUpperCase()),
                         // BottomNavigationBarItem(
@@ -142,8 +144,8 @@ class MainTabsView extends GetView<MainTabsController> {
                         //     label: 'Leaders'.toUpperCase()),
                       ],
                     ),
-                ),
                   ),
+                ),
               ),
             ));
   }
@@ -167,7 +169,7 @@ class MainTabsView extends GetView<MainTabsController> {
           body: Container(
             width: double.infinity.w,
             height: double.infinity.h,
-            decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
+            decoration: BoxDecoration(color: AppColors.background),
             child: Center(
               child: CircularProgressIndicator(),
             ),

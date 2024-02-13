@@ -22,11 +22,12 @@ class AlertsView extends GetView<AlertsController> {
   Widget build(BuildContext context) {
     return GetBuilder<AlertsController>(
       builder: (_) => Scaffold(
+        backgroundColor: AppColors.background,
         appBar: GameAppBar(
            ),
         body: Container(
           decoration: BoxDecoration(
-              gradient: AppColors.backgroundGradient
+              color: AppColors.background,
           ),
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: AppStateHandler(

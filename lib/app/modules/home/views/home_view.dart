@@ -25,12 +25,13 @@ class HomeView extends GetView<HomeController> {
     return GetBuilder(
       builder: (HomeController _) => AppKeyboardHider(
         child: Scaffold(
+          backgroundColor: AppColors.background,
             appBar: GameAppBar(
               ),
 
             body: Container(
               decoration: BoxDecoration(
-                gradient: AppColors.backgroundGradient
+                color: AppColors.background
               ),
               padding: EdgeInsets.symmetric(horizontal: 17, vertical: 20),
               child: Column(

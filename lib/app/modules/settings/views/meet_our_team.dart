@@ -35,7 +35,7 @@ class MeetTeam extends StatelessWidget {
 
         body: Container(
           decoration: BoxDecoration(
-              gradient: AppColors.backgroundGradient
+              color: AppColors.background
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 17.0),
