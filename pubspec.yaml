@@ -5,7 +5,9 @@ description: Shazam for cars.
 environment: 
   sdk: '>=2.18.2 <3.0.0'
 
-dependencies: 
+dependencies:
+
+  video_player: ^2.4.7
   fluttermoji: ^1.0.2
   path_provider: ^2.0.11
   camera: ^0.10.1
@@ -51,7 +53,6 @@ dependencies:
   rive: ^0.12.4
   shared_preferences:
   flutter_screenutil:
-  video_player:
   package_info_plus:
   flutter: 
     sdk: flutter
@@ -97,4 +98,5 @@ flutter:
     - assets/images/battlepass.png
     - assets/images/offlineImage.png
     - assets/sounds/
+    - assets/welcomeVideo.mp4
 

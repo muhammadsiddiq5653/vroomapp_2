@@ -28,9 +28,9 @@ class MainTabsView extends GetView<MainTabsController> {
         builder: (_) => Container(
               child: Scaffold(
                 floatingActionButton: FloatingActionButton(
-                  backgroundColor: AppColors.background.withOpacity(0.8),
+                  backgroundColor: AppColors.primary,
                   child: Container(
-                    height: 55,
+                    height: 45,
                     width: 55,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
@@ -39,9 +39,9 @@ class MainTabsView extends GetView<MainTabsController> {
                       ),
                     ),
                     child: Container(
-                      padding: EdgeInsets.all(2),
+                      padding: EdgeInsets.all(0),
                       child: Image.asset(
-                        'assets/images/wroom_red.png',
+                        'assets/images/wroom_black.png',
                         alignment: Alignment.center,
                       ),
                     ),
@@ -58,7 +58,7 @@ class MainTabsView extends GetView<MainTabsController> {
                   },
                 ),
                 floatingActionButtonLocation:
-                    FloatingActionButtonLocation.endFloat,
+                    FloatingActionButtonLocation.centerDocked,
                 body: _getPage(),
                 extendBody: true,
                 bottomNavigationBar: ClipRect(
@@ -71,9 +71,8 @@ class MainTabsView extends GetView<MainTabsController> {
                       showSelectedLabels: true,
                       showUnselectedLabels: false,
                       elevation: 3,
-                       backgroundColor: HexColor("#141415").withOpacity(0.7),
+                      backgroundColor: HexColor("#141415").withOpacity(0.7),
                       onTap: controller.onTap,
-
                       selectedFontSize: 14.sp,
                       selectedLabelStyle: TextStyle(
                         color: Colors.white,

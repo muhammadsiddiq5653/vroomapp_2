@@ -118,7 +118,7 @@ class AppStateHandler extends StatelessWidget {
     }  else if (loadingState == GeneralLoadingState.error) {
       childToReturn = Container(
         decoration: BoxDecoration(
-            color: AppColors.background
+            gradient: AppColors.backgroundGradient
         ),
         padding: EdgeInsets.all(20),
         width: double.infinity,

@@ -22,12 +22,11 @@ class AlertsView extends GetView<AlertsController> {
   Widget build(BuildContext context) {
     return GetBuilder<AlertsController>(
       builder: (_) => Scaffold(
-        backgroundColor: AppColors.background,
         appBar: GameAppBar(
            ),
         body: Container(
           decoration: BoxDecoration(
-              color: AppColors.background,
+              color: AppColors.background
           ),
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: AppStateHandler(
@@ -43,73 +42,59 @@ class AlertsView extends GetView<AlertsController> {
                 return await controller.loadNotifications(
                     page: (controller.notifications?.currentPage ?? 0) + 1);
               },
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text700(
-                      text: 'Alerts',
-                      fontSize: 22.sp,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Expanded(
-                    child: ListView.separated(
-                        separatorBuilder: (context, index) => SizedBox(
-                              height: 20.h,
-                            ),
-                        itemCount: controller.notifications?.collection.length ?? 0,
-                        itemBuilder: (BuildContext context, int index) {
-                          var item = controller.notifications!.collection[index];
-                          return   GestureDetector(
-                            onTap: () {
-                              if (item.directLink != null)
-                                Get.toNamed(item.directLink!);
-                            },
-                            child: AppTile(
-                              padding: EdgeInsets.all(20),
-                              child: Row(
-                                children: [
-                                  ClipOval(
-                                    child: Image.network(
-                                      item.image!,
-                                      width: 40.w,
-                                      height: 40.h,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10.w,
-                                  ),
-                                  Expanded(
-                                      child: Text600(
-                                    text: item.message,
-                                    fontSize: 16.sp,
-                                  )),
-                                  SizedBox(
-                                    width: 10.w,
-                                  ),
-                                  Text600(
-                                    text: AppUtilities.dateToCoolStringWithHour(
-                                        item.createdAt),
-                                  ),
-                                  SizedBox(
-                                    width: 10.w,
-                                  ),
-                                  if (item.directLink != null)
-                                    Icon(
-                                      Remix.arrow_right_circle_fill,
-                                      color: AppColors.primary,
-                                    )
-                                ],
+              child: Expanded(
+                child: ListView.separated(
+                    separatorBuilder: (context, index) => SizedBox(
+                          height: 20.h,
+                        ),
+                    itemCount: controller.notifications?.collection.length ?? 0,
+                    itemBuilder: (BuildContext context, int index) {
+                      var item = controller.notifications!.collection[index];
+                      return   GestureDetector(
+                        onTap: () {
+                          if (item.directLink != null)
+                            Get.toNamed(item.directLink!);
+                        },
+                        child: AppTile(
+                          padding: EdgeInsets.all(20),
+                          child: Row(
+                            children: [
+                              ClipOval(
+                                child: Image.network(
+                                  item.image!,
+                                  width: 40.w,
+                                  height: 40.h,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ),
-                          );
-                        }),
-                  ),
-                ],
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Expanded(
+                                  child: Text600(
+                                text: item.message,
+                                fontSize: 16.sp,
+                              )),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Text600(
+                                text: AppUtilities.dateToCoolStringWithHour(
+                                    item.createdAt),
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              if (item.directLink != null)
+                                Icon(
+                                  Remix.arrow_right_circle_fill,
+                                  color: AppColors.primary,
+                                )
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
               ),
             ),
           ),

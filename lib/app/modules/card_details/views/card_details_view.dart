@@ -31,10 +31,11 @@ class CardDetailsView extends GetView<CardDetailsController> {
   Widget build(BuildContext context) {
     return GetBuilder<CardDetailsController>(
       builder: (_) => Scaffold(
-        backgroundColor: AppColors.background,
         body: SafeArea(
           child: Container(
-            decoration: BoxDecoration(color: AppColors.background,),
+            decoration: BoxDecoration(
+              color: AppColors.background,
+            ),
             child: AppStateHandler(
               loadingState: controller.loadingState,
               child: Column(
@@ -272,7 +273,7 @@ class CardDetailsView extends GetView<CardDetailsController> {
                   ),
                   if (controller.isLoggedin.value)
                     Container(
-                      height: 45.h,
+                      height: 75.h,
                       width: double.infinity.w,
                       margin: EdgeInsets.only(bottom: 20),
                       padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
@@ -290,7 +291,7 @@ class CardDetailsView extends GetView<CardDetailsController> {
                         },
                       ),
                     ),
-                //    ),
+                  //    ),
                 ],
               ),
             ),

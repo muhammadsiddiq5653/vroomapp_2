@@ -18,6 +18,7 @@ class MainTabsController extends AppAbstractController {
   final box = GetStorage();
 
   RxBool isLoggedin = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -49,9 +50,9 @@ class MainTabsController extends AppAbstractController {
 
   Future<void> scan() async {
     if (!box.hasData(dontShowAgain) || box.read<bool>(dontShowAgain) == false) {
-      var result = await Get.bottomSheet(Container(
+      var result = await Get.bottomSheet(
+          Container(
         color: AppColors.cardColor,
-        height: 600.h,
         width: double.infinity,
         padding: EdgeInsets.fromLTRB(17, 5, 17, 0),
         child: Column(
@@ -82,7 +83,7 @@ class MainTabsController extends AppAbstractController {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 30),
               width: double.infinity,
-              height: 45.h,
+              height: 55.h,
               child: AppButtonField(
                 text: 'Got it',
                 onPressed: () {
@@ -96,7 +97,7 @@ class MainTabsController extends AppAbstractController {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 30),
               width: double.infinity,
-              height: 45.h,
+              height: 55.h,
               child: AppButtonField(
                 primary: Colors.transparent,
                 text: 'Don\'t show this again',

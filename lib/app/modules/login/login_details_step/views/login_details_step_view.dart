@@ -14,31 +14,33 @@ import '../../../../widgets/app_text/text_700.dart';
 import '../controllers/login_details_step_controller.dart';
 
 class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
-  LoginDetailsStepView({Key? key}) : super(key: key);
+   LoginDetailsStepView({Key? key}) : super(key: key);
   final Uri _url = Uri.parse('http://wroom.zedandwhite.com/privacy/');
+
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginDetailsStepController>(
       builder: (_) => AppKeyboardHider(
         child: Container(
+
           child: Scaffold(
-            backgroundColor: AppColors.background,
             // appBar: InsideAppBar(
             //   title: '',
             // ),
             body: Container(
               height: double.infinity.h,
               width: double.infinity.w,
-              decoration: BoxDecoration(color: AppColors.background),
+              decoration: BoxDecoration(
+                  color: AppColors.background
+              ),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 60),
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,7 +107,7 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                       ),
                     ),
                     Container(
-                      height: 45.h,
+                      height: 55.h,
                       margin: EdgeInsets.symmetric(
                         vertical: 10,
                         horizontal: 47,
@@ -114,13 +116,17 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                       child: AppButtonField(
                         text: 'Continue'.toUpperCase(),
                         onPressed: () {
-                          if (controller.userName.isNotEmpty) {
-                            controller.verifyUserName();
-                            Get.toNamed(Routes.LOGIN);
-                          } else {
-                            controller.dialogService
-                                .showError("Please enter valid username");
-                          }
+                          if(controller.userName.isNotEmpty)
+                            {
+                              controller.verifyUserName();
+                              Get.toNamed(Routes.LOGIN);
+                            }
+                          else
+                            {
+                              controller.dialogService.showError("Please enter valid username");
+                            }
+
+
 
                           // controller.login();
                         },
@@ -214,6 +220,7 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                         Text400(
                             textAlign: TextAlign.center,
                             fontSize: 14.sp,
+
                             text: "Please read our"),
                         GestureDetector(
                           onTap: () {
@@ -233,8 +240,7 @@ class LoginDetailsStepView extends GetView<LoginDetailsStepController> {
                             text: " and "),
                         GestureDetector(
                           onTap: () {
-                            launchUrl(Uri.parse(
-                                'http://wroom.zedandwhite.com/terms/'));
+                            launchUrl(Uri.parse('http://wroom.zedandwhite.com/terms/'));
                           },
                           child: Text400(
                               textAlign: TextAlign.center,

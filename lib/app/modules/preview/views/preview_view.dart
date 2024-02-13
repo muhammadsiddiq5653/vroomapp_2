@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:video_player/video_player.dart';
 import 'package:vroom_app/app/app_colors.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../widgets/app_form_fields/app_button_field.dart';
 import '../controllers/preview_controller.dart';
-import 'components/single_slider_page.dart';
-import 'components/slider_dots.dart';
 
 class PreviewView extends GetView<PreviewController> {
   final controller = Get.put(PreviewController());
@@ -43,37 +42,57 @@ class PreviewView extends GetView<PreviewController> {
         width: double.infinity.w,
         child: Stack(
           children: [
-            Container(
-              height: double.infinity.h,
-              width: double.infinity.w,
-              child: PageView.builder(
-                  itemCount: pages.length,
-                  onPageChanged: (val) {
-                    controller.setPageIndex(val);
-                  },
-                  itemBuilder: (_, index) {
-                    var item = pages[index];
-                    return SingleSliderPage(item: item);
-                  }),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                margin: EdgeInsets.only(top: 45),
-                child: Image.asset(
-                  'assets/images/LogoforGettingStarted.png',
-                  width: 50.w,
+            SizedBox.expand(
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: Container(
+                  width: controller.videoPlayerController.value.size.width,
+                  height: controller.videoPlayerController.value.size.height,
+                  child: VideoPlayer(
+                    controller.videoPlayerController,
+                  ),
                 ),
               ),
             ),
-            Positioned(
-              bottom: 190,
-              left: 0,
-              right: 0,
-              child: SliderDots(pages: pages, pageIndex: controller.pageIndex),
+            Container(
+              height: double.infinity.h,
+              width: double.infinity.w,
+              color: AppColors.background.withOpacity(0.5),
             ),
+            // Container(
+            //   height: double.infinity,
+            //   width: double.infinity,
+            //   child: PageView.builder(
+            //       itemCount: pages.length,
+            //       onPageChanged: (val) {
+            //         controller.setPageIndex(val);
+            //       },
+            //       itemBuilder: (_, index) {
+            //         var item = pages[index];
+            //         return SingleSliderPage(
+            //           item: item,
+            //           controller: controller,
+            //         );
+            //       }),
+            // ),
+            // Align(
+            //   alignment: Alignment.topCenter,
+            //   child: Container(
+            //     margin: EdgeInsets.only(top: 45),
+            //     child: Image.asset(
+            //       'assets/images/LogoforGettingStarted.png',
+            //       width: 100.w,
+            //     ),
+            //   ),
+            // ),
+            // Positioned(
+            //   bottom: 150,
+            //   left: 0,
+            //   right: 0,
+            //   child: SliderDots(pages: pages, pageIndex: controller.pageIndex),
+            // ),
             Positioned(
-              bottom: 0,
+              bottom: 160,
               left: 0,
               right: 0,
               child: Container(
@@ -84,12 +103,13 @@ class PreviewView extends GetView<PreviewController> {
                 child: Column(
                   children: [
                     Container(
-                      height: 45.h,
+                      height: 55.h,
                       width: double.infinity.w,
                       margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
                       child: AppButtonField(
-                          primary: AppColors.primary,
-                          text: 'Wroom',
+                          haveBorder: false,
+                          primary: AppColors.background,
+                          text: 'Lets Wroom',
                           elevation: 3,
                           onPressed: () {
                             Get.toNamed(Routes.MAIN_TABS);

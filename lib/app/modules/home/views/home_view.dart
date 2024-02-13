@@ -25,48 +25,38 @@ class HomeView extends GetView<HomeController> {
     return GetBuilder(
       builder: (HomeController _) => AppKeyboardHider(
         child: Scaffold(
-          backgroundColor: AppColors.background,
             appBar: GameAppBar(
               ),
-
             body: Container(
               decoration: BoxDecoration(
-                color: AppColors.background
+                color: AppColors.background,
               ),
               padding: EdgeInsets.symmetric(horizontal: 17, vertical: 20),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text700(
-                      text: 'Garage',
-                      fontSize: 22.sp,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: AppTextField(
+                          prefixIcon: Icon(
+                            Remix.search_2_line,
+                            color: AppColors.primary,
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(Remix.filter_3_fill),
+                            color: AppColors.primary,
+                            onPressed: controller.sortOption,
+                          ),
+                          onChanged: controller.searchChanged,
+                          hintText: 'Search',
+                          labelText: 'Search'),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: AppTextField(
-                        prefixIcon: Icon(
-                          Remix.search_2_line,
-                          color: AppColors.primary,
-                        ),
-                        suffixIcon: IconButton(
-                          icon: Icon(Remix.filter_3_fill),
-                          color: AppColors.primary,
-                          onPressed: controller.sortOption,
-                        ),
-                        onChanged: controller.searchChanged,
-                        hintText: 'Search',
-                        labelText: 'Search'),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Expanded(
-                    child: AppStateHandler(
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    AppStateHandler(
                       loadingState: controller.loadingState,
                       emptyWidget: _getEmptyState(),
                       offlineWidget : _getOfflineState(),
@@ -81,10 +71,12 @@ class HomeView extends GetView<HomeController> {
                               page: (controller.cars?.currentPage ?? 0) + 1);
                         },
                         child: ListView.separated(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
                             itemCount: controller.cars?.collection.length ?? 0,
                             separatorBuilder: ((context, index) => SizedBox(
-                                  height: 15.h,
-                                )),
+                              height: 15.h,
+                            )),
                             itemBuilder: (BuildContext context, int index) {
                               var car = controller.cars!.collection[index];
                               return CarCard(
@@ -94,8 +86,8 @@ class HomeView extends GetView<HomeController> {
                             }),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             )),
       ),

@@ -44,9 +44,8 @@ class FeedController extends AppAbstractController {
         if ((feed?.collection.length ?? 0) == 0) {
           loadingState = GeneralLoadingState.empty;
         } else {
-          feed!.collection.removeWhere((element) =>
-          element.userModel!.name! == '(deleted user)'
-          );
+          feed!.collection.removeWhere(
+              (element) => element.userModel!.name! == '(deleted user)');
           loadingState = GeneralLoadingState.done;
         }
       } else {
@@ -100,13 +99,14 @@ class FeedController extends AppAbstractController {
   }
 
   delete(
-    FeedModel feed,
+    FeedModel selectedFeed,
   ) async {
     try {
       loadingState = GeneralLoadingState.waiting;
-      await appFeedApi.delete(feed.id);
+      feed?.collection.removeWhere((element) => element.id == selectedFeed.id);
       loadingState = GeneralLoadingState.done;
       update();
+      await appFeedApi.delete(selectedFeed.id);
     } catch (ex) {
       print(ex);
       dialogService.showError(ex);

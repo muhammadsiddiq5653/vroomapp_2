@@ -119,7 +119,7 @@ class HomeController extends AppAbstractController {
       }
       var result = await appCarsApi.getCars(
           page: page, sort: sort, searchQuery: searchQuery);
-      result.collection.retainWhere((element) => element.user!.id == box.read(AppConstants.userId));
+    //  result.collection.retainWhere((element) => element.user!.id == box.read(AppConstants.userId));
       if (page == 1) {
         cars = result;
         if ((cars?.collection.length ?? 0) == 0) {

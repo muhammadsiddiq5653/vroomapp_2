@@ -33,7 +33,7 @@ class GameAppBar extends StatelessWidget implements PreferredSizeWidget {
       }
 
     return Container(
-      height: 140.h,
+      height: 160.h,
       color: HexColor("#141415").withOpacity(0.6),
       padding: EdgeInsets.only(top: 50, left: 17, right: 0),
       child: Row(

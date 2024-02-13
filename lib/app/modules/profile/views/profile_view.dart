@@ -28,27 +28,13 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GameAppBar(
-
-      ),
+      appBar: GameAppBar(),
       body: GetBuilder<ProfileController>(
         builder: (_) => Container(
-            decoration: BoxDecoration(
-                color: AppColors.background
-            ),
+            decoration: BoxDecoration(color: AppColors.background),
             padding: EdgeInsets.symmetric(horizontal: 17, vertical: 30),
             child: Column(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text700(
-                    text: 'Profile',
-                    fontSize: 22.sp,
-                  ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: AnimatedCrossFade(
@@ -98,8 +84,8 @@ class ProfileView extends GetView<ProfileController> {
                               AppIconButton(
                                 onPressed: () {
                                   Get.bottomSheet(
-                                      EditProfileView(),
-                                      );
+                                    EditProfileView(),
+                                  );
                                   controller.update();
                                 },
                                 icon: Remix.pencil_fill,
@@ -118,19 +104,17 @@ class ProfileView extends GetView<ProfileController> {
                 SizedBox(
                   height: 35.h,
                 ),
-
-                Align(
+                controller.feed?.collection.length != 0 ?  Align(
                   alignment: Alignment.centerLeft,
                   child: Text700(
                     text: 'Posts',
                     fontSize: 22.sp,
                   ),
-                ),
-
+                ): SizedBox.shrink(),
                 SizedBox(
                   height: 15.h,
                 ),
-                Expanded(
+                controller.feed?.collection.length != 0 ?   Expanded(
                   child: AppStateHandler(
                       loadingState: controller.loadingState,
                       emptyWidget: _getEmptyState(),
@@ -153,7 +137,8 @@ class ProfileView extends GetView<ProfileController> {
                             return FeedCard(
                               feedModel: item,
                               onLikeButton: controller.like,
-                              onShareButton: controller.share, onDeleteButton: controller.delete,
+                              onShareButton: controller.share,
+                              onDeleteButton: controller.delete,
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) {
@@ -163,7 +148,7 @@ class ProfileView extends GetView<ProfileController> {
                           },
                         ),
                       )),
-                ),
+                ): SizedBox.shrink(),
               ],
             )),
       ),
@@ -185,32 +170,28 @@ class ProfileView extends GetView<ProfileController> {
                 padding: EdgeInsets.fromLTRB(15, 90, 15, 15),
                 child: Column(
                   children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Column(
                         children: [
-
-                          Column(
-                            children: [
-                              Text700(
-                                text: controller.settingsService.authModel
-                                        ?.userModel.name ??
-                                    '',
-                                fontSize: 30.sp,
-                              ),
-                              SizedBox(
-                                height: 5.h,
-                              ),
-                              Text400(
-                                text:
-                                    "@${controller.settingsService.authModel?.userModel.username} " ??
-                                        '',
-                                color: AppColors.surface.withOpacity(0.9),
-                                fontSize: 18.sp,
-                              ),
-                            ],
+                          Text700(
+                            text: controller.settingsService.authModel
+                                    ?.userModel.name ??
+                                '',
+                            fontSize: 30.sp,
                           ),
-
-                        ]),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Text400(
+                            text:
+                                "@${controller.settingsService.authModel?.userModel.username} " ??
+                                    '',
+                            color: AppColors.surface.withOpacity(0.9),
+                            fontSize: 18.sp,
+                          ),
+                        ],
+                      ),
+                    ]),
                     // SizedBox(
                     //   height: 25,
                     // ),
@@ -276,7 +257,6 @@ class ProfileView extends GetView<ProfileController> {
                 ),
               )),
           Positioned(
-
             child: Container(
               padding: EdgeInsets.all(15),
               child: Row(
@@ -326,17 +306,22 @@ class ProfileView extends GetView<ProfileController> {
           'assets/images/NoPosts.png',
           width: 92.w,
         ),
-        SizedBox(height: 15.h,),
+        SizedBox(
+          height: 15.h,
+        ),
         Text700(
           text: 'No Posts, Yet!',
           color: AppColors.surface,
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 10.h,),
+        SizedBox(
+          height: 10.h,
+        ),
         Text400(
           fontSize: 12.sp,
           textAlign: TextAlign.center,
-          text: 'Wroom some cars and share them\non the feed to fill this space!',
+          text:
+              'Wroom some cars and share them\non the feed to fill this space!',
           color: AppColors.surface.withOpacity(0.9),
         ),
       ],

@@ -20,10 +20,8 @@ class FeedView extends GetView<FeedController> {
   Widget build(BuildContext context) {
     return GetBuilder<FeedController>(
       builder: (_) => Scaffold(
-        backgroundColor: AppColors.background,
         appBar: GameAppBar(
           ),
-
         body: Container(
           decoration: BoxDecoration(
               color: AppColors.background
@@ -42,35 +40,19 @@ class FeedView extends GetView<FeedController> {
                 return await controller.loadFeed(
                     page: (controller.feed?.currentPage ?? 0) + 1);
               },
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text700(
-                      text: 'Feed',
-                      fontSize: 22,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Expanded(
-                    child: ListView.separated(
-                        separatorBuilder: (context, index) => SizedBox(
-                              height: 20.h,
-                            ),
-                        itemCount: controller.feed?.collection.length ?? 0,
-                        itemBuilder: (BuildContext context, int index) {
-                          var item = controller.feed!.collection[index];
-                          return FeedCard(
-                              feedModel: item,
-                              onLikeButton: controller.like,
-                              onShareButton: controller.share,
-                              onDeleteButton: controller.delete);
-                        }),
-                  ),
-                ],
-              ),
+              child: ListView.separated(
+                  separatorBuilder: (context, index) => SizedBox(
+                        height: 20.h,
+                      ),
+                  itemCount: controller.feed?.collection.length ?? 0,
+                  itemBuilder: (BuildContext context, int index) {
+                    var item = controller.feed!.collection[index];
+                    return FeedCard(
+                        feedModel: item,
+                        onLikeButton: controller.like,
+                        onShareButton: controller.share,
+                        onDeleteButton: controller.delete);
+                  }),
             ),
           ),
         ),

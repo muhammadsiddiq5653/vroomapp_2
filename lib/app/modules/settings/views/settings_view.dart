@@ -30,7 +30,7 @@ class SettingsView extends GetView<SettingsController> {
         body: SingleChildScrollView(
           child: Container(
             decoration: BoxDecoration(
-                color: AppColors.background
+              color: AppColors.background
             ),
             padding: EdgeInsets.all(17),
             child: Column(

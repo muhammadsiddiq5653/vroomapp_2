@@ -17,6 +17,9 @@ class NotLoggedinAlert extends StatelessWidget {
       appBar: GameAppBar(
       ),
       body: Container(
+        decoration: BoxDecoration(
+            color: AppColors.background
+        ),
         child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

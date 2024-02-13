@@ -16,6 +16,7 @@ import '../../../helpers/hexcolor.dart';
 import '../../../helpers/widgets_to_image_controller.dart';
 import '../../../widgets/app_profile_avatar.dart';
 import '../../../widgets/app_text/small_bold_text.dart';
+import '../../../widgets/app_text/text_400.dart';
 import '../../../widgets/widgets_to_image.dart.dart';
 
 class FeedCard extends StatelessWidget {
@@ -55,10 +56,10 @@ class FeedCard extends StatelessWidget {
         },
         child: Container(
           width: double.infinity,
-          height: 300.h,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Container(
+              // color: Colors.black,
               constraints: BoxConstraints(maxHeight: 545, minHeight: 545),
               child: Stack(
                   alignment: Alignment.center,
@@ -69,12 +70,12 @@ class FeedCard extends StatelessWidget {
                         ? Image.asset(
                             feedModel.image!,
                             width: double.infinity,
-                            fit: BoxFit.fitHeight,
+                            fit: BoxFit.fitWidth,
                           )
                         : AppNetworkImage(
                             url: feedModel.image!,
                             width: double.infinity,
-                            fit: BoxFit.fitHeight,
+                            fit: BoxFit.fitWidth,
                             loadingWidget: Container(
                                 //RiveAnimation.asset(
                                 //                                         'assets/images/vroom_animation.riv')
@@ -100,45 +101,45 @@ class FeedCard extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    _getLeftHeader(),
-                                    // if (!notLoggedIn)
-                                    //   PopupMenuButton<int>(
-                                    //     color: AppColors.cardColor,
-                                    //     icon: Icon(
-                                    //       Remix.more_fill,
-                                    //       color: Colors.white,
-                                    //     ),
-                                    //     initialValue: null,
-                                    //     // Callback that sets the selected popup menu item.
-                                    //     onSelected: (value) async {
-                                    //       if (value == 0) {
-                                    //         onDeleteButton(feedModel);
-                                    //       }
-                                    //     },
-                                    //     itemBuilder: (BuildContext context) =>
-                                    //         <PopupMenuEntry<int>>[
-                                    //       PopupMenuItem<int>(
-                                    //         value: 0,
-                                    //         child: Row(
-                                    //           children: [
-                                    //             Icon(
-                                    //               Remix.delete_bin_7_fill,
-                                    //               color: Colors.white,
-                                    //               size: 24,
-                                    //             ),
-                                    //             SizedBox(
-                                    //               width: 10,
-                                    //             ),
-                                    //             Text400(
-                                    //               text: 'Delete this post',
-                                    //               color: Colors.white,
-                                    //               fontSize: 14,
-                                    //             ),
-                                    //           ],
-                                    //         ),
-                                    //       ),
-                                    //     ],
-                                    //   ),
+                                    _getLeftHeader(context),
+                                    if (!notLoggedIn)
+                                      PopupMenuButton<int>(
+                                        color: AppColors.cardColor,
+                                        icon: Icon(
+                                          Remix.more_fill,
+                                          color: Colors.white,
+                                        ),
+                                        initialValue: null,
+                                        // Callback that sets the selected popup menu item.
+                                        onSelected: (value) async {
+                                          if (value == 0) {
+                                            onDeleteButton(feedModel);
+                                          }
+                                        },
+                                        itemBuilder: (BuildContext context) =>
+                                            <PopupMenuEntry<int>>[
+                                          PopupMenuItem<int>(
+                                            value: 0,
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Remix.delete_bin_7_fill,
+                                                  color: Colors.white,
+                                                  size: 24,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Text400(
+                                                  text: 'Delete this post',
+                                                  color: Colors.white,
+                                                  fontSize: 14,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                   ]),
                             ),
                           ),
@@ -158,107 +159,108 @@ class FeedCard extends StatelessWidget {
                               sigmaY: 5,
                             ),
                             child: Container(
-                            // width: MediaQuery.of(context).size.width - 20,
-                            color: HexColor("#2e2e2e").withOpacity(0.25),
-                            child: Row(
-                                mainAxisAlignment: notLoggedInCard
-                                    ? MainAxisAlignment.center
-                                    : MainAxisAlignment.spaceBetween,
-                                textDirection: TextDirection.ltr,
-                                children: [
-                                  if (!notLoggedInCard)
-                                    TextButton(
+                              // width: MediaQuery.of(context).size.width - 20,
+                              color: HexColor("#2e2e2e").withOpacity(0.25),
+                              child: Row(
+                                  mainAxisAlignment: notLoggedInCard
+                                      ? MainAxisAlignment.center
+                                      : MainAxisAlignment.spaceBetween,
+                                  textDirection: TextDirection.ltr,
+                                  children: [
+                                    if (!notLoggedInCard)
+                                      TextButton(
+                                          style: OutlinedButton.styleFrom(
+                                            foregroundColor: Colors.transparent,
+                                            shape: StadiumBorder(),
+                                          ),
+                                          onPressed: () {
+                                            onLikeButton(feedModel);
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                feedModel.liked
+                                                    ? Remix.heart_fill
+                                                    : Remix.heart_line,
+                                                color: feedModel.liked
+                                                    ? AppColors.primary
+                                                    : Colors.white,
+                                              ),
+                                              if (!notLoggedInCard)
+                                                SmallBoldText(
+                                                  text: feedModel.likes
+                                                      .toString(),
+                                                  color: Colors.white,
+                                                )
+                                            ],
+                                          )),
+                                    OutlinedButton(
                                         style: OutlinedButton.styleFrom(
                                           foregroundColor: Colors.transparent,
                                           shape: StadiumBorder(),
+                                          side: BorderSide(
+                                              width: 2.0, color: Colors.white),
                                         ),
                                         onPressed: () {
-                                          onLikeButton(feedModel);
+                                          if (notLoggedInCard) {
+                                            Get.toNamed(
+                                                Routes.LOGIN_DETAILS_STEP);
+                                          } else {
+                                            Get.toNamed(Routes.CARD_DETAILS,
+                                                parameters: {
+                                                  AppConstants.carArgumentId:
+                                                      feedModel.userCarId
+                                                          .toString()
+                                                });
+                                          }
                                         },
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              feedModel.liked
-                                                  ? Remix.heart_fill
-                                                  : Remix.heart_line,
-                                              color: feedModel.liked
-                                                  ? AppColors.primary
-                                                  : Colors.white,
-                                            ),
-                                            if (!notLoggedInCard)
-                                              SmallBoldText(
-                                                text:
-                                                    feedModel.likes.toString(),
-                                                color: Colors.white,
-                                              )
-                                          ],
+                                        child: Container(
+                                          margin: EdgeInsets.symmetric(
+                                            horizontal: 41,
+                                            vertical: 16,
+                                          ),
+                                          child: Text700(
+                                            text: notLoggedInCard
+                                                ? "Login".toUpperCase()
+                                                : 'View Card'.toUpperCase(),
+                                            fontSize:
+                                                notLoggedInCard ? 18.sp : 14.sp,
+                                          ),
                                         )),
-                                  OutlinedButton(
-                                      style: OutlinedButton.styleFrom(
-                                        foregroundColor: Colors.transparent,
-                                        shape: StadiumBorder(),
-                                        side: BorderSide(
-                                            width: 2.0, color: Colors.white),
-                                      ),
-                                      onPressed: () {
-                                        if (notLoggedInCard) {
-                                          Get.toNamed(
-                                              Routes.LOGIN_DETAILS_STEP);
-                                        } else {
-                                          Get.toNamed(Routes.CARD_DETAILS,
-                                              parameters: {
-                                                AppConstants.carArgumentId:
-                                                    feedModel.userCarId
-                                                        .toString()
-                                              });
-                                        }
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.symmetric(
-                                          horizontal: 41,
-                                          vertical: 16,
-                                        ),
-                                        child: Text700(
-                                          text: notLoggedInCard
-                                              ? "Login".toUpperCase()
-                                              : 'View Card'.toUpperCase(),
-                                          fontSize:
-                                              notLoggedInCard ? 18.sp : 14.sp,
-                                        ),
-                                      )),
-                                  if (!notLoggedInCard)
-                                    TextButton(
-                                        style: OutlinedButton.styleFrom(
-                                          foregroundColor: Colors.transparent,
-                                          shape: StadiumBorder(),
-                                        ),
-                                        onPressed: () async {
-                                          onShareButton(
-                                              feedModel,
-                                              manageShare
-                                                  ? null
-                                                  : await widgetsToImageController
-                                                      .capture());
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Remix.share_line,
-                                              color: Colors.white,
-                                            ),
-                                            if (!notLoggedInCard)
-                                              SmallBoldText(
-                                                text:
-                                                    feedModel.shares.toString(),
+                                    if (!notLoggedInCard)
+                                      TextButton(
+                                          style: OutlinedButton.styleFrom(
+                                            foregroundColor: Colors.transparent,
+                                            shape: StadiumBorder(),
+                                          ),
+                                          onPressed: () async {
+                                            onShareButton(
+                                                feedModel,
+                                                manageShare
+                                                    ? null
+                                                    : await widgetsToImageController
+                                                        .capture());
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Remix.share_line,
                                                 color: Colors.white,
-                                              )
-                                          ],
-                                        )),
-                                ]),
+                                              ),
+                                              if (!notLoggedInCard)
+                                                SmallBoldText(
+                                                  text: feedModel.shares
+                                                      .toString(),
+                                                  color: Colors.white,
+                                                )
+                                            ],
+                                          )),
+                                  ]),
+                            ),
                           ),
                         ),
                       ),
-                    ),),
+                    ),
                   ]),
             ),
           ),
@@ -267,7 +269,7 @@ class FeedCard extends StatelessWidget {
     );
   }
 
-  _getLeftHeader() {
+  _getLeftHeader(BuildContext context) {
     return Row(
       children: [
         AppProfileAvatar(
@@ -281,13 +283,17 @@ class FeedCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              feedModel.userModel?.name ?? '',
-              style: TextStyle(
-                fontSize: 18.sp,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
+            Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: Text(
+                feedModel.userModel?.name ?? '',
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ),
             SizedBox(

@@ -12,7 +12,6 @@ import '../controllers/splash_controller.dart';
 class SplashView extends GetView<SplashController> {
   SplashView({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SplashController>(
@@ -78,13 +77,16 @@ class SplashView extends GetView<SplashController> {
     }
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment(1, 0.2),
-              colors: [
-            Color(0XFF3E3D41),
-            Color(0XFF0D0D0F),
-          ])),
+        color: AppColors.background
+        // gradient: LinearGradient(
+        //   begin: Alignment.topLeft,
+        //   end: Alignment(1, 0.2),
+        //   colors: [
+        //     Color(0XFF3E3D41),
+        //     Color(0XFF0D0D0F),
+        //   ],
+        // ),
+      ),
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,8 +98,6 @@ class SplashView extends GetView<SplashController> {
       ),
     );
   }
-
-
 
   Widget versionText() {
     return Column(

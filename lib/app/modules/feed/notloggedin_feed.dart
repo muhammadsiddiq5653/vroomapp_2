@@ -53,9 +53,11 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                   itemCount: controller.feed?.collection.length ?? 0,
                   itemBuilder: (BuildContext context, int index) {
                     var item = controller.feed!.collection[index];
-                    return index == 0
-                        ? FeedCard(
-                            notLoggedIn: true,
+                    return
+                      index == 0
+                        ?
+                    FeedCard(
+                      notLoggedIn: true,
                             notLoggedInCard: true,
                             feedModel: FeedModel(
                                 description: '',
@@ -68,18 +70,16 @@ class NotLoggedInFeedView extends GetView<FeedController> {
                                     username: '@username',
                                     name: 'You')),
                             onLikeButton: (feedModel) {},
-                            onShareButton: (FeedModel, b) {},
-                            onDeleteButton: (FeedModel) {},
+                            onShareButton: (FeedModel, b) {}, onDeleteButton: (FeedModel ) {  },
                           )
                         : FeedCard(
-                            notLoggedIn: true,
+                        notLoggedIn: true,
                             manageShare: true,
                             feedModel: item,
-                            onDeleteButton: (FeedModel f) {
-                              feedController.feed!.collection
-                                  .removeWhere((element) => element.id == f.id);
+                        onDeleteButton: (FeedModel f) {
+                            feedController.feed!.collection.removeWhere((element) => element.id == f.id);
                               controller.update();
-                            },
+                        },
                             onLikeButton: (feedModel) {
                               Get.bottomSheet(Container(
                                 padding: EdgeInsets.all(20),

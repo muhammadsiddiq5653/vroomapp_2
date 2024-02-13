@@ -26,7 +26,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
         // ),
         body: Container(
           decoration: BoxDecoration(
-              color: AppColors.background
+            color: AppColors.background
           ),
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
           child: SingleChildScrollView(
