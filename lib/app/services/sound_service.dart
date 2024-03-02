@@ -15,6 +15,10 @@ class SoundService extends GetxService {
   }
 
   playclick() async {
-    // await effectPlayer.play(AssetSource('sounds/click.wav'));
+     await effectPlayer.play(AssetSource('sounds/click.wav'));
+  }
+
+  playSoundOnStart() async {
+    await effectPlayer.play(AssetSource('sounds/engineignition.wav'));
   }
 }

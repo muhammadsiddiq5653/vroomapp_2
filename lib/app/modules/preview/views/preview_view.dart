@@ -5,6 +5,7 @@ import 'package:video_player/video_player.dart';
 import 'package:vroom_app/app/app_colors.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../../services/sound_service.dart';
 import '../../../widgets/app_form_fields/app_button_field.dart';
 import '../controllers/preview_controller.dart';
 import 'components/single_slider_page.dart';
@@ -22,15 +23,13 @@ class PreviewView extends GetView<PreviewController> {
             width: double.infinity.w,
             child: Stack(
               children: [
-                SizedBox.expand(
-                  child: FittedBox(
-                    fit: BoxFit.cover,
-                    child: Container(
-                      width: controller.videoPlayerController.value.size.width,
-                      height: controller.videoPlayerController.value.size.height,
-                      child: VideoPlayer(
-                        controller.videoPlayerController,
-                      ),
+                FittedBox(
+                  fit: BoxFit.fitHeight,
+                  child: Container(
+                    width: controller.videoPlayerController.value.size.width,
+                    height: controller.videoPlayerController.value.size.height * 0.9,
+                    child: VideoPlayer(
+                      controller.videoPlayerController,
                     ),
                   ),
                 ),
@@ -40,7 +39,7 @@ class PreviewView extends GetView<PreviewController> {
                   color: AppColors.background.withOpacity(0.5),
                 ),
                 Positioned(
-                  bottom: 100,
+                  bottom: 0,
                   left: 0,
                   right: 0,
                   child: Container(
@@ -51,6 +50,7 @@ class PreviewView extends GetView<PreviewController> {
                     child: Column(
                       children: [
                         Container(
+
                           height: 55.h,
                           width: double.infinity.w,
                           margin: EdgeInsets.fromLTRB(47, 0, 47, 0),
@@ -107,6 +107,7 @@ class WroomGlowingButton extends StatefulWidget {
 }
 
 class _WroomGlowingButtonState extends State<WroomGlowingButton> {
+  final soundService = Get.put(SoundService());
   bool _isGlowing = false;
 
   @override
@@ -145,7 +146,7 @@ class _WroomGlowingButtonState extends State<WroomGlowingButton> {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: _isGlowing ? Colors.white : Colors.transparent,
-          width: _isGlowing ? 4.0 : 0.0,
+          width: _isGlowing ? 2.0 : 0.0,
         ),
         boxShadow: _isGlowing
             ? [
@@ -159,7 +160,7 @@ class _WroomGlowingButtonState extends State<WroomGlowingButton> {
       ),
       child: Material(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
+        color: Colors.white.withOpacity(0.5),
         child: InkWell(
           borderRadius: BorderRadius.circular(20),
           onTap: () {
@@ -167,11 +168,14 @@ class _WroomGlowingButtonState extends State<WroomGlowingButton> {
           },
           child:
           AppButtonField(
-              primary: AppColors.primary.withOpacity(0.5),
+              primary: Colors.black.withOpacity(0.9),
               text: 'Let\'s Wroom',
+              haveBorder: false,
+              textColor: Colors.white.withOpacity(0.7),
               elevation: 3,
               onPressed: () {
-                Get.toNamed(Routes.MAIN_TABS);
+                soundService.playSoundOnStart();
+            Get.toNamed(Routes.MAIN_TABS);
                 //Get.to(NotLoggedinProfile());
                 //Get.to(NotLoggedinAlert());
                 //Get.to(NotLoggedinFeed());

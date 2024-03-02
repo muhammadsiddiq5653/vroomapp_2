@@ -1,28 +1,32 @@
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../services/sound_service.dart';
+
 class PreviewController extends GetxController {
+
   int pageIndex = 0;
 
-  late VideoPlayerController videoPlayerController;
+  final VideoPlayerController videoPlayerController =
+      VideoPlayerController.asset('assets/welcomeVideo.mp4');
 
   @override
   void onInit() {
-    videoPlayerController = VideoPlayerController.asset('assets/welcomeVideo.mp4');
     videoPlayerController.initialize().then((value) {
       videoPlayerController.play();
       videoPlayerController.setVolume(0);
       videoPlayerController.setLooping(true);
+      update();
     });
     super.onInit();
   }
 
-    @override
+  @override
   void dispose() {
-    // TODO: implement dispose
-      videoPlayerController.dispose();
+    videoPlayerController.dispose();
     super.dispose();
   }
+
   @override
   void onReady() {
     super.onReady();
