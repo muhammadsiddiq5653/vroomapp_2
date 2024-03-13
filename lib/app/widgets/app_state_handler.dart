@@ -44,44 +44,44 @@ class AppStateHandler extends StatelessWidget {
               ),
             ),
       );
-    } else if ( loadingState == GeneralLoadingState.offline){
-
-      childToReturn = (offlineWidget !=null ? offlineWidget : emptyWidget !=null ? emptyWidget :   Container(
-        padding: EdgeInsets.all(20),
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Remix.emotion_happy_fill,
-              size: 120,
-              color: Colors.orangeAccent,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text600(
-              text: "Hmmm, its seems quite in here. For now ;)",
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            onRetry != null
-                ? ElevatedButton(
-                onPressed: onRetry,
-                child: Text(
-                  "Try again",
-                  style: TextStyle(color: Colors.white),
-                ))
-                : Container()
-          ],
-        ),
-      ))!;
-    }
-
-
-    else if (loadingState == GeneralLoadingState.empty) {
+    } else if (loadingState == GeneralLoadingState.offline) {
+      childToReturn = (offlineWidget != null
+          ? offlineWidget
+          : emptyWidget != null
+              ? emptyWidget
+              : Container(
+                  padding: EdgeInsets.all(20),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Remix.emotion_happy_fill,
+                        size: 120,
+                        color: Colors.orangeAccent,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text600(
+                        text: "Hmmm, its seems quite in here. For now ;)",
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      onRetry != null
+                          ? ElevatedButton(
+                              onPressed: onRetry,
+                              child: Text(
+                                "Try again",
+                                style: TextStyle(color: Colors.white),
+                              ))
+                          : Container()
+                    ],
+                  ),
+                ))!;
+    } else if (loadingState == GeneralLoadingState.empty) {
       childToReturn = emptyWidget ??
           Container(
             padding: EdgeInsets.all(20),
@@ -115,10 +115,11 @@ class AppStateHandler extends StatelessWidget {
               ],
             ),
           );
-    }  else if (loadingState == GeneralLoadingState.error) {
+    } else if (loadingState == GeneralLoadingState.error) {
       childToReturn = Container(
         decoration: BoxDecoration(
-            gradient: AppColors.backgroundGradient
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: AppColors.primary, width: 1),
         ),
         padding: EdgeInsets.all(20),
         width: double.infinity,
@@ -137,6 +138,7 @@ class AppStateHandler extends StatelessWidget {
             Text600(
               text:
                   "Oooops! We can't reach our server at the moment,\nPlease check your connection and try again",
+              color: AppColors.primary,
             ),
             SizedBox(
               height: 20,

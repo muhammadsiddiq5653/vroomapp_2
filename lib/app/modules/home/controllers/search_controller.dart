@@ -15,16 +15,15 @@ import 'package:vroom_app/app/widgets/app_bottom_sheet.dart';
 import '../../../widgets/app_text/text_400.dart';
 import '../../../widgets/app_text/text_700.dart';
 
-class HomeController extends AppAbstractController {
+class SearchController extends AppAbstractController {
   AppCarsApi appCarsApi = Get.put(AppCarsApi());
   EnvelopeModel<CarModel>? cars = EnvelopeModel<CarModel>(collection: []);
   String? sort;
-  String? searchQuery;
+  String? searchQuery = '';
   var deleteCarConst = 'delete';
 
   @override
   void onInit() {
-    loadCards();
     super.onInit();
   }
 
@@ -112,17 +111,6 @@ class HomeController extends AppAbstractController {
     }
   }
 
-  Future<void> deleteCar(dynamic car) async {
-    loadingState = GeneralLoadingState.waiting;
-    final value = car.price ?? 0;
-    await appCarsApi.deleteUserCar(car.userCardId);
-    final userValue = box.read(AppConstants.userGarageValueKey) ?? 0;
-    box.write(AppConstants.userGarageValueKey,
-        (double.tryParse(userValue)! + value).toString());
-    loadingState = GeneralLoadingState.done;
-    loadCards();
-  }
-//{"id":29,"name":"Zed","email":"thedesignersteam360@gmail.com","username":"zedandwhite","password":"$2y$10$FHLYJLGlhRMS0M7T/hIU5uIDn0pPZiYGVQVPsxukwZ1uRja6A.Z32","avatar":"","access_token":"65aaZngder1eqBytci81Mff471VTI7oktsafn7RL","access_token_orig":"848|65aaZngder1eqBytci81Mff471VTI7oktsafn7RL","total_price":56.4}
   Future<bool> loadCards({int page = 1}) async {
     try {
       if (page == 1) {
@@ -131,7 +119,6 @@ class HomeController extends AppAbstractController {
       }
       var result = await appCarsApi.getCars(
           page: page, sort: sort, searchQuery: searchQuery);
-      //  result.collection.retainWhere((element) => element.user!.id == box.read(AppConstants.userId));
       if (page == 1) {
         cars = result;
         if ((cars?.collection.length ?? 0) == 0) {
@@ -140,17 +127,14 @@ class HomeController extends AppAbstractController {
           loadingState = GeneralLoadingState.done;
         }
       } else {
-        cars!.haveNext = result!.haveNext;
+        cars!.haveNext = result.haveNext;
         cars!.currentPage = result.currentPage;
         cars!.collection.addAll(result.collection);
       }
       settingsService.cars = cars!.collection;
       return true;
     } catch (ex) {
-      if (ConnectivityResult.none == await Connectivity().checkConnectivity()) {
-        loadingState = GeneralLoadingState.offline;
-      } else
-        loadingState = GeneralLoadingState.error;
+      loadingState = GeneralLoadingState.error;
       return false;
     } finally {
       update();
@@ -181,47 +165,48 @@ class HomeController extends AppAbstractController {
     ];
     sort = await Get.bottomSheet(AppBottomSheet(
         child: Wrap(
-      children: [
-        ListView.builder(
-            itemCount: options.length,
-            shrinkWrap: true,
-            itemBuilder: (_, index) {
-              var item = options[index];
-              return GestureDetector(
-                onTap: () {
-                  Get.back(result: item['sort'] as String?);
-                },
-                child: Container(
-                  color: Colors.transparent,
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                  width: double.infinity,
-                  child: Row(
-                    children: [
-                      Icon(
-                        item['icon'] as IconData,
-                        color: AppColors.primary,
+          children: [
+            ListView.builder(
+                itemCount: options.length,
+                shrinkWrap: true,
+                itemBuilder: (_, index) {
+                  var item = options[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Get.back(result: item['sort'] as String?);
+                    },
+                    child: Container(
+                      color: Colors.transparent,
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      width: double.infinity,
+                      child: Row(
+                        children: [
+                          Icon(
+                            item['icon'] as IconData,
+                            color: AppColors.primary,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text400(
+                            text: item['name'] as String,
+                            fontSize: 14,
+                            color: AppColors.primary,
+                          )
+                        ],
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text400(
-                        text: item['name'] as String,
-                        fontSize: 14,
-                        color: AppColors.primary,
-                      )
-                    ],
-                  ),
-                ),
-              );
-            })
-      ],
-    )));
-    // if (sort == null) return;
+                    ),
+                  );
+                })
+          ],
+        )));
+     if (sort == null) return;
     loadCards();
   }
 
   searchChanged(String p1) {
     searchQuery = p1;
     loadCards();
+    update();
   }
 }

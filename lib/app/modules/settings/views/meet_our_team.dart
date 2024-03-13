@@ -28,43 +28,41 @@ class MeetTeam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-
-        //0E0E0F
-
-        body: Container(
-          decoration: BoxDecoration(
-              color: AppColors.background
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColors.background,
+        title: Text('Meet Our Team'),
+        leading: IconButton(
+          icon: Icon(
+            Icons.close,
+            color: AppColors.onBackground,
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 17.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 20,
+          onPressed: () {
+            Get.back();
+          },
+        ),
+      ),
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 17.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              Expanded(
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 4,
+                  itemBuilder: (BuildContext context, int index) {
+                    return customCard(index);
+                  },
                 ),
-                OuterAppBar(
-                  title: 'About the Team',
-                  centerTitle: true,
-                ),
-                SizedBox(
-                  height: 45,
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: 4,
-                    itemBuilder: (BuildContext context, int index) {
-                      return customCard(index);
-                    },
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -76,11 +74,12 @@ class MeetTeam extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
       child: Container(
         height: MediaQuery.of(Get.context!).size.height * 0.35,
-        decoration: ShapeDecoration(
-          color: AppColors.cardColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: AppColors.primary,
           ),
+          borderRadius: BorderRadius.circular(15.0),
+          color: AppColors.background,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -91,7 +90,7 @@ class MeetTeam extends StatelessWidget {
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: AppColors.bottomSheetColor,
                   image: DecorationImage(
                     image: Image.asset(
                       assetsUrls[index],
@@ -104,7 +103,7 @@ class MeetTeam extends StatelessWidget {
             Text(
               name[index],
               style: TextStyle(
-                color: Colors.white,
+                color: AppColors.onBackground,
                 fontSize: 22,
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w700,
@@ -117,7 +116,7 @@ class MeetTeam extends StatelessWidget {
                 descriptions[index],
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.8999999761581421),
+                  color: AppColors.onBackground,
                   fontSize: 14,
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.w400,

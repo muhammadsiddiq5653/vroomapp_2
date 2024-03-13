@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rive/rive.dart';
+import 'package:vroom_app/app/services/fcm_service.dart';
 import 'package:vroom_app/app/services/sound_service.dart';
 
 import '../app_enums.dart';
 import '../data/models/app_settings_model.dart';
 import '../routes/app_pages.dart';
 import '../services/dialog_service.dart';
-import '../services/fcm_service.dart';
 import '../services/settings_service.dart';
 
 class AppAbstractController extends GetxController {
@@ -46,7 +46,7 @@ class AppAbstractController extends GetxController {
 
   void logout() {
     settingsService.logout();
-    Get.offAllNamed(Routes.PREVIEW);
+    Get.offAllNamed(Routes.LOGIN_DETAILS_STEP);
     update();
   }
 

@@ -22,8 +22,24 @@ class AlertsView extends GetView<AlertsController> {
   Widget build(BuildContext context) {
     return GetBuilder<AlertsController>(
       builder: (_) => Scaffold(
-        appBar: GameAppBar(
-           ),
+        appBar: AppBar(
+          backgroundColor: AppColors.background,
+          elevation: 0,
+          title: Text700(
+            text: 'Notifications',
+            color: AppColors.primary,
+          ),
+          leading: IconButton(
+            icon: Icon(
+              Remix.arrow_left_s_line,
+              color: AppColors.primary,
+            ),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+
+        ),
         body: Container(
           decoration: BoxDecoration(
               color: AppColors.background
@@ -109,13 +125,14 @@ class AlertsView extends GetView<AlertsController> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            'assets/images/alertsEmptyState.png',
-            width: 250,
+         Icon(
+            Remix.emotion_sad_fill,
+            size: 100.w,
+            color: AppColors.primary,
           ),
           SmallBoldText(
             text: 'Nothing so far!',
-            color: Colors.white,
+            color: AppColors.primary,
             textAlign: TextAlign.center,
           ),
           SizedBox(
@@ -123,7 +140,7 @@ class AlertsView extends GetView<AlertsController> {
           ),
           SmallText(
             text: 'Here you can get alerts when your friends wroom cars.',
-            color: Colors.white,
+            color: AppColors.primary,
             textAlign: TextAlign.center,
           )
         ],

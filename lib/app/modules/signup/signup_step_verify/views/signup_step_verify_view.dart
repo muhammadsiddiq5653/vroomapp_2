@@ -42,6 +42,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                   text: 'Choose a PIN Code',
                   textAlign: TextAlign.center,
                   fontSize: 22.sp,
+                  color: AppColors.primary,
                 ),
                 SizedBox(
                   height: 15.h,
@@ -49,6 +50,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                 Text400(
                   text: 'This will be used as your password',
                   fontSize: 14.sp,
+                  color: AppColors.primary,
                 ),
                 SizedBox(
                   height: 45.h,
@@ -78,7 +80,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                     backgroundColor: Colors.transparent,
                     enableActiveFill: false,
                     keyboardType: TextInputType.none,
-                    cursorColor: Colors.white,
+                    cursorColor: Colors.black,
                     controller: controller.pinController,
                     onCompleted: (v) {
                       controller.phoneCode = v;
@@ -101,7 +103,7 @@ class SignupStepVerifyView extends GetView<SignupStepVerifyController> {
                     // [0-9] + .
                     fontSize: 20.sp,
                     type: VirtualKeyboardType.Numeric,
-                    textColor: Colors.white,
+                    textColor: Colors.black,
                     onKeyPress: (key) {
                       VirtualKeyboardKey k = key;
                       print(k.toString());

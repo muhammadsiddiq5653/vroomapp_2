@@ -16,16 +16,48 @@ class MainTabsController extends AppAbstractController {
   var pageIndex = 0;
   final dontShowAgain = 'dontShowAgain';
   final box = GetStorage();
-
+  final sheet1 = GlobalKey();
+  final controller = DraggableScrollableController();
   RxBool isLoggedin = false.obs;
 
   @override
   void onInit() {
     super.onInit();
-
+    controller.addListener(_onChanged);
     readFromPreferences();
   }
 
+
+
+  void _onChanged() {
+    final currentSize = controller.size;
+    if (currentSize <= 0.05) _collapse();
+  }
+
+  void _collapse() => _animateSheet(sheet.snapSizes!.first);
+
+  void _anchor() => _animateSheet(sheet.snapSizes!.last);
+
+  void _expand() => _animateSheet(sheet.maxChildSize);
+
+  void _hide() => _animateSheet(sheet.minChildSize);
+
+  void _animateSheet(double size) {
+    controller.animateTo(
+      size,
+      duration: const Duration(milliseconds: 50),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
+  DraggableScrollableSheet get sheet =>
+      (sheet1.currentWidget as DraggableScrollableSheet);
   @override
   void onReady() {
     super.onReady();

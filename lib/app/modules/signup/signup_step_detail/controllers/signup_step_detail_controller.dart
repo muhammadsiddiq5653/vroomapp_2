@@ -52,7 +52,7 @@ class SignupStepDetailController extends AppAbstractController {
         settingsService.setAuth(auth);
         SharedPreferences prefs = await SharedPreferences.getInstance();
          prefs.setBool("isloggedin", true);
-        Get.offAllNamed(Routes.MAIN_TABS);
+        Get.offAllNamed(Routes.HOME);
       } else {
         dialogService.showError(
           "Unable to Register. Please try again later",

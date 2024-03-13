@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:vroom_app/app/app_enums.dart';
 import 'package:vroom_app/app/data/api/app_users_api.dart';
 import 'package:vroom_app/app/modules/app_abstract_controller.dart';
+import 'package:vroom_app/app/routes/app_pages.dart';
 
 import '../../../../app_exception.dart';
 import '../../tap_to_start.dart';
@@ -61,7 +62,7 @@ class SignupStepVerifyController extends AppAbstractController {
       // });
       box.write('phone', phone);
       box.write('pin', phoneCode);
-      Get.to(TapToStart());
+      Get.offAndToNamed(Routes.SIGNUP_STEP_DETAIL);
       // await appUsersApi.verify(settingsService.authModel!.userModel.id!);
       // settingsService.authModel!.userModel.phoneVerified = true;
       // Get.toNamed(Routes.SIGNUP_STEP_DETAIL,

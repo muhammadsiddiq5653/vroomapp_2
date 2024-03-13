@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:launch_review/launch_review.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:vroom_app/app/widgets/app_state_handler.dart';
-
 import '../../../app_colors.dart';
 import '../../../widgets/app_form_fields/app_button_field.dart';
 import '../controllers/splash_controller.dart';
 
-class SplashView extends GetView<SplashController> {
+class SplashView extends GetView<SplashController>  {
   SplashView({Key? key}) : super(key: key);
 
   @override
@@ -29,12 +27,16 @@ class SplashView extends GetView<SplashController> {
   Container _getView(BuildContext context) {
     if (controller.forceUpdateView == true) {
       return Container(
+        color: AppColors.primary,
         width: double.infinity,
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 20,
+            ),
             Image.asset(
               'assets/images/logo.png',
               width: 200,
@@ -77,15 +79,7 @@ class SplashView extends GetView<SplashController> {
     }
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.background
-        // gradient: LinearGradient(
-        //   begin: Alignment.topLeft,
-        //   end: Alignment(1, 0.2),
-        //   colors: [
-        //     Color(0XFF3E3D41),
-        //     Color(0XFF0D0D0F),
-        //   ],
-        // ),
+        color: AppColors.primary
       ),
       width: double.infinity,
       child: Column(
@@ -129,6 +123,7 @@ class SplashView extends GetView<SplashController> {
           SizedBox(
             height: 50,
           ),
+
           Image.asset(
             'assets/images/splashicon.png',
             width: 230,

@@ -49,16 +49,16 @@ class AppTextField extends StatelessWidget {
       obscureText: obscureText,
       onFieldSubmitted: onSubmitted,
       onTap: onTap,
-      style: TextStyle(color: Colors.white),
+      style: TextStyle(color: Colors.black),
       decoration: InputDecoration(
         hintText: hintText,
         labelText: hintText,
         hintStyle: TextStyle(
-          color: AppColors.surface.withOpacity(0.3),
+          color: AppColors.onBackground.withOpacity(0.5),
           fontStyle: FontStyle.italic,
         ),
         labelStyle: TextStyle(
-          color: Colors.white.withOpacity(0.8),
+          color: AppColors.onBackground.withOpacity(0.5),
           fontStyle: FontStyle.italic,
         ),
         prefixIcon: prefixIcon,

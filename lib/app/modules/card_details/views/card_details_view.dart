@@ -1,24 +1,16 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:vroom_app/app/app_utilities.dart';
-import 'package:vroom_app/app/data/models/car_model.dart';
 import 'package:vroom_app/app/helpers/widgets_to_image_controller.dart';
-import 'package:vroom_app/app/widgets/app_form_fields/app_button_field.dart';
+import 'package:vroom_app/app/modules/card_details/views/components/car_spec_progress.dart';
 import 'package:vroom_app/app/widgets/app_state_handler.dart';
 import 'package:vroom_app/app/widgets/app_text/big_header_text.dart';
 import 'package:vroom_app/app/widgets/widgets_to_image.dart.dart';
-
 import '../../../app_colors.dart';
 import '../../../widgets/app_network_image.dart';
-import '../../../widgets/app_text/text_400.dart';
-import '../../../widgets/app_text/text_600.dart';
+import '../../../widgets/app_text/medium_header_text.dart';
 import '../controllers/card_details_controller.dart';
-import 'components/car_card_header.dart';
-import 'components/car_spec_progress.dart';
 
 class CardDetailsView extends GetView<CardDetailsController> {
   final controller = Get.put(CardDetailsController());
@@ -31,269 +23,237 @@ class CardDetailsView extends GetView<CardDetailsController> {
   Widget build(BuildContext context) {
     return GetBuilder<CardDetailsController>(
       builder: (_) => Scaffold(
-        body: SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              color: AppColors.background,
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: AppColors.backgroundGradient,
+          ),
+          child: AppStateHandler(
+            loadingState: controller.loadingState,
+            loadingWidget: Center(
+              child: CircularProgressIndicator(),
             ),
-            child: AppStateHandler(
-              loadingState: controller.loadingState,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: 12.0.h, horizontal: 17.w),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                              child: SvgPicture.asset(
-                            "assets/images/svg/BackIcon.svg",
-                            width: 42,
-                            height: 42,
-                          )),
-                        ),
-                        // controller.isLoggedin.value ?
-                        //    Theme(
-                        //         data: Theme.of(context).copyWith(
-                        //           cardColor: Colors.black,
-                        //         ),
-                        //         child: PopupMenuButton<int>(
-                        //           // color: Colors.white,
-                        //           icon: Icon(
-                        //             Remix.more_fill,
-                        //             color: Colors.white,
-                        //           ),
-                        //           initialValue: null,
-                        //           // Callback that sets the selected popup menu item.
-                        //           onSelected: (value) async {
-                        //             if (value == 0) {
-                        //               controller.shareOutsideApp(
-                        //                   await widgetsToImageController
-                        //                       .capture());
-                        //             } else if (value == 1) {
-                        //               controller.deleteCar();
-                        //             }
-                        //           },
-                        //           itemBuilder: (BuildContext context) =>
-                        //               <PopupMenuEntry<int>>[
-                        //             PopupMenuItem<int>(
-                        //               value: 0,
-                        //               child: Row(
-                        //                 children: [
-                        //                   Icon(
-                        //                     Remix.share_fill,
-                        //                     color: Colors.white,
-                        //                     size: 16,
-                        //                   ),
-                        //                   SizedBox(
-                        //                     width: 10,
-                        //                   ),
-                        //                   Text400(
-                        //                     text: 'Share this car',
-                        //                     color: Colors.white,
-                        //                     fontSize: 16,
-                        //                   ),
-                        //                 ],
-                        //               ),
-                        //             ),
-                        //             PopupMenuItem<int>(
-                        //               value: 1,
-                        //               child: Row(
-                        //                 children: [
-                        //                   Icon(
-                        //                     Remix.delete_bin_fill,
-                        //                     color: Colors.white,
-                        //                     size: 16,
-                        //                   ),
-                        //                   SizedBox(
-                        //                     width: 10,
-                        //                   ),
-                        //                   Text400(
-                        //                     text: 'Delete this car',
-                        //                     color: Colors.white,
-                        //                     fontSize: 16,
-                        //                   ),
-                        //                 ],
-                        //               ),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ) :
-                        // SizedBox.shrink()
-                      ],
-                    ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 40.0.h,
+                    horizontal: 17.w,
                   ),
-                  Expanded(
-                    child: WidgetsToImage(
-                      controller: widgetsToImageController,
-                      child: SingleChildScrollView(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
                         child: Container(
-                          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  CarCardHeader(
-                                    car: controller.car ??
-                                        CarModel(make: '-', id: 1),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              Hero(
-                                tag: 'car-card-${controller.car.hashCode}',
-                                child: Container(
-                                    width: double.infinity,
-                                    child: AppNetworkImage(
-                                      url: controller.car?.image ?? '',
-                                    )),
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              CarSpecProgress(
-                                value: AppUtilities.getPricePercentage(
-                                    controller.car?.price),
-                                title: 'Price',
-                                valueTitle:
-                                    '${controller.car?.price?.truncate()} \$',
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              CarSpecProgress(
-                                value: AppUtilities.getPowerPercentage(
-                                    controller.car?.enginePower),
-                                title: 'Power',
-                                valueTitle: '${controller.car?.enginePower} HP',
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              CarSpecProgress(
-                                value: AppUtilities.getWeightPercentage(
-                                    controller.car?.weight),
-                                title: 'Weight',
-                                valueTitle: '${controller.car?.weight} KG',
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              CarSpecProgress(
-                                value: AppUtilities.getCityMilagePercentage(
-                                    controller.car?.cityMilage),
-                                title: 'City Milage',
-                                valueTitle:
-                                    '${controller.car?.cityMilage} KM/L',
-                              ),
-                              SizedBox(
-                                height: 40.h,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  BigHeaderText(text: 'Other details'),
-                                  // Icon(
-                                  //   Remix.information_line,
-                                  //   size: 23,
-                                  //   color: Colors.white,
-                                  // )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text400(
-                                    text: 'Make',
-                                    fontSize: 14.sp,
-                                  ),
-                                  Text600(
-                                    text: controller.car?.make ?? '',
-                                    fontSize: 14.sp,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text400(
-                                    text: 'Model',
-                                    fontSize: 14.sp,
-                                  ),
-                                  Text600(
-                                    text: controller.car?.model ?? '',
-                                    fontSize: 14.sp,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text400(
-                                    text: 'Year',
-                                    fontSize: 14.sp,
-                                  ),
-                                  Text600(
-                                    text: controller.car?.year.toString() ?? '',
-                                    fontSize: 14.sp,
-                                  ),
-                                ],
-                              ),
-                            ],
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.primary.withOpacity(0.2)),
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.white,
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  if (controller.isLoggedin.value)
-                    Container(
-                      height: 75.h,
-                      width: double.infinity.w,
-                      margin: EdgeInsets.only(bottom: 20),
-                      padding: EdgeInsets.fromLTRB(30, 20, 40, 20),
-                      child: AppButtonField(
-                        text: controller.checkIfLoggedInUserPost()
-                            ? 'share on the feed'
-                            : 'share with friends',
-                        onPressed: () async {
-                          if (controller.checkIfLoggedInUserPost()) {
-                            controller.shareCar();
-                          } else {
-                            controller.shareOutsideApp(
-                                await widgetsToImageController.capture());
-                          }
+                      GestureDetector(
+                        onTap: () async {
+                          controller.shareOutsideApp(
+                            await widgetsToImageController.capture(),
+                          );
                         },
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.primary.withOpacity(0.2)),
+                              child: Icon(
+                                Icons.ios_share,
+                                color: Colors.white,
+                                size: 23,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20.w,
+                            ),
+                            PopupMenuButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              icon: Container(
+                                padding: EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.primary.withOpacity(0.2)),
+                                child: Icon(
+                                  Icons.more_vert,
+                                  color: Colors.white,
+                                  size: 23,
+                                ),
+                              ),
+                              color: AppColors.background,
+                              itemBuilder: (context) {
+                                return [
+                                  PopupMenuItem(
+                                    child: Text('Remove from Garage'),
+                                    value: 'edit',
+                                  ),
+                                  PopupMenuItem(
+                                    child: Text(
+                                      'Delete Car',
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                    value: 'delete',
+                                  ),
+                                  PopupMenuItem(
+                                    child: Text('Share Car'),
+                                    value: 'delete',
+                                  ),
+                                ];
+                              },
+                              onSelected: (value) async {
+                                if (value == 'edit') {
+                                  controller.deleteCar();
+                                  // Get.toNamed(Routes.EDIT_CAR, arguments: controller.car);
+                                } else if (value == 'delete') {
+                                  controller.deleteCar();
+                                } else if (value == 'share') {
+                                  controller.shareOutsideApp(
+                                    await widgetsToImageController.capture(),
+                                  );
+                                }
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: WidgetsToImage(
+                    controller: widgetsToImageController,
+                    child: SingleChildScrollView(
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Hero(
+                              tag: 'car-card-${controller.car.hashCode}',
+                              child: Container(
+                                  width: double.infinity,
+                                  child: AppNetworkImage(
+                                    url: controller.car?.image ?? '',
+                                  )),
+                            ),
+                            SizedBox(
+                              height: 6.h,
+                            ),
+                            Row(
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    BigHeaderText(
+                                      text: controller.car?.model ?? '',
+                                      fontSize: 32.sp,
+                                    ),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
+                                    MediumHeaderText(
+                                      text: controller.car?.make ?? '',
+                                      color: Colors.grey,
+                                    ),
+                                    SizedBox(
+                                      height: 4.h,
+                                    ),
+                                    MediumHeaderText(
+                                      text:
+                                          controller.car?.year.toString() ?? '',
+                                      color: Colors.grey,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Center(
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 15,
+                                  horizontal: 35,
+                                ),
+                                decoration: BoxDecoration(
+                                  color:
+                                      AppColors.onBackground.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/wroom_coin.png',
+                                      width: 24,
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      AppUtilities.getPrice(controller.car!.price.toString()) ?? "",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            CarSpecProgress(
+                              title: 'Engine',
+                              value: AppUtilities.getPowerPercentage(
+                                controller.car?.enginePower,
+                              ),
+                              valueTitle: '',
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            CarSpecProgress(
+                              title: 'City Milage',
+                              value: AppUtilities.getCityMilagePercentage(
+                                controller.car?.cityMilage,
+                              ),
+                              valueTitle: '',
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            CarSpecProgress(
+                              title: 'Weight',
+                              value: AppUtilities.getWeightPercentage(
+                                controller.car?.weight,
+                              ),
+                              valueTitle: '',
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  //    ),
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

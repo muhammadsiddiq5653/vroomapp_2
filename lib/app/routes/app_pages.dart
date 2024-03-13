@@ -58,11 +58,11 @@ class AppPages {
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
-    GetPage(
-      name: _Paths.PREVIEW,
-      page: () => PreviewView(),
-      binding: PreviewBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.PREVIEW,
+    //   page: () => PreviewView(),
+    //   binding: PreviewBinding(),
+    // ),
     GetPage(
       name: _Paths.LOGIN,
       page: () => LoginView(),

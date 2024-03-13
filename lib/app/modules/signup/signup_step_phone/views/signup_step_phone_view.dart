@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:remixicon/remixicon.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vroom_app/app/app_colors.dart';
 import 'package:vroom_app/app/widgets/app_bars/outer_app_bar.dart';
@@ -25,9 +26,23 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
     return GetBuilder<SignupStepPhoneController>(
       builder: (_) => AppKeyboardHider(
         child: Scaffold(
-          // appBar: InsideAppBar(
-          //   title: '',
-          // ),
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: AppColors.background,
+            title: Text700(
+              text: 'Account Setup',
+              color: AppColors.primary,
+            ),
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: AppColors.primary,
+              ),
+              onPressed: () {
+                Get.back();
+              },
+            ),
+          ),
           body: Container(
             decoration: BoxDecoration(
               color: AppColors.background
@@ -43,16 +58,20 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    OuterAppBar(
-                      title: '',
-                    ),
+
                     SizedBox(
                       height: 100.h,
                     ),
+                    Icon(
+                      Remix.user_settings_line,
+                      size: 100,
+                      color: AppColors.primary,
+                    ),
                     Text700(
-                      text: 'Welcome, Lets setup your account',
+                      text: 'What should we call you?',
                       textAlign: TextAlign.center,
                       fontSize: 22.sp,
+                      color: AppColors.primary,
                     ),
                     SizedBox(
                       height: 50.h,
@@ -61,6 +80,7 @@ class SignupStepPhoneView extends GetView<SignupStepPhoneController> {
                     AppTextField(
                       hintText: 'Username',
                       labelText: 'Username',
+
                       onChanged: (val) {
                         controller.username = val;
                       },

@@ -20,8 +20,23 @@ class FeedView extends GetView<FeedController> {
   Widget build(BuildContext context) {
     return GetBuilder<FeedController>(
       builder: (_) => Scaffold(
-        appBar: GameAppBar(
+        appBar: AppBar(
+          backgroundColor: AppColors.background,
+          elevation: 0,
+          title: Text700(
+            text: 'Image Feed',
+            color: AppColors.primary,
           ),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.primary,
+            ),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+        ),
         body: Container(
           decoration: BoxDecoration(
               color: AppColors.background

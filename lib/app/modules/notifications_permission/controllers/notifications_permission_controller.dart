@@ -22,7 +22,8 @@ class NotificationsPermissionController extends AppAbstractController {
 
   void checkNotification() async {
     try {
-      await fcmService.requestPermission();
+    //  await fcmService.requestPermission();
+
     } catch (ex, stack) {
       captureException(ex, stackTrace: stack);
     } finally {

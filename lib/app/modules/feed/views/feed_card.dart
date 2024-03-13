@@ -59,7 +59,7 @@ class FeedCard extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Container(
-              // color: Colors.black,
+               color: AppColors.secondary,
               constraints: BoxConstraints(maxHeight: 545, minHeight: 545),
               child: Stack(
                   alignment: Alignment.center,
@@ -75,7 +75,8 @@ class FeedCard extends StatelessWidget {
                         : AppNetworkImage(
                             url: feedModel.image!,
                             width: double.infinity,
-                            fit: BoxFit.fitWidth,
+                            fit: BoxFit.fill,
+                            height: 300.h,
                             loadingWidget: Container(
                                 //RiveAnimation.asset(
                                 //                                         'assets/images/vroom_animation.riv')
@@ -102,44 +103,7 @@ class FeedCard extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     _getLeftHeader(context),
-                                    if (!notLoggedIn)
-                                      PopupMenuButton<int>(
-                                        color: AppColors.cardColor,
-                                        icon: Icon(
-                                          Remix.more_fill,
-                                          color: Colors.white,
-                                        ),
-                                        initialValue: null,
-                                        // Callback that sets the selected popup menu item.
-                                        onSelected: (value) async {
-                                          if (value == 0) {
-                                            onDeleteButton(feedModel);
-                                          }
-                                        },
-                                        itemBuilder: (BuildContext context) =>
-                                            <PopupMenuEntry<int>>[
-                                          PopupMenuItem<int>(
-                                            value: 0,
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Remix.delete_bin_7_fill,
-                                                  color: Colors.white,
-                                                  size: 24,
-                                                ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text400(
-                                                  text: 'Delete this post',
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+
                                   ]),
                             ),
                           ),
@@ -183,14 +147,17 @@ class FeedCard extends StatelessWidget {
                                                     ? Remix.heart_fill
                                                     : Remix.heart_line,
                                                 color: feedModel.liked
-                                                    ? AppColors.primary
-                                                    : Colors.white,
+                                                    ? AppColors.error
+                                                    : Colors.black,
+                                              ),
+                                              SizedBox(
+                                                width: 5.w,
                                               ),
                                               if (!notLoggedInCard)
                                                 SmallBoldText(
                                                   text: feedModel.likes
                                                       .toString(),
-                                                  color: Colors.white,
+                                                  color: Colors.black,
                                                 )
                                             ],
                                           )),
@@ -199,7 +166,7 @@ class FeedCard extends StatelessWidget {
                                           foregroundColor: Colors.transparent,
                                           shape: StadiumBorder(),
                                           side: BorderSide(
-                                              width: 2.0, color: Colors.white),
+                                              width: 2.0, color: Colors.black),
                                         ),
                                         onPressed: () {
                                           if (notLoggedInCard) {
@@ -225,6 +192,7 @@ class FeedCard extends StatelessWidget {
                                                 : 'View Card'.toUpperCase(),
                                             fontSize:
                                                 notLoggedInCard ? 18.sp : 14.sp,
+                                            color: Colors.black,
                                           ),
                                         )),
                                     if (!notLoggedInCard)
@@ -245,13 +213,16 @@ class FeedCard extends StatelessWidget {
                                             children: [
                                               Icon(
                                                 Remix.share_line,
-                                                color: Colors.white,
+                                                color: Colors.black,
+                                              ),
+                                              SizedBox(
+                                                width: 5.w,
                                               ),
                                               if (!notLoggedInCard)
                                                 SmallBoldText(
                                                   text: feedModel.shares
                                                       .toString(),
-                                                  color: Colors.white,
+                                                  color: Colors.black,
                                                 )
                                             ],
                                           )),
@@ -288,8 +259,8 @@ class FeedCard extends StatelessWidget {
               child: Text(
                 feedModel.userModel?.name ?? '',
                 style: TextStyle(
-                  fontSize: 18.sp,
-                  color: Colors.white,
+                  fontSize: 16.sp,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                   overflow: TextOverflow.ellipsis,
                   fontStyle: FontStyle.italic,
@@ -303,7 +274,7 @@ class FeedCard extends StatelessWidget {
               feedModel.userModel?.username ?? '',
               style: TextStyle(
                 fontSize: 12.sp,
-                color: Colors.white.withOpacity(0.90),
+                color: Colors.black.withOpacity(0.90),
                 fontStyle: FontStyle.italic,
               ),
             ),

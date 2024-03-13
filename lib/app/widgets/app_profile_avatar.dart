@@ -28,10 +28,17 @@ class AppProfileAvatar extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                   )
                 : user!.avatar!.isEmpty
-                    ? Image.asset(
-                        'assets/images/ProfileDummy.png',
+                    ? Container(
                         width: size,
-                        fit: BoxFit.fitWidth,
+                        height: size,
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(size / 2),
+                        ),
+                        child: Icon(
+                          Icons.person,
+                          size: size / 2,
+                        ),
                       )
                     : AppNetworkImage(
                         url: user?.avatar ?? '',

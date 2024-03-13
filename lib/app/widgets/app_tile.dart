@@ -19,7 +19,7 @@ class AppTile extends StatelessWidget {
       padding: padding ?? EdgeInsets.symmetric(vertical: 25, horizontal: 15),
       decoration: BoxDecoration(
           boxShadow: boxShadow,
-          color: containerColor ?? AppColors.cardColor,
+          color: containerColor ?? AppColors.background,
           borderRadius: BorderRadius.circular(15)),
       child: child,
     );

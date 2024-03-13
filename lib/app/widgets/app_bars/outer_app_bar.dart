@@ -30,10 +30,9 @@ class OuterAppBar extends StatelessWidget implements PreferredSizeWidget {
               Get.back();
             },
             child: Container(
-              child: SvgPicture.asset(
-                "assets/images/svg/BackIcon.svg",
-                width: 40,
-                height: 40,
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
               ),
             ),
           ),

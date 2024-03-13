@@ -34,10 +34,7 @@ class AppButtonField extends StatelessWidget {
           borderRadius: BorderRadius.all(
             Radius.circular(20.0),
           ),
-          boxShadow: [
-            BoxShadow(
-                color: AppColors.primary, offset: Offset(0, 2), blurRadius: 10)
-          ]),
+        ),
       child: _getButton(),
     );
   }

@@ -47,6 +47,7 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                               text: 'Let’s personalize your profile',
                               textAlign: TextAlign.center,
                               fontSize: 18,
+                              color: AppColors.primary,
                             ),
                             // SizedBox(
                             //   height: 30,
@@ -93,79 +94,7 @@ class SignupStepDetailView extends GetView<SignupStepDetailController> {
                             SizedBox(
                               height: 15,
                             ),
-                            Obx(() {
-                              return AppDropdownButton(
-                                options: [
-                                  AppDropdownButtonItem(value: "Acura", title: "Acura"),
-                                  AppDropdownButtonItem(
-                                      value: "Alfa Romeo", title: "Alfa Romeo"),
-                                  AppDropdownButtonItem(
-                                      value: "Aston Martin", title: "Aston Martin"),
-                                  AppDropdownButtonItem(value: "Audi", title: "Audi"),
-                                  AppDropdownButtonItem(value: "Bentley", title: "Bentley"),
-                                  AppDropdownButtonItem(value: "BMW", title: "BMW"),
-                                  AppDropdownButtonItem(value: "Bugatti", title: "Bugatti"),
-                                  AppDropdownButtonItem(value: "Buick", title: "Buick"),
-                                  AppDropdownButtonItem(value: "Cadillac", title: "Cadillac"),
-                                  AppDropdownButtonItem(value: "Changan", title: "Changan"),
-                                  AppDropdownButtonItem(value: "Chery", title: "Chery"),
-                                  AppDropdownButtonItem(
-                                      value: "Chevrolet", title: "Chevrolet"),
-                                  AppDropdownButtonItem(value: "Chrysler", title: "Chrysler"),
-                                  AppDropdownButtonItem(value: "Daihatsu", title: "Daihatsu"),
-                                  AppDropdownButtonItem(value: "Datsun", title: "Datsun"),
-                                  AppDropdownButtonItem(value: "Ferarri", title: "Ferarri"),
-                                  AppDropdownButtonItem(value: "Fiat", title: "Fiat"),
-                                  AppDropdownButtonItem(value: "Ford", title: "Ford"),
-                                  AppDropdownButtonItem(value: "Genesis", title: "Genesis"),
-                                  AppDropdownButtonItem(value: "GMC", title: "GMC"),
-                                  AppDropdownButtonItem(value: "Honda", title: "Honda"),
-                                  AppDropdownButtonItem(value: "Hummer", title: "Hummer"),
-                                  AppDropdownButtonItem(value: "Hyundai", title: "Hyundai"),
-                                  AppDropdownButtonItem(value: "Infiniti", title: "Infiniti"),
-                                  AppDropdownButtonItem(value: "Jaguar", title: "Jaguar"),
-                                  AppDropdownButtonItem(value: "Jeep", title: "Jeep"),
-                                  AppDropdownButtonItem(value: "Kia", title: "Kia"),
-                                  AppDropdownButtonItem(
-                                      value: "Koenigsegg", title: "Koenigsegg"),
-                                  AppDropdownButtonItem(
-                                      value: "Lamborghini", title: "Lamborghini"),
-                                  AppDropdownButtonItem(
-                                      value: "Land Rover", title: "Land Rover"),
-                                  AppDropdownButtonItem(value: "Lexus", title: "Lexus"),
-                                  AppDropdownButtonItem(value: "Lotus", title: "Lotus"),
-                                  AppDropdownButtonItem(value: "Maserati", title: "Maserati"),
-                                  AppDropdownButtonItem(value: "Maybach", title: "Maybach"),
-                                  AppDropdownButtonItem(value: "Mazda", title: "Mazda"),
-                                  AppDropdownButtonItem(value: "McLaren", title: "McLaren"),
-                                  AppDropdownButtonItem(
-                                      value: "Mercedes Benz", title: "Mercedes Benz"),
-                                  AppDropdownButtonItem(value: "Mini", title: "Mini"),
-                                  AppDropdownButtonItem(
-                                      value: "Mitsubishi", title: "Mitsubishi"),
-                                  AppDropdownButtonItem(value: "Nissan", title: "Nissan"),
-                                  AppDropdownButtonItem(value: "Pagani", title: "Pagani"),
-                                  AppDropdownButtonItem(value: "Porsche", title: "Porsche"),
-                                  AppDropdownButtonItem(value: "Renault", title: "Renault"),
-                                  AppDropdownButtonItem(value: "Rimac", title: "Rimac"),
-                                  AppDropdownButtonItem(
-                                      value: "Rolls Royce", title: "Rolls Royce"),
-                                  AppDropdownButtonItem(value: "Suzuki", title: "Suzuki"),
-                                  AppDropdownButtonItem(value: "Tesla", title: "Tesla"),
-                                  AppDropdownButtonItem(value: "Toyota", title: "Toyota"),
-                                  AppDropdownButtonItem(
-                                      value: "Volkswagen", title: "Volkswagen"),
-                                  AppDropdownButtonItem(value: "Volvo", title: "Volvo"),
-                                ],
-                                onChanged: (String? s) {
-                                  controller.updateCarBrand(s!);
-                                },
-                                //  isPill: true,
-                                title: 'What’s your favorite car brand?',
-                                popUptitle: 'What’s your favorite car brand?',
-                                value: controller.carBrand.value,
-                              );
-                            }),
+
                             // AppTextField(Validator: (val) {
                             //   if (val == null || val.isEmpty) {
                             //     return 'Please Enter your favorite Car Brand';

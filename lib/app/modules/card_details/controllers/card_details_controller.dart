@@ -26,6 +26,7 @@ class CardDetailsController extends AppAbstractController {
   @override
   void onInit() {
     super.onInit();
+    loadingState = GeneralLoadingState.waiting;
     readFromPreferences();
     if (Get.arguments?[AppConstants.carArgument] != null) {
       car = Get.arguments?[AppConstants.carArgument];

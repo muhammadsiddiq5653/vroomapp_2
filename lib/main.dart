@@ -1,4 +1,3 @@
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +21,6 @@ vroomApp() async {
   await GetStorage.init();
   packageInfo = await PackageInfo.fromPlatform();
   Get.put(LocalNotificationService());
-  var analytics = FirebaseAnalytics.instance;
   Paint.enableDithering = true;
   runApp(
     ScreenUtilInit(
@@ -34,7 +32,6 @@ vroomApp() async {
           getPages: AppPages.routes,
           navigatorObservers: [
             GetObserver(),
-            FirebaseAnalyticsObserver(analytics: analytics),
           ],
           builder: (_, child) {
             child = child ?? Container();

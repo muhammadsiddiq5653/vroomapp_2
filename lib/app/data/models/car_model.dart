@@ -18,6 +18,17 @@ class CarModel extends Serializable {
   CarModel({
     required this.make,
     required this.id,
+    required this.model,
+    required this.year,
+    this.userCardId,
+    this.weight,
+    this.cityMilage,
+    this.enginePower,
+    this.price,
+    this.logo,
+    this.user,
+    this.image,
+
   });
 
   CarModel.fromJson(Map<String, dynamic> json) {

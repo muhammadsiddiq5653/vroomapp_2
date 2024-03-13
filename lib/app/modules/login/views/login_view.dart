@@ -16,18 +16,18 @@ import '../../../widgets/app_text/text_700.dart';
 
 class LoginView extends GetView<LoginDetailsStepController> {
   LoginView({Key? key}) : super(key: key);
+  late TextEditingController pinController;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: InsideAppBar(title: ''),
-      body: AppStateHandler(
-        loadingState: controller.loadingState,
-        child: Container(
+    pinController = TextEditingController();
+    return Obx(() {
+      return Scaffold(
+        // appBar: InsideAppBar(title: ''),
+        body: Container(
           height: double.infinity,
-
           decoration: BoxDecoration(
-            color: AppColors.background,
+            color: AppColors.secondary,
           ),
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
           child: SingleChildScrollView(
@@ -48,6 +48,7 @@ class LoginView extends GetView<LoginDetailsStepController> {
                 Text700(
                   text: 'Enter your PIN',
                   textAlign: TextAlign.center,
+                  color: AppColors.onSecondary,
                 ),
                 SizedBox(
                   height: 20.h,
@@ -80,8 +81,8 @@ class LoginView extends GetView<LoginDetailsStepController> {
                     backgroundColor: Colors.transparent,
                     enableActiveFill: false,
                     keyboardType: TextInputType.none,
-                    cursorColor: Colors.white,
-                    controller: controller.pinController,
+                    cursorColor: AppColors.primary,
+                    controller: pinController,
                     onCompleted: (v) {
                       // controller.verify();
                     },
@@ -95,28 +96,7 @@ class LoginView extends GetView<LoginDetailsStepController> {
                     appContext: context,
                   ),
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     Text600(
-                //       text: 'Forgot pin? ',
-                //       fontSize: 14,
-                //     ),
-                //     GestureDetector(
-                //       onTap: () {
-                //         Get.bottomSheet(
-                //             AppBottomSheet(child: forgetPasswordDialog()));
-                //         // forgetPasswordDialog(),
-                //       },
-                //       child: Text600(
-                //         text: 'Reset it now',
-                //         color: AppColors.primary,
-                //         fontSize: 14,
-                //         decoration: TextDecoration.underline,
-                //       ),
-                //     ),
-                //   ],
-                // ),
+
                 SizedBox(
                   height: 20.h,
                 ),
@@ -125,18 +105,17 @@ class LoginView extends GetView<LoginDetailsStepController> {
                     // [0-9] + .
                     fontSize: 20.sp,
                     type: VirtualKeyboardType.Numeric,
-                    textColor: Colors.white,
+                    textColor: AppColors.onSecondary,
                     onKeyPress: (key) {
                       VirtualKeyboardKey k = key;
                       print(k.toString());
                       switch (k.keyType) {
                         case VirtualKeyboardKeyType.Action:
                           {
-                            if (controller.pinController.text.isEmpty) {
+                            if (pinController.text.isEmpty) {
                             } else {
-                              controller.pinController.text =
-                                  controller.pinController.text.substring(0,
-                                      controller.pinController.text.length - 1);
+                              pinController.text = pinController.text
+                                  .substring(0, pinController.text.length - 1);
                             }
                           }
 
@@ -144,31 +123,36 @@ class LoginView extends GetView<LoginDetailsStepController> {
                         case VirtualKeyboardKeyType.String:
                           {
                             if (key.text == ".") {
-                            } else if (controller.pinController.text.isEmpty) {
-                              controller.pinController.text = key.text;
-                            } else if (controller.pinController.text.isNotEmpty) {
-                              controller.pinController.text =
-                                  controller.pinController.text + key.text;
+                            } else if (pinController.text.isEmpty) {
+                              pinController.text = key.text;
+                            } else if (pinController.text.isNotEmpty) {
+                              pinController.text =
+                                  pinController.text + key.text;
                             }
                           }
                           break;
                       }
 
-                      print(controller.pinController.text);
+                      print(pinController.text);
                     }),
                 SizedBox(
                   height: 20.h,
                 ),
-                Container(
-                    height: 54.h,
-                    width: double.infinity,
-                    child: AppButtonField(
-                      text: 'Login'.toUpperCase(),
-                      onPressed: () {
-                        controller.login();
-                      },
-                      primary: AppColors.primary,
-                    )),
+
+                controller.isLoading.value
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Container(
+                        height: 54.h,
+                        width: double.infinity,
+                        child: AppButtonField(
+                          text: 'Login'.toUpperCase(),
+                          onPressed: () {
+                            controller.login();
+                          },
+                          primary: AppColors.primary,
+                        )),
                 // SizedBox(
                 //   height: double.infinity,
                 // ),
@@ -176,8 +160,8 @@ class LoginView extends GetView<LoginDetailsStepController> {
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget forgetPasswordDialog() {

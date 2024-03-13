@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const primary = Color(0xFF9C0000);
-  static const secondary = Color(0xFF026BE2);
-  static const background = Color(0xFF0E0E0F);
+  static const primary = Color(0xFF36454F);
+  static const secondary = Color(0xFFD5E0EB);
+  static const background = Color(0xFFF2F1F6);
+  static const bottomSheetColor = Color(0xFFF2F1F6);
   static const surface = Colors.white;
-  static const error = Colors.redAccent;
+  static const error = Colors.red;
   static const onError = Colors.white;
   static const onBackground = Color(0xFF0E0E0F);
   static const onSurface = Color(0xFF000000);
@@ -20,14 +21,12 @@ class AppColors {
 
   static LinearGradient backgroundGradient = LinearGradient(
     colors: [
-      Color(0xFF3E3D41),
-      Color(0xFF0D0D0F).withOpacity(0.0),
-
-
+      Color(0xFFD64F44),
+      Color(0xFF36454F),
+      Color(0xFF36454F),
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    transform: GradientRotation(5.49779),
   );
 
   static LinearGradient appBarGradient = LinearGradient(

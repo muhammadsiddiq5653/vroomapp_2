@@ -36,76 +36,85 @@ class _FaQsState extends State<FaQs> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-
-        body: Container(
-          decoration: BoxDecoration(
-              color: AppColors.background
+    return Scaffold(
+backgroundColor: AppColors.background,
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+        elevation: 0,
+        title: Text(
+          'FAQs',
+          style: TextStyle(
+            color: AppColors.textDarkColor,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 17.0,
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(
+            Icons.close,
+            color: AppColors.textDarkColor,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 14.0,
+            vertical: 10,
+          ),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 15,
               ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  OuterAppBar(
-                    title: 'FAQs',
-                    centerTitle: true,
-                  ),
-                  SizedBox(
-                    height: 45,
-                  ),
-                  ...List.generate(items.length, (index) {
-                    return Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
-                          decoration: BoxDecoration(
-                              color: AppColors.cardColor,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                items[index].headerValue,
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text400(
-                                text: items[index].expandedValue,
-                                fontSize: 14,
-                                height: 1.6,
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    );
-                  }),
+              ...List.generate(items.length, (index) {
+                return Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
+                      decoration: BoxDecoration(
+                       border: Border.all(color: AppColors.primary, width: 1),
+                          color: AppColors.bottomSheetColor,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            items[index].headerValue,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.onBackground,
 
-                  //
-                  // Container(
-                  //              padding: EdgeInsets.all(15.0),
-                  //              child:
-                ],
-              ),
-            ),
+
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text400(
+                            text: items[index].expandedValue,
+                            fontSize: 14,
+                            height: 1.6,
+                            color: AppColors.onBackground,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                );
+              }),
+
+            ],
           ),
         ),
       ),

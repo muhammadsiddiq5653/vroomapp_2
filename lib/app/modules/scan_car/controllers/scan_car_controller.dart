@@ -255,14 +255,11 @@ class ScanCarController extends AppAbstractController {
   static Future<File> _resizeImage(List list) async {
     var file = list[0] as File;
     var tempPath = list[1] as String;
-    print('hellooooo');
     final bytes = await file.readAsBytes();
     final imagelib.Image? image = imagelib.decodeImage(bytes);
     final imagelib.Image? resized = imagelib.copyResize(image!, width: 800);
     final List<int> resizedBytes = imagelib.encodeJpg(resized!, quality: 90);
-    print('balooo');
     var path = await File('$tempPath/scan.png').writeAsBytes(resizedBytes);
-    print(path);
     return path;
   }
 

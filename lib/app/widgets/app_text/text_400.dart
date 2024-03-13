@@ -16,7 +16,7 @@ class Text400 extends StatelessWidget {
       this.maxLines,
 
       this.fontSize = 10,
-      this.color = Colors.white, this.decoration, this.height})
+      this.color = Colors.black, this.decoration, this.height})
       : super(key: key);
 
   @override
@@ -32,7 +32,6 @@ class Text400 extends StatelessWidget {
           decoration: decoration,
           overflow: TextOverflow.visible,
           height: height,
-          fontStyle: FontStyle.italic,
           fontWeight: FontWeight.w400),
     );
   }

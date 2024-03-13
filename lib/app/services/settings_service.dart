@@ -48,6 +48,6 @@ class SettingsService extends GetxService {
     authModel = null;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
-    Get.offAllNamed(Routes.PREVIEW);
+    Get.offAllNamed(Routes.LOGIN_DETAILS_STEP);
   }
 }

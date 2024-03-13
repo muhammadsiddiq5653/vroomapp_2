@@ -1,5 +1,5 @@
 name: vroom_app
-version: 1.0.1+1
+version: 1.0.2+29
 publish_to: none
 description: Shazam for cars.
 environment: 
@@ -43,8 +43,6 @@ dependencies:
   launch_review: ^3.0.1
   carousel_slider: ^4.0.0
   flutter_animate: ^2.0.1
-  google_sign_in:
-  flutter_facebook_auth:
   audioplayers: ^4.0.0
   flutter_offline:
   connectivity_plus:
@@ -98,5 +96,6 @@ flutter:
     - assets/images/battlepass.png
     - assets/images/offlineImage.png
     - assets/sounds/
+    - assets/animations/
     - assets/welcomeVideo.mp4
 

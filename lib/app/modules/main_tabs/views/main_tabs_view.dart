@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:rive/rive.dart';
 import 'package:vroom_app/app/modules/alerts/notloggedin_alerts.dart';
 import 'package:vroom_app/app/modules/alerts/views/alerts_view.dart';
 import 'package:vroom_app/app/modules/feed/notloggedin_feed.dart';
@@ -12,7 +13,10 @@ import 'package:vroom_app/app/modules/home/views/home_view.dart';
 import 'package:vroom_app/app/modules/profile/views/profile_view.dart';
 
 import '../../../app_colors.dart';
+import '../../../data/models/car_model.dart';
 import '../../../helpers/hexcolor.dart';
+import '../../../routes/app_pages.dart';
+import '../../card_details/views/components/car_card.dart';
 import '../../home/notloggedin_home.dart';
 import '../../profile/notloggedin_profile.dart';
 import '../controllers/main_tabs_controller.dart';
@@ -25,155 +29,188 @@ class MainTabsView extends GetView<MainTabsController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MainTabsController>(
-        builder: (_) => Container(
-              child: Scaffold(
-                floatingActionButton: FloatingActionButton(
-                  backgroundColor: AppColors.primary,
-                  child: Container(
-                    height: 45,
-                    width: 55,
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
+        builder: (_) => Scaffold(
+              backgroundColor: AppColors.primary,
+              body: Container(
+                  width: double.infinity.w,
+                  height: double.infinity.h,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 100.h,
                       ),
-                    ),
-                    child: Container(
-                      padding: EdgeInsets.all(0),
-                      child: Image.asset(
-                        'assets/images/wroom_black.png',
-                        alignment: Alignment.center,
+                      Text(
+                        'Tap to Wroom',
+                        style: TextStyle(
+                          color: AppColors.surface,
+                          fontSize: 30.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ),
-                  onPressed: () {
-                    controller.isLoggedin.value
-                        ? controller.scan()
-                        : Get.snackbar(
-                            'You are Not Logged in',
-                            'Please Login First',
-                            snackPosition: SnackPosition.TOP,
-                            colorText: Colors.white,
-                          );
-                  },
-                ),
-                floatingActionButtonLocation:
-                    FloatingActionButtonLocation.centerDocked,
-                body: _getPage(),
-                extendBody: true,
-                bottomNavigationBar: ClipRect(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 5,
-                      sigmaY: 5,
-                    ),
-                    child: BottomNavigationBar(
-                      showSelectedLabels: true,
-                      showUnselectedLabels: false,
-                      elevation: 3,
-                      backgroundColor: HexColor("#141415").withOpacity(0.7),
-                      onTap: controller.onTap,
-                      selectedFontSize: 14.sp,
-                      selectedLabelStyle: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.italic,
+                      SizedBox(
+                        height: 20.h,
                       ),
-                      unselectedFontSize: 0,
-                      selectedItemColor: Colors.black,
-                      currentIndex:
-                          controller.pageIndex < 0 ? 0 : controller.pageIndex,
-                      type: BottomNavigationBarType.shifting,
-                      items: [
-                        BottomNavigationBarItem(
-                            backgroundColor: AppColors.background,
-                            activeIcon: SvgPicture.asset(
-                              'assets/images/svg/bottomNav/GarageActive.svg',
-                              width: 22.w,
-                              height: 22.h,
-                            ),
-                            icon: SvgPicture.asset(
-                              'assets/images/svg/bottomNav/GarageInActive.svg',
-                              width: 22.w,
-                              height: 22.h,
-                            ),
-                            label: 'Garage'.toUpperCase()),
-                        BottomNavigationBarItem(
-                            activeIcon: SvgPicture.asset(
-                              'assets/images/svg/bottomNav/FeedActive.svg',
-                              width: 22.w,
-                              height: 22.h,
-                            ),
-                            icon: SvgPicture.asset(
-                              'assets/images/svg/bottomNav/FeedInActive.svg',
-                              width: 22.w,
-                              height: 22.h,
-                            ),
-                            label: 'Feed'.toUpperCase()),
+                      SizedBox(
+                        height: 300.h,
+                        child: RiveAnimation.asset(
+                          'assets/animations/wroom_pulse.riv',
+                          clipRect: Rect.fromCircle(
+                            center: Offset(280.w, 220.h),
+                            radius: 200.r,
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
 
-                        BottomNavigationBarItem(
-                            activeIcon: SvgPicture.asset(
-                              'assets/images/svg/bottomNav/AlertsActive.svg',
-                              width: 22.w,
-                              height: 22.h,
+                      mainTabsController.isLoggedIn()
+                          ? Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.surface,
+                                borderRadius: BorderRadius.circular(100.r),
+                              ),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.search_rounded,
+                                  size: 20.sp,
+                                ),
+                                color: AppColors.primary,
+                              ),
+                            )
+                          : Expanded(
+                              child: DraggableScrollableSheet(
+                                  controller: controller.controller,
+                                  builder: (context, controller) {
+                                    return Container(
+                                      padding: EdgeInsets.all(20.h),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(20.r),
+                                          topRight: Radius.circular(20.r),
+                                        ),
+                                        color: AppColors.bottomSheetColor,
+                                        shape: BoxShape.rectangle,
+                                      ),
+                                      child: SingleChildScrollView(
+                                          child: Column(
+                                        children: [
+                                          Container(
+                                            width: 40.w,
+                                            height: 5.h,
+                                            decoration: BoxDecoration(
+                                              color: AppColors.primary
+                                                  .withOpacity(0.5),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.r),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10.h,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              Get.to(
+                                                HomeView(),
+                                                transition: Transition.downToUp,
+                                                duration: Duration(
+                                                    milliseconds: 1000),
+                                                popGesture: true,
+                                                curve: Curves.easeInOut,
+                                              );
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'My Garage',
+                                                  style: TextStyle(
+                                                    color: AppColors.primary,
+                                                    fontSize: 20.sp,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '4 cars',
+                                                  style: TextStyle(
+                                                    color: AppColors.primary,
+                                                    fontSize: 20.sp,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      )),
+                                    );
+                                  }),
                             ),
-                            icon: SvgPicture.asset(
-                              'assets/images/svg/bottomNav/AlertsInActive.svg',
-                              width: 22.w,
-                              height: 22.h,
-                            ),
-                            label: 'Alerts'.toUpperCase()),
-                        BottomNavigationBarItem(
-                            activeIcon: SvgPicture.asset(
-                              'assets/images/svg/bottomNav/ProfileActive.svg',
-                              width: 22.w,
-                              height: 22.h,
-                            ),
-                            icon: SvgPicture.asset(
-                              'assets/images/svg/bottomNav/ProfileInActive.svg',
-                              width: 22.w,
-                              height: 22.h,
-                            ),
-                            label: 'Profile'.toUpperCase()),
-                        // BottomNavigationBarItem(
-                        //     icon: Icon(
-                        //       Remix.group_line,
-                        //       size: 25,
-                        //     ),
-                        //     label: 'Leaders'.toUpperCase()),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+
+                      // Container(
+                      //   width: 400.w,
+                      //   height: 220.h,
+                      //   decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.only(
+                      //       topLeft: Radius.circular(20.r),
+                      //       topRight: Radius.circular(20.r),
+                      //     ),
+                      //     color: AppColors.bottomSheetColor,
+                      //     shape: BoxShape.rectangle,
+                      //   ),
+                      //   child: GestureDetector(
+                      //     onTap: () {
+                      //       controller.pageIndex = 0;
+                      //     },
+                      //     child: Column(
+                      //       children: [
+                      //
+                      //
+                      //
+                      //
+                      //       ],
+                      //
+                      //     )
+                      //   ),
+                      // ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                    ],
+                  )),
+              extendBody: true,
             ));
   }
 
-  _getPage() {
-    switch (controller.pageIndex) {
-      case 0:
-        return controller.isLoggedin.value ? HomeView() : NotLoggedinHome();
-
-      case 1:
-        return controller.isLoggedin.value ? FeedView() : NotLoggedInFeedView();
-
-      case 2:
-        return controller.isLoggedin.value ? AlertsView() : NotLoggedinAlert();
-      case 3:
-        return controller.isLoggedin.value
-            ? ProfileView()
-            : NotLoggedinProfile();
-      default:
-        return Scaffold(
-          body: Container(
-            width: double.infinity.w,
-            height: double.infinity.h,
-            decoration: BoxDecoration(color: AppColors.background),
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          ),
-        );
-    }
-  }
+// _getPage() {
+//   switch (controller.pageIndex) {
+//     case 0:
+//       return controller.isLoggedin.value ? HomeView() : NotLoggedinHome();
+//
+//     case 1:
+//       return controller.isLoggedin.value ? FeedView() : NotLoggedInFeedView();
+//
+//     case 2:
+//       return controller.isLoggedin.value ? AlertsView() : NotLoggedinAlert();
+//     case 3:
+//       return controller.isLoggedin.value
+//           ? ProfileView()
+//           : NotLoggedinProfile();
+//     default:
+//       return Scaffold(
+//         body: Container(
+//           width: double.infinity.w,
+//           height: double.infinity.h,
+//           decoration: BoxDecoration(color: AppColors.background),
+//           child: Center(
+//             child: CircularProgressIndicator(),
+//           ),
+//         ),
+//       );
+//   }
+// }
 }

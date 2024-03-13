@@ -11,6 +11,7 @@ class NetworkService extends getx.GetxService {
   final int TIMEOUT = kReleaseMode ? 60000 : 60000;
   final SettingsService settingsService = getx.Get.put(SettingsService());
   late Dio dio;
+
   @override
   onInit() {
     super.onInit();
@@ -28,6 +29,7 @@ class NetworkService extends getx.GetxService {
         'app_build_number': packageInfo.buildNumber,
       });
       if (!requesOptions.headers.containsKey(HttpHeaders.authorizationHeader)) {
+        print('accessToken: ${settingsService.authModel?.accessToken}');
         requesOptions.headers[HttpHeaders.authorizationHeader] =
             "Bearer ${settingsService.authModel?.accessToken}";
       }
@@ -57,20 +59,27 @@ class NetworkService extends getx.GetxService {
 
   Future<Response> get(String url,
       {Map<String, dynamic>? query, Map<String, dynamic>? headers}) async {
+    print('url: $url');
+    print('query: $query');
+    print('headers: $headers');
     return await dio.get(url,
         queryParameters: query, options: Options(headers: headers));
   }
 
   Future<Response> delete(String url,
       {Map<String, dynamic>? query, Map<String, dynamic>? headers}) async {
+    print('url: $url');
+    print('query: $query');
+    print('headers: $headers');
     return await dio.delete(url,
         queryParameters: query, options: Options(headers: headers));
   }
 
-
   //{"id":12,"name":"Ashell","email":"S@gmail.com","phone_code":null,"phone":null,"avatar":"","access_token":"KjXK2EXXcqo0kcMDbL84Di1h8rrN9cX0ZZbPJZy6","access_token_orig":"21|KjXK2EXXcqo0kcMDbL84Di1h8rrN9cX0ZZbPJZy6","total_price":null}ash
   Future<Response> post(String url, {Map<String, dynamic>? query, data}) async {
+
     var request = await dio.post(url, queryParameters: query, data: data);
+
     return request;
   }
 

@@ -29,7 +29,6 @@ class Text700 extends StatelessWidget {
       style: TextStyle(
           color: color,
           fontSize: fontSize,
-          fontStyle: FontStyle.italic,
           fontWeight: FontWeight.w700),
     );
     if (!animate) {

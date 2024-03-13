@@ -1,96 +1,172 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-import 'package:remixicon/remixicon.dart';
+import 'package:rive/rive.dart';
 import 'package:vroom_app/app/app_colors.dart';
-import 'package:vroom_app/app/data/models/user_model.dart';
-import 'package:vroom_app/app/widgets/app_bars/game_app_bar.dart';
-import 'package:vroom_app/app/widgets/app_form_fields/app_text_field.dart';
 import 'package:vroom_app/app/widgets/app_keyboard_hider.dart';
 import 'package:vroom_app/app/widgets/app_state_handler.dart';
 import 'package:vroom_app/app/widgets/app_text/text_700.dart';
-import 'package:vroom_app/app/widgets/loadmore.dart';
-
+import '../../../app_enums.dart';
+import '../../../routes/app_pages.dart';
 import '../../../widgets/app_text/text_600.dart';
-import '../../card_details/views/components/car_card.dart';
 import '../controllers/home_controller.dart';
+import 'home_garage_view.dart';
 
 class HomeView extends GetView<HomeController> {
   final homeController = Get.put(HomeController());
+
   HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
       builder: (HomeController _) => AppKeyboardHider(
-        child: Scaffold(
-            appBar: GameAppBar(
-              ),
-            body: Container(
-              decoration: BoxDecoration(
-                color: AppColors.background,
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 17, vertical: 20),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                physics: BouncingScrollPhysics(),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: AppTextField(
-                          prefixIcon: Icon(
-                            Remix.search_2_line,
-                            color: AppColors.primary,
+          child: Scaffold(
+        backgroundColor: AppColors.primary,
+        body: controller.loadingState == GeneralLoadingState.waiting
+            ? Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.surface,
+                ),
+              )
+            : Column(
+                children: [
+                  Flexible(
+                      flex: 4,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 100.h,
                           ),
-                          suffixIcon: IconButton(
-                            icon: Icon(Remix.filter_3_fill),
-                            color: AppColors.primary,
-                            onPressed: controller.sortOption,
+                          Text(
+                            'Tap to Wroom',
+                            style: TextStyle(
+                              color: AppColors.surface,
+                              fontSize: 30.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          onChanged: controller.searchChanged,
-                          hintText: 'Search',
-                          labelText: 'Search'),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    AppStateHandler(
-                      loadingState: controller.loadingState,
-                      emptyWidget: _getEmptyState(),
-                      offlineWidget : _getOfflineState(),
-                      onRetry: () {
-                        controller.loadCards();
-                      },
-                      hasRefreshIndicator: true,
-                      child: LoadMore(
-                        isFinish: controller.cars?.haveNext == false,
-                        onLoadMore: () async {
-                          return await controller.loadCards(
-                              page: (controller.cars?.currentPage ?? 0) + 1);
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.toNamed(Routes.SCAN_CAR);
+                            },
+                            child: SizedBox(
+                              height: 300.h,
+                              child: RiveAnimation.asset(
+                                'assets/animations/wroom_pulse.riv',
+                                clipRect: Rect.fromCircle(
+                                  center: Offset(280.w, 220.h),
+                                  radius: 200.r,
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                  Flexible(
+                    flex: 2,
+                    child: Container(
+                      width: double.infinity,
+                      height: 400.h,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10.h,
+                        horizontal: 20.w,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20.r),
+                          topRight: Radius.circular(20.r),
+                        ),
+                        color: AppColors.bottomSheetColor.withOpacity(0.9),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(
+                            HomeGarageView(),
+                            transition: Transition.downToUp,
+                            duration: Duration(milliseconds: 1000),
+                            popGesture: true,
+                            curve: Curves.easeInOut,
+                          );
                         },
-                        child: ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: controller.cars?.collection.length ?? 0,
-                            separatorBuilder: ((context, index) => SizedBox(
-                              height: 15.h,
-                            )),
-                            itemBuilder: (BuildContext context, int index) {
-                              var car = controller.cars!.collection[index];
-                              return CarCard(
-                                  car: car,
-                                  onTap: controller.onCarTap,
-                                  onLongTap: controller.onCarLongTap);
-                            }),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 40.w,
+                              height: 5.h,
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withOpacity(0.5),
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'My Garage',
+                                  style: TextStyle(
+                                    color: AppColors.primary,
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  '${controller.cars!.collection.length} cars',
+                                  style: TextStyle(
+                                    color: AppColors.primary,
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 160.h,
+                              child: GridView.builder(
+                                shrinkWrap: true,
+                                itemCount: controller.cars!.collection.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  var car = controller.cars!.collection[index];
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: AppColors.surface,
+                                      border: Border.all(
+                                        color: AppColors.primary,
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(20.r),
+                                    ),
+                                    child: Image.network(
+                                      car.image!,
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  );
+                                },
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10.w,
+                                  mainAxisSpacing: 10.h,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )),
-      ),
+      )),
     );
   }
 
@@ -103,7 +179,7 @@ class HomeView extends GetView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          //  SizedBox(height: 30.h),
+            //  SizedBox(height: 30.h),
             Text700(
               text: "New to the app?",
               fontSize: 25.sp,
@@ -137,6 +213,7 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
+
   Widget _getOfflineState() {
     return Center(
       child: Container(
@@ -160,7 +237,7 @@ class HomeView extends GetView<HomeController> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text600(
                 text:
-                "Make sure you are connected to internet. Your cars will show up when you are back online.",
+                    "Make sure you are connected to internet. Your cars will show up when you are back online.",
                 textAlign: TextAlign.center,
                 fontSize: 12.sp,
               ),
