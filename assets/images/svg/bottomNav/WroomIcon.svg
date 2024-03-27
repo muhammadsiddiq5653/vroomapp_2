@@ -1,0 +1,46 @@
+<svg width="62" height="49" viewBox="0 0 62 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="wroomIcon">
+<g id="Group 427318226">
+<circle id="Ellipse 18" cx="19.849" cy="34.6435" r="1.06024" transform="rotate(-120 19.849 34.6435)" fill="#D5E0EB" fill-opacity="0.8"/>
+<circle id="Ellipse 23" cx="44.363" cy="28.4821" r="1.06024" transform="rotate(15 44.363 28.4821)" fill="#71ABE4" fill-opacity="0.22"/>
+<circle id="Ellipse 26" cx="31.9645" cy="14.0368" r="1.06024" fill="#B9D0E7" fill-opacity="0.55"/>
+<circle id="Ellipse 28" cx="42.3786" cy="31.7907" r="1.06024" transform="rotate(15 42.3786 31.7907)" fill="#D5E0EB" fill-opacity="0.78"/>
+<circle id="Ellipse 65" cx="46.2503" cy="25.6713" r="0.305696" transform="rotate(15 46.2503 25.6713)" fill="#D5E0EB" fill-opacity="0.78"/>
+<circle id="Ellipse 66" cx="44.0783" cy="25.0888" r="0.801305" transform="rotate(15 44.0783 25.0888)" fill="#BBCEE0"/>
+<circle id="Ellipse 20" cx="16.6163" cy="32.2263" r="0.795178" transform="rotate(-120 16.6163 32.2263)" fill="#D5E0EB" fill-opacity="0.45"/>
+<circle id="Ellipse 27" cx="32.759" cy="9.79518" r="0.795178" fill="#E4EEF8"/>
+<circle id="Ellipse 24" cx="26.928" cy="10.8557" r="0.795178" fill="#C7E3FF" fill-opacity="0.33"/>
+<circle id="Ellipse 21" cx="16.6335" cy="28.5434" r="0.530119" transform="rotate(-120 16.6335 28.5434)" fill="#D5E0EB" fill-opacity="0.6"/>
+<circle id="Ellipse 22" cx="29.5789" cy="11.3856" r="0.530119" fill="#D5E0EB" fill-opacity="0.15"/>
+<circle id="Ellipse 25" cx="34.6141" cy="11.3856" r="0.530119" fill="#D5E0EB" fill-opacity="0.73"/>
+<circle id="Ellipse 29" cx="44.8377" cy="30.8036" r="0.530119" transform="rotate(15 44.8377 30.8036)" fill="#D5E0EB" fill-opacity="0.43"/>
+</g>
+<g id="Group 427318221">
+<g id="w" filter="url(#filter0_d_2449_437)">
+<path d="M22.3424 31.9275C21.9209 31.9275 21.5446 31.6631 21.4017 31.2666L15.4829 14.8449C15.2481 14.1932 15.7309 13.5059 16.4237 13.5059H19.3202C19.746 13.5059 20.125 13.7754 20.2648 14.1776L25.151 28.236C25.342 28.7856 24.934 29.3594 24.3522 29.3594C23.7655 29.3594 23.3571 28.7768 23.5571 28.2253L28.6565 14.1649C28.8 13.7693 29.1757 13.5059 29.5966 13.5059H32.7049C33.1293 13.5059 33.5074 13.7737 33.6482 14.1739L38.5954 28.2329C38.7889 28.7831 38.3808 29.3594 37.7976 29.3594C37.2123 29.3594 36.8039 28.7793 37.0014 28.2283L42.0399 14.1685C42.1823 13.771 42.559 13.5059 42.9812 13.5059H45.5744C46.2679 13.5059 46.7508 14.1945 46.5146 14.8465L40.5654 31.2681C40.422 31.6639 40.0461 31.9275 39.6252 31.9275H35.8614C35.4397 31.9275 35.0634 31.663 34.9205 31.2662L30.5296 19.0701C30.4005 18.7117 30.6661 18.3338 31.047 18.3338C31.4305 18.3338 31.6962 18.7165 31.5623 19.0758L27.0161 31.2766C26.8703 31.668 26.4966 31.9275 26.079 31.9275H22.3424Z" fill="url(#paint0_angular_2449_437)"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_2449_437" x="0.422852" y="0.505859" width="61.1523" height="48.4219" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="7.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2449_437"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2449_437" result="shape"/>
+</filter>
+<radialGradient id="paint0_angular_2449_437" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(31.2477 23.4549) rotate(94.9089) scale(8.50373 14.2765)">
+<stop offset="0.0729167" stop-color="#FBFBFD"/>
+<stop offset="0.244792" stop-color="#C8D4DA"/>
+<stop offset="0.434957" stop-color="white"/>
+<stop offset="0.532623" stop-color="#AEC0CE"/>
+<stop offset="0.658692" stop-color="#E3E9EE"/>
+<stop offset="0.708863" stop-color="#FAFBFC"/>
+<stop offset="0.861413" stop-color="#D6DFE6"/>
+<stop offset="0.921875" stop-color="#B8C9D3"/>
+</radialGradient>
+</defs>
+</svg>
